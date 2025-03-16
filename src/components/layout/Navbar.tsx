@@ -85,7 +85,7 @@ const Navbar = () => {
         <div className="flex gap-4">
           <motion.div
             ref={searchRef}
-            animate={{ width: isSearchVisible ? "255px" : "45px" }}
+            animate={{ width: isSearchVisible ? "250px" : "45px" }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
             className="flex items-center border border-base/10 sm:py-3 sm:px-3 py-[6px] px-[14px] rounded-md cursor-pointer gap-2 overflow-hidden focus-within:outline outline-neonAqua transition-default"
             onClick={() => setIsSearchVisible(true)}
@@ -124,16 +124,16 @@ const Navbar = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="absolute top-15 right-0 bg-midnightNavy rounded-md p-3 flex flex-col justify-center items-start 3xl:gap-8 gap-2"
+                className="absolute top-15 right-0 bg-midnightNavy rounded-md p-3 flex flex-col justify-center items-start"
               >
                 {navLinks?.map((item, index) => {
                   return (
                     <li
                       key={index}
-                      className="w-full flex justify-start items-center text-neonAqua px-3 py-2 active:bg-neonAqua active:text-main focus:bg-neonAqua focus:text-main transition-default rounded-md"
+                      className="w-full flex justify-start items-center text-neonAqua sm:px-3 sm:py-3 px-2 py-2 active:bg-neonAqua active:text-main focus:bg-neonAqua focus:text-main transition-default sm:rounded-md rounded-sm"
                     >
                       <a href={item.href}>
-                        <p className="font-semibold tracking-wide">
+                        <p className="font-semibold tracking-wide sm:text-[16px] text-sm">
                           {item.label}
                         </p>
                       </a>
@@ -141,7 +141,7 @@ const Navbar = () => {
                   );
                 })}
 
-                <div className="!mt-1">
+                <div className="sm:!mt-1 !mt-2">
                   <Button colorType={"secondary"} />
                 </div>
               </motion.div>
