@@ -7,7 +7,7 @@ interface ButtonProps {
 
 const Button = ({ colorType = "primary" }: ButtonProps) => {
   const baseStyles =
-    "w-fit flex justify-center items-center gap-1 3xl:px-8 sm:px-6 px-4 sm:py-[14px] py-2 rounded-md cursor-pointer";
+    "w-fit flex justify-center items-center gap-1 3xl:px-8 sm:px-6 px-4 sm:py-[14px] py-2 sm:rounded-md rounded-sm cursor-pointer";
   const colorStyle = {
     primary:
       "bg-midnightNavy text-neonAqua active:bg-neonAqua active:text-main hover:bg-neonAqua hover:text-main focus:bg-neonAqua focus:text-main transition-default",

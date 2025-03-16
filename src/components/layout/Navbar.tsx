@@ -85,7 +85,7 @@ const Navbar = () => {
         <div className="flex gap-4">
           <motion.div
             ref={searchRef}
-            animate={{ width: isSearchVisible ? "250px" : "45px" }}
+            animate={{ width: isSearchVisible ? "240px" : "45px" }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
             className="flex items-center border border-base/10 sm:py-3 sm:px-3 py-[6px] px-[14px] rounded-md cursor-pointer gap-2 overflow-hidden focus-within:outline outline-neonAqua transition-default"
             onClick={() => setIsSearchVisible(true)}
