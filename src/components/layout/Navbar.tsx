@@ -24,7 +24,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="w-full h-24 flex items-center 3xl:px-20 md:px-10 sm:px-8 px-5 border-b border-base/10">
+    <nav className="w-full sm:h-24 h-15 flex items-center 3xl:px-20 md:px-10 sm:px-8 px-5 border-b border-base/10">
       {/* Web Menu */}
       <div className="hidden w-full xl:flex items-center 3xl:gap-14 gap-5">
         <div className="3xl:!mr-0 !mr-5">
@@ -79,21 +79,19 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div className="relative xl:hidden w-full flex justify-between items-center z-30">
-        <div className="">
-          <img src="/logo/logo-text.svg" alt="logo" />
-        </div>
+        <img src="/logo/logo-text.svg" alt="logo" className="sm:block hidden" />
+        <img src="/logo/logo.svg" alt="logo" className="sm:hidden w-6" />
 
         <div className="flex gap-4">
           <motion.div
             ref={searchRef}
-            animate={{ width: isSearchVisible ? "300px" : "45px" }}
+            animate={{ width: isSearchVisible ? "255px" : "45px" }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="flex items-center border border-base/10 py-3 px-3 rounded-md cursor-pointer gap-2 overflow-hidden focus-within:outline outline-neonAqua transition-default"
+            className="flex items-center border border-base/10 sm:py-3 sm:px-3 py-[6px] px-[14px] rounded-md cursor-pointer gap-2 overflow-hidden focus-within:outline outline-neonAqua transition-default"
             onClick={() => setIsSearchVisible(true)}
           >
             <FiSearch
-              size={20}
-              className={`${
+              className={`sm:text-xl text-[16px] ${
                 isSearchVisible ? "text-neonAqua" : "text-secondaryBase"
               } shrink-0`}
             />
@@ -116,7 +114,7 @@ const Navbar = () => {
             onClick={() => setShowMenu(!showMenu)}
             className={`transition-default ${showMenu ? "text-neonAqua" : ""}`}
           >
-            <PiDotsNineBold size={32} />
+            <PiDotsNineBold className="sm:text-[2rem] text-2xl" />
           </button>
 
           <AnimatePresence>
