@@ -24,9 +24,9 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="w-full sm:h-24 h-15 flex items-center 3xl:px-20 md:px-10 sm:px-8 px-5 border-b border-base/10">
+    <nav className="w-full sm:h-24 h-15 flex items-center md:px-10 sm:px-8 px-5 border-b border-base/10">
       {/* Web Menu */}
-      <div className="hidden w-full xl:flex items-center 3xl:gap-14 gap-5">
+      <div className="hidden w-full xl:flex items-center 3xl:gap-10 gap-5">
         <div className="3xl:!mr-0 !mr-5">
           <img src="/logo/logo-text.svg" alt="logo" />
         </div>
@@ -42,7 +42,7 @@ const Navbar = () => {
           />
         </div>
 
-        <ul className="flex justify-center items-center 3xl:gap-8 gap-2">
+        <ul className="flex justify-center items-center 3xl:gap-5 gap-2">
           {navLinks?.map((item, index) => (
             <li
               key={index}
