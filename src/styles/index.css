@@ -25,7 +25,6 @@
   --breakpoint-4xl: 1920px;
   --breakpoint-5xl: 2048px;
   --breakpoint-6xl: 3840px;
-  --breakpoint-7xl: 4096px;
 }
 
 #root {
@@ -205,10 +204,12 @@ html > body[data-scroll-locked] {
 .swiper-wrapper {
   display: flex;
   align-items: end !important;
-  justify-items: end !important;
 }
 
-.swiper-slide {
-  max-width: fit-content !important;
-  margin-right: 32px
+@media (min-width: 3840px) {
+  .swiper-slide {
+    max-width: fit-content !important;
+    margin-right: 56px;
+    margin-left: 32px;
+  }
 }
