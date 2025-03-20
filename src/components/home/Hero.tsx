@@ -80,14 +80,14 @@ const Hero = () => {
     } else if (windowWidth >= 1920) {
       return index === currentIndex
         ? {
-            width: 260,
-            height: 340,
+            width: 265,
+            height: 345,
             border: "4px solid #5CFEF0",
             borderRadius: "20px",
           }
         : {
-            width: 230,
-            height: 300,
+            width: 232,
+            height: 295,
             border: "4px solid transparent",
             borderRadius: "20px",
           };
@@ -154,9 +154,9 @@ const Hero = () => {
       <div className="absolute left-0 w-[50%] h-full bg-gradient-to-l from-main/0 to-main z-10"></div>
 
       {/* Content Layer */}
-      <div className="relative w-full max-w-[4096px] !mx-auto h-full flex items-end z-20 !mb-[10rem] px-10 6xl:px-28">
+      <div className="relative w-full max-w-[4096px] !mx-auto h-full flex items-end z-20 !mb-[10rem] px-10 5xl:px-20 6xl:px-28">
         {/* Details */}
-        <div className="w-1/2 flex flex-col gap-4 2xl:gap-5 5xl:gap-7 text-start !mb-[5rem] 4xl:!mb-[6rem] 5xl:!mb-[13rem] 6xl:!mb-[21rem]">
+        <div className="w-1/2 flex flex-col gap-4 2xl:gap-5 5xl:gap-7 text-start !mb-[5rem] 4xl:!mb-[7rem] 5xl:!mb-[13rem] 6xl:!mb-[21rem]">
           <p className="font-bold text-xl 2xl:text-2xl 4xl:text-3xl text-neonAqua transition-slow">
             #1 Most Popular
           </p>
@@ -210,7 +210,7 @@ const Hero = () => {
             speed={500}
             loop={true}
             modules={[Navigation, Autoplay]}
-            className="mySwiper w-[510px] 2xl:w-[600px] 4xl:w-[800px] 5xl:w-[1265px] 6xl:w-[1700px] 7xl:w-[1800px] !mb-[5rem] 4xl:!mb-[6rem] 5xl:!mb-[13rem] 6xl:!mb-[21rem] 4xl:!px-1 5xl:!px-5 transition-slow"
+            className="mySwiper w-[500px] 2xl:w-[590px] 4xl:w-[800px] 5xl:w-[1265px] 6xl:w-[1700px] 7xl:w-[1800px] !mb-[5rem] 4xl:!mb-[7rem] 5xl:!mb-[13rem] 6xl:!mb-[21rem] 4xl:!px-1 5xl:!px-5 transition-slow"
           >
             <div className="flex w-full justify-between">
               {featuredAnime?.map((item, index) => {
@@ -239,7 +239,7 @@ const Hero = () => {
                         className="w-full h-full object-cover transition-all duration-500 ease-in-out"
                       />
                       {index !== currentIndex && (
-                        <div className="absolute inset-0 bg-black/20 transition-all duration-500 5xl:rounded-[38px] 6xl:rounded-[48px]"></div>
+                        <div className="absolute inset-0 bg-black/20 transition-all duration-500 rounded-[20px] 5xl:rounded-[38px] 6xl:rounded-[48px]"></div>
                       )}
                     </motion.div>
                   </SwiperSlide>
@@ -250,11 +250,11 @@ const Hero = () => {
         </div>
 
         {/* Pagination Controls */}
-        <div className="z-40 absolute 5xl:bottom-16 6xl:bottom-32 right-10 5xl:right-20 6xl:right-28 w-1/2 flex justify-end items-center 4xl:gap-6 5xl:gap-12 6xl:gap-20">
-          <div className="flex gap-4 5xl:gap-5 6xl:gap-8">
+        <div className="z-40 absolute 5xl:bottom-16 6xl:bottom-32 right-10 5xl:right-20 6xl:right-28 w-1/2 flex justify-end items-center gap-6 4xl:gap-8 5xl:gap-12 6xl:gap-20">
+          <div className="flex gap-3 2xl:gap-4 5xl:gap-5 6xl:gap-8">
             <motion.button
               onClick={handlePrev}
-              className="w-fit h-fit border rounded-full p-3 4xl:p-[14px] 5xl:p-[18px] 6xl:p-6 hover:bg-secondaryBase/20 bg-white/10 cursor-pointer"
+              className="w-fit h-fit border rounded-full p-[10px] 2xl:p-3 4xl:p-[14px] 5xl:p-[18px] 6xl:p-6 hover:bg-secondaryBase/20 bg-white/10 cursor-pointer"
               whileTap={{ scale: 0.9 }}
               transition={{ duration: 0.1 }}
             >
@@ -263,7 +263,7 @@ const Hero = () => {
 
             <motion.button
               onClick={handleNext}
-              className="w-fit h-fit border rounded-full p-3 4xl:p-[14px] 5xl:p-[18px] 6xl:p-6 hover:bg-secondaryBase/20 bg-white/10 cursor-pointer"
+              className="w-fit h-fit border rounded-full p-[10px] 2xl:p-3 4xl:p-[14px] 5xl:p-[18px] 6xl:p-6 hover:bg-secondaryBase/20 bg-white/10 cursor-pointer"
               whileTap={{ scale: 0.9 }}
               transition={{ duration: 0.1 }}
             >
@@ -275,7 +275,7 @@ const Hero = () => {
 
           <p
             key={currentIndex}
-            className="w-16 5xl:w-20 6xl:w-36 text-5xl 4xl:text-[52px] 5xl:text-[84px] 6xl:text-[120px] font-black text-neonAqua"
+            className="w-16 4xl:w-28 6xl:w-36 text-5xl 4xl:text-[64px] 5xl:text-[84px] 6xl:text-[120px] font-black text-neonAqua"
           >
             {String(currentIndex + 1).padStart(2, "0")}
           </p>
