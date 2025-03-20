@@ -37,7 +37,10 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative w-full hidden xl:h-[640px] 2xl:h-[790px] 3xl:h-[1040px] xl:flex items-end md:items-center overflow-hidden">
+    <section
+      className="relative w-full hidden xl:flex items-end md:items-center overflow-hidden transition-all duration-1000 xl:h-[770px] 2xl:h-[850px] 3xl:h-[950px] 4xl:h-screen"
+      style={{ maxHeight: "100vh" }}
+    >
       {/* Background Image */}
       <div className="absolute inset-0 w-full h-full z-0">
         <img

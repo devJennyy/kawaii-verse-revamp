@@ -24,7 +24,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="w-full sm:h-24 h-15 flex items-center md:px-10 sm:px-8 px-5 border-b border-base/10">
+    <nav className="fixed left-0 top-0 w-full sm:h-24 h-15 flex items-center md:px-10 sm:px-8 px-5 border-b border-base/10 z-50 bg-main">
       {/* Web Menu */}
       <div className="hidden w-full xl:flex items-center 3xl:gap-10 gap-5">
         <div className="3xl:!mr-0 !mr-5">
