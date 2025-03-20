@@ -25,6 +25,7 @@
   --breakpoint-4xl: 1920px;
   --breakpoint-5xl: 2048px;
   --breakpoint-6xl: 3840px;
+  --breakpoint-7xl: 4096px;
 }
 
 #root {

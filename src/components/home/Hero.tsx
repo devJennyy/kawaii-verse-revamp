@@ -35,7 +35,21 @@ const Hero = () => {
     border: string;
     borderRadius: string;
   } => {
-    if (windowWidth >= 3840) {
+    if (windowWidth >= 4096) {
+      return index === currentIndex
+        ? {
+            width: 545,
+            height: 645,
+            border: "12px solid #5CFEF0",
+            borderRadius: "48px",
+          }
+        : {
+            width: 485,
+            height: 575,
+            border: "12px solid transparent",
+            borderRadius: "48px",
+          };
+    } else if (windowWidth >= 3840) {
       return index === currentIndex
         ? {
             width: 515,
@@ -196,7 +210,7 @@ const Hero = () => {
             speed={500}
             loop={true}
             modules={[Navigation, Autoplay]}
-            className="mySwiper w-[510px] 2xl:w-[600px] 4xl:w-[800px] 5xl:w-[1000px] 6xl:w-[1700px] !mb-[5rem] 4xl:!mb-[6rem] 6xl:!mb-[21rem] 4xl:!px-1 5xl:!px-5 transition-slow"
+            className="mySwiper w-[510px] 2xl:w-[600px] 4xl:w-[800px] 5xl:w-[1000px] 6xl:w-[1700px] 7xl:w-[1800px] !mb-[5rem] 4xl:!mb-[6rem] 6xl:!mb-[21rem] 4xl:!px-1 5xl:!px-5 transition-slow"
           >
             <div className="flex w-full justify-between">
               {featuredAnime?.map((item, index) => {
