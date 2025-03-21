@@ -25,6 +25,7 @@
   --breakpoint-4xl: 1920px;
   --breakpoint-4xxl: 2560px;
   --breakpoint-5xl: 2880px;
+  --breakpoint-5xxl: 3070px;
   --breakpoint-6xl: 3840px;
   --breakpoint-7xl: 4096px;
 }
@@ -208,24 +209,28 @@ html > body[data-scroll-locked] {
   align-items: end !important;
 }
 
-@media (min-width: 3840px) {
+/* @media (min-width: 3840px) {
   .swiper-slide {
-    max-width: fit-content !important;
-    margin-right: 56px !important;
-    margin-left: 32px !important;
+    margin-right: 6px !important;
   }
 }
 
 @media (min-width: 2880px) {
   .swiper-slide {
-    max-width: fit-content !important;
+ 
     margin-right: 50px !important;
   }
 }
 
 @media (min-width: 1280px) {
   .swiper-slide {
-    max-width: fit-content !important;
+ 
     margin-right: 32px;
   }
+} */
+
+.swiper-slide {
+  max-width: fit-content !important;
+  width: fit-content !important;
+  margin-left: 10px !important;
 }
