@@ -217,14 +217,14 @@ const Hero = () => {
 
             <div className="flex gap-4 4xxl:gap-6 !mt-5 2xl:!mt-8 4xl:!mt-10 4xxl:!mt-16">
               <button className="w-38 h-12 2xl:w-44 2xl:h-15 3xl:h-16 3xl:w-46 4xxl:w-64 4xxl:h-22 transition-slow bg-neonAqua flex justify-center items-center rounded-[10px] 4xxl:rounded-[15px] text-main gap-2 cursor-pointer">
-                <FaPlay className="2xl:text-lg 3xl:text-xl 4xl:text-[28px] transition-slow" />
-                <p className="font-bold 2xl:text-lg 4xxl:text-[28px] transition-slow">
+                <FaPlay className="2xl:text-lg 3xl:text-xl 4xl:text-[26px] transition-slow" />
+                <p className="font-bold 2xl:text-lg 4xxl:text-[26px] transition-slow">
                   Watch Now
                 </p>
               </button>
 
               <button className="w-38 h-12 2xl:w-44 2xl:h-15 3xl:h-16 3xl:w-46 4xxl:w-64 4xxl:h-22 transition-slow bg-white/10 backdrop-blur-md border border-white/20 shadow-lg rounded-[10px] 4xxl:rounded-[15px] cursor-pointer">
-                <p className="font-bold 2xl:text-lg 3xl:text-xl 4xxl:text-[28px] transition-slow">
+                <p className="font-bold 2xl:text-lg 3xl:text-xl 4xxl:text-[26px] transition-slow">
                   Trailer
                 </p>
               </button>
