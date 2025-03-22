@@ -63,7 +63,7 @@ const Hero = () => {
             border: "12px solid transparent",
             borderRadius: "48px",
           };
-    }else if (windowWidth >= 3070) {
+    }else if (windowWidth >= 3060) {
       return index === currentIndex
         ? {
             width: 400,
