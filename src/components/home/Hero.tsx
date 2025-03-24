@@ -43,7 +43,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="relative w-full xl:flex justify-center items-center 5xl:h-[2020px] 4xl:h-[1500px] 3xl:h-[1080px] 2xl:[808px] h-[752px] hidden transition-slow">
+    <div className="relative w-full xl:flex justify-center items-center 5xl:h-[2020px] 4xxl:h-[1590px] 4xl:h-[1500px] 3xl:h-[1080px] 2xl:[808px] h-[752px] hidden transition-slow">
       {/* Bg Image */}
       <div className="absolute inset-0 w-full h-full z-0 border-b-20 border-black">
         {topAnime[currentIndex] && (
@@ -67,7 +67,7 @@ const Hero = () => {
         <div className="w-full h-full flex flex-col justify-end items-start 5xl:gap-14 4xl:gap-12 gap-8 transition-slow">
           <div className="flex flex-col justify-end items-start text-start 4xl:pl-20 pl-12 5xl:gap-8 4xl:gap-7 3xl:gap-6 2xl:gap-4 gap-2">
             {topAnime[currentIndex] && (
-              <p className="font-semibold tracking-wider 5xl:text-[54px] 4xl:text-[38px] 3xl:text-[28px] 2xl:text-lg text-neonAqua uppercase">
+              <p className="font-semibold tracking-wider 5xl:text-[54px] 4xxl:text-[44px] 4xl:text-[38px] 3xl:text-[28px] 2xl:text-lg text-neonAqua uppercase">
                 #{topAnime[currentIndex].rank} Ranking
               </p>
             )}
@@ -75,11 +75,11 @@ const Hero = () => {
             {topAnime[currentIndex] && (
               <p
                 key={topAnime[currentIndex].title}
-                className={`uppercase tracking-wide 5xl:!mt-[-2rem] 4xl:!mt-[-1rem] 3xl:!mt-[-20px] 2xl:!mt-[-16px] !mt-[-5px] 5xl:w-[1300px] 4xl:w-[850px] 3xl:w-[650px] 2xl:w-[459px] w-[401px] 
+                className={`uppercase tracking-wide 5xl:!mt-[-2rem] 4xl:!mt-[-1rem] 3xl:!mt-[-20px] 2xl:!mt-[-16px] !mt-[-5px] 5xl:w-[1300px] 4xxl:w-[1000px] 4xl:w-[850px] 3xl:w-[650px] 2xl:w-[459px] w-[401px] 
                 ${
                   topAnime[currentIndex].title.length > 20
-                    ? "text-[40px] 2xl:text-[42px] 3xl:text-[70px] 4xl:text-[90px] 5xl:text-[140px] 5xl:leading-[11.5rem] 4xl:leading-[7.5rem] 3xl:leading-[6rem] leading-[3.4rem]"
-                    : "text-[90px] 2xl:text-[80px] 3xl:text-[135px] 4xl:text-[185px] 5xl:text-[260px] 5xl:leading-[17rem] 4xl:leading-[12.5rem] 3xl:leading-[9rem] leading-[6rem]"
+                    ? "text-[40px] 2xl:text-[42px] 3xl:text-[70px] 4xl:text-[90px] 4xxl:text-[110px] 5xl:text-[140px] 5xl:leading-[11.5rem] 4xl:leading-[7.5rem] 4xxl:leading-[9.5rem] 3xl:leading-[6rem] leading-[3.4rem]"
+                    : "text-[90px] 2xl:text-[80px] 3xl:text-[135px] 4xl:text-[185px] 4xxl:text-[210px] 5xl:text-[260px] 5xl:leading-[17rem] 4xl:leading-[12.5rem] 3xl:leading-[9rem] leading-[6rem]"
                 }`}
               >
                 {topAnime[currentIndex].title}
@@ -87,7 +87,7 @@ const Hero = () => {
             )}
 
             {topAnime[currentIndex] && (
-              <p className="line-clamp-2 5xl:text-[44px] 4xl:text-[28px] 3xl:text-[24px] 2xl:text-lg text-sm 5xl:w-[1028px] 4xl:w-[736px] 3xl:w-[552px] 2xl:w-[429px] w-[371px] 5xl:leading-20 4xl:leading-13 3xl:leading-9 2xl:leading-7 leading-6">
+              <p className="line-clamp-2 5xl:text-[44px] 4xxl:text-[32px] 4xl:text-[28px] 3xl:text-[24px] 2xl:text-lg text-sm 5xl:w-[1028px] 4xxl:w-[936px] 4xl:w-[736px] 3xl:w-[552px] 2xl:w-[429px] w-[371px] 5xl:leading-20 4xl:leading-13 3xl:leading-9 2xl:leading-7 leading-6">
                 {topAnime[currentIndex].synopsis}
               </p>
             )}
@@ -127,7 +127,7 @@ const Hero = () => {
         </div>
 
         {/* Slider */}
-        <div className="relative 4xl:w-15/12 w-16/12 flex flex-col justify-end overflow-hidden 5xl:gap-24 4xl:gap-20 3xl:gap-10 2xl:gap-8 gap-8 transition-slow">
+        <div className="relative 5xl:w-15/12 4xxl:w-12/12 4xl:w-15/12 w-16/12 flex flex-col justify-end overflow-hidden 5xl:gap-24 4xl:gap-20 3xl:gap-10 2xl:gap-8 gap-8 transition-slow">
           {/* Thumbnails */}
           <div className="5xl:h-[800px] 4xl:h-[579px] 3xl:h-[438px] 2xl:h-[300px] h-[290px] flex 5xl:gap-16 4xl:gap-11 3xl:gap-8 2xl:gap-6 gap-5 overflow-hidden transition-slow">
             <Swiper
