@@ -1,7 +1,7 @@
 <div align="center">
   <br />
     <a href="https://kawaii-verse-revamp-by-devjenny.vercel.app" target="_blank">
-      <img src="https://github.com/devJennyy/kawaii-verse-revamp/blob/main/public/images/hero-img.png" alt="Project Banner">
+      <img src="https://github.com/devJennyy/kawaii-verse-revamp/blob/main/public/images/banner.png" alt="Project Banner">
     </a>
   <br />
 
