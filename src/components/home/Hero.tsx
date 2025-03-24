@@ -1,158 +1,18 @@
-import { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
-import { FaPlay, FaRegStarHalfStroke, FaStar } from "react-icons/fa6";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay } from "swiper/modules";
+import { Autoplay, Navigation } from "swiper/modules";
+import { useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { Swiper as SwiperType } from "swiper";
+import { FaPause, FaPlay, FaRegStarHalfStroke, FaStar } from "react-icons/fa6";
 
 const Hero = () => {
-  const featuredAnime = [
-    { title: "Tokyo Ghoul", image: "/images/sample.jpg" },
-    { title: "Jujutsu No Kaisen", image: "/images/sample1.jpg" },
-    { title: "One Piece", image: "/images/sample2.jpeg" },
-    { title: "Attack On Titan", image: "/images/sample3.jpg" },
-    { title: "Kimi No Nawa", image: "/images/sample4.jpg" },
-  ];
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const swiperRef = useRef<SwiperType | null>(null);
-
-  useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const getSize = (
-    index: number,
-    currentIndex: number
-  ): {
-    width: number;
-    height: number;
-    border: string;
-    borderRadius: string;
-  } => {
-    if (windowWidth >= 4096) {
-      return index === currentIndex
-        ? {
-            width: 565,
-            height: 675,
-            border: "12px solid #5CFEF0",
-            borderRadius: "48px",
-          }
-        : {
-            width: 505,
-            height: 595,
-            border: "12px solid transparent",
-            borderRadius: "48px",
-          };
-    } else if (windowWidth >= 3840) {
-      return index === currentIndex
-        ? {
-            width: 520,
-            height: 655,
-            border: "12px solid #5CFEF0",
-            borderRadius: "48px",
-          }
-        : {
-            width: 460,
-            height: 565,
-            border: "12px solid transparent",
-            borderRadius: "48px",
-          };
-    }else if (windowWidth >= 3060) {
-      return index === currentIndex
-        ? {
-            width: 400,
-            height: 485,
-            border: "8px solid #5CFEF0",
-            borderRadius: "38px",
-          }
-        : {
-            width: 365,
-            height: 440,
-            border: "8px solid transparent",
-            borderRadius: "38px",
-          };
-    } else if (windowWidth >= 2880) {
-      return index === currentIndex
-        ? {
-            width: 380,
-            height: 455,
-            border: "8px solid #5CFEF0",
-            borderRadius: "38px",
-          }
-        : {
-            width: 345,
-            height: 410,
-            border: "8px solid transparent",
-            borderRadius: "38px",
-          };
-    }else if (windowWidth >= 2560) {
-      return index === currentIndex
-        ? {
-            width: 350,
-            height: 435,
-            border: "8px solid #5CFEF0",
-            borderRadius: "38px",
-          }
-        : {
-            width: 325,
-            height: 390,
-            border: "8px solid transparent",
-            borderRadius: "38px",
-          };
-    }
-    
-    else if (windowWidth >= 1920) {
-      return index === currentIndex
-        ? {
-            width: 260,
-            height: 335,
-            border: "6px solid #5CFEF0",
-            borderRadius: "20px",
-          }
-        : {
-            width: 225,
-            height: 285,
-            border: "6px solid transparent",
-            borderRadius: "20px",
-          };
-    } else if (windowWidth >= 1440) {
-      return index === currentIndex
-        ? {
-            width: 190,
-            height: 255,
-            border: "4px solid #5CFEF0",
-            borderRadius: "20px",
-          }
-        : {
-            width: 165,
-            height: 220,
-            border: "4px solid transparent",
-            borderRadius: "20px",
-          };
-    } else {
-      return index === currentIndex
-        ? {
-            width: 165,
-            height: 210,
-            border: "4px solid #5CFEF0",
-            borderRadius: "20px",
-          }
-        : {
-            width: 140,
-            height: 185,
-            border: "4px solid transparent",
-            borderRadius: "20px",
-          };
-    }
-  };
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTrailerPlaying, setIsTrailerPlaying] = useState(false);
 
   const handleNext = () => {
+    console.log("....");
     if (swiperRef.current) {
       swiperRef.current.slideNext();
     }
@@ -164,172 +24,169 @@ const Hero = () => {
     }
   };
 
+  const featuredAnime = [
+    { title: "Tokyo Ghoul", image: "/images/sample.jpg" },
+    { title: "Jujutsu No Kaisen", image: "/images/sample1.jpg" },
+    { title: "One Piece", image: "/images/sample2.jpeg" },
+    { title: "Attack On Titan", image: "/images/sample3.jpg" },
+    { title: "Kimi No Nawa", image: "/images/sample4.jpg" },
+  ];
+
   return (
-    <section
-      className="relative w-full !mx-auto hidden xl:flex items-end md:items-center overflow-hidden transition-slow xl:h-[770px] 2xl:h-[850px] 3xl:h-[950px] 4xl:h-[1080px] 4xxl:h-[1440px] 5xxl:h-[2160px]"
-      style={{ maxHeight: "100vh" }}
-    >
+    <div className="relative w-full 5xl:h-[2020px] 4xl:h-[1500px] 3xl:h-[1080px] 2xl:[808px] h-[720px] xl:block hidden transition-slow">
       {/* Bg Image */}
-      <div className="absolute inset-0 w-full h-full z-0 border-b border-transparent">
+      <div className="absolute inset-0 w-full h-full z-0 border-b-4 border-black">
         <img
           key={currentIndex}
           src={featuredAnime[currentIndex].image}
-          alt="Background"
-          className="w-full h-full object-cover transition-all duration-500 ease-in-out"
+          alt=""
+          className="w-full h-full object-cover blur-[2px]"
         />
       </div>
 
       {/* Gradient Overlay */}
-      <div className="absolute bottom-0 w-full h-[70%] 4xxl:h-[75%] 6xl:h-[80%] bg-gradient-to-b from-main/0 to-main z-10"></div>
-      <div className="absolute left-0 w-[50%] 4xxl:w-[60%] h-full bg-gradient-to-l from-main/0 to-main z-10"></div>
+      <div className="absolute bottom-0 w-full h-[80%] bg-gradient-to-b from-main/0 to-main z-10 transition-slow"></div>
+      <div className="absolute left-0 5xl:w-[41%] w-[40%] h-full bg-gradient-to-r from-main to-main/0 z-10 transition-slow"></div>
 
-      {/* Content Layer */}
-      <div className="relative w-full max-w-[4096px] !mx-auto h-full flex items-end z-20 !mb-[7rem] 5xl:!mb-[25rem] px-10 5xl:px-20 6xl:px-32">
+      {/* Content */}
+      <div className="absolute w-full max-w-full !mx-auto 5xl:w-[3840px] h-full flex z-20 5xl:pb-30 4xl:pb-28 3xl:pb-24 pb-16">
         {/* Details */}
-        <div className="w-1/2 flex flex-col justify-end items-center">
-          <div className="w-full max-w-full flex flex-col justify-end gap-4 2xl:gap-5 4xxl:gap-10 text-start">
-            <p className="font-bold text-xl 2xl:text-2xl 4xl:text-3xl 4xxl:text-5xl text-neonAqua transition-slow">
-              #1 Most Popular
-            </p>
+        <div className="w-full h-full flex flex-col justify-end items-start 5xl:gap-19 4xl:gap-12 3xl:gap-10 2xl:gap-8 gap-6 transition-slow">
+          <div className="flex flex-col justify-end items-start text-start pl-32 gap-7">
+            <p className="text-[32px] text-neonAqua">#1 Most Popular</p>
             <p
               key={featuredAnime[currentIndex].title}
-              className="font-black text-[54px] 2xl:text-[64px] 4xl:text-[74px] 4xxl:text-[96px] leading-none transition-slow"
+              className="text-[185px] uppercase leading-[12.5rem] !mt-[-1rem] tracking-wide"
             >
-              {featuredAnime[currentIndex].title}
-            </p>
-            <p className="w-[430px] 2xl:w-[476px] 4xl:w-[576px] 4xxl:w-[820px] 2xl:text-lg 4xl:text-2xl 4xxl:text-[2rem] transition-slow leading-normal">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat
-              modi aliquam iste quibusdam quod quasi, nam facere eum earum!
-              Cumque veniam, voluptatum laudantium placeat minus doloribus
-              doloremque nulla quaerat ad!
-            </p>
-
-            <div className="flex items-center gap-2 text-yellow-400">
-              <FaStar className="text-xl 2xl:text-2xl 4xl:text-3xl 4xxl:text-5xl transition-slow" />
-              <FaStar className="text-xl 2xl:text-2xl 4xl:text-3xl 4xxl:text-5xl transition-slow" />
-              <FaStar className="text-xl 2xl:text-2xl 4xl:text-3xl 4xxl:text-5xl transition-slow" />
-              <FaStar className="text-xl 2xl:text-2xl 4xl:text-3xl 4xxl:text-5xl transition-slow" />
-              <FaRegStarHalfStroke className="text-xl 2xl:text-2xl 4xl:text-3xl 4xxl:text-5xl transition-slow" />
-              <p className="text-xl 2xl:text-2xl 4xl:text-3xl 4xxl:text-5xl transition-slow font-bold">
-                8.23
-              </p>
-            </div>
-
-            <div className="flex gap-4 4xxl:gap-6 !mt-5 2xl:!mt-8 4xl:!mt-10 4xxl:!mt-16">
-              <button className="w-38 h-12 2xl:w-44 2xl:h-15 3xl:h-16 3xl:w-46 4xxl:w-64 4xxl:h-22 transition-slow bg-neonAqua flex justify-center items-center rounded-[10px] 4xxl:rounded-[15px] text-main gap-2 cursor-pointer">
-                <FaPlay className="2xl:text-lg 3xl:text-xl 4xl:text-[26px] transition-slow" />
-                <p className="font-bold 2xl:text-lg 4xxl:text-[26px] transition-slow">
-                  Watch Now
-                </p>
-              </button>
-
-              <button className="w-38 h-12 2xl:w-44 2xl:h-15 3xl:h-16 3xl:w-46 4xxl:w-64 4xxl:h-22 transition-slow bg-white/10 backdrop-blur-md border border-white/20 shadow-lg rounded-[10px] 4xxl:rounded-[15px] cursor-pointer">
-                <p className="font-bold 2xl:text-lg 3xl:text-xl 4xxl:text-[26px] transition-slow">
-                  Trailer
-                </p>
-              </button>
-            </div>
-          </div>
-          {/* Space */}
-          <div className="w-full flex justify-end items-center gap-10 opacity-0">
-            <div className="h-[2px] 5xl:h-[3px] 6xl:h-2 w-full bg-white/70"></div>
-            <p
-              key={currentIndex}
-              className="w-16 4xl:w-28 6xl:w-36 text-5xl 4xl:text-[64px] 5xl:text-[84px] 6xl:text-[120px] font-black text-neonAqua"
-            >
-              {String(currentIndex + 1).padStart(2, "0")}
-            </p>
-          </div>
-        </div>
-
-        {/* Prev & Next Button */}
-        <div className="w-fit flex gap-3 5xl:gap-5 6xl:gap-8 !mx-8 4xl:!mx-12 5xl:!mx-16">
-          <motion.button
-            onClick={handlePrev}
-            className="w-fit h-fit border rounded-full p-[10px] 4xl:p-[14px] 5xl:p-[18px] 6xl:p-6 hover:bg-secondaryBase/20 bg-white/10 cursor-pointer"
-            whileTap={{ scale: 0.9 }}
-            transition={{ duration: 0.1 }}
-          >
-            <FiChevronLeft className="text-[22px] 4xl:text-[26px] 5xl:text-[40px] 6xl:text-[52px]" />
-          </motion.button>
-
-          <motion.button
-            onClick={handleNext}
-            className="w-fit h-fit border rounded-full p-[10px] 4xl:p-[14px] 5xl:p-[18px] 6xl:p-6 hover:bg-secondaryBase/20 bg-white/10 cursor-pointer"
-            whileTap={{ scale: 0.9 }}
-            transition={{ duration: 0.1 }}
-          >
-            <FiChevronRight className="text-[22px] 4xl:text-[26px] 5xl:text-[40px] 6xl:text-[52px]" />
-          </motion.button>
-        </div>
-
-        <div className="w-1/2 max-w-full flex flex-col justify-end gap-10 5xl:gap-20 overflow-hidden z-40">
-          {/* Slider */}
-          <Swiper
-            onSwiper={(swiper) => (swiperRef.current = swiper)}
-            onSlideChange={(swiper) => setCurrentIndex(swiper.realIndex)}
-            slidesPerView={3}
-            autoplay={{ delay: 3000, disableOnInteraction: false }}
-            speed={500}
-            loop={true}
-            breakpoints={{
-              1280: { spaceBetween: 16 },
-              1920: { spaceBetween: 26 },
-              2880: { spaceBetween: 50 },
-              3840: { spaceBetween: 50 },
-            }}
-            modules={[Navigation, Autoplay]}
-            className="mySwiper w-full transition-slow !pr-10 4xxl:!pr-20 5xxl:!pr-32"
-          >
-            <div className="flex w-full justify-between">
-              {featuredAnime?.map((item, index) => {
-                const { width, height, border, borderRadius } = getSize(
-                  index,
-                  currentIndex
+              {(() => {
+                const words = featuredAnime[currentIndex].title.split(" ");
+                return (
+                  <>
+                    <span className="block">{words[0]}</span>
+                    <span className="block">{words.slice(1).join(" ")}</span>
+                  </>
                 );
+              })()}
+            </p>
+
+            <p className="text-[24px] w-[640px] leading-11">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed does
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.{" "}
+            </p>
+            <div className="flex items-center gap-2 text-yellow-400">
+              <FaStar className="text-[35px] transition-slow" />
+              <FaStar className="text-[35px] transition-slow" />
+              <FaStar className="text-[35px] transition-slow" />
+              <FaStar className="text-[35px] transition-slow" />
+              <FaRegStarHalfStroke className="text-[35px] transition-slow" />
+              <p className="text-[35px] transition-slow font-bold">8.23</p>
+            </div>
+            <div className="flex gap-8 h-[70px] !mt-8">
+              <button
+                onClick={() => setIsTrailerPlaying(!isTrailerPlaying)}
+                className="w-[70px] h-full rounded-full bg-neonAqua border border-neonAqua text-main flex justify-center items-center cursor-pointer hover:bg-transparent hover:text-neonAqua transition-default"
+              >
+                {isTrailerPlaying ? (
+                  <FaPause size={24} />
+                ) : (
+                  <FaPlay size={24} />
+                )}
+              </button>
+              <button className="px-24 w-fit h-full flex justify-center items-center border-2 border-neonAqua text-neonAqua rounded-full cursor-pointer hover:bg-neonAqua hover:text-main transition-default">
+                <p className="uppercase text-[20px] font-medium">
+                  View Details
+                </p>
+              </button>
+            </div>
+          </div>
+          <div className="5xl:h-[202px] 4xl:h-[130px] 3xl:h-[99px] 2xl:h-[75px] h-[68px] transition-slow"></div>
+        </div>
+
+        {/* Slider */}
+        <div className="relative w-17/12 flex flex-col justify-end overflow-hidden 5xl:gap-19 4xl:gap-20 3xl:gap-10 2xl:gap-8 gap-6 transition-slow">
+          {/* Thumbnails */}
+          <div className="5xl:h-[571px] 4xl:h-[579px] 3xl:h-[438px] 2xl:h-[327px] h-[290px] flex 5xl:gap-16 4xl:gap-11 3xl:gap-8 2xl:gap-6 gap-5 overflow-hidden transition-slow">
+            <Swiper
+              onSwiper={(swiper) => (swiperRef.current = swiper)}
+              onSlideChange={(swiper) => setCurrentIndex(swiper.realIndex)}
+              autoplay={{ delay: 3000, disableOnInteraction: false }}
+              speed={500}
+              loop={true}
+              slidesPerView={"auto"}
+              spaceBetween={10}
+              pagination={{
+                clickable: true,
+              }}
+              breakpoints={{
+                640: {
+                  spaceBetween: 20,
+                },
+                768: {
+                  spaceBetween: 40,
+                },
+                1024: {
+                  spaceBetween: 50,
+                },
+              }}
+              modules={[Navigation, Autoplay]}
+              className="mySwiper"
+            >
+              {featuredAnime.map((item, index) => {
+                const isActive = index === currentIndex;
+                const heightClass = isActive
+                  ? "h-full"
+                  : "5xl:h-[571px] 4xl:h-[540px] 3xl:h-[438px] 2xl:h-[327px] h-[290px]";
 
                 return (
-                  <SwiperSlide key={index} className="flex justify-center">
+                  <SwiperSlide className="z-50" key={index}>
                     <motion.div
                       onClick={() => swiperRef.current?.slideToLoop(index)}
-                      initial={{ width, height, border, borderRadius }}
-                      animate={{ width, height, border, borderRadius }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 150,
-                        damping: 25,
-                        duration: 0.25,
-                      }}
-                      className="overflow-hidden cursor-pointer"
+                      className={`relative transition-all duration-500 ease-in-out transform  
+        ${heightClass} 5xl:w-[571px] 4xl:w-[400px] 3xl:w-[286px] 2xl:w-[214px] w-[190px] rounded-[3rem] overflow-hidden border-8 ${
+                        isActive ? "border-neonAqua" : "border-transparent"
+                      }`}
                     >
                       <img
                         src={item.image}
                         alt={item.title}
                         className="w-full h-full object-cover transition-all duration-500 ease-in-out"
                       />
-                      {index !== currentIndex && (
-                        <div className="absolute inset-0 bg-black/20 transition-all duration-500 rounded-[20px] 4xxl:rounded-[38px] 6xl:rounded-[48px]"></div>
+                      {!isActive && (
+                        <div className="absolute inset-0 bg-black/10 transition-all duration-500"></div>
                       )}
                     </motion.div>
                   </SwiperSlide>
                 );
               })}
-            </div>
-          </Swiper>
+            </Swiper>
+          </div>
 
           {/* Pagination Controls */}
-          <div className="w-full flex justify-end items-center gap-6 4xl:gap-12 5xl:gap-16">
-            <div className="h-[2px] 4xxl:h-1 6xl:h-2 w-full bg-white/70"></div>
-            <p
-              key={currentIndex}
-              className="w-16 4xl:w-24 6xl:w-36 text-5xl 4xl:text-[64px] 5xl:text-[84px] 6xl:text-[120px] font-black text-neonAqua"
-            >
-              {String(currentIndex + 1).padStart(2, "0")}
+          <div className="w-full flex justify-start items-end 5xl:h-[202px] 4xl:h-[100px] 3xl:h-[99px] 2xl:h-[75px] h-[68px] 5xl:gap-16 4xl:gap-13 3xl:gap-8 2xl:gap-7 gap-6 5xl:pr-30 pr-10 transition-slow">
+            <div className="flex 5xl:gap-9 4xl:gap-6 3xl:gap-4 gap-3 h-full transition-slow">
+              <button
+                onClick={handlePrev}
+                className="5xl:w-[202px] 4xl:w-[100px] 3xl:w-[99px] 2xl:w-[75px] w-[68px] h-full flex justify-center items-center rounded-full 5xl:border-3 4xl:border-2 border hover:bg-secondaryBase/20 bg-white/10 cursor-pointer transition-slow"
+              >
+                <FiChevronLeft className="5xl:text-[50px] 4xl:text-[36px] 3xl:text-[29px] text-[23px]" />
+              </button>
+              <button
+                onClick={handleNext}
+                className="5xl:w-[202px] 4xl:w-[100px] 3xl:w-[99px] 2xl:w-[75px] w-[68px] h-full flex justify-center items-center rounded-full 5xl:border-3 4xl:border-2 border hover:bg-secondaryBase/20 bg-white/10 cursor-pointer transition-slow"
+              >
+                <FiChevronRight className="5xl:text-[50px] 4xl:text-[36px] 3xl:text-[29px] text-[23px]" />
+              </button>
+            </div>
+            <div className="h-full 5xl:w-[1437px] 4xl:w-[953px] 3xl:w-[723px] 2xl:w-[537px] w-[480px] flex justify-center items-center transition-slow">
+              <div className="5xl:h-1 4xl:h-[3px] 3xl:h-[2px] h-[1px] w-full bg-white transition-slow"></div>
+            </div>
+            <p className="h-full 5xl:text-[124px] 4xl:text-[86px] 3xl:text-[64px] 2xl:text-[48px] text-[44px] font-bold flex items-center transition-slow text-neonAqua">
+              02
             </p>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
