@@ -33,7 +33,7 @@ const Hero = () => {
   ];
 
   return (
-    <div className="relative w-full 5xl:h-[2020px] 4xl:h-[1500px] 3xl:h-[1080px] 2xl:[808px] h-[720px] xl:block hidden transition-slow">
+    <div className="relative w-full xl:flex justify-center items-center 5xl:h-[2020px] 4xl:h-[1500px] 3xl:h-[1080px] 2xl:[808px] h-[720px] hidden transition-slow">
       {/* Bg Image */}
       <div className="absolute inset-0 w-full h-full z-0 border-b-4 border-black">
         <img
@@ -87,7 +87,7 @@ const Hero = () => {
             <div className="flex 4xl:gap-8 gap-3 5xl:h-[120px] 4xl:h-[90px] 3xl:h-[57px] 2xl:h-[47px] h-[36px] 5xl:!mt-12 4xl:!mt-8 !mt-4">
               <button
                 onClick={() => setIsTrailerPlaying(!isTrailerPlaying)}
-                className="5xl:w-[120px] xl:w-[90px] 3xl:w-[57px] 2xl:w-[47px] w-[36px] h-full rounded-full bg-neonAqua border border-neonAqua text-main flex justify-center items-center cursor-pointer hover:bg-transparent hover:text-neonAqua transition-default"
+                className="5xl:w-[120px] 4xl:w-[90px] 3xl:w-[57px] 2xl:w-[47px] w-[36px] h-full rounded-full bg-neonAqua border border-neonAqua text-main flex justify-center items-center cursor-pointer hover:bg-transparent hover:text-neonAqua transition-default"
               >
                 {isTrailerPlaying ? (
                   <FaPause className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg text-[12px]" />
