@@ -6,7 +6,7 @@ import { Autoplay, Navigation } from "swiper/modules";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Swiper as SwiperType } from "swiper";
-import { FaPause, FaPlay, FaRegStarHalfStroke, FaStar } from "react-icons/fa6";
+import { FaPause, FaPlay } from "react-icons/fa6";
 
 const Hero = () => {
   const swiperRef = useRef<SwiperType | null>(null);
@@ -43,7 +43,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="relative w-full xl:flex justify-center items-center 5xl:h-[2020px] 4xl:h-[1500px] 3xl:h-[1080px] 2xl:[808px] h-[720px] hidden transition-slow">
+    <div className="relative w-full xl:flex justify-center items-center 5xl:h-[2020px] 4xl:h-[1500px] 3xl:h-[1080px] 2xl:[808px] h-[752px] hidden transition-slow">
       {/* Bg Image */}
       <div className="absolute inset-0 w-full h-full z-0 border-b-20 border-black">
         {topAnime[currentIndex] && (
@@ -62,72 +62,62 @@ const Hero = () => {
       <div className="absolute left-0 w-[60%] h-full bg-gradient-to-r from-main to-main/0 z-10 transition-slow"></div>
 
       {/* Content */}
-      <div className="absolute w-full max-w-full !mx-auto 5xl:w-[3840px] h-full flex z-20 5xl:pb-30 4xl:pb-28 3xl:pb-24 pb-10">
+      <div className="absolute w-full max-w-full !mx-auto 5xl:w-[3840px] h-full flex z-20 5xl:pb-30 4xl:pb-40 3xl:pb-24 pb-16">
         {/* Details */}
-        <div className="w-full h-full flex flex-col justify-end items-start 5xl:gap-14 4xl:gap-12 3xl:gap-7 gap-6 transition-slow">
-          <div className="flex flex-col justify-end items-start text-start 4xl:pl-32 pl-12 5xl:gap-8 4xl:gap-7 3xl:gap-6 2xl:gap-4 gap-2">
+        <div className="w-full h-full flex flex-col justify-end items-start 5xl:gap-14 4xl:gap-12 gap-8 transition-slow">
+          <div className="flex flex-col justify-end items-start text-start 4xl:pl-20 pl-12 5xl:gap-8 4xl:gap-7 3xl:gap-6 2xl:gap-4 gap-2">
             {topAnime[currentIndex] && (
-              <p className="font-semibold tracking-wider 5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg text-[12px] text-neonAqua uppercase">
-                #{topAnime[currentIndex].rank} Ranking 
+              <p className="font-semibold tracking-wider 5xl:text-[54px] 4xl:text-[38px] 3xl:text-[28px] 2xl:text-lg text-neonAqua uppercase">
+                #{topAnime[currentIndex].rank} Ranking
               </p>
             )}
 
             {topAnime[currentIndex] && (
               <p
                 key={topAnime[currentIndex].title}
-                className={`uppercase tracking-wide 5xl:!mt-[-2rem] 4xl:!mt-[-1rem] 3xl:!mt-[-20px] 2xl:!mt-[-14px] !mt-[-10px] 5xl:w-[1058px] 4xl:w-[946px] 3xl:w-[582px] 2xl:w-[459px] w-[401px] 
+                className={`uppercase tracking-wide 5xl:!mt-[-2rem] 4xl:!mt-[-1rem] 3xl:!mt-[-20px] 2xl:!mt-[-16px] !mt-[-5px] 5xl:w-[1300px] 4xl:w-[850px] 3xl:w-[650px] 2xl:w-[459px] w-[401px] 
                 ${
                   topAnime[currentIndex].title.length > 20
-                    ? "text-[90px] 3xl:text-[110px] 4xl:text-[100px] 5xl:text-[180px] 5xl:leading-[17rem] 4xl:leading-[7.5rem] 3xl:leading-[9rem] leading-[6rem]"
-                    : "text-[90px] 2xl:text-[102px] 3xl:text-[135px] 4xl:text-[185px] 5xl:text-[260px] 5xl:leading-[17rem] 4xl:leading-[12.5rem] 3xl:leading-[9rem] leading-[6rem]"
+                    ? "text-[40px] 2xl:text-[42px] 3xl:text-[70px] 4xl:text-[90px] 5xl:text-[140px] 5xl:leading-[11.5rem] 4xl:leading-[7.5rem] 3xl:leading-[6rem] leading-[3.4rem]"
+                    : "text-[90px] 2xl:text-[80px] 3xl:text-[135px] 4xl:text-[185px] 5xl:text-[260px] 5xl:leading-[17rem] 4xl:leading-[12.5rem] 3xl:leading-[9rem] leading-[6rem]"
                 }`}
               >
-                {(() => {
-                  const words = topAnime[currentIndex].title.split(" ");
-                  return words.length === 2 ? (
-                    <>
-                      <span className="block">{words[0]}</span>
-                      <span className="block">{words[1]}</span>
-                    </>
-                  ) : (
-                    <>{topAnime[currentIndex].title}</>
-                  );
-                })()}
+                {topAnime[currentIndex].title}
               </p>
             )}
 
             {topAnime[currentIndex] && (
-              <p className="line-clamp-2 5xl:text-[44px] 4xl:text-[28px] 3xl:text-[24px] 2xl:text-lg text-[12px] 5xl:w-[1028px] 4xl:w-[736px] 3xl:w-[552px] 2xl:w-[429px] w-[371px] 5xl:leading-20 4xl:leading-13 3xl:leading-9 2xl:leading-7 leading-6">
+              <p className="line-clamp-2 5xl:text-[44px] 4xl:text-[28px] 3xl:text-[24px] 2xl:text-lg text-sm 5xl:w-[1028px] 4xl:w-[736px] 3xl:w-[552px] 2xl:w-[429px] w-[371px] 5xl:leading-20 4xl:leading-13 3xl:leading-9 2xl:leading-7 leading-6">
                 {topAnime[currentIndex].synopsis}
               </p>
             )}
-            <div className="flex items-center 5xl:gap-4 3xl:gap-3 gap-2 text-yellow-400">
-              <FaStar className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg text-[12px] transition-slow" />
-              <FaStar className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg text-[12px] transition-slow" />
-              <FaStar className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg text-[12px] transition-slow" />
-              <FaStar className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg text-[12px] transition-slow" />
-              <FaRegStarHalfStroke className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg text-[12px] transition-slow" />
+            {/* <div className="flex items-center 5xl:gap-4 3xl:gap-3 gap-2 text-yellow-400">
+              <FaStar className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg text-sm transition-slow" />
+              <FaStar className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg text-sm transition-slow" />
+              <FaStar className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg text-sm transition-slow" />
+              <FaStar className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg text-sm transition-slow" />
+              <FaRegStarHalfStroke className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg text-sm transition-slow" />
 
               {topAnime[currentIndex] && (
-                <p className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg text-[12px] transition-slow font-bold">
+                <p className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg text-sm transition-slow font-bold">
                   {topAnime[currentIndex].score}
                 </p>
               )}
-            </div>
+            </div> */}
 
-            <div className="flex 4xl:gap-8 gap-3 5xl:h-[120px] 4xl:h-[90px] 3xl:h-[57px] 2xl:h-[47px] h-[36px] 5xl:!mt-12 4xl:!mt-8 !mt-4">
+            <div className="flex 4xl:gap-8 3xl:gap-4 gap-3 5xl:h-[130px] 4xl:h-[90px] 3xl:h-[64px] h-[44px] 5xl:!mt-12 4xl:!mt-8 !mt-6">
               <button
                 onClick={() => setIsTrailerPlaying(!isTrailerPlaying)}
-                className="5xl:w-[120px] 4xl:w-[90px] 3xl:w-[57px] 2xl:w-[47px] w-[36px] h-full rounded-full bg-neonAqua border border-neonAqua text-main flex justify-center items-center cursor-pointer hover:bg-transparent hover:text-neonAqua transition-default"
+                className="5xl:w-[130px] 4xl:w-[90px] 3xl:w-[64px] w-[44px] h-full rounded-full bg-neonAqua border border-neonAqua text-main flex justify-center items-center cursor-pointer hover:bg-transparent hover:text-neonAqua transition-default"
               >
                 {isTrailerPlaying ? (
-                  <FaPause className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg text-[12px]" />
+                  <FaPause className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg" />
                 ) : (
-                  <FaPlay className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg text-[12px]" />
+                  <FaPlay className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg" />
                 )}
               </button>
-              <button className="5xl:px-32 4xl:px-24 2xl:px-14 px-10 w-fit h-full flex justify-center items-center 4xl:border-2 3xl:border-2 border border-neonAqua text-neonAqua rounded-full cursor-pointer hover:bg-neonAqua hover:text-main transition-default">
-                <p className="capitalize 5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg text-[12px] font-normal">
+              <button className="5xl:px-36 4xl:px-24 3xl:px-18 px-12 w-fit h-full flex justify-center items-center 4xl:border-2 3xl:border-2 border border-neonAqua text-neonAqua rounded-full cursor-pointer hover:bg-neonAqua hover:text-main transition-default">
+                <p className="uppercase 5xl:text-[38px] 4xl:text-[28px] 3xl:text-lg text-sm font-normal">
                   View Details
                 </p>
               </button>
@@ -137,7 +127,7 @@ const Hero = () => {
         </div>
 
         {/* Slider */}
-        <div className="relative w-17/12 flex flex-col justify-end overflow-hidden 5xl:gap-24 4xl:gap-20 3xl:gap-10 2xl:gap-8 gap-8 transition-slow">
+        <div className="relative 4xl:w-15/12 w-16/12 flex flex-col justify-end overflow-hidden 5xl:gap-24 4xl:gap-20 3xl:gap-10 2xl:gap-8 gap-8 transition-slow">
           {/* Thumbnails */}
           <div className="5xl:h-[800px] 4xl:h-[579px] 3xl:h-[438px] 2xl:h-[300px] h-[290px] flex 5xl:gap-16 4xl:gap-11 3xl:gap-8 2xl:gap-6 gap-5 overflow-hidden transition-slow">
             <Swiper
@@ -156,6 +146,9 @@ const Hero = () => {
                   spaceBetween: 20,
                 },
                 1920: {
+                  spaceBetween: 35,
+                },
+                2560: {
                   spaceBetween: 50,
                 },
               }}
@@ -166,7 +159,7 @@ const Hero = () => {
                 const isActive = index === currentIndex;
                 const heightClass = isActive
                   ? "h-full"
-                  : "5xl:h-[720px] 4xl:h-[540px] 3xl:h-[408px] 2xl:h-[270px] h-[260px]";
+                  : "5xl:h-[720px] 4xl:h-[530px] 3xl:h-[408px] 2xl:h-[270px] h-[260px]";
 
                 return (
                   <SwiperSlide className="z-50" key={index}>
@@ -174,7 +167,7 @@ const Hero = () => {
                       onClick={() => swiperRef.current?.slideToLoop(index)}
                       className={`relative transition-all duration-500 ease-in-out transform  
         ${heightClass} 5xl:w-[557px] 4xl:w-[400px] 3xl:w-[286px] 2xl:w-[214px] w-[190px] 4xl:rounded-[3rem] rounded-3xl overflow-hidden 4xl:border-8 3xl:border-6 border-4 ${
-                        isActive ? "border-neonAqua" : "border-transparent"
+                        isActive ? "border-neonAqua" : "border-white/2"
                       }`}
                     >
                       <img
