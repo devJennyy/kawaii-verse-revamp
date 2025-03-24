@@ -51,12 +51,13 @@ const Hero = () => {
             key={currentIndex}
             src={topAnime[currentIndex].trailer.images.maximum_image_url}
             alt={topAnime[currentIndex].title}
-            className="w-full h-full object-cover blur-[2px]"
+            className="w-full h-full object-cover blur-[4px]"
           />
         )}
       </div>
 
       {/* Gradient Overlay */}
+      <div className="absolute left-0 h-full w-[40%] bg-gradient-to-r from-main to-main/0 z-10 transition-slow"></div>
       <div className="absolute bottom-0 w-full h-[80%] bg-gradient-to-b from-main/0 to-main z-10 transition-slow"></div>
       <div className="absolute left-0 w-[60%] h-full bg-gradient-to-r from-main to-main/0 z-10 transition-slow"></div>
 
@@ -66,8 +67,8 @@ const Hero = () => {
         <div className="w-full h-full flex flex-col justify-end items-start 5xl:gap-14 4xl:gap-12 3xl:gap-7 gap-6 transition-slow">
           <div className="flex flex-col justify-end items-start text-start 4xl:pl-32 pl-12 5xl:gap-8 4xl:gap-7 3xl:gap-6 2xl:gap-4 gap-2">
             {topAnime[currentIndex] && (
-              <p className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg text-[12px] text-neonAqua uppercase">
-                Ranking #{topAnime[currentIndex].rank}
+              <p className="font-semibold tracking-wider 5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg text-[12px] text-neonAqua uppercase">
+                #{topAnime[currentIndex].rank} Ranking 
               </p>
             )}
 
