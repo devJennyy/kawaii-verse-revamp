@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import axios from "axios";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Swiper as SwiperType } from "swiper";
 import { FaPause, FaPlay, FaRegStarHalfStroke, FaStar } from "react-icons/fa6";
@@ -10,6 +12,7 @@ const Hero = () => {
   const swiperRef = useRef<SwiperType | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTrailerPlaying, setIsTrailerPlaying] = useState(false);
+  const [topAnime, setTopAnime] = useState<any[]>([]);
 
   const handleNext = () => {
     console.log("....");
@@ -24,64 +27,91 @@ const Hero = () => {
     }
   };
 
-  const featuredAnime = [
-    { title: "Tokyo Ghoul", image: "/images/sample.jpg" },
-    { title: "Jujutsu No Kaisen", image: "/images/sample1.jpg" },
-    { title: "One Piece", image: "/images/sample2.jpeg" },
-    { title: "Attack On Titan", image: "/images/sample3.jpg" },
-    { title: "Kimi No Nawa", image: "/images/sample4.jpg" },
-  ];
+  const fetchAnime = () => {
+    axios
+      .get("https://api.jikan.moe/v4/top/anime?type=tv&filter=airing&limit=5")
+      .then((res) => {
+        setTopAnime(res.data.data);
+      })
+      .catch((err) => {
+        console.log("Failed to fetch anime:", err);
+      });
+  };
+
+  useEffect(() => {
+    fetchAnime();
+  }, []);
 
   return (
     <div className="relative w-full xl:flex justify-center items-center 5xl:h-[2020px] 4xl:h-[1500px] 3xl:h-[1080px] 2xl:[808px] h-[720px] hidden transition-slow">
       {/* Bg Image */}
-      <div className="absolute inset-0 w-full h-full z-0 border-b-4 border-black">
-        <img
-          key={currentIndex}
-          src={featuredAnime[currentIndex].image}
-          alt=""
-          className="w-full h-full object-cover blur-[2px]"
-        />
+      <div className="absolute inset-0 w-full h-full z-0 border-b-20 border-black">
+        {topAnime[currentIndex] && (
+          <img
+            key={currentIndex}
+            src={topAnime[currentIndex].trailer.images.maximum_image_url}
+            alt={topAnime[currentIndex].title}
+            className="w-full h-full object-cover blur-[2px]"
+          />
+        )}
       </div>
 
       {/* Gradient Overlay */}
       <div className="absolute bottom-0 w-full h-[80%] bg-gradient-to-b from-main/0 to-main z-10 transition-slow"></div>
-      <div className="absolute left-0 5xl:w-[50%] w-[40%] h-full bg-gradient-to-r from-main to-main/0 z-10 transition-slow"></div>
+      <div className="absolute left-0 w-[60%] h-full bg-gradient-to-r from-main to-main/0 z-10 transition-slow"></div>
 
       {/* Content */}
       <div className="absolute w-full max-w-full !mx-auto 5xl:w-[3840px] h-full flex z-20 5xl:pb-30 4xl:pb-28 3xl:pb-24 pb-10">
         {/* Details */}
         <div className="w-full h-full flex flex-col justify-end items-start 5xl:gap-14 4xl:gap-12 3xl:gap-7 gap-6 transition-slow">
           <div className="flex flex-col justify-end items-start text-start 4xl:pl-32 pl-12 5xl:gap-8 4xl:gap-7 3xl:gap-6 2xl:gap-4 gap-2">
-            <p className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg text-[12px] text-neonAqua uppercase">#1 Most Popular</p>
-            <p
-              key={featuredAnime[currentIndex].title}
-              className="5xl:text-[260px] 4xl:text-[185px] 3xl:text-[135px] 2xl-text-[102px] text-[90px] uppercase 5xl:leading-[17rem] 4xl:leading-[12.5rem] 3xl:leading-[9rem] leading-[6rem] 5xl:!mt-[-2rem] 4xl:!mt-[-1rem] 3xl:!mt-[-20px] 2xl:!mt-[-14px] !mt-[-10px] tracking-wide"
-            >
-              {(() => {
-                const words = featuredAnime[currentIndex].title.split(" ");
-                return (
-                  <>
-                    <span className="block">{words[0]}</span>
-                    <span className="block">{words.slice(1).join(" ")}</span>
-                  </>
-                );
-              })()}
-            </p>
+            {topAnime[currentIndex] && (
+              <p className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg text-[12px] text-neonAqua uppercase">
+                Ranking #{topAnime[currentIndex].rank}
+              </p>
+            )}
 
-            <p className="5xl:text-[44px] 4xl:text-[28px] 3xl:text-[24px] 2xl:text-lg text-[12px] 5xl:w-[1028px] 4xl:w-[736px] 3xl:w-[552px] 2xl:w-[429px] w-[371px] 5xl:leading-20 4xl:leading-13 3xl:leading-9 2xl:leading-7 leading-6">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed does
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.{" "}
-            </p>
+            {topAnime[currentIndex] && (
+              <p
+                key={topAnime[currentIndex].title}
+                className={`uppercase tracking-wide 5xl:!mt-[-2rem] 4xl:!mt-[-1rem] 3xl:!mt-[-20px] 2xl:!mt-[-14px] !mt-[-10px] 5xl:w-[1058px] 4xl:w-[946px] 3xl:w-[582px] 2xl:w-[459px] w-[401px] 
+                ${
+                  topAnime[currentIndex].title.length > 20
+                    ? "text-[90px] 3xl:text-[110px] 4xl:text-[100px] 5xl:text-[180px] 5xl:leading-[17rem] 4xl:leading-[7.5rem] 3xl:leading-[9rem] leading-[6rem]"
+                    : "text-[90px] 2xl:text-[102px] 3xl:text-[135px] 4xl:text-[185px] 5xl:text-[260px] 5xl:leading-[17rem] 4xl:leading-[12.5rem] 3xl:leading-[9rem] leading-[6rem]"
+                }`}
+              >
+                {(() => {
+                  const words = topAnime[currentIndex].title.split(" ");
+                  return words.length === 2 ? (
+                    <>
+                      <span className="block">{words[0]}</span>
+                      <span className="block">{words[1]}</span>
+                    </>
+                  ) : (
+                    <>{topAnime[currentIndex].title}</>
+                  );
+                })()}
+              </p>
+            )}
+
+            {topAnime[currentIndex] && (
+              <p className="line-clamp-2 5xl:text-[44px] 4xl:text-[28px] 3xl:text-[24px] 2xl:text-lg text-[12px] 5xl:w-[1028px] 4xl:w-[736px] 3xl:w-[552px] 2xl:w-[429px] w-[371px] 5xl:leading-20 4xl:leading-13 3xl:leading-9 2xl:leading-7 leading-6">
+                {topAnime[currentIndex].synopsis}
+              </p>
+            )}
             <div className="flex items-center 5xl:gap-4 3xl:gap-3 gap-2 text-yellow-400">
               <FaStar className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg text-[12px] transition-slow" />
               <FaStar className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg text-[12px] transition-slow" />
               <FaStar className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg text-[12px] transition-slow" />
               <FaStar className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg text-[12px] transition-slow" />
               <FaRegStarHalfStroke className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg text-[12px] transition-slow" />
-              <p className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg text-[12px] transition-slow font-bold">
-                8.23
-              </p>
+
+              {topAnime[currentIndex] && (
+                <p className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg text-[12px] transition-slow font-bold">
+                  {topAnime[currentIndex].score}
+                </p>
+              )}
             </div>
 
             <div className="flex 4xl:gap-8 gap-3 5xl:h-[120px] 4xl:h-[90px] 3xl:h-[57px] 2xl:h-[47px] h-[36px] 5xl:!mt-12 4xl:!mt-8 !mt-4">
@@ -131,7 +161,7 @@ const Hero = () => {
               modules={[Navigation, Autoplay]}
               className="mySwiper"
             >
-              {featuredAnime.map((item, index) => {
+              {topAnime?.map((image: any, index) => {
                 const isActive = index === currentIndex;
                 const heightClass = isActive
                   ? "h-full"
@@ -147,8 +177,8 @@ const Hero = () => {
                       }`}
                     >
                       <img
-                        src={item.image}
-                        alt={item.title}
+                        src={image.images.jpg.large_image_url}
+                        alt={image.title}
                         className="w-full h-full object-cover transition-all duration-500 ease-in-out"
                       />
                       {!isActive && (
@@ -180,8 +210,11 @@ const Hero = () => {
             <div className="h-full 5xl:w-[1437px] 4xl:w-[953px] 3xl:w-[723px] 2xl:w-[537px] w-[480px] flex justify-center items-center transition-slow">
               <div className="5xl:h-1 4xl:h-[3px] 3xl:h-[2px] h-[1px] w-full bg-white transition-slow"></div>
             </div>
-            <p className="h-full 5xl:text-[124px] 4xl:text-[86px] 3xl:text-[64px] 2xl:text-[48px] text-[44px] font-bold flex items-center transition-slow text-neonAqua">
-              02
+            <p
+              key={currentIndex}
+              className="h-full 5xl:text-[124px] 4xl:text-[86px] 3xl:text-[64px] 2xl:text-[48px] text-[44px] font-bold flex items-center transition-slow text-neonAqua"
+            >
+              {String(currentIndex + 1).padStart(2, "0")}
             </p>
           </div>
         </div>
