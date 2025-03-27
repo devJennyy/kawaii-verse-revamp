@@ -1,6 +1,7 @@
 import Hero from "@/components/home/Hero";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
+import NewestRelease from "./NewestRelease";
 
 const Homepage = () => {
   return (
@@ -8,6 +9,7 @@ const Homepage = () => {
       <Navbar />
       <section>
         <Hero />
+        <NewestRelease />
       </section>
       <Footer />
     </div>
