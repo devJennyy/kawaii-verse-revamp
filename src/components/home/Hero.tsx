@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Swiper as SwiperType } from "swiper";
 import { FaPause, FaPlay } from "react-icons/fa6";
+import { GET_TOP_ANIME } from "@/constants/api";
 
 const Hero = () => {
   const swiperRef = useRef<SwiperType | null>(null);
@@ -27,9 +28,9 @@ const Hero = () => {
     }
   };
 
-  const fetchAnime = () => {
+  const fetchTopAnime = () => {
     axios
-      .get("https://api.jikan.moe/v4/top/anime?type=tv&filter=airing&limit=5")
+      .get(GET_TOP_ANIME)
       .then((res) => {
         setTopAnime(res.data.data);
       })
@@ -39,11 +40,11 @@ const Hero = () => {
   };
 
   useEffect(() => {
-    fetchAnime();
+    fetchTopAnime();
   }, []);
 
   return (
-    <div className="relative w-full xl:flex justify-center items-center 5xl:h-[2020px] 4xxl:h-[1590px] 4xl:h-[1500px] 3xl:h-[1080px] 2xl:[808px] h-[752px] hidden transition-slow">
+    <div className="relative w-full xl:flex justify-center items-center 5xl:h-[2020px] 4xxl:h-[1590px] 4xl:h-[1500px] 3xl:h-[1080px] 2xl:[808px] h-[752px] hidden transition-slow z-0">
       {/* Bg Image */}
       <div className="absolute inset-0 w-full h-full z-0 border-b-20 border-black">
         {topAnime[currentIndex] && (
