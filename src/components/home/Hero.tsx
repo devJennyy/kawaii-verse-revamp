@@ -35,7 +35,7 @@ const Hero = () => {
         setTopAnime(res.data.data);
       })
       .catch((err) => {
-        console.log("Failed to fetch anime:", err);
+        console.log("Oops! something went wrong", err);
       });
   };
 
