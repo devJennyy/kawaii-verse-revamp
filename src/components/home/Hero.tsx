@@ -44,13 +44,16 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="relative w-full xl:flex justify-center items-center 5xl:h-[2020px] 4xxl:h-[1590px] 4xl:h-[1500px] 3xl:h-[1080px] 2xl:[808px] h-[752px] hidden transition-slow z-0">
+    <div className="relative w-full xl:flex justify-center items-center 4xl:px-20 px-12 5xl:h-[2020px] 4xxl:h-[1590px] 4xl:h-[1500px] 3xl:h-[1080px] 2xl:[808px] h-[752px] hidden transition-slow z-0">
       {/* Bg Image */}
       <div className="absolute inset-0 w-full h-full z-0 border-b-20 border-black">
         {topAnime[currentIndex] && (
           <img
             key={currentIndex}
-            src={topAnime[currentIndex].trailer.images.maximum_image_url}
+            src={
+              topAnime[currentIndex].trailer.images.maximum_image_url ||
+              topAnime[currentIndex].images.jpg.large_image_url
+            }
             alt={topAnime[currentIndex].title}
             className="w-full h-full object-cover blur-[4px]"
           />
@@ -92,20 +95,6 @@ const Hero = () => {
                 {topAnime[currentIndex].synopsis}
               </p>
             )}
-            {/* <div className="flex items-center 5xl:gap-4 3xl:gap-3 gap-2 text-yellow-400">
-              <FaStar className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg text-sm transition-slow" />
-              <FaStar className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg text-sm transition-slow" />
-              <FaStar className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg text-sm transition-slow" />
-              <FaStar className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg text-sm transition-slow" />
-              <FaRegStarHalfStroke className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg text-sm transition-slow" />
-
-              {topAnime[currentIndex] && (
-                <p className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg text-sm transition-slow font-bold">
-                  {topAnime[currentIndex].score}
-                </p>
-              )}
-            </div> */}
-
             <div className="flex 4xl:gap-8 3xl:gap-4 gap-3 5xl:h-[130px] 4xl:h-[90px] 3xl:h-[64px] h-[44px] 5xl:!mt-12 4xl:!mt-8 !mt-6">
               <button
                 onClick={() => setIsTrailerPlaying(!isTrailerPlaying)}

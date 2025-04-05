@@ -11,6 +11,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { motion } from "framer-motion";
 
 interface AnimeShowcaseProps {
   type: "newest-season" | "top-anime" | "seasonal" | "movies";
@@ -20,8 +21,8 @@ const AnimeShowcase = ({ type }: AnimeShowcaseProps) => {
   const animeTypes = {
     "newest-season": { title: "Newest Season", api: NEWEST_SEASON },
     "top-anime": { title: "Top Anime", api: TOP_ANIME },
-    "seasonal": { title: "Seasonal Anime", api: LONG_WEEKEND_WATCHLIST },
-    "movies": { title: "Popular Movies", api: POPULAR_MOVIES },
+    seasonal: { title: "Seasonal Anime", api: LONG_WEEKEND_WATCHLIST },
+    movies: { title: "Popular Movies", api: POPULAR_MOVIES },
   };
 
   const [animeList, setAnimeList] = useState<any[]>([]);
@@ -35,12 +36,13 @@ const AnimeShowcase = ({ type }: AnimeShowcaseProps) => {
         console.error("Oops! something went wrong", err);
       }
     };
-
-    fetchAnime();
+    setTimeout(() => {
+      fetchAnime();
+    }, 1000);
   }, [type]);
 
   return (
-    <div className="flex flex-col items-start gap-12 z-30">
+    <div className="flex flex-col items-start gap-12 z-30 4xl:px-20 px-12 pb-24">
       <p className="text-4xl font-bold z-20 tracking-wide">
         {animeTypes[type].title}
       </p>
@@ -71,19 +73,28 @@ const AnimeShowcase = ({ type }: AnimeShowcaseProps) => {
       ) : (
         <div className="w-full grid grid-cols-7 gap-12">
           {animeList?.map((item, index) => (
-            <div className="relative w-[373px] h-[223px] group cursor-pointer transition-default">
-              <div className="absolute bottom-0 right-0 w-[358px] h-[208px] bg-secondaryBase/10 group-hover:bg-neonAqua z-0 rounded-[2px] transition-colors duration-300 transition-default"></div>
-              <div
-                key={index}
-                className="absolute top-0 left-0 w-[358px] h-[208px] z-[5] rounded-[2px] overflow-hidden"
-              >
+            <motion.div
+              key={index}
+              className="relative w-[373px] h-[223px] group cursor-pointer"
+              whileHover={{
+                scale: 1.05,
+                transition: { duration: 0.3 }, 
+              }}
+            >
+              <motion.div
+                className="absolute bottom-0 right-0 w-[358px] h-[208px] bg-secondaryBase/10 z-0 rounded-[2px] transition-slow group-hover:bg-neonAqua"
+                whileHover={{
+                  transition: { duration: 0.3 },
+                }}
+              />
+              <div className="absolute top-0 left-0 w-[358px] h-[208px] z-[5] rounded-[2px] overflow-hidden">
                 <img
                   src={item.images?.jpg?.large_image_url}
                   alt={item.title}
                   className="w-full h-full object-cover object-[50%_20%]"
                 />
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       )}
