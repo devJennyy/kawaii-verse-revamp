@@ -15,9 +15,10 @@ import { motion } from "framer-motion";
 
 interface AnimeShowcaseProps {
   type: "newest-season" | "top-anime" | "seasonal" | "movies";
+  delay?: number;
 }
 
-const AnimeShowcase = ({ type }: AnimeShowcaseProps) => {
+const AnimeShowcase = ({ type, delay = 0 }: AnimeShowcaseProps) => {
   const animeTypes = {
     "newest-season": { title: "Newest Season", api: NEWEST_SEASON },
     "top-anime": { title: "Top Anime", api: TOP_ANIME },
@@ -38,7 +39,7 @@ const AnimeShowcase = ({ type }: AnimeShowcaseProps) => {
     };
     setTimeout(() => {
       fetchAnime();
-    }, 1000);
+    }, delay);
   }, [type]);
 
   return (
@@ -78,7 +79,7 @@ const AnimeShowcase = ({ type }: AnimeShowcaseProps) => {
               className="relative w-[373px] h-[223px] group cursor-pointer"
               whileHover={{
                 scale: 1.05,
-                transition: { duration: 0.3 }, 
+                transition: { duration: 0.3 },
               }}
             >
               <motion.div
