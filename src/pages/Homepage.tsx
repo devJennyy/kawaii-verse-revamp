@@ -9,7 +9,7 @@ const Homepage = () => {
     <div className="w-full flex flex-col">
       <Navbar />
       <div>
-        <Hero />
+        {/* <Hero /> */}
         <div className="flex flex-col gap-20 4xl:px-20 px-12 !mt-[-8rem] z-20 pb-48">
           {/* <AnimeShowcase type={"newest-season"} />
           <AnimeShowcase type={"top-anime"} /> */}
