@@ -1,13 +1,22 @@
 import { seasonalAnime } from "@/constants/api";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Swiper as SwiperType } from "swiper";
 import { motion } from "framer-motion";
 
 const SeasonalShowcase = () => {
   const swiperRef = useRef<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [loopKey, setLoopKey] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setLoopKey((prev) => prev + 1);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [activeIndex]);
 
   return (
     <div className="w-full flex justify-center items-center relative">
@@ -112,6 +121,8 @@ const SeasonalShowcase = () => {
                       />
                     </div>
                   </div>
+
+                  {/* Top Right & Bottom Left Text */}
                   <div className="w-full h-[950px] absolute">
                     <div className="absolute right-0 top-5 text-right flex flex-col gap-5">
                       <motion.p
@@ -133,38 +144,39 @@ const SeasonalShowcase = () => {
                         Watchlist
                       </p>
                     </div>
+
                     <div className="absolute left-0 bottom-10 text-left flex gap-5">
                       {activeIndex === index && (
-                        <motion.div
-                          initial={{ height: 0 }}
-                          animate={{ height: "6rem" }}
-                          transition={{
-                            duration: 0.7,
-                            ease: "easeOut",
-                            delay: 0,
-                          }}
-                          className="w-2 bg-neonAqua"
-                        />
-                      )}
-
-                      {activeIndex === index && (
-                        <motion.div
-                          initial={{ x: -50, opacity: 0 }}
-                          animate={{ x: 0, opacity: 1 }}
-                          transition={{
-                            duration: 0.7,
-                            ease: "easeOut",
-                            delay: 0.7,
-                          }}
-                          className="flex flex-col gap-3"
-                        >
-                          <p className="text-5xl uppercase">
-                            {anime.englishTitle}
-                          </p>
-                          <p className="text-3xl uppercase tracking-wide opacity-50">
-                            {anime.japaneseTitle}
-                          </p>
-                        </motion.div>
+                        <>
+                          <motion.div
+                            key={`line-${loopKey}`}
+                            initial={{ height: 0 }}
+                            animate={{ height: "6rem" }}
+                            transition={{
+                              duration: 0.7,
+                              ease: "easeOut",
+                            }}
+                            className="w-2 bg-neonAqua"
+                          />
+                          <motion.div
+                            key={`text-${loopKey}`}
+                            initial={{ x: -50, opacity: 0 }}
+                            animate={{ x: 0, opacity: 1 }}
+                            transition={{
+                              duration: 0.7,
+                              ease: "easeOut",
+                              delay: 0.7,
+                            }}
+                            className="flex flex-col gap-3"
+                          >
+                            <p className="text-5xl uppercase">
+                              {anime.englishTitle}
+                            </p>
+                            <p className="text-3xl uppercase tracking-wide opacity-50">
+                              {anime.japaneseTitle}
+                            </p>
+                          </motion.div>
+                        </>
                       )}
                     </div>
                   </div>
@@ -173,8 +185,6 @@ const SeasonalShowcase = () => {
             );
           })}
         </Swiper>
-
-        {/* Text */}
       </div>
 
       {/* Pagination Controls */}

@@ -27,7 +27,7 @@ const SwiperNavButtons = () => {
   }, [swiper]);
 
   return (
-    <div className="swiper-nav-btns z-50">
+    <div className="swiper-nav-btns z-50 w-0">
       <button
         onClick={() => swiper.slidePrev()}
         disabled={isBeginning}
