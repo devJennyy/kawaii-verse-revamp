@@ -44,8 +44,8 @@ const AnimeShowcase = ({ type, delay = 0 }: AnimeShowcaseProps) => {
   }, [type]);
 
   return (
-    <div className="lg:flex flex-col items-start gap-12 z-30 4xl:px-20 px-12 pb-24 hidden">
-      <p className="text-4xl font-bold z-20 tracking-wide">
+    <div className="lg:flex flex-col items-start 4xl:gap-12 xl:gap-8 gap-5 z-30 4xl:px-20 px-12 4xl:pb-24 pb-18 hidden">
+      <p className="4xl:text-4xl 3xl:text-3xl xl:text-2xl text-xl font-bold z-20 tracking-wide">
         {animeTypes[type].title}
       </p>
 
@@ -53,19 +53,29 @@ const AnimeShowcase = ({ type, delay = 0 }: AnimeShowcaseProps) => {
         <div className="w-full overflow-x-auto flex">
           <Swiper
             slidesPerView={"auto"}
-            spaceBetween={30}
+            breakpoints={{
+              1024: {
+                spaceBetween: 15,
+              },
+              1280: {
+                spaceBetween: 20,
+              },
+              2560: {
+                spaceBetween: 20,
+              }
+            }}
             navigation={false}
             modules={[Navigation]}
             className="mySwiper cursor-grab"
           >
             {animeList?.map((item, index) => (
               <SwiperSlide key={index}>
-                <div className="w-[388px] h-[590px] flex-none px-1">
+                <div className="4xxl:w-[388px] 4xxl:h-[582px] 4xl:w-[317px] 4xl:h-[475px] 3xl:w-[268px] 3xl:h-[402px] 2xl:w-[238px] 2xl:h-[357px] xl:w-[206px] xl:h-[309px] w-[155px] h-[232px] flex-none px-1">
                   <motion.div
                     initial="rest"
                     whileHover="hover"
                     animate="rest"
-                    className="relative w-full h-full overflow-hidden rounded-md group"
+                    className="relative w-full h-full overflow-hidden 4xl:rounded-md rounded-sm group"
                   >
                     <motion.img
                       src={item.images?.jpg?.large_image_url}
@@ -80,7 +90,7 @@ const AnimeShowcase = ({ type, delay = 0 }: AnimeShowcaseProps) => {
                       }}
                     />
                     <motion.div
-                      className="absolute top-0 left-0 w-full h-full bg-black/85 z-10 flex flex-col justify-between gap-5 tracking-wide text-white backdrop-blur-sm text-start p-6"
+                      className="absolute top-0 left-0 w-full h-full bg-black/85 z-10 flex flex-col justify-between gap-5 tracking-wide text-white backdrop-blur-sm text-start 2xl:p-6 xl:p-5 p-3"
                       variants={{
                         rest: { opacity: 0, y: 50 },
                         hover: {
@@ -94,11 +104,11 @@ const AnimeShowcase = ({ type, delay = 0 }: AnimeShowcaseProps) => {
                         },
                       }}
                     >
-                      <div className="flex flex-col gap-5">
-                      <p className="text-2xl font-semibold">{item.title_english || item.title}</p>
-                      <p className="line-clamp-15">{item.synopsis}</p>
+                      <div className="flex flex-col 3xl:gap-5 gap-3">
+                      <p className="4xl:text-2xl 3xl:text-xl xl:text-[16px] text-sm font-semibold">{item.title_english || item.title}</p>
+                      <p className="4xxl:line-clamp-15 4xl:line-clamp-11 2xl:line-clamp-8 line-clamp-7 3xl:text-[16px] xl:text-sm text-[10px]">{item.synopsis}</p>
                       </div>
-                    <Button label="View Details" hasIcon={false} colorType={"secondary"} customClass="h-14 text-[17px]"/>
+                    <Button label="View Details" hasIcon={false} colorType={"secondary"} customClass="4xl:h-14 3xl:h-11 xl:h-9 h-7 4xl:text-[17px] 3xl:text-sm xl:text-[12px] text-[10px]"/>
                     </motion.div>
                   </motion.div>
                 </div>
@@ -108,7 +118,7 @@ const AnimeShowcase = ({ type, delay = 0 }: AnimeShowcaseProps) => {
           </Swiper>
         </div>
       ) : (
-        <div className="w-full grid grid-cols-7 gap-12">
+        <div className="w-full grid 4xl:grid-cols-7 grid-cols-4 gap-12">
           {animeList?.map((item, index) => (
             <motion.div
               key={index}

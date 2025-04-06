@@ -44,7 +44,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="relative w-full xl:flex justify-center items-center 4xl:px-20 px-12 5xl:h-[2020px] 4xxl:h-[1590px] 4xl:h-[1500px] 3xl:h-[1080px] 2xl:[808px] h-[752px] hidden transition-slow z-0">
+    <div className="relative w-full xl:flex justify-center items-center 4xl:px-20 px-12 5xl:h-[2020px] 4xxl:h-[1590px] 4xl:h-[1500px] 3xl:h-[1080px] 2xl:h-[808px] h-[752px] hidden transition-slow z-0">
       {/* Bg Image */}
       <div className="absolute inset-0 w-full h-full z-0 border-b-20 border-black">
         {topAnime[currentIndex] && (
@@ -66,9 +66,9 @@ const Hero = () => {
       <div className="absolute left-0 w-[60%] h-full bg-gradient-to-r from-main to-main/0 z-10 transition-slow"></div>
 
       {/* Content */}
-      <div className="absolute w-full max-w-full !mx-auto 5xl:w-[3840px] h-full flex z-20 5xl:pb-30 4xl:pb-40 3xl:pb-24 pb-16">
+      <div className="absolute w-full max-w-full !mx-auto 5xl:w-[3840px] h-full flex z-20 5xl:pb-30 4xl:pb-40 3xl:pb-44 pb-20">
         {/* Details */}
-        <div className="w-full h-full flex flex-col justify-end items-start 5xl:gap-14 4xl:gap-12 gap-8 transition-slow">
+        <div className="w-full h-full flex flex-col justify-end items-start 5xl:gap-14 4xl:gap-12 gap-12 transition-slow">
           <div className="flex flex-col justify-end items-start text-start 4xl:pl-20 pl-12 5xl:gap-8 4xl:gap-7 3xl:gap-6 2xl:gap-4 gap-2">
             {topAnime[currentIndex] && (
               <p className="font-semibold tracking-wider 5xl:text-[54px] 4xxl:text-[44px] 4xl:text-[38px] 3xl:text-[28px] 2xl:text-lg text-neonAqua uppercase">
@@ -117,9 +117,9 @@ const Hero = () => {
         </div>
 
         {/* Slider */}
-        <div className="relative 5xl:w-15/12 4xxl:w-12/12 4xl:w-15/12 w-16/12 flex flex-col justify-end overflow-hidden 5xl:gap-24 4xl:gap-20 3xl:gap-10 2xl:gap-8 gap-8 transition-slow">
+        <div className="relative 5xl:w-15/12 4xxl:w-12/12 4xl:w-15/12 w-16/12 flex flex-col justify-end overflow-hidden 5xl:gap-24 4xl:gap-20 3xl:gap-16 2xl:gap-8 gap-8 transition-slow">
           {/* Thumbnails */}
-          <div className="5xl:h-[800px] 4xl:h-[579px] 3xl:h-[438px] 2xl:h-[300px] h-[290px] flex 5xl:gap-16 4xl:gap-11 3xl:gap-8 2xl:gap-6 gap-5 overflow-hidden transition-slow">
+          <div className="5xl:h-[800px] 4xl:h-[579px] 3xl:h-[408px] 2xl:h-[300px] h-[290px] flex 5xl:gap-16 4xl:gap-11 3xl:gap-8 2xl:gap-6 gap-5 overflow-hidden transition-slow">
             <Swiper
               onSwiper={(swiper) => (swiperRef.current = swiper)}
               onSlideChange={(swiper) => setCurrentIndex(swiper.realIndex)}
@@ -149,7 +149,7 @@ const Hero = () => {
                 const isActive = index === currentIndex;
                 const heightClass = isActive
                   ? "h-full"
-                  : "5xl:h-[720px] 4xl:h-[530px] 3xl:h-[408px] 2xl:h-[270px] h-[260px]";
+                  : "5xl:h-[720px] 4xl:h-[530px] 3xl:h-[370px] 2xl:h-[270px] h-[260px]";
 
                 return (
                   <SwiperSlide className="z-50" key={index}>
@@ -176,17 +176,17 @@ const Hero = () => {
           </div>
 
           {/* Pagination Controls */}
-          <div className="w-full flex justify-start items-end 5xl:h-[150px] 4xl:h-[100px] 3xl:h-[89px] 2xl:h-[65px] h-[58px] 5xl:gap-16 4xl:gap-13 3xl:gap-8 2xl:gap-7 gap-6 5xl:pr-30 pr-10 transition-slow">
+          <div className="w-full flex justify-start items-end 5xl:h-[150px] 4xl:h-[100px] 3xl:h-[80px] 2xl:h-[65px] h-[58px] 5xl:gap-16 4xl:gap-13 3xl:gap-8 2xl:gap-7 gap-6 5xl:pr-30 pr-10 transition-slow">
             <div className="flex 5xl:gap-9 4xl:gap-6 3xl:gap-4 gap-3 h-full transition-slow">
               <button
                 onClick={handlePrev}
-                className="5xl:w-[150px] 4xl:w-[100px] 3xl:w-[89px] 2xl:w-[65px] w-[58px] h-full flex justify-center items-center rounded-full 5xl:border-3 4xl:border-2 border hover:bg-secondaryBase/20 bg-white/10 cursor-pointer transition-slow"
+                className="5xl:w-[150px] 4xl:w-[100px] 3xl:w-[80px] 2xl:w-[65px] w-[58px] h-full flex justify-center items-center rounded-full 5xl:border-3 4xl:border-2 border hover:bg-secondaryBase/20 bg-white/10 cursor-pointer transition-slow"
               >
                 <FiChevronLeft className="5xl:text-[55px] 4xl:text-[36px] 3xl:text-[32px] text-[23px]" />
               </button>
               <button
                 onClick={handleNext}
-                className="5xl:w-[150px] 4xl:w-[100px] 3xl:w-[89px] 2xl:w-[65px] w-[58px] h-full flex justify-center items-center rounded-full 5xl:border-3 4xl:border-2 border hover:bg-secondaryBase/20 bg-white/10 cursor-pointer transition-slow"
+                className="5xl:w-[150px] 4xl:w-[100px] 3xl:w-[80px] 2xl:w-[65px] w-[58px] h-full flex justify-center items-center rounded-full 5xl:border-3 4xl:border-2 border hover:bg-secondaryBase/20 bg-white/10 cursor-pointer transition-slow"
               >
                 <FiChevronRight className="5xl:text-[55px] 4xl:text-[36px] 3xl:text-[32px] text-[23px]" />
               </button>

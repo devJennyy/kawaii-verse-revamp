@@ -6,7 +6,7 @@ const Homepage = () => {
   return (
     <>
       <Hero />
-      <div className="!mt-[-8rem]">
+      <div className="3xl:!mt-[-8rem] !mt-[-5rem]">
         <AnimeShowcase type={"newest-season"} delay={1000}/>
         <AnimeShowcase type={"top-anime"} delay={1000}/>
         <SeasonalShowcase />
