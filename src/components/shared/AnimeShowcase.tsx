@@ -1,10 +1,9 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import SwiperNavButtons from "@/components/ui/SwiperNavButtons";
 import {
+  getPopularMoviesUrl,
   LONG_WEEKEND_WATCHLIST,
   NEWEST_SEASON,
-  POPULAR_MOVIES,
   TOP_ANIME,
 } from "@/constants/api";
 import axios from "axios";
@@ -21,30 +20,45 @@ interface AnimeShowcaseProps {
 
 const AnimeShowcase = ({ type, delay = 0 }: AnimeShowcaseProps) => {
   const animeTypes = {
-    "newest-season": { title: "Newest Season", api: NEWEST_SEASON },
-    "top-anime": { title: "Top Anime", api: TOP_ANIME },
-    seasonal: { title: "Seasonal Anime", api: LONG_WEEKEND_WATCHLIST },
-    movies: { title: "Popular Movies", api: POPULAR_MOVIES },
+    "newest-season": { title: "Newest Season" },
+    "top-anime": { title: "Top Anime" },
+    seasonal: { title: "Seasonal Anime" },
+    movies: { title: "Popular Movies" },
   };
 
   const [animeList, setAnimeList] = useState<any[]>([]);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setScreenWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const fetchAnime = async () => {
       try {
-        const res = await axios.get(animeTypes[type].api);
+        const url =
+          type === "movies"
+            ? getPopularMoviesUrl(screenWidth)
+            : type === "newest-season"
+            ? NEWEST_SEASON
+            : type === "top-anime"
+            ? TOP_ANIME
+            : LONG_WEEKEND_WATCHLIST;
+
+        const res = await axios.get(url);
         setAnimeList(res.data.data);
       } catch (err) {
         console.error("Oops! something went wrong", err);
       }
     };
-    setTimeout(() => {
-      fetchAnime();
-    }, delay);
-  }, [type]);
+
+    fetchAnime();
+  }, [type, screenWidth, delay]);
 
   return (
-    <div className="lg:flex flex-col items-start 4xl:gap-12 xl:gap-8 gap-5 z-30 4xl:px-20 px-12 4xl:pb-24 pb-18 hidden">
+    <div className="lg:flex flex-col items-start 4xl:gap-12 3xl:gap-10 xl:gap-7 gap-5 z-30 4xl:px-20 px-12 4xl:pb-24 3xl:pb-18 xl:pb-14 pb-10 hidden">
       <p className="4xl:text-4xl 3xl:text-3xl xl:text-2xl text-xl font-bold z-20 tracking-wide">
         {animeTypes[type].title}
       </p>
@@ -62,7 +76,7 @@ const AnimeShowcase = ({ type, delay = 0 }: AnimeShowcaseProps) => {
               },
               2560: {
                 spaceBetween: 20,
-              }
+              },
             }}
             navigation={false}
             modules={[Navigation]}
@@ -105,10 +119,19 @@ const AnimeShowcase = ({ type, delay = 0 }: AnimeShowcaseProps) => {
                       }}
                     >
                       <div className="flex flex-col 3xl:gap-5 gap-3">
-                      <p className="4xl:text-2xl 3xl:text-xl xl:text-[16px] text-sm font-semibold">{item.title_english || item.title}</p>
-                      <p className="4xxl:line-clamp-15 4xl:line-clamp-11 2xl:line-clamp-8 line-clamp-7 3xl:text-[16px] xl:text-sm text-[10px]">{item.synopsis}</p>
+                        <p className="4xl:text-2xl 3xl:text-xl xl:text-[16px] text-sm font-semibold">
+                          {item.title_english || item.title}
+                        </p>
+                        <p className="4xxl:line-clamp-15 4xl:line-clamp-11 2xl:line-clamp-8 line-clamp-7 3xl:text-[16px] xl:text-sm text-[10px]">
+                          {item.synopsis}
+                        </p>
                       </div>
-                    <Button label="View Details" hasIcon={false} colorType={"secondary"} customClass="4xl:h-14 3xl:h-11 xl:h-9 h-7 4xl:text-[17px] 3xl:text-sm xl:text-[12px] text-[10px]"/>
+                      <Button
+                        label="View Details"
+                        hasIcon={false}
+                        colorType={"secondary"}
+                        customClass="4xl:h-14 3xl:h-11 xl:h-9 h-7 4xl:text-[17px] 3xl:text-sm xl:text-[12px] text-[10px]"
+                      />
                     </motion.div>
                   </motion.div>
                 </div>
@@ -118,23 +141,23 @@ const AnimeShowcase = ({ type, delay = 0 }: AnimeShowcaseProps) => {
           </Swiper>
         </div>
       ) : (
-        <div className="w-full grid 4xl:grid-cols-7 grid-cols-4 gap-12">
+        <div className="w-full grid 4xl:grid-cols-7 2xl:grid-cols-6 grid-cols-5 3xl:gap-12 xl:gap-8 gap-5">
           {animeList?.map((item, index) => (
             <motion.div
               key={index}
-              className="relative w-[373px] h-[223px] group cursor-pointer"
+              className="relative 4xxl:w-[373px] 4xl:h-[223px] 4xl:w-[316px] 3xl:w-[275px] 3xl:h-[203px] xl:w-[205px] xl:h-[140px] w-[170px] h-[120px] group cursor-pointer"
               whileHover={{
                 scale: 1.05,
                 transition: { duration: 0.28 },
               }}
             >
               <motion.div
-                className="absolute bottom-0 right-0 w-[358px] h-[208px] bg-secondaryBase/10 z-0 rounded-[2px] transition-slow group-hover:bg-neonAqua"
+                className="absolute bottom-0 right-0 4xxl:w-[358px] 4xl:h-[208px] 4xl:w-[300px] 3xl:w-[260px] 3xl:h-[188px] xl:w-[195px] xl:h-[130px] w-[160px] h-[110px] bg-secondaryBase/10 z-0 rounded-[2px] transition-slow group-hover:bg-neonAqua"
                 whileHover={{
                   transition: { duration: 0.28 },
                 }}
               />
-              <div className="absolute top-0 left-0 w-[358px] h-[208px] z-[5] rounded-[2px] overflow-hidden">
+              <div className="absolute top-0 left-0 4xxl:w-[358px] 4xl:h-[208px] 4xl:w-[300px] 3xl:w-[260px] 3xl:h-[188px] xl:w-[195px] xl:h-[130px] w-[160px] h-[110px] z-[5] rounded-[2px] overflow-hidden">
                 <motion.img
                   src={item.images?.jpg?.large_image_url}
                   alt={item.title}
