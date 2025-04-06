@@ -152,7 +152,7 @@ const AnimeShowcase = ({ type, delay = 0 }: AnimeShowcaseProps) => {
               }}
             >
               <motion.div
-                className="absolute bottom-0 right-0 4xxl:w-[358px] 4xl:h-[208px] 4xl:w-[300px] 3xl:w-[260px] 3xl:h-[188px] xl:w-[195px] xl:h-[130px] w-[160px] h-[110px] bg-secondaryBase/10 z-0 rounded-[2px] transition-slow group-hover:bg-neonAqua"
+                className="absolute bottom-0 right-0 4xxl:w-[358px] 4xl:h-[208px] 4xl:w-[300px] 3xl:w-[260px] 3xl:h-[188px] xl:w-[195px] xl:h-[130px] w-[160px] h-[110px] bg-secondaryBase/10 z-0 rounded-[2px] transition-slow group-hover:bg-neonAqua group-active:bg-neonAqua group-focus:bg-neonAqua"
                 whileHover={{
                   transition: { duration: 0.28 },
                 }}
@@ -176,7 +176,7 @@ const AnimeShowcase = ({ type, delay = 0 }: AnimeShowcaseProps) => {
                 />
 
                 <motion.div
-                  className="absolute top-0 left-0 w-full h-full bg-black/85 z-10 flex items-center justify-center text-base text-2xl font-semibold text-center px-4"
+                  className="absolute top-0 left-0 w-full h-full bg-black/85 z-10 flex items-center justify-center text-base 4xl:text-2xl 3xl:text-xl 2xl:text-[16px] text-sm font-semibold text-center px-4"
                   variants={{
                     rest: { opacity: 0, y: 40 },
                     hover: {

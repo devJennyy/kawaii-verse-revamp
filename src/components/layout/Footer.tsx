@@ -16,7 +16,7 @@ const Footer = () => {
           <p className="md:block hidden">
             Designed & Developed by Jenny Pieloor <span className="text-neonAqua">Powered by Jikan API</span>
           </p>
-          <div className="flex md:gap-3 gap-2">
+          <div className="flex 3xl:gap-3 gap-2">
             {socialButtons?.map(
               ({ url, id, icon: Icon, size, smSize, className }) => (
                 <a
