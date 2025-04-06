@@ -19,7 +19,7 @@ const SeasonalShowcase = () => {
   }, [activeIndex]);
 
   return (
-    <div className="w-full flex justify-center items-center relative">
+    <div className="w-full lg:flex justify-center items-center relative hidden">
       <div className="absolute w-full h-[1000px] bg-[#181A20]"></div>
       <div className="w-[1940px] h-[1200px] relative flex items-center cursor-grab">
         {/* Banner */}

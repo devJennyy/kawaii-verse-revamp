@@ -155,7 +155,7 @@ const Hero = () => {
                   <SwiperSlide className="z-50" key={index}>
                     <motion.div
                       onClick={() => swiperRef.current?.slideToLoop(index)}
-                      className={`relative transition-all duration-500 ease-in-out transform  
+                      className={`relative transition-all duration-500 ease-in-out transform cursor-pointer  
         ${heightClass} 5xl:w-[557px] 4xl:w-[400px] 3xl:w-[286px] 2xl:w-[214px] w-[190px] 4xl:rounded-[3rem] rounded-3xl overflow-hidden 4xl:border-8 3xl:border-6 border-4 ${
                         isActive ? "border-neonAqua" : "border-white/2"
                       }`}
