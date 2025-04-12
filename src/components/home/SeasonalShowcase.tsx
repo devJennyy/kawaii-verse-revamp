@@ -19,9 +19,9 @@ const SeasonalShowcase = () => {
   }, [activeIndex]);
 
   return (
-    <div className="w-full 4xl:flex justify-center items-center relative hidden">
-      <div className="absolute w-full h-[1000px] bg-[#181A20]"></div>
-      <div className="w-[1940px] h-[1200px] relative flex items-center cursor-grab">
+    <div className="w-full lg:flex justify-center items-center relative hidden">
+      <div className="absolute w-full 4xl:h-[990px] 3xl:h-[780px] 2xl:h-[590px] xl:h-[510px] h-[420px] bg-[#181A20] transition-slow"></div>
+      <div className="w-[1940px] 4xl:h-[1200px] 3xl:h-[990px] 2xl:h-[720px] xl:h-[630px] h-[520px] relative flex items-center cursor-grab scale-42 xl:scale-52 2xl:scale-60 3xl:scale-80 4xl:scale-100 transition-slow">
         {/* Banner */}
         <Swiper
           spaceBetween={50}
@@ -124,7 +124,7 @@ const SeasonalShowcase = () => {
 
                   {/* Top Right & Bottom Left Text */}
                   <div className="w-full h-[950px] absolute">
-                    <div className="absolute right-0 top-5 text-right flex flex-col gap-5">
+                    <div className="absolute right-0 top-10 text-right flex flex-col gap-5">
                       <motion.p
                         className="text-[5.5rem] uppercase text-neonAqua font-bold leading-none"
                         initial={{ opacity: 0 }}
@@ -145,13 +145,13 @@ const SeasonalShowcase = () => {
                       </p>
                     </div>
 
-                    <div className="absolute left-0 bottom-10 text-left flex gap-5">
+                    <div className="absolute left-0 bottom-12 text-left flex gap-5">
                       {activeIndex === index && (
                         <>
                           <motion.div
                             key={`line-${loopKey}`}
                             initial={{ height: 0 }}
-                            animate={{ height: "6rem" }}
+                            animate={{ height: "7rem" }}
                             transition={{
                               duration: 0.7,
                               ease: "easeOut",
@@ -169,10 +169,10 @@ const SeasonalShowcase = () => {
                             }}
                             className="flex flex-col gap-3"
                           >
-                            <p className="text-5xl uppercase">
+                            <p className="text-6xl uppercase">
                               {anime.englishTitle}
                             </p>
-                            <p className="text-3xl uppercase tracking-wide opacity-50">
+                            <p className="text-4xl uppercase tracking-wide opacity-50">
                               {anime.japaneseTitle}
                             </p>
                           </motion.div>
@@ -188,16 +188,16 @@ const SeasonalShowcase = () => {
       </div>
 
       {/* Pagination Controls */}
-      <div className="absolute w-[2400px] flex justify-between 5xl:h-[150px] 4xl:h-[100px] 3xl:h-[89px] 2xl:h-[65px] h-[58px] transition-slow bg-transparent z-30">
+      <div className="absolute 4xl:w-[2400px] 3xl:w-[1820px] 2xl:w-[1360px] xl:w-[1200px] w-[970px] flex justify-between 5xl:h-[150px] 4xl:h-[100px] 3xl:h-[89px] 2xl:h-[65px] xl:h-[58px] h-[48px] transition-slow bg-transparent z-30">
         <button
           onClick={() => swiperRef.current?.slidePrev()}
-          className="5xl:w-[150px] 4xl:w-[100px] 3xl:w-[89px] 2xl:w-[65px] w-[58px] h-full flex justify-center items-center rounded-full 5xl:border-3 4xl:border-2 border hover:bg-secondaryBase/20 bg-white/10 cursor-pointer transition-slow"
+          className="5xl:w-[150px] 4xl:w-[100px] 3xl:w-[89px] 2xl:w-[65px] xl:w-[58px] w-[48px] h-full flex justify-center items-center rounded-full 5xl:border-3 4xl:border-2 border hover:bg-secondaryBase/20 bg-white/10 cursor-pointer transition-slow"
         >
           <FiChevronLeft className="5xl:text-[55px] 4xl:text-[36px] 3xl:text-[32px] text-[23px]" />
         </button>
         <button
           onClick={() => swiperRef.current?.slideNext()}
-          className="5xl:w-[150px] 4xl:w-[100px] 3xl:w-[89px] 2xl:w-[65px] w-[58px] h-full flex justify-center items-center rounded-full 5xl:border-3 4xl:border-2 border hover:bg-secondaryBase/20 bg-white/10 cursor-pointer transition-slow"
+          className="5xl:w-[150px] 4xl:w-[100px] 3xl:w-[89px] 2xl:w-[65px] xl:w-[58px] w-[48px] h-full flex justify-center items-center rounded-full 5xl:border-3 4xl:border-2 border hover:bg-secondaryBase/20 bg-white/10 cursor-pointer transition-slow"
         >
           <FiChevronRight className="5xl:text-[55px] 4xl:text-[36px] 3xl:text-[32px] text-[23px]" />
         </button>

@@ -1,6 +1,6 @@
 export const GET_TOP_ANIME = "https://api.jikan.moe/v4/top/anime?type=tv&filter=airing&limit=5";
-export const NEWEST_SEASON = "https://api.jikan.moe/v4/seasons/now?filter=tv&order_by=start_date&sort=desc&limit=24";
-export const TOP_ANIME = "https://api.jikan.moe/v4/top/anime?type=tv&order_by=start_date&sort=desc&limit=24";
+export const NEWEST_SEASON = "https://api.jikan.moe/v4/seasons/now?filter=tv&order_by=start_date&sort=desc";
+export const TOP_ANIME = "https://api.jikan.moe/v4/top/anime?type=tv&order_by=start_date&sort=desc";
 export const LONG_WEEKEND_WATCHLIST = "https://api.jikan.moe/v4/anime?order_by=popularity&sort=asc&limit=7";
 export const getPopularMoviesUrl = (width: number): string => {
   let limit;
@@ -18,21 +18,21 @@ export const getPopularMoviesUrl = (width: number): string => {
 
 export const seasonalAnime = [
   {
-    id: "luffy",
-    miniBackgroundImage: "/images/one-piece.jpeg",
-    backgroundImage: "/images/one-piece.gif",
-    soloCharacter: "/images/luffy.png",
-    englishTitle: "One Piece",
-    japaneseTitle: "ワンピース, Wan Pīsu",
-    href: ""
-  },
-  {
     id: "mitsuri",
     miniBackgroundImage: "/images/demon-slayer.jpeg",
     backgroundImage: "/images/demon-slayer.gif",
     soloCharacter: "/images/mitsuri.png",
     englishTitle: "Demon Slayer",
     japaneseTitle: "鬼滅の刃, Kimetsu no Yaiba",
+    href: ""
+  },
+  {
+    id: "luffy",
+    miniBackgroundImage: "/images/one-piece.jpeg",
+    backgroundImage: "/images/one-piece.gif",
+    soloCharacter: "/images/luffy.png",
+    englishTitle: "One Piece",
+    japaneseTitle: "ワンピース, Wan Pīsu",
     href: ""
   },
   {
@@ -58,7 +58,7 @@ export const seasonalAnime = [
     miniBackgroundImage: "/images/magic-and-muscles.jpeg",
     backgroundImage: "/images/magic-and-muscles.gif",
     soloCharacter: "/images/mash-burnedead.png",
-    englishTitle: "Mashle: Magic & Muscles",
+    englishTitle: "Magic & Muscles",
     japaneseTitle: "マッシュル, Mashle",
     href: ""
   },

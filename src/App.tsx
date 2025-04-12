@@ -1,6 +1,7 @@
 import Footer from "./components/layout/Footer";
 import Navbar from "./components/layout/Navbar";
 import Homepage from "./pages/Homepage";
+import Movies from "./pages/Movies";
 import "./styles/App.css";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router";
 
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/homepage" replace />} />
         <Route path="/homepage" element={<Homepage />} />
+        <Route path="/movies" element={<Movies />} />
       </Routes>
       <Footer />
     </Router>

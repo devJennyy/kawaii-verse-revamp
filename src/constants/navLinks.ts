@@ -1,6 +1,6 @@
 export const navLinks = [
   {
-    label: "New",
+    label: "Newest Season",
     href: "/",
   },
   {
@@ -13,6 +13,6 @@ export const navLinks = [
   },
   {
     label: "Movies",
-    href: "/",
+    href: "/movies",
   },
 ];

@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 import { useEffect, useRef, useState } from "react";
@@ -8,6 +7,7 @@ import { motion } from "framer-motion";
 import { Swiper as SwiperType } from "swiper";
 import { FaPause, FaPlay } from "react-icons/fa6";
 import { GET_TOP_ANIME } from "@/constants/api";
+import CustomNavButtons from "../ui/CustomNavButtons";
 
 const Hero = () => {
   const swiperRef = useRef<SwiperType | null>(null);
@@ -15,18 +15,6 @@ const Hero = () => {
   const [isTrailerPlaying, setIsTrailerPlaying] = useState(false);
   const [topAnime, setTopAnime] = useState<any[]>([]);
 
-  const handleNext = () => {
-    console.log("....");
-    if (swiperRef.current) {
-      swiperRef.current.slideNext();
-    }
-  };
-
-  const handlePrev = () => {
-    if (swiperRef.current) {
-      swiperRef.current.slidePrev();
-    }
-  };
 
   const fetchTopAnime = () => {
     axios
@@ -177,7 +165,7 @@ const Hero = () => {
 
           {/* Pagination Controls */}
           <div className="w-full flex justify-start items-end 5xl:h-[150px] 4xl:h-[100px] 3xl:h-[80px] 2xl:h-[65px] h-[58px] 5xl:gap-16 4xl:gap-13 3xl:gap-8 2xl:gap-7 gap-6 5xl:pr-30 pr-10 transition-slow">
-            <div className="flex 5xl:gap-9 4xl:gap-6 3xl:gap-4 gap-3 h-full transition-slow">
+            {/* <div className="flex 5xl:gap-9 4xl:gap-6 3xl:gap-4 gap-3 h-full transition-slow">
               <button
                 onClick={handlePrev}
                 className="5xl:w-[150px] 4xl:w-[100px] 3xl:w-[80px] 2xl:w-[65px] w-[58px] h-full flex justify-center items-center rounded-full 5xl:border-3 4xl:border-2 border hover:bg-secondaryBase/20 bg-white/10 cursor-pointer transition-slow"
@@ -190,7 +178,8 @@ const Hero = () => {
               >
                 <FiChevronRight className="5xl:text-[55px] 4xl:text-[36px] 3xl:text-[32px] text-[23px]" />
               </button>
-            </div>
+            </div> */}
+            <CustomNavButtons  swiperRef={swiperRef}/>
             <div className="h-full 5xl:w-[1437px] 4xl:w-[953px] 3xl:w-[723px] 2xl:w-[537px] w-[480px] flex justify-center items-center transition-slow">
               <div className="5xl:h-1 4xl:h-[3px] 3xl:h-[2px] h-[1px] w-full bg-white transition-slow"></div>
             </div>

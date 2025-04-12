@@ -27,9 +27,9 @@ const Navbar = () => {
     <nav className="fixed left-0 5xl:right-0 top-0 w-full !mx-auto sm:h-16 5xl:h-18 h-15 flex items-center px-5 border-b border-base/10 z-50 bg-main">
       {/* Web Menu */}
       <div className="hidden w-full xl:flex items-center 3xl:gap-10 gap-5">
-        <div className="w-full max-w-[133px] 3xl:!mr-0 !mr-5">
+        <a href="/homepage" className="w-full max-w-[133px] 3xl:!mr-0 !mr-5 cursor-pointer">
           <img src="/logo/logo-text.svg" alt="logo" className="w-full h-full object-contain"/>
-        </div>
+        </a>
 
         <div className="w-full 5xl:max-w-[435px] 3xl:max-w-[335px] max-w-[235px] h-[35px] 5xl:h-[45px] transition-slow flex justify-center items-center gap-3 border border-base/10 py-3 px-3 rounded-sm focus-within:outline outline-neonAqua transition-default group">
           <FiSearch

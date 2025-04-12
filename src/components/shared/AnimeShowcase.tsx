@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import SwiperNavButtons from "@/components/ui/SwiperNavButtons";
 import {
   getPopularMoviesUrl,
   LONG_WEEKEND_WATCHLIST,
@@ -12,6 +11,7 @@ import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { motion } from "framer-motion";
 import Button from "./Button";
+import { FiChevronRight } from "react-icons/fi";
 
 interface AnimeShowcaseProps {
   type: "newest-season" | "top-anime" | "seasonal" | "movies";
@@ -21,9 +21,9 @@ interface AnimeShowcaseProps {
 const AnimeShowcase = ({ type, delay = 0 }: AnimeShowcaseProps) => {
   const animeTypes = {
     "newest-season": { title: "Newest Season" },
-    "top-anime": { title: "Top Anime" },
-    seasonal: { title: "Seasonal Anime" },
-    movies: { title: "Popular Movies" },
+    "top-anime": { title: "Popular Anime" },
+    seasonal: { title: "Favorite Season" },
+    movies: { title: "Top Movies", href: "/movies" },
   };
 
   const [animeList, setAnimeList] = useState<any[]>([]);
@@ -59,9 +59,24 @@ const AnimeShowcase = ({ type, delay = 0 }: AnimeShowcaseProps) => {
 
   return (
     <div className="lg:flex flex-col items-start 4xl:gap-12 3xl:gap-10 xl:gap-7 gap-5 z-30 4xl:px-20 px-12 4xl:pb-24 3xl:pb-18 xl:pb-14 pb-10 hidden">
-      <p className="4xl:text-4xl 3xl:text-3xl xl:text-2xl text-xl font-bold z-20 tracking-wide">
-        {animeTypes[type].title}
-      </p>
+      {type === "movies" ? (
+        <div className="flex justify-between items-end w-full">
+          <p className="4xl:text-4xl 3xl:text-3xl xl:text-2xl text-xl font-bold z-20 tracking-wide">
+            {animeTypes[type].title}
+          </p>
+          <a
+            href={animeTypes[type].href}
+            className="flex items-center gap-1 opacity-70 hover:opacity-100 active::opacity-100 cursor-pointer"
+          >
+            <p className="text-2xl tracking-wide">View All</p>
+            <FiChevronRight size={24} className="!mt-1" />
+          </a>
+        </div>
+      ) : (
+        <p className="4xl:text-4xl 3xl:text-3xl xl:text-2xl text-xl font-bold z-20 tracking-wide">
+          {animeTypes[type].title}
+        </p>
+      )}
 
       {["newest-season", "top-anime"].includes(type) ? (
         <div className="w-full overflow-x-auto flex">
@@ -80,7 +95,7 @@ const AnimeShowcase = ({ type, delay = 0 }: AnimeShowcaseProps) => {
             }}
             navigation={false}
             modules={[Navigation]}
-            className="mySwiper cursor-grab"
+            className="mySwiper cursor-grab overflow-visible"
           >
             {animeList?.map((item, index) => (
               <SwiperSlide key={index}>
@@ -137,7 +152,7 @@ const AnimeShowcase = ({ type, delay = 0 }: AnimeShowcaseProps) => {
                 </div>
               </SwiperSlide>
             ))}
-            <SwiperNavButtons />
+            {/* <SwiperNavButtons /> */}
           </Swiper>
         </div>
       ) : (
