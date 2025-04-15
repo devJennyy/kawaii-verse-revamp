@@ -15,4 +15,8 @@ export const navLinks = [
     label: "Movies",
     href: "/movies",
   },
+  {
+    label: "Top Characters",
+    href: "/characters",
+  },
 ];

@@ -1,5 +1,6 @@
 import Footer from "./components/layout/Footer";
 import Navbar from "./components/layout/Navbar";
+import Characters from "./pages/Characters";
 import Homepage from "./pages/Homepage";
 import Movies from "./pages/Movies";
 import "./styles/App.css";
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Navigate to="/homepage" replace />} />
         <Route path="/homepage" element={<Homepage />} />
         <Route path="/movies" element={<Movies />} />
+        <Route path="/characters" element={<Characters />} />
       </Routes>
       <Footer />
     </Router>
