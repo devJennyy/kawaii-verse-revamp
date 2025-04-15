@@ -9,9 +9,9 @@ const AnimeOverview = () => {
         />
         <div className="absolute inset-0 bg-black opacity-80 z-10"></div>
       </div>
-      <div className="w-3/6 z-30 !mt-[23rem]">
+      <div className="w-4/7 z-30 !mt-[23rem]">
         <div className="w-full flex gap-20">
-          {/* Right Content */}
+          {/* Left Content */}
           <div className="w-full max-w-[477px] flex flex-col gap-10">
             <img
               src="/images/chainsaw-man.png"
@@ -38,8 +38,7 @@ const AnimeOverview = () => {
             </div>
           </div>
 
-
-          {/* Left Content */}
+          {/* Right Content */}
           <div className="w-full flex flex-col gap-26 !mt-20">
             {/* Top */}
             <div className="flex flex-col items-start">
@@ -70,14 +69,12 @@ const AnimeOverview = () => {
             </div>
 
             {/* Bottom */}
-            <div className="text-2xl text-left flex flex-col gap-20">
+            <div className="text-2xl text-left flex flex-col gap-14">
               <div className="flex flex-col gap-8">
                 <p className="tracking-wide leading-normal">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   does eiusmod tempor incididunt ut labore et dolore magna
-                  aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing
-                  elit, sed does eiusmod tempor incididunt ut labore et dolore
-                  magna aliqua.
+                  aliqua. Lorem ipsum dolor sit amet, consectetur.
                 </p>
                 <div className="flex gap-4">
                   <div className="w-[100px] h-[47px] rounded-xl bg-white"></div>
@@ -90,17 +87,19 @@ const AnimeOverview = () => {
 
               <div className="flex flex-col gap-5">
                 <p>Trailer</p>
-                <div className="w-full h-[462px] bg-white rounded-2xl"></div>
+                <div className="w-full h-[562px] bg-white rounded-2xl"></div>
               </div>
 
-              <div className="flex flex-col gap-5">
-                <p>Streaming</p>
-                <div className="flex gap-4">
-                  <div className="w-[100px] h-[47px] rounded-xl bg-white"></div>
-                  <div className="w-[150px] h-[47px] rounded-xl bg-white"></div>
-                  <div className="w-[120px] h-[47px] rounded-xl bg-white"></div>
-                  <div className="w-[120px] h-[47px] rounded-xl bg-white"></div>
-                  <div className="w-[150px] h-[47px] rounded-xl bg-white"></div>
+              <div className="flex flex-col gap-8">
+                <div className="flex flex-col gap-5">
+                  <p>Streaming</p>
+                  <div className="flex gap-4">
+                    <div className="w-[100px] h-[47px] rounded-xl bg-white"></div>
+                    <div className="w-[150px] h-[47px] rounded-xl bg-white"></div>
+                    <div className="w-[120px] h-[47px] rounded-xl bg-white"></div>
+                    <div className="w-[120px] h-[47px] rounded-xl bg-white"></div>
+                    <div className="w-[150px] h-[47px] rounded-xl bg-white"></div>
+                  </div>
                 </div>
 
                 <div className="flex flex-col gap-5">
@@ -118,16 +117,16 @@ const AnimeOverview = () => {
               <div className="flex flex-col gap-5">
                 <p>Characters</p>
                 <div className="grid grid-cols-5 gap-5">
-                  <div className="w-full h-[230px] gap-5 rounded-xl bg-white"></div>
-                  <div className="w-full h-[230px] gap-5 rounded-xl bg-white"></div>
-                  <div className="w-full h-[230px] gap-5 rounded-xl bg-white"></div>
-                  <div className="w-full h-[230px] gap-5 rounded-xl bg-white"></div>
-                  <div className="w-full h-[230px] rounded-xl bg-white"></div>
-                  <div className="w-full h-[230px] gap-5 rounded-xl bg-white"></div>
-                  <div className="w-full h-[230px] gap-5 rounded-xl bg-white"></div>
-                  <div className="w-full h-[230px] gap-5 rounded-xl bg-white"></div>
-                  <div className="w-full h-[230px] gap-5 rounded-xl bg-white"></div>
-                  <div className="w-full h-[230px] rounded-xl bg-white"></div>
+                  <div className="w-full h-[280px] gap-5 rounded-xl bg-white"></div>
+                  <div className="w-full h-[280px] gap-5 rounded-xl bg-white"></div>
+                  <div className="w-full h-[280px] gap-5 rounded-xl bg-white"></div>
+                  <div className="w-full h-[280px] gap-5 rounded-xl bg-white"></div>
+                  <div className="w-full h-[280px] rounded-xl bg-white"></div>
+                  <div className="w-full h-[280px] gap-5 rounded-xl bg-white"></div>
+                  <div className="w-full h-[280px] gap-5 rounded-xl bg-white"></div>
+                  <div className="w-full h-[280px] gap-5 rounded-xl bg-white"></div>
+                  <div className="w-full h-[280px] gap-5 rounded-xl bg-white"></div>
+                  <div className="w-full h-[280px] rounded-xl bg-white"></div>
                 </div>
               </div>
             </div>
