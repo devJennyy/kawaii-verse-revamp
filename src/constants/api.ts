@@ -2,6 +2,8 @@ export const GET_TOP_ANIME = "https://api.jikan.moe/v4/top/anime?type=tv&filter=
 export const NEWEST_SEASON = "https://api.jikan.moe/v4/seasons/now?filter=tv&order_by=start_date&sort=desc";
 export const TOP_ANIME = "https://api.jikan.moe/v4/top/anime?type=tv&order_by=start_date&sort=desc";
 export const LONG_WEEKEND_WATCHLIST = "https://api.jikan.moe/v4/anime?order_by=popularity&sort=asc&limit=7";
+export const GET_OVERVIEW = "https://api.jikan.moe/v4/anime/{id}/full";
+export const GET_CHARACTERS = "https://api.jikan.moe/v4/anime/{id}/characters";
 export const getPopularMoviesUrl = (width: number): string => {
   let limit;
   if (width >= 2560) {

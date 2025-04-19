@@ -1,138 +1,298 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { GET_CHARACTERS, GET_OVERVIEW } from "@/constants/api";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { GoArrowUpRight } from "react-icons/go";
+import { useLocation } from "react-router";
+import ItemPills from "./ItemPills";
+import ThemeList from "./ThemeList";
+
 const AnimeOverview = () => {
+  const location = useLocation();
+  const [animeOverview, setAnimeOverview] = useState<any>();
+  const [characters, setCharacters] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const animeStats = [
+    {
+      label: "Scores",
+      value: animeOverview?.score,
+      className: "text-neonAqua",
+    },
+    { label: "Ranked", value: `#${animeOverview?.rank}` },
+    { label: "Popularity", value: animeOverview?.popularity },
+  ];
+  const animeDetails = [
+    { label: "Type", value: animeOverview?.type },
+    { label: "Episodes", value: animeOverview?.episodes },
+    { label: "Status", value: animeOverview?.status },
+    { label: "Aired", value: animeOverview?.aired?.string },
+    {
+      label: "Premiered",
+      value:
+        animeOverview?.season && animeOverview?.year
+          ? `${animeOverview.season} ${animeOverview.year}`
+          : "N/A",
+    },
+    { label: "Broadcast", value: animeOverview?.broadcast?.string },
+    { label: "Source", value: animeOverview?.source },
+    { label: "Themes", value: animeOverview?.themes?.[0]?.name },
+    { label: "Duration", value: animeOverview?.duration },
+    { label: "Rating", value: animeOverview?.rating },
+  ];
+
+  useEffect(() => {
+    // window.scrollTo({ top: 0, behavior: "smooth" });
+
+    const searchParams = new URLSearchParams(location.search);
+    const id = searchParams.get("id");
+    console.log(searchParams);
+    if (id) {
+      fetchAnimeOverview(id);
+    } else {
+      setAnimeOverview(null);
+    }
+  }, [location.search]);
+
+  const fetchAnimeOverview = (animeId: any) => {
+    setIsLoading(true);
+    Promise.all([
+      axios.get(GET_OVERVIEW.replace("{id}", animeId)),
+      axios.get(GET_CHARACTERS.replace("{id}", animeId)),
+    ])
+      .then(([overviewRes, charactersRes]) => {
+        setAnimeOverview(overviewRes.data.data);
+        setCharacters(charactersRes.data.data);
+
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching anime data:", error);
+      });
+  };
+
+  const mainCharacters = characters.filter((char) => char.role === "Main");
+  const visibleCharacters = mainCharacters.slice(0, 3);
+  const remainingCount = mainCharacters.length - visibleCharacters.length;
+
   return (
     <div className="w-full flex justify-center relative !mb-20">
-      <div className="w-full h-[945px] absolute overflow-hidden">
-        <img
-          src="/images/jujutsu-kaisen.jpg"
-          alt=""
-          className="w-full h-full object-cover object-top absolute inset-0 z-0 blur-[1px] scale-[1.02]"
-        />
-        <div className="absolute inset-0 bg-black opacity-80 z-10"></div>
-      </div>
-      <div className="w-4/7 z-30 !mt-[23rem]">
-        <div className="w-full flex gap-20">
-          {/* Left Content */}
-          <div className="w-full max-w-[477px] flex flex-col gap-10">
+      {isLoading && (
+        <div className="!my-48 text-[5rem]">Waiting for data...</div>
+      )}
+
+      {animeOverview ? (
+        <>
+          <div className="w-full h-[945px] absolute overflow-hidden">
             <img
-              src="/images/chainsaw-man.png"
-              alt=""
-              className="w-full h-[707px] object-cover object-center rounded-xl"
+              src={animeOverview?.trailer?.images?.maximum_image_url}
+              alt={animeOverview?.title}
+              className="w-full h-full object-cover absolute inset-0 z-0 blur-[1px] scale-[1.02]"
             />
-
-            <div className="flex flex-col gap-10 w-full bg-base/10 p-6 rounded-lg">
-              <div className="flex flex-col items-start gap-4">
-                <p className="text-xl">Favorites</p>
-                <div className="w-full h-20 bg-white rounded-lg"></div>
-              </div>
-              <div className="flex flex-col items-start gap-4">
-                <p className="text-xl">Details</p>
-                <div className="w-full h-64 bg-white rounded-lg"></div>
-              </div>
-
-              <div className="flex flex-col items-start gap-4">
-                <p className="text-xl">Animeography</p>
-                <div className="w-full h-32 bg-white rounded-lg"></div>
-                <div className="w-full h-32 bg-white rounded-lg"></div>
-                <div className="w-full h-32 bg-white rounded-lg"></div>
-              </div>
-            </div>
+            <div className="absolute inset-0 bg-black opacity-85 z-10"></div>
           </div>
+          <div className="w-4/7 z-30 !mt-[23rem]">
+            <div className="w-full flex gap-20">
+              {/* Left Content */}
+              <div className="w-full max-w-[477px] flex flex-col gap-10">
+                <div className="bg-base/10 rounded-xl overflow-hidden p-3">
+                  <img
+                    src={animeOverview?.images?.jpg?.large_image_url}
+                    alt={animeOverview?.title}
+                    className="w-full h-[707px] object-cover object-center rounded-xl"
+                  />
+                </div>
 
-          {/* Right Content */}
-          <div className="w-full flex flex-col gap-26 !mt-20">
-            {/* Top */}
-            <div className="flex flex-col items-start">
-              <p className="text-[90px]">The Chainsaw Man</p>
-              <p className="text-2xl">
-                Japanese Title, Tokyo Ghoul - 2014 - 24 mins
-              </p>
+                <div className="flex flex-col gap-10 w-full bg-base/10 p-6 rounded-lg">
+                  <div className="flex flex-col items-start gap-4">
+                    <p className="text-xl">Statistics</p>
+                    <div className="w-full rounded-lg bg-base/10 p-5 text-xl flex flex-col gap-2">
+                      {animeStats.map(({ label, value, className }, index) => (
+                        <div
+                          key={index}
+                          className={`w-full flex justify-between ${
+                            className || ""
+                          }`}
+                        >
+                          <p>{label}</p>
+                          <p className="!mb-1 font-medium tracking-wide">
+                            {value}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="flex flex-col items-start gap-4">
+                    <p className="text-xl">Information</p>
+                    <div className="w-full rounded-lg bg-base/10 p-5 text-xl flex flex-col gap-2">
+                      {animeDetails.map(({ label, value }, index) => (
+                        <div key={index} className="flex gap-2">
+                          <p className="text-base/60">{label}:</p>
+                          <p className="tracking-wide">{value || "N/A"}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
 
-              <div className="flex 4xl:gap-6 3xl:gap-4 gap-3 5xl:h-[130px] 4xl:h-[75px] 3xl:h-[64px] h-[44px] 5xl:!mt-12 4xl:!mt-10 !mt-6">
-                <button className="5xl:px-36 4xl:px-20 3xl:px-18 px-12 w-fit h-full flex justify-center items-center 4xl:border-2 3xl:border-2 border border-neonAqua text-neonAqua rounded-full cursor-pointer hover:bg-neonAqua hover:text-main transition-default">
-                  <p className="uppercase 5xl:text-[38px] 4xl:text-[20px] 3xl:text-lg text-sm font-normal">
-                    Watch Now
+                  <ThemeList
+                    themes={animeOverview?.theme?.openings || []}
+                    label="Opening Themes"
+                  />
+
+                  <ThemeList
+                    themes={animeOverview?.theme?.endings || []}
+                    label="Ending Themes"
+                  />
+                </div>
+              </div>
+
+              {/* Right Content */}
+              <div className="w-full flex flex-col !mt-14">
+                {/* Top */}
+                <div className="flex flex-col text-left leading-tight h-[35rem]">
+                  <p
+                    className={`${
+                      animeOverview?.title_english
+                        ? animeOverview?.title_english.length > 30
+                          ? "text-[55px]"
+                          : "text-[90px]"
+                        : "text-[90px]"
+                    }`}
+                  >
+                    {animeOverview?.title_english || animeOverview?.title}
                   </p>
-                </button>
-                <button className="w-[70px] bg-white rounded-full"></button>
-                <button className="w-[70px] bg-white rounded-full"></button>
-              </div>
 
-              <div className="flex flex-col items-start gap-5 !mt-10">
-                <p className="text-2xl">Authors</p>
-                <div className="flex gap-4">
-                  <div className="w-16 h-16 rounded-full bg-white"></div>
-                  <div className="w-16 h-16 rounded-full bg-white"></div>
-                  <div className="w-16 h-16 rounded-full bg-white"></div>
-                  <div className="w-16 h-16 rounded-full bg-white"></div>
-                </div>
-              </div>
-            </div>
+                  <p
+                    className={`${
+                      animeOverview?.title_japanese?.length > 30
+                        ? "text-[25px]"
+                        : "text-[30px]"
+                    } !mt-5`}
+                  >
+                    {animeOverview?.title_japanese}
+                  </p>
 
-            {/* Bottom */}
-            <div className="text-2xl text-left flex flex-col gap-14">
-              <div className="flex flex-col gap-8">
-                <p className="tracking-wide leading-normal">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  does eiusmod tempor incididunt ut labore et dolore magna
-                  aliqua. Lorem ipsum dolor sit amet, consectetur.
-                </p>
-                <div className="flex gap-4">
-                  <div className="w-[100px] h-[47px] rounded-xl bg-white"></div>
-                  <div className="w-[150px] h-[47px] rounded-xl bg-white"></div>
-                  <div className="w-[120px] h-[47px] rounded-xl bg-white"></div>
-                  <div className="w-[120px] h-[47px] rounded-xl bg-white"></div>
-                  <div className="w-[150px] h-[47px] rounded-xl bg-white"></div>
-                </div>
-              </div>
+                  <div className="flex 4xl:gap-6 3xl:gap-4 gap-3 5xl:h-[130px] 4xl:h-[75px] 3xl:h-[64px] h-[44px] 5xl:!mt-12 4xl:!mt-10 !mt-6">
+                    <button className="5xl:px-36 4xl:px-20 3xl:px-18 px-12 w-fit h-full flex justify-center items-center 4xl:border-2 3xl:border-2 border border-neonAqua text-neonAqua rounded-full cursor-pointer hover:bg-neonAqua hover:text-main transition-default">
+                      <p className="uppercase 5xl:text-[38px] 4xl:text-[20px] 3xl:text-lg text-sm font-normal">
+                        Watch Now
+                      </p>
+                    </button>
+                    <button className="w-[75px] rounded-full p-2 bg-neonAqua border-2 border-neonAqua hover:bg-transparent text-main hover:text-neonAqua transition-default flex justify-center items-center cursor-pointer">
+                      <GoArrowUpRight size={35} />
+                    </button>
+                  </div>
 
-              <div className="flex flex-col gap-5">
-                <p>Trailer</p>
-                <div className="w-full h-[562px] bg-white rounded-2xl"></div>
-              </div>
+                  <div className="flex flex-col items-start gap-5 !mt-14">
+                    <p className="text-2xl">Main Characters</p>
+                    <div className="flex gap-4 items-center">
+                      {visibleCharacters.map((charData) => (
+                        <button
+                          key={charData.character.mal_id}
+                          className="w-16 h-16 rounded-full overflow-hidden border-2 border-transparent hover:border-neonAqua transition-default cursor-pointer"
+                          title={charData.character.name}
+                        >
+                          <img
+                            src={charData.character.images.jpg.image_url}
+                            alt={charData.character.name}
+                            className="w-full h-full object-cover"
+                          />
+                        </button>
+                      ))}
 
-              <div className="flex flex-col gap-8">
-                <div className="flex flex-col gap-5">
-                  <p>Streaming</p>
-                  <div className="flex gap-4">
-                    <div className="w-[100px] h-[47px] rounded-xl bg-white"></div>
-                    <div className="w-[150px] h-[47px] rounded-xl bg-white"></div>
-                    <div className="w-[120px] h-[47px] rounded-xl bg-white"></div>
-                    <div className="w-[120px] h-[47px] rounded-xl bg-white"></div>
-                    <div className="w-[150px] h-[47px] rounded-xl bg-white"></div>
+                      {remainingCount > 0 && (
+                        <button
+                          className="w-16 h-16 rounded-full flex items-center justify-center bg-transparent border-2 text-lg  border-neonAqua hover:bg-neonAqua/10 transition-default cursor-pointer text-neonAqua font-semibold "
+                          title="Show More Main Characters"
+                        >
+                          {`+${remainingCount}`}
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-5">
-                  <p>Other Site</p>
-                  <div className="flex gap-4">
-                    <div className="w-[100px] h-[47px] rounded-xl bg-white"></div>
-                    <div className="w-[150px] h-[47px] rounded-xl bg-white"></div>
-                    <div className="w-[120px] h-[47px] rounded-xl bg-white"></div>
-                    <div className="w-[120px] h-[47px] rounded-xl bg-white"></div>
-                    <div className="w-[150px] h-[47px] rounded-xl bg-white"></div>
-                  </div>
-                </div>
-              </div>
+                {/* Bottom */}
+                <div className="text-2xl text-left flex flex-col gap-14">
+                  <div className="flex flex-col gap-8">
+                    <p
+                      className={`tracking-wide leading-loose opacity-95 ${
+                        animeOverview?.synopsis &&
+                        animeOverview.synopsis.length < 120
+                          ? "text-3xl"
+                          : "text-xl"
+                      }`}
+                    >
+                      {animeOverview?.synopsis}
+                    </p>
 
-              <div className="flex flex-col gap-5">
-                <p>Characters</p>
-                <div className="grid grid-cols-5 gap-5">
-                  <div className="w-full h-[280px] gap-5 rounded-xl bg-white"></div>
-                  <div className="w-full h-[280px] gap-5 rounded-xl bg-white"></div>
-                  <div className="w-full h-[280px] gap-5 rounded-xl bg-white"></div>
-                  <div className="w-full h-[280px] gap-5 rounded-xl bg-white"></div>
-                  <div className="w-full h-[280px] rounded-xl bg-white"></div>
-                  <div className="w-full h-[280px] gap-5 rounded-xl bg-white"></div>
-                  <div className="w-full h-[280px] gap-5 rounded-xl bg-white"></div>
-                  <div className="w-full h-[280px] gap-5 rounded-xl bg-white"></div>
-                  <div className="w-full h-[280px] gap-5 rounded-xl bg-white"></div>
-                  <div className="w-full h-[280px] rounded-xl bg-white"></div>
+                    <ItemPills
+                      items={animeOverview?.genres || []}
+                      isClickable
+                      onClick={(url) => window.open(url, "_blank")}
+                    />
+                  </div>
+
+                  <ItemPills
+                    title="Trailer"
+                    variant="trailer"
+                    items={animeOverview?.external || []}
+                    isClickable
+                    onClick={(url) => window.open(url, "_blank")}
+                  />
+
+                  <div className="flex flex-col gap-8">
+                    <ItemPills
+                      title="Streaming"
+                      items={animeOverview?.streaming || []}
+                      isClickable
+                      onClick={(url) => window.open(url, "_blank")}
+                    />
+
+                    <ItemPills
+                      title="Other Site"
+                      items={animeOverview?.external || []}
+                      isClickable
+                      onClick={(url) => window.open(url, "_blank")}
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-5">
+                    <p>Characters</p>
+                    <div className="grid grid-cols-5 gap-5">
+                      {characters?.map((charData, index) => {
+                        return (
+                          <div
+                            key={index}
+                            className="w-full bg gap-5 rounded-xl p-3 overflow-hidden cursor-pointer bg-base/10 hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default"
+                          >
+                            <img
+                              src={charData?.character?.images?.jpg?.image_url}
+                              alt={charData?.character?.name}
+                              className="w-full h-[240px] object-cover rounded-lg"
+                            />
+                            <div className="flex flex-col gap-1 text-[16px] pt-2 tracking-wide">
+                              <p className="text-neonAqua font-semibold">
+                                {charData?.character?.name}
+                              </p>
+                              <p>{charData?.role}</p>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </>
+      ) : (
+        !isLoading && (
+          <div className="!my-48 text-[5rem]">
+            Invalid Anime or No Anime Found!
+          </div>
+        )
+      )}
     </div>
   );
 };

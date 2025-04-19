@@ -7,10 +7,10 @@ const Homepage = () => {
     <>
       <Hero />
       <div className="3xl:!mt-[-8rem] !mt-[-5rem]">
-        <AnimeShowcase type={"newest-season"} delay={1000}/>
-        <AnimeShowcase type={"top-anime"} delay={1000}/>
+        <AnimeShowcase type={"newest-season"} delay={2000}/>
+        <AnimeShowcase type={"top-anime"} delay={3000}/>
         <SeasonalShowcase />
-        <AnimeShowcase type={"movies"} delay={2000}/>
+        <AnimeShowcase type={"movies"} delay={4000}/>
       </div>
     </>
   );

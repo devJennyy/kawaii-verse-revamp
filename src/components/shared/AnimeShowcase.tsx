@@ -12,6 +12,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { motion } from "framer-motion";
 import Button from "./Button";
 import { FiChevronRight } from "react-icons/fi";
+import { Link } from "react-router";
 
 interface AnimeShowcaseProps {
   type: "newest-season" | "top-anime" | "seasonal" | "movies";
@@ -99,7 +100,7 @@ const AnimeShowcase = ({ type, delay = 0 }: AnimeShowcaseProps) => {
           >
             {animeList?.map((item, index) => (
               <SwiperSlide key={index}>
-                <div className="4xxl:w-[388px] 4xxl:h-[582px] 4xl:w-[317px] 4xl:h-[475px] 3xl:w-[268px] 3xl:h-[402px] 2xl:w-[238px] 2xl:h-[357px] xl:w-[206px] xl:h-[309px] w-[155px] h-[232px] flex-none px-1">
+                <Link to={`/anime-overview?id=${item.mal_id}`} className="4xxl:w-[388px] 4xxl:h-[582px] 4xl:w-[317px] 4xl:h-[475px] 3xl:w-[268px] 3xl:h-[402px] 2xl:w-[238px] 2xl:h-[357px] xl:w-[206px] xl:h-[309px] w-[155px] h-[232px] flex-none px-1">
                   <motion.div
                     initial="rest"
                     whileHover="hover"
@@ -149,7 +150,7 @@ const AnimeShowcase = ({ type, delay = 0 }: AnimeShowcaseProps) => {
                       />
                     </motion.div>
                   </motion.div>
-                </div>
+                </Link>
               </SwiperSlide>
             ))}
             {/* <SwiperNavButtons /> */}
