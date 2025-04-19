@@ -2,10 +2,15 @@
 import { GET_CHARACTERS, GET_OVERVIEW } from "@/constants/api";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { GoArrowUpRight } from "react-icons/go";
 import { useLocation } from "react-router";
 import ItemPills from "./ItemPills";
 import ThemeList from "./ThemeList";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const AnimeOverview = () => {
   const location = useLocation();
@@ -41,7 +46,7 @@ const AnimeOverview = () => {
   ];
 
   useEffect(() => {
-    // window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "smooth" });
 
     const searchParams = new URLSearchParams(location.search);
     const id = searchParams.get("id");
@@ -171,16 +176,11 @@ const AnimeOverview = () => {
                     {animeOverview?.title_japanese}
                   </p>
 
-                  <div className="flex 4xl:gap-6 3xl:gap-4 gap-3 5xl:h-[130px] 4xl:h-[75px] 3xl:h-[64px] h-[44px] 5xl:!mt-12 4xl:!mt-10 !mt-6">
-                    <button className="5xl:px-36 4xl:px-20 3xl:px-18 px-12 w-fit h-full flex justify-center items-center 4xl:border-2 3xl:border-2 border border-neonAqua text-neonAqua rounded-full cursor-pointer hover:bg-neonAqua hover:text-main transition-default">
-                      <p className="uppercase 5xl:text-[38px] 4xl:text-[20px] 3xl:text-lg text-sm font-normal">
-                        Watch Now
-                      </p>
-                    </button>
-                    <button className="w-[75px] rounded-full p-2 bg-neonAqua border-2 border-neonAqua hover:bg-transparent text-main hover:text-neonAqua transition-default flex justify-center items-center cursor-pointer">
-                      <GoArrowUpRight size={35} />
-                    </button>
-                  </div>
+                  <button className="5xl:h-[130px] 4xl:h-[75px] 3xl:h-[64px] h-[44px] 5xl:!mt-12 4xl:!mt-10 !mt-6 5xl:px-36 4xl:px-20 3xl:px-18 px-12 w-fit flex justify-center items-center 4xl:border-2 3xl:border-2 border text-main border-neonAqua rounded-full cursor-pointer bg-neonAqua hover:bg-neonAqua/10 hover:text-neonAqua transition-default">
+                    <p className="uppercase 5xl:text-[38px] 4xl:text-[20px] 3xl:text-lg text-sm font-medium tracking-wide">
+                      Watch Now
+                    </p>
+                  </button>
 
                   <div className="flex flex-col items-start gap-5 !mt-14">
                     <p className="text-2xl">Main Characters</p>
@@ -199,14 +199,29 @@ const AnimeOverview = () => {
                         </button>
                       ))}
 
-                      {remainingCount > 0 && (
-                        <button
-                          className="w-16 h-16 rounded-full flex items-center justify-center bg-transparent border-2 text-lg  border-neonAqua hover:bg-neonAqua/10 transition-default cursor-pointer text-neonAqua font-semibold "
-                          title="Show More Main Characters"
-                        >
-                          {`+${remainingCount}`}
-                        </button>
-                      )}
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger className="cursor-pointer">
+                            {remainingCount > 0 && (
+                              <button
+                                onClick={() =>
+                                  document
+                                    .getElementById("characters")
+                                    ?.scrollIntoView({ behavior: "smooth" })
+                                }
+                                className="w-16 h-16 rounded-full flex items-center justify-center bg-transparent border-2 text-lg  border-neonAqua hover:bg-neonAqua/10 transition-default cursor-pointer text-neonAqua font-semibold "
+                              >
+                                {`+${remainingCount}`}
+                              </button>
+                            )}
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p className="text-sm py-[2px] px-1 tracking-wide">
+                              See More
+                            </p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
                     </div>
                   </div>
                 </div>
@@ -256,7 +271,10 @@ const AnimeOverview = () => {
                     />
                   </div>
 
-                  <div className="flex flex-col gap-5">
+                  <div
+                    id="characters"
+                    className="flex flex-col gap-5 scroll-mt-24"
+                  >
                     <p>Characters</p>
                     <div className="grid grid-cols-5 gap-5">
                       {characters?.map((charData, index) => {

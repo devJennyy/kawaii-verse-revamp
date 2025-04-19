@@ -80,14 +80,14 @@ import {
                     <p className="text-left">{theme}</p>
                   </div>
                 </DialogTrigger>
-                <DialogContent className="bg-main px-8">
+                <DialogContent className="bg-main px-8 scale-115">
                   <DialogHeader>
                     <DialogTitle className="text-base text-lg !mt-2 pr-5">
                       {theme}
                     </DialogTitle>
                     <DialogDescription>
                       <div className="grid grid-cols-2 gap-4 !mt-5">
-                        {platforms.map(({ name, urlKey, Icon, color }) => (
+                        {platforms?.map(({ name, urlKey, Icon, color }) => (
                           <a
                             key={name}
                             href={searchUrls[urlKey as keyof typeof searchUrls]}
