@@ -10,8 +10,6 @@
 @import "swiper/css";
 @import "swiper/css/navigation";
 
-
-
 @theme {
   --color-main: #121419;
   --color-base: #DBE6FF;
@@ -27,6 +25,10 @@
   --breakpoint-4xl: 2560px;
   --breakpoint-4xxl: 3040px;
   --breakpoint-5xl: 3840px;
+}
+::selection {
+  background: #1F2635;
+  color: #5CFEF0;
 }
 
 #root {
