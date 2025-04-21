@@ -89,7 +89,10 @@ const AnimeOverview = () => {
         <>
           <div className="w-full h-[945px] absolute overflow-hidden">
             <img
-              src={animeOverview?.trailer?.images?.maximum_image_url}
+              src={
+                animeOverview?.trailer?.images?.maximum_image_url ||
+                animeOverview?.images?.jpg?.large_image_url
+              }
               alt={animeOverview?.title}
               className="w-full h-full object-cover absolute inset-0 z-0 blur-[1px] scale-[1.02]"
             />
@@ -247,13 +250,39 @@ const AnimeOverview = () => {
                     />
                   </div>
 
-                  <ItemPills
-                    title="Trailer"
-                    variant="trailer"
-                    items={animeOverview?.external || []}
-                    isClickable
-                    onClick={(url) => window.open(url, "_blank")}
-                  />
+                  <>
+                    {animeOverview?.trailer?.embed_url && (
+                      <div className="w-full rounded-xl overflow-hidden aspect-video mt-4">
+                        <iframe
+                          className="w-full h-full"
+                          src={`${animeOverview.trailer.embed_url}`}
+                          title="Anime Trailer"
+                          allow="autoplay; encrypted-media"
+                          allowFullScreen
+                        ></iframe>
+                      </div>
+                    )}
+
+                    <ItemPills
+                      title="Watch Online"
+                      items={[
+                        ...(animeOverview.external || []),
+                        ...(animeOverview.trailer?.url
+                          ? [
+                              {
+                                name: "Trailer on YouTube",
+                                url: animeOverview.trailer.url,
+                              },
+                            ]
+                          : []),
+                        ...(animeOverview.url
+                          ? [{ name: "MyAnimeList", url: animeOverview.url }]
+                          : []),
+                      ]}
+                      isClickable
+                      onClick={(url) => window.open(url, "_blank")}
+                    />
+                  </>
 
                   <div className="flex flex-col gap-8">
                     <ItemPills
