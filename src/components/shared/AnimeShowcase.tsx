@@ -11,7 +11,6 @@ import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { motion } from "framer-motion";
 import Button from "./Button";
-import { FiChevronRight } from "react-icons/fi";
 import { Link } from "react-router";
 
 interface AnimeShowcaseProps {
@@ -60,24 +59,11 @@ const AnimeShowcase = ({ type, delay = 0 }: AnimeShowcaseProps) => {
 
   return (
     <div className="lg:flex flex-col items-start 4xl:gap-12 3xl:gap-10 xl:gap-7 gap-5 z-30 4xl:px-20 px-12 4xl:pb-24 3xl:pb-18 xl:pb-14 pb-10 hidden">
-      {type === "movies" ? (
-        <div className="flex justify-between items-end w-full">
-          <p className="4xl:text-4xl 3xl:text-3xl xl:text-2xl text-xl font-bold z-20 tracking-wide">
-            {animeTypes[type].title}
-          </p>
-          <a
-            href={animeTypes[type].href}
-            className="flex items-center gap-1 opacity-70 hover:opacity-100 active::opacity-100 cursor-pointer"
-          >
-            <p className="text-2xl tracking-wide">View All</p>
-            <FiChevronRight size={24} className="!mt-1" />
-          </a>
-        </div>
-      ) : (
+      
         <p className="4xl:text-4xl 3xl:text-3xl xl:text-2xl text-xl font-bold z-20 tracking-wide">
           {animeTypes[type].title}
         </p>
-      )}
+     
 
       {["newest-season", "top-anime"].includes(type) ? (
         <div className="w-full overflow-x-auto flex">
@@ -100,7 +86,10 @@ const AnimeShowcase = ({ type, delay = 0 }: AnimeShowcaseProps) => {
           >
             {animeList?.map((item, index) => (
               <SwiperSlide key={index}>
-                <Link to={`/anime-overview?id=${item.mal_id}`} className="4xxl:w-[388px] 4xxl:h-[582px] 4xl:w-[317px] 4xl:h-[475px] 3xl:w-[268px] 3xl:h-[402px] 2xl:w-[238px] 2xl:h-[357px] xl:w-[206px] xl:h-[309px] w-[155px] h-[232px] flex-none px-1">
+                <Link
+                  to={`/anime-overview?id=${item.mal_id}`}
+                  className="4xxl:w-[388px] 4xxl:h-[582px] 4xl:w-[317px] 4xl:h-[475px] 3xl:w-[268px] 3xl:h-[402px] 2xl:w-[238px] 2xl:h-[357px] xl:w-[206px] xl:h-[309px] w-[155px] h-[232px] flex-none px-1"
+                >
                   <motion.div
                     initial="rest"
                     whileHover="hover"
@@ -159,60 +148,62 @@ const AnimeShowcase = ({ type, delay = 0 }: AnimeShowcaseProps) => {
       ) : (
         <div className="w-full grid 4xl:grid-cols-7 2xl:grid-cols-6 grid-cols-5 3xl:gap-12 xl:gap-8 gap-5">
           {animeList?.map((item, index) => (
-            <motion.div
-              key={index}
-              className="relative 4xxl:w-[373px] 4xl:h-[223px] 4xl:w-[316px] 3xl:w-[275px] 3xl:h-[203px] xl:w-[205px] xl:h-[140px] w-[170px] h-[120px] group cursor-pointer"
-              whileHover={{
-                scale: 1.05,
-                transition: { duration: 0.28 },
-              }}
-            >
+            <Link to={`/anime-overview?id=${item.mal_id}`}>
               <motion.div
-                className="absolute bottom-0 right-0 4xxl:w-[358px] 4xl:h-[208px] 4xl:w-[300px] 3xl:w-[260px] 3xl:h-[188px] xl:w-[195px] xl:h-[130px] w-[160px] h-[110px] bg-secondaryBase/10 z-0 rounded-[2px] transition-slow group-hover:bg-neonAqua group-active:bg-neonAqua group-focus:bg-neonAqua"
+                key={index}
+                className="relative 4xxl:w-[373px] 4xl:h-[223px] 4xl:w-[316px] 3xl:w-[275px] 3xl:h-[203px] xl:w-[205px] xl:h-[140px] w-[170px] h-[120px] group cursor-pointer"
                 whileHover={{
+                  scale: 1.05,
                   transition: { duration: 0.28 },
                 }}
-              />
-              <div className="absolute top-0 left-0 4xxl:w-[358px] 4xl:h-[208px] 4xl:w-[300px] 3xl:w-[260px] 3xl:h-[188px] xl:w-[195px] xl:h-[130px] w-[160px] h-[110px] z-[5] rounded-[2px] overflow-hidden">
-                <motion.img
-                  src={item.images?.jpg?.large_image_url}
-                  alt={item.title}
-                  className="w-full h-full object-cover object-[50%_20%]"
-                  variants={{
-                    rest: { filter: "blur(0px)", scale: 1 },
-                    hover: {
-                      filter: "blur(4px)",
-                      scale: 1.05,
-                      transition: { duration: 0.28, ease: "easeInOut" },
-                    },
-                  }}
-                  initial="rest"
-                  whileHover="hover"
-                  animate="rest"
-                />
-
+              >
                 <motion.div
-                  className="absolute top-0 left-0 w-full h-full bg-black/85 z-10 flex items-center justify-center text-base 4xl:text-2xl 3xl:text-xl 2xl:text-[16px] text-sm font-semibold text-center px-4"
-                  variants={{
-                    rest: { opacity: 0, y: 40 },
-                    hover: {
-                      opacity: 1,
-                      y: 0,
-                      transition: {
-                        duration: 0.32,
-                        ease: "easeInOut",
-                        delay: 0.05,
-                      },
-                    },
+                  className="absolute bottom-0 right-0 4xxl:w-[358px] 4xl:h-[208px] 4xl:w-[300px] 3xl:w-[260px] 3xl:h-[188px] xl:w-[195px] xl:h-[130px] w-[160px] h-[110px] bg-secondaryBase/10 z-0 rounded-[2px] transition-slow group-hover:bg-neonAqua group-active:bg-neonAqua group-focus:bg-neonAqua"
+                  whileHover={{
+                    transition: { duration: 0.28 },
                   }}
-                  initial="rest"
-                  whileHover="hover"
-                  animate="rest"
-                >
-                  {item.title}
-                </motion.div>
-              </div>
-            </motion.div>
+                />
+                <div className="absolute top-0 left-0 4xxl:w-[358px] 4xl:h-[208px] 4xl:w-[300px] 3xl:w-[260px] 3xl:h-[188px] xl:w-[195px] xl:h-[130px] w-[160px] h-[110px] z-[5] rounded-[2px] overflow-hidden">
+                  <motion.img
+                    src={item?.trailer?.images?.maximum_image_url || item?.images?.jpg?.large_image_url}
+                    alt={item.title}
+                    className="w-full h-full object-cover object-[50%_20%]"
+                    variants={{
+                      rest: { filter: "blur(0px)", scale: 1 },
+                      hover: {
+                        filter: "blur(4px)",
+                        scale: 1.05,
+                        transition: { duration: 0.28, ease: "easeInOut" },
+                      },
+                    }}
+                    initial="rest"
+                    whileHover="hover"
+                    animate="rest"
+                  />
+
+                  <motion.div
+                    className="absolute top-0 left-0 w-full h-full bg-black/85 z-10 flex items-center justify-center text-base 4xl:text-2xl 3xl:text-xl 2xl:text-[16px] text-sm font-semibold text-center px-4"
+                    variants={{
+                      rest: { opacity: 0, y: 40 },
+                      hover: {
+                        opacity: 1,
+                        y: 0,
+                        transition: {
+                          duration: 0.32,
+                          ease: "easeInOut",
+                          delay: 0.05,
+                        },
+                      },
+                    }}
+                    initial="rest"
+                    whileHover="hover"
+                    animate="rest"
+                  >
+                    {item.title}
+                  </motion.div>
+                </div>
+              </motion.div>
+            </Link>
           ))}
         </div>
       )}

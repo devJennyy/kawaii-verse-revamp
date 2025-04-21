@@ -73,7 +73,7 @@ import {
             <div key={index} className="flex flex-col gap-2">
               <Dialog>
                 <DialogTrigger>
-                  <div className="group w-full bg-base/10 rounded-lg flex justify-start items-center gap-5 p-4 cursor-pointer hover:text-neonAqua hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default">
+                  <div className="group w-full bg-base/8 rounded-lg flex justify-start items-center gap-5 p-4 cursor-pointer hover:text-neonAqua hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default">
                     <div className="w-full max-w-7">
                       <FaPlayCircle className="w-full h-full" />
                     </div>

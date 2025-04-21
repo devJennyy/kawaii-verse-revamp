@@ -1,19 +1,11 @@
 export const navLinks = [
   {
     label: "Newest Season",
-    href: "/",
+    href: "/new",
   },
   {
     label: "Popular",
-    href: "/",
-  },
-  {
-    label: "Series",
-    href: "/",
-  },
-  {
-    label: "Movies",
-    href: "/movies",
+    href: "/popular",
   },
   {
     label: "Top Characters",

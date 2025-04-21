@@ -99,7 +99,7 @@ const AnimeOverview = () => {
             <div className="w-full flex gap-20">
               {/* Left Content */}
               <div className="w-full max-w-[477px] flex flex-col gap-10">
-                <div className="bg-base/10 rounded-xl overflow-hidden p-3">
+                <div className="bg-base/5 rounded-xl overflow-hidden">
                   <img
                     src={animeOverview?.images?.jpg?.large_image_url}
                     alt={animeOverview?.title}
@@ -107,10 +107,10 @@ const AnimeOverview = () => {
                   />
                 </div>
 
-                <div className="flex flex-col gap-10 w-full bg-base/10 p-6 rounded-lg">
+                <div className="flex flex-col gap-10 w-full bg-base/5 p-6 rounded-lg">
                   <div className="flex flex-col items-start gap-4">
                     <p className="text-xl">Statistics</p>
-                    <div className="w-full rounded-lg bg-base/10 p-5 text-xl flex flex-col gap-2">
+                    <div className="w-full rounded-lg bg-base/8 p-5 text-xl flex flex-col gap-2">
                       {animeStats.map(({ label, value, className }, index) => (
                         <div
                           key={index}
@@ -128,7 +128,7 @@ const AnimeOverview = () => {
                   </div>
                   <div className="flex flex-col items-start gap-4">
                     <p className="text-xl">Information</p>
-                    <div className="w-full rounded-lg bg-base/10 p-5 text-xl flex flex-col gap-2">
+                    <div className="w-full rounded-lg bg-base/8 p-5 text-xl flex flex-col gap-2">
                       {animeDetails.map(({ label, value }, index) => (
                         <div key={index} className="flex gap-2">
                           <p className="text-base/60">{label}:</p>
