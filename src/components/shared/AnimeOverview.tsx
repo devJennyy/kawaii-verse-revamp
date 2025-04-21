@@ -11,6 +11,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import LoadingStyle from "../ui/LoadingStyle";
+import ErrorMessage from "../ui/ErrorMessage";
 
 const AnimeOverview = () => {
   const location = useLocation();
@@ -47,13 +49,15 @@ const AnimeOverview = () => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-
     const searchParams = new URLSearchParams(location.search);
     const id = searchParams.get("id");
     console.log(searchParams);
     if (id) {
       fetchAnimeOverview(id);
     } else {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1500);
       setAnimeOverview(null);
     }
   }, [location.search]);
@@ -67,9 +71,12 @@ const AnimeOverview = () => {
       .then(([overviewRes, charactersRes]) => {
         setAnimeOverview(overviewRes.data.data);
         setCharacters(charactersRes.data.data);
-
-        setIsLoading(false);
       })
+      .finally(() => { 
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 1500);
+        })
       .catch((error) => {
         console.error("Error fetching anime data:", error);
       });
@@ -81,13 +88,17 @@ const AnimeOverview = () => {
 
   return (
     <div className="w-full flex justify-center relative !mb-20">
-      {isLoading && (
-        <div className="!my-48 text-[5rem]">Waiting for data...</div>
-      )}
+      {isLoading && <LoadingStyle />}
 
       {animeOverview ? (
         <>
-          <div className="w-full h-[945px] absolute overflow-hidden">
+          <div
+            className={`w-full h-[945px] absolute overflow-hidden ${
+              isLoading
+                ? "opacity-0"
+                : "opacity-100 transition-opacity duration-500"
+            }`}
+          >
             <img
               src={
                 animeOverview?.trailer?.images?.maximum_image_url ||
@@ -98,7 +109,13 @@ const AnimeOverview = () => {
             />
             <div className="absolute inset-0 bg-black opacity-85 z-10"></div>
           </div>
-          <div className="w-4/7 z-30 !mt-[23rem]">
+          <div
+            className={`w-4/7 z-30 !mt-[23rem] ${
+              isLoading
+                ? "opacity-0"
+                : "opacity-100 transition-opacity duration-500"
+            }`}
+          >
             <div className="w-full flex gap-20">
               {/* Left Content */}
               <div className="w-full max-w-[477px] flex flex-col gap-10">
@@ -255,7 +272,7 @@ const AnimeOverview = () => {
                       <div className="w-full rounded-xl overflow-hidden aspect-video mt-4">
                         <iframe
                           className="w-full h-full"
-                          src={`${animeOverview.trailer.embed_url}`}
+                          src={`${animeOverview.trailer.embed_url}.?autoplay=1`}
                           title="Anime Trailer"
                           allow="autoplay; encrypted-media"
                           allowFullScreen
@@ -334,11 +351,7 @@ const AnimeOverview = () => {
           </div>
         </>
       ) : (
-        !isLoading && (
-          <div className="!my-48 text-[5rem]">
-            Invalid Anime or No Anime Found!
-          </div>
-        )
+        !isLoading && <ErrorMessage />
       )}
     </div>
   );
