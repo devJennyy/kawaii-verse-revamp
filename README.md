@@ -21,7 +21,7 @@
   </div>
   </br>
   
-  `Status: Currently Work in Progress`
+  `Status: Work in Progress. Best viewed on a 4K monitor with 125% resolution`
 </div>
 
 ## <a name="tech-stack">⚙️ Tech Stack </a>
