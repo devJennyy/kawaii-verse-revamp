@@ -14,7 +14,7 @@ const NewestSeason = () => {
     <section id="new" className="w-full">
       {isLoading && <LoadingStyle />}
       <div
-        className={`w-full max-w-[1920px] !mx-auto !my-48 ${
+        className={`lg:block hidden w-full 4xl:max-w-[1920px] max-w-[1280px] !mx-auto 4xl:!my-48 !my-36 px-5 transition-slow ${
           isLoading
             ? "opacity-0"
             : "opacity-100 transition-opacity duration-500"

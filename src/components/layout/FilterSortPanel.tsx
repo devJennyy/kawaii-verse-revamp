@@ -28,9 +28,9 @@ const FilterSortPanel = ({ title = { highlighted: "Highlighted", normal: "Normal
   const [mediaType, setMediaType] = useState("default");
 
   return (
-    <div className="flex flex-col gap-5 !my-20">
+    <div className="flex flex-col gap-5 !my-12">
       <div className="w-full flex justify-between items-center">
-        <p className="4xl:text-4xl 3xl:text-3xl xl:text-2xl text-xl font-bold z-20 tracking-wide">
+        <p className="4xl:text-4xl text-3xl font-bold z-20 tracking-wide">
           <span className="text-neonAqua">{title.highlighted}</span> {title.normal}
         </p>
         <div className="flex gap-1">

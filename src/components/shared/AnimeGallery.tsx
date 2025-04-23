@@ -39,12 +39,12 @@ const AnimeGallery = ({ type, delay = 0 }: AnimeShowcaseProps) => {
 
   return (
     <div className="w-full flex flex-col items-center gap-20">
-      <div className="grid grid-cols-7 gap-5">
+      <div className="grid 4xl:grid-cols-7 grid-cols-5 xl:gap-5 gap-2 transition-slow">
         {animeList?.map((anime, index) => {
           return (
             <motion.div
               key={index}
-              className="relative w-full !mt-5 cursor-pointer p-2"
+              className="relative w-full !mt-2 cursor-pointer p-2"
             >
               {/* Image Container */}
               <div className="w-full h-[320px]">
@@ -79,17 +79,17 @@ const AnimeGallery = ({ type, delay = 0 }: AnimeShowcaseProps) => {
                 />
                 <div className="absolute top-0 left-0 bg-black/85 w-full h-full z-0"></div>
 
-                <div className="w-full h-full absolute z-50 p-5 text-left flex flex-col justify-between">
+                <div className="w-full h-full absolute z-50 xl:p-5 lg:p-3 text-left flex flex-col justify-between transition-slow">
                   <div className="flex flex-col text-white tracking-wide gap-1 font-medium">
-                    <p className="text-2xl">{anime?.title}</p>
+                    <p className="4xl:text-2xl">{anime?.title}</p>
                     <div className="flex items-center gap-2 text-neonAqua">
-                      <FaStar size={20} />
-                      <p className="text-2xl">{anime?.score}</p>
+                      <FaStar size={19} />
+                      <p className="4xl:text-2xl">{anime?.score}</p>
                     </div>
-                    <p className="text-xl opacity-75 font-normal !mt-5">
+                    <p className="4xl:text-xl text-[16px] opacity-75 font-normal !mt-5">
                       {anime?.episodes} Episodes
                     </p>
-                    <p className="text-xl opacity-75 font-normal">
+                    <p className="4xl:text-xl text-[16px] opacity-75 font-normal">
                       {anime?.duration}
                     </p>
                   </div>
