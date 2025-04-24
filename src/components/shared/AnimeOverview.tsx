@@ -48,7 +48,7 @@ const AnimeOverview = () => {
   ];
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // window.scrollTo({ top: 0, behavior: "smooth" });
     const searchParams = new URLSearchParams(location.search);
     const id = searchParams.get("id");
     console.log(searchParams);
@@ -57,7 +57,7 @@ const AnimeOverview = () => {
     } else {
       setTimeout(() => {
         setIsLoading(false);
-      }, 1500);
+      }, 0);
       setAnimeOverview(null);
     }
   }, [location.search]);
@@ -75,7 +75,7 @@ const AnimeOverview = () => {
       .finally(() => {
         setTimeout(() => {
           setIsLoading(false);
-        }, 1500);
+        }, 0);
       })
       .catch((error) => {
         console.error("Error fetching anime data:", error);
@@ -88,12 +88,12 @@ const AnimeOverview = () => {
 
   return (
     <div className="w-full flex justify-center relative !mb-20">
-      {isLoading && <LoadingStyle />}
+      {/* {isLoading && <LoadingStyle />} */}
 
       {animeOverview ? (
         <>
           <div
-            className={`w-full 4xl:h-[945px] h-[613px] absolute overflow-hidden ${
+            className={`w-full 4xl:h-[945px] xl:h-[635px] h-[513px] absolute overflow-hidden transition-slow ${
               isLoading
                 ? "opacity-0"
                 : "opacity-100 transition-opacity duration-500"
@@ -105,40 +105,40 @@ const AnimeOverview = () => {
                 animeOverview?.images?.jpg?.large_image_url
               }
               alt={animeOverview?.title}
-              className="w-full h-full object-cover absolute inset-0 z-0 blur-[1px] scale-[1.02]"
+              className="w-full h-full object-cover absolute inset-0 z-0 blur-[1px] 4xl:scale-[1.02] scale-[1]"
             />
-            <div className="absolute inset-0 bg-black opacity-85 z-10"></div>
+            <div className="absolute inset-0 bg-black opacity-85 z-10  overflow-hidden"></div>
           </div>
           <div
-            className={`z-30 4xl:!mt-[23rem] !mt-[15rem] ${
+            className={`z-30 4xl:!mt-[23rem] xl:!mt-[13rem] !mt-[10rem] transition-slow ${
               isLoading
                 ? "opacity-0"
                 : "opacity-100 transition-opacity duration-500"
             }`}
           >
-            <div className="w-full flex gap-20">
+            <div className="w-full flex 2xl:gap-20 gap-10 px-10">
               {/* Left Content */}
-              <div className="w-full 4xl:max-w-[477px] max-w-[330px] flex flex-col gap-10">
+              <div className="w-full 4xl:max-w-[477px] xl:max-w-[330px] max-w-[270px] flex flex-col gap-10">
                 <div className="bg-base/5 rounded-xl overflow-hidden">
                   <img
                     src={animeOverview?.images?.jpg?.large_image_url}
                     alt={animeOverview?.title}
-                    className="w-full 4xl:h-[707px] h-[484px] object-cover object-center rounded-xl"
+                    className="w-full 4xl:h-[707px] xl:h-[484px] h-[394px] object-cover object-center rounded-xl"
                   />
                 </div>
 
-                <div className="flex flex-col w-full bg-base/5 4xl:gap-10 gap-6 4xl:px-6 4xl:py-6 p-5 px-4 rounded-lg">
+                <div className="flex flex-col w-full bg-base/5 4xl:gap-10 gap-6 4xl:px-6 4xl:py-6 xl:p-5 xl:px-4 px-3 py-3 rounded-lg">
                   <ItemPills title="Statistics">
-                    <div className="w-full rounded-lg bg-base/8 4xl:p-5 p-4 text-xl flex flex-col gap-2">
+                    <div className="w-full rounded-lg bg-base/8 4xl:p-5 xl:p-4 p-3 flex flex-col gap-2 font-medium tracking-wide">
                       {animeStats?.map(({ label, value, className }, index) => (
                         <div
                           key={index}
-                          className={`w-full flex justify-between 4xl:text-xl text-lg ${
+                          className={`w-full flex justify-between xl:text-lg text-sm ${
                             className || ""
                           }`}
                         >
                           <p>{label}</p>
-                          <p className="!mb-1 font-medium tracking-wide">
+                          <p className="!mb-1">
                             {value}
                           </p>
                         </div>
@@ -147,11 +147,11 @@ const AnimeOverview = () => {
                   </ItemPills>
 
                   <ItemPills title="Information">
-                    <div className="w-full rounded-lg bg-base/8 4xl:p-5 p-4 text-xl flex flex-col gap-2">
+                    <div className="w-full rounded-lg bg-base/8 4xl:p-5 xl:p-4 p-3 flex flex-col gap-2">
                       {animeDetails?.map(({ label, value }, index) => (
                         <div
                           key={index}
-                          className="flex gap-2 4xl:text-xl text-lg"
+                          className="flex gap-2 xl:text-lg text-sm"
                         >
                           <p className="text-base/60">{label}:</p>
                           <p className="tracking-wide">{value || "N/A"}</p>
@@ -166,6 +166,7 @@ const AnimeOverview = () => {
                       label="Opening Themes"
                     />
                   </ItemPills>
+
                   <ItemPills title="Ending Themes">
                     <ThemeList
                       themes={animeOverview?.theme?.endings || []}
@@ -176,44 +177,44 @@ const AnimeOverview = () => {
               </div>
 
               {/* Right Content */}
-              <div className="w-full 4xl:max-w-[1190px] max-w-[1010px] flex flex-col 4xl:!pt-14 !pt-10">
+              <div className="4xl:w-[1190px] xl:w-[900px] flex flex-col 4xl:!pt-14 pt-4">
                 {/* Top */}
-                <div className="flex flex-col text-left leading-tight 4xl:h-[35rem] h-[22rem]">
+                <div className="flex flex-col text-left 4xl:leading-tight 4xl:h-[35rem] xl:h-[26.5rem] h-[22rem]">
                   <p
-                    className={`${
+                    className={`w-full 4xl:max-w-full xl:max-w-[700px] max-w-[600px] ${
                       animeOverview?.title_english
                         ? animeOverview?.title_english.length > 30
-                          ? "4xl:text-[55px] text-[35px]"
-                          : "4xl:text-[90px] text-[65px]"
-                        : "4xl:text-[90px] text-[65px]"
+                          ? "4xl:text-[55px] xl:text-[35px] text-[30px]"
+                          : "4xl:text-[90px] xl:text-[65px] text-[55px]"
+                        : "4xl:text-[90px] xl:text-[65px] text-[55px]"
                     }`}
                   >
                     {animeOverview?.title_english || animeOverview?.title}
                   </p>
 
                   <p
-                    className={`${
+                    className={`w-full 4xl:max-w-full xl:max-w-[700px] max-w-[600px] ${
                       animeOverview?.title_japanese?.length > 30
-                        ? "text-[25px]"
-                        : "4xl:text-[30px] text-2xl"
-                    } 4xl:!my-8 !my-5`}
+                        ? "xl:text-[25px] text-[20px]"
+                        : "4xl:text-[30px] xl:text-2xl text-xl"
+                    } 4xl:!my-8 xl:!my-5 !my-3`}
                   >
                     {animeOverview?.title_japanese}
                   </p>
 
-                  <button className="5xl:h-[130px] 4xl:h-[75px] h-[56px] 5xl:px-36 px-13 w-fit flex justify-center items-center 4xl:border-2 3xl:border-2 border text-main border-neonAqua rounded-full cursor-pointer bg-neonAqua hover:bg-neonAqua/10 hover:text-neonAqua transition-default">
-                    <p className="uppercase 5xl:text-[38px] 4xl:text-[20px] text-[16px] font-medium tracking-wide">
+                  <button className="5xl:h-[130px] 4xl:h-[75px] xl:h-[56px] h-[40px] 5xl:px-36 xl:px-13 px-7 w-fit flex justify-center items-center 4xl:border-2 3xl:border-2 border text-main border-neonAqua rounded-full cursor-pointer bg-neonAqua hover:bg-neonAqua/10 hover:text-neonAqua transition-default">
+                    <p className="uppercase 5xl:text-[38px] 4xl:text-[20px] xl:text-[16px] text-[12px] font-medium tracking-wide">
                       Watch Now
                     </p>
                   </button>
 
-                  <div className="flex flex-col items-start 4xl:gap-5 gap-3 4xl:!mt-14 !mt-10">
-                    <p className="4xl:text-2xl text-xl">Main Characters</p>
+                  <div className="flex flex-col items-start 4xl:gap-5 gap-3 4xl:!mt-14 !mt-7">
+                    <p className="4xl:text-2xl xl:text-xl">Main Characters</p>
                     <div className="flex 4xl:gap-4 gap-2 items-center">
                       {visibleCharacters?.map((charData) => (
                         <button
                           key={charData.character.mal_id}
-                          className="4xl:w-16 4xl:h-16 w-11 h-11 rounded-full overflow-hidden border-2 border-transparent hover:border-neonAqua transition-default cursor-pointer"
+                          className="4xl:w-16 4xl:h-16 xl:w-11 xl:h-11 w-9 h-9 rounded-full overflow-hidden border-2 border-transparent hover:border-neonAqua transition-default cursor-pointer"
                           title={charData.character.name}
                         >
                           <img
@@ -234,7 +235,7 @@ const AnimeOverview = () => {
                                     .getElementById("characters")
                                     ?.scrollIntoView({ behavior: "smooth" })
                                 }
-                                className="4xl:w-16 4xl:h-16 w-11 h-11 rounded-full flex items-center justify-center bg-transparent border-2 4xl:text-lg  border-neonAqua hover:bg-neonAqua/10 transition-default cursor-pointer text-neonAqua font-semibold "
+                                className="4xl:w-16 4xl:h-16 xl:w-11 xl:h-11 w-9 h-9 rounded-full flex items-center justify-center bg-transparent border-2 4xl:text-lg xl:text-[16px] text-sm border-neonAqua hover:bg-neonAqua/10 transition-default cursor-pointer text-neonAqua font-semibold "
                               >
                                 {`+${remainingCount}`}
                               </button>
@@ -252,13 +253,13 @@ const AnimeOverview = () => {
                 </div>
 
                 {/* Bottom */}
-                <div className="text-2xl text-left flex flex-col 4xl:gap-14 gap-9">
+                <div className="text-left flex flex-col 4xl:gap-14 2xl:gap-8 gap-6">
                   <p
                     className={`tracking-wide leading-loose opacity-95 ${
                       animeOverview?.synopsis &&
                       animeOverview.synopsis.length < 120
-                        ? "4xl:text-3xl text-xl"
-                        : "text-xl"
+                        ? "4xl:text-3xl xl:text-xl"
+                        : "xl:text-xl"
                     }`}
                   >
                     {animeOverview?.synopsis}
@@ -298,19 +299,19 @@ const AnimeOverview = () => {
 
                   <div id="characters" className="scroll-mt-24">
                     <ItemPills title="Characters">
-                      <div className="grid grid-cols-5 4xl:gap-5 gap-4">
+                      <div className="grid xl:grid-cols-5 grid-cols-4 4xl:gap-4 gap-3">
                         {characters?.map((charData, index) => {
                           return (
                             <div
                               key={index}
-                              className="w-full gap-5 4xl:rounded-xl rounded-lg 4xl:p-3 p-2 overflow-hidden cursor-pointer bg-base/10 hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default"
+                              className="w-full gap-5 rounded-lg 4xl:p-3 p-2 overflow-hidden cursor-pointer bg-base/10 hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default"
                             >
                               <img
                                 src={
                                   charData?.character?.images?.jpg?.image_url
                                 }
                                 alt={charData?.character?.name}
-                                className="w-full 4xl:h-[240px] h-[200px] object-cover rounded-lg"
+                                className="w-full 4xl:h-[230px] 3xl:h-[200px] xl:h-[175px] h-[140px] object-cover rounded-md"
                               />
                               <div className="flex flex-col 4xl:gap-1 4xl:text-[16px] text-sm pt-2 tracking-wide">
                                 <p className="text-neonAqua font-semibold">

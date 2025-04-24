@@ -74,7 +74,7 @@ const ThemeList = ({ themes }: ThemeListProps) => {
                   <div className="w-full max-w-7">
                     <FaPlayCircle className="w-full h-full" />
                   </div>
-                  <p className="text-left">{theme}</p>
+                  <p className="text-left xl:text-[16px] text-sm">{theme}</p>
                 </div>
               </DialogTrigger>
               <DialogContent className="bg-main px-8 scale-115">
