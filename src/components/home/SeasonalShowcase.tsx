@@ -191,13 +191,13 @@ const SeasonalShowcase = () => {
       <div className="absolute 4xl:w-[2400px] 3xl:w-[1820px] 2xl:w-[1360px] xl:w-[1200px] w-[970px] flex justify-between 5xl:h-[150px] 4xl:h-[100px] 3xl:h-[89px] 2xl:h-[65px] xl:h-[58px] h-[48px] transition-slow bg-transparent z-30">
         <button
           onClick={() => swiperRef.current?.slidePrev()}
-          className="5xl:w-[150px] 4xl:w-[100px] 3xl:w-[89px] 2xl:w-[65px] xl:w-[58px] w-[48px] h-full flex justify-center items-center rounded-full 5xl:border-3 4xl:border-2 border hover:bg-secondaryBase/20 bg-white/10 cursor-pointer transition-slow"
+          className="5xl:w-[150px] 4xl:w-[100px] 3xl:w-[89px] 2xl:w-[65px] xl:w-[58px] w-[48px] h-full flex justify-center items-center rounded-full 5xl:border-3 4xl:border-2 border hover:bg-secondaryBase/20 bg-white/10 cursor-pointer transition-default"
         >
           <FiChevronLeft className="5xl:text-[55px] 4xl:text-[36px] 3xl:text-[32px] text-[23px]" />
         </button>
         <button
           onClick={() => swiperRef.current?.slideNext()}
-          className="5xl:w-[150px] 4xl:w-[100px] 3xl:w-[89px] 2xl:w-[65px] xl:w-[58px] w-[48px] h-full flex justify-center items-center rounded-full 5xl:border-3 4xl:border-2 border hover:bg-secondaryBase/20 bg-white/10 cursor-pointer transition-slow"
+          className="5xl:w-[150px] 4xl:w-[100px] 3xl:w-[89px] 2xl:w-[65px] xl:w-[58px] w-[48px] h-full flex justify-center items-center rounded-full 5xl:border-3 4xl:border-2 border hover:bg-secondaryBase/20 bg-white/10 cursor-pointer transition-default"
         >
           <FiChevronRight className="5xl:text-[55px] 4xl:text-[36px] 3xl:text-[32px] text-[23px]" />
         </button>

@@ -1,13 +1,14 @@
 interface ItemPillsProps {
   title?: string;
-  items: { name: string; url?: string }[];
+  items?: { name: string; url?: string }[];
   isClickable?: boolean;
   variant?: 'primary' | 'trailer';
   onClick?: (url: string) => void;
+  children?: React.ReactNode;
 }
 
 const getPillClasses = (isClickable: boolean) => {
-  const baseClasses = 'px-6 py-[9px] rounded-md text-lg transition-default';
+  const baseClasses = '4xl:px-6 4xl:py-[9px] px-4 py-2 rounded-md 4xl:text-lg text-sm transition-default tracking-wide';
   const interactiveClasses =
     'bg-base/10 hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua hover:text-neonAqua';
 
@@ -16,21 +17,24 @@ const getPillClasses = (isClickable: boolean) => {
 
 const ItemPills = ({
   title,
-  items,
+  items = [],
   isClickable = false,
   variant = 'primary',
   onClick,
+  children,
 }: ItemPillsProps) => {
   const renderPills = variant === 'primary';
   const renderTrailer = variant === 'trailer';
 
   return (
-    <div className="flex flex-col gap-5">
-      {title && <p className="text-xl font-bold">{title}</p>}
+    <div className="flex flex-col 4xl:gap-5 gap-4">
+      {title && <h2 className="4xl:text-xl text-lg 4xl:font-bold font-medium text-left w-full">{title}</h2>}
 
-      {renderPills && (
-        <div className="flex gap-4 flex-wrap">
-          {items.map((item, index) => {
+      {children && <div>{children}</div>}
+
+      {renderPills && items.length > 0 && (
+        <div className="flex 4xl:gap-4 gap-2 flex-wrap">
+          {items?.map((item, index) => {
             const clickable = isClickable && !!item.url;
             const pillClasses = getPillClasses(clickable);
 
