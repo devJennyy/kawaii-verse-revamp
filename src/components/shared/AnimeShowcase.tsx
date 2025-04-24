@@ -151,19 +151,19 @@ const AnimeShowcase = ({ type, delay = 0 }: AnimeShowcaseProps) => {
             <Link to={`/anime-overview?id=${item.mal_id}`}>
               <motion.div
                 key={index}
-                className="relative 4xxl:w-[373px] 4xl:h-[223px] 4xl:w-[316px] 3xl:w-[275px] 3xl:h-[203px] xl:w-[205px] xl:h-[140px] w-[170px] h-[120px] group cursor-pointer"
+                className="relative 4xxl:w-[373px] 4xl:h-[223px] 4xl:w-[316px] 3xxl:w-[275px] 3xxl:h-[203px] xl:w-[205px] xl:h-[140px] w-[170px] h-[120px] group cursor-pointer"
                 whileHover={{
                   scale: 1.05,
                   transition: { duration: 0.28 },
                 }}
               >
                 <motion.div
-                  className="absolute bottom-0 right-0 4xxl:w-[358px] 4xl:h-[208px] 4xl:w-[300px] 3xl:w-[260px] 3xl:h-[188px] xl:w-[195px] xl:h-[130px] w-[160px] h-[110px] bg-secondaryBase/10 z-0 rounded-[2px] transition-slow group-hover:bg-neonAqua group-active:bg-neonAqua group-focus:bg-neonAqua"
+                  className="absolute bottom-0 right-0 4xxl:w-[358px] 4xl:h-[208px] 4xl:w-[300px] 3xxl:w-[260px] 3xxl:h-[188px] xl:w-[195px] xl:h-[130px] w-[160px] h-[110px] bg-secondaryBase/10 z-0 rounded-[2px] transition-slow group-hover:bg-neonAqua group-active:bg-neonAqua group-focus:bg-neonAqua"
                   whileHover={{
                     transition: { duration: 0.28 },
                   }}
                 />
-                <div className="absolute top-0 left-0 4xxl:w-[358px] 4xl:h-[208px] 4xl:w-[300px] 3xl:w-[260px] 3xl:h-[188px] xl:w-[195px] xl:h-[130px] w-[160px] h-[110px] z-[5] rounded-[2px] overflow-hidden">
+                <div className="absolute top-0 left-0 4xxl:w-[358px] 4xl:h-[208px] 4xl:w-[300px] 3xxl:w-[260px] 3xxl:h-[188px] xl:w-[195px] xl:h-[130px] w-[160px] h-[110px] z-[5] rounded-[2px] overflow-hidden">
                   <motion.img
                     src={item?.trailer?.images?.maximum_image_url || item?.images?.jpg?.large_image_url}
                     alt={item.title}
