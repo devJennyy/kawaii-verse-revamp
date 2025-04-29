@@ -92,8 +92,16 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div className="relative xl:hidden w-full flex justify-between items-center z-30">
-        <img src="/logo/logo-text.svg" alt="logo" className="sm:block hidden" />
-        <img src="/logo/logo.svg" alt="logo" className="sm:hidden w-6" />
+        <a href="/homepage">
+          <img
+            src="/logo/logo-text.svg"
+            alt="logo"
+            className="sm:block hidden"
+          />
+        </a>
+        <a href="/homepage">
+          <img src="/logo/logo.svg" alt="logo" className="sm:hidden w-6" />
+        </a>
 
         <div className="flex gap-4">
           <motion.div

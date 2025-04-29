@@ -4,6 +4,7 @@ import {
   FaSpotify,
   FaYoutube,
 } from "react-icons/fa";
+import { motion } from "framer-motion";
 import { SiApplemusic } from "react-icons/si";
 import {
   Dialog,
@@ -70,11 +71,24 @@ const ThemeList = ({ themes }: ThemeListProps) => {
           <div key={index} className="flex flex-col gap-2">
             <Dialog>
               <DialogTrigger>
-                <div className="group w-full bg-base/8 rounded-lg flex justify-start items-center gap-5 p-4 cursor-pointer hover:text-neonAqua hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default">
+                <div className="group w-full bg-base/8 rounded-lg flex justify-start items-center gap-5 4xl:py-5 py-4 px-4 cursor-pointer hover:text-neonAqua hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default">
                   <div className="w-full max-w-7">
                     <FaPlayCircle className="w-full h-full" />
                   </div>
-                  <p className="text-left xl:text-[16px] text-sm">{theme}</p>
+                  <div className="w-full h-6 relative overflow-hidden">
+                    <motion.p
+                      className="text-left 4xl:text-lg xl:text-default text-sm whitespace-nowrap absolute"
+                      initial={{ x: "100%" }}
+                      animate={{ x: "-100%" }}
+                      transition={{
+                        duration: 8,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
+                    >
+                      {theme}
+                    </motion.p>
+                  </div>
                 </div>
               </DialogTrigger>
               <DialogContent className="bg-main px-8 scale-115">

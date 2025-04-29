@@ -8,7 +8,7 @@ interface ItemPillsProps {
 }
 
 const getPillClasses = (isClickable: boolean) => {
-  const baseClasses = '4xl:px-6 4xl:py-[9px] px-4 py-2 rounded-md 4xl:text-lg xl:text-sm text-[12px] transition-default tracking-wide';
+  const baseClasses = '4xl:px-6 4xl:py-[9px] px-4 py-2 rounded-md 4xl:text-lg xl:text-default text-sm transition-default tracking-wide';
   const interactiveClasses =
     'bg-base/10 hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua hover:text-neonAqua';
 

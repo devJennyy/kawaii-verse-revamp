@@ -48,7 +48,7 @@ const AnimeOverview = () => {
   ];
 
   useEffect(() => {
-    // window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "smooth" });
     const searchParams = new URLSearchParams(location.search);
     const id = searchParams.get("id");
     console.log(searchParams);
@@ -87,8 +87,8 @@ const AnimeOverview = () => {
   const remainingCount = mainCharacters.length - visibleCharacters.length;
 
   return (
-    <div className="w-full flex justify-center relative !mb-20">
-      {/* {isLoading && <LoadingStyle />} */}
+    <div className="hidden w-full lg:flex justify-center relative !mb-20">
+      {isLoading && <LoadingStyle />}
 
       {animeOverview ? (
         <>
@@ -116,9 +116,9 @@ const AnimeOverview = () => {
                 : "opacity-100 transition-opacity duration-500"
             }`}
           >
-            <div className="w-full flex 2xl:gap-20 gap-10 px-10">
+            <div className="w-full flex gap-16 px-10">
               {/* Left Content */}
-              <div className="w-full 4xl:max-w-[477px] xl:max-w-[330px] max-w-[270px] flex flex-col gap-10">
+              <div className="w-full 4xl:max-w-[477px] xl:max-w-[330px] max-w-[270px] flex flex-col gap-10 transition-slow">
                 <div className="bg-base/5 rounded-xl overflow-hidden">
                   <img
                     src={animeOverview?.images?.jpg?.large_image_url}
@@ -133,14 +133,12 @@ const AnimeOverview = () => {
                       {animeStats?.map(({ label, value, className }, index) => (
                         <div
                           key={index}
-                          className={`w-full flex justify-between xl:text-lg text-sm ${
+                          className={`w-full flex justify-between 4xl:text-lg xl:text-default text-sm ${
                             className || ""
                           }`}
                         >
                           <p>{label}</p>
-                          <p className="!mb-1">
-                            {value}
-                          </p>
+                          <p className="!mb-1">{value}</p>
                         </div>
                       ))}
                     </div>
@@ -151,7 +149,7 @@ const AnimeOverview = () => {
                       {animeDetails?.map(({ label, value }, index) => (
                         <div
                           key={index}
-                          className="flex gap-2 xl:text-lg text-sm"
+                          className="flex gap-2 4xl:text-lg xl:text-default text-sm"
                         >
                           <p className="text-base/60">{label}:</p>
                           <p className="tracking-wide">{value || "N/A"}</p>
@@ -177,11 +175,11 @@ const AnimeOverview = () => {
               </div>
 
               {/* Right Content */}
-              <div className="4xl:w-[1190px] xl:w-[900px] flex flex-col 4xl:!pt-14 pt-4">
+              <div className="4xl:w-[1190px] xl:w-[900px] w-full flex flex-col gap-6">
                 {/* Top */}
-                <div className="flex flex-col text-left 4xl:leading-tight 4xl:h-[35rem] xl:h-[26.5rem] h-[22rem]">
+                <div className="flex flex-col justify-end text-left 4xl:leading-tight 4xl:h-[37em] xl:h-[26.5rem] h-[22rem] 4xl:!pb-14 pb-5">
                   <p
-                    className={`w-full 4xl:max-w-full xl:max-w-[700px] max-w-[600px] ${
+                    className={`w-full 4xl:max-w-full xl:max-w-[700px] max-w-[600px] leading-normal ${
                       animeOverview?.title_english
                         ? animeOverview?.title_english.length > 30
                           ? "4xl:text-[55px] xl:text-[35px] text-[30px]"
@@ -203,13 +201,15 @@ const AnimeOverview = () => {
                   </p>
 
                   <button className="5xl:h-[130px] 4xl:h-[75px] xl:h-[56px] h-[40px] 5xl:px-36 xl:px-13 px-7 w-fit flex justify-center items-center 4xl:border-2 3xl:border-2 border text-main border-neonAqua rounded-full cursor-pointer bg-neonAqua hover:bg-neonAqua/10 hover:text-neonAqua transition-default">
-                    <p className="uppercase 5xl:text-[38px] 4xl:text-[20px] xl:text-[16px] text-[12px] font-medium tracking-wide">
+                    <p className="uppercase 5xl:text-[38px] 4xl:text-[20px] xl:text-default text-[12px] font-medium tracking-wide">
                       Watch Now
                     </p>
                   </button>
 
                   <div className="flex flex-col items-start 4xl:gap-5 gap-3 4xl:!mt-14 !mt-7">
-                    <p className="4xl:text-2xl xl:text-xl">Main Characters</p>
+                    <p className="4xl:text-2xl xl:text-xl font-medium">
+                      Main Characters
+                    </p>
                     <div className="flex 4xl:gap-4 gap-2 items-center">
                       {visibleCharacters?.map((charData) => (
                         <button
@@ -235,7 +235,7 @@ const AnimeOverview = () => {
                                     .getElementById("characters")
                                     ?.scrollIntoView({ behavior: "smooth" })
                                 }
-                                className="4xl:w-16 4xl:h-16 xl:w-11 xl:h-11 w-9 h-9 rounded-full flex items-center justify-center bg-transparent border-2 4xl:text-lg xl:text-[16px] text-sm border-neonAqua hover:bg-neonAqua/10 transition-default cursor-pointer text-neonAqua font-semibold "
+                                className="4xl:w-16 4xl:h-16 xl:w-11 xl:h-11 w-9 h-9 rounded-full flex items-center justify-center bg-transparent border-2 4xl:text-lg xl:text-default text-sm border-neonAqua hover:bg-neonAqua/10 transition-default cursor-pointer text-neonAqua font-semibold "
                               >
                                 {`+${remainingCount}`}
                               </button>
@@ -253,13 +253,13 @@ const AnimeOverview = () => {
                 </div>
 
                 {/* Bottom */}
-                <div className="text-left flex flex-col 4xl:gap-14 2xl:gap-8 gap-6">
+                <div className="text-left flex flex-col 4xl:gap-14 2xl:gap-8 gap-6 relative">
                   <p
                     className={`tracking-wide leading-loose opacity-95 ${
                       animeOverview?.synopsis &&
                       animeOverview.synopsis.length < 120
                         ? "4xl:text-3xl xl:text-xl"
-                        : "xl:text-xl"
+                        : "xl:text-lg"
                     }`}
                   >
                     {animeOverview?.synopsis}
@@ -299,7 +299,7 @@ const AnimeOverview = () => {
 
                   <div id="characters" className="scroll-mt-24">
                     <ItemPills title="Characters">
-                      <div className="grid xl:grid-cols-5 grid-cols-4 4xl:gap-4 gap-3">
+                      <div className="grid 3xl:grid-cols-5 grid-cols-4 4xl:gap-4 gap-3">
                         {characters?.map((charData, index) => {
                           return (
                             <div
@@ -313,11 +313,11 @@ const AnimeOverview = () => {
                                 alt={charData?.character?.name}
                                 className="w-full 4xl:h-[230px] 3xl:h-[200px] xl:h-[175px] h-[140px] object-cover rounded-md"
                               />
-                              <div className="flex flex-col 4xl:gap-1 4xl:text-[16px] text-sm pt-2 tracking-wide">
+                              <div className="flex flex-col 4xl:gap-1  4xl:text-lg xl:text-default text-sm pt-2 tracking-wide">
                                 <p className="text-neonAqua font-semibold">
                                   {charData?.character?.name}
                                 </p>
-                                <p>{charData?.role}</p>
+                                <p className="opacity-60">{charData?.role}</p>
                               </div>
                             </div>
                           );

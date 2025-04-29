@@ -26,6 +26,7 @@
   --breakpoint-4xl: 2560px;
   --breakpoint-4xxl: 3040px;
   --breakpoint-5xl: 3840px;
+  --text-default: 16px;
 }
 ::selection {
   background: #1F2635;
@@ -82,6 +83,8 @@ html > body[data-scroll-locked] {
     @apply transition-all duration-1000;
   }
 }
+
+
 
 
 :root {
