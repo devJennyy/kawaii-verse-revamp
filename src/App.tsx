@@ -5,7 +5,6 @@ import Characters from "./pages/Characters";
 import Homepage from "./pages/Homepage";
 import NewestSeason from "./pages/NewestSeason";
 import Popular from "./pages/Popular";
-import "./styles/App.css";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router";
 
 function App() {
@@ -20,7 +19,7 @@ function App() {
         <Route path="/new" element={<NewestSeason />} />
         <Route path="/popular" element={<Popular />} />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </Router>
   );
 }

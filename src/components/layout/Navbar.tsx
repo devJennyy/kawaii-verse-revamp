@@ -99,7 +99,7 @@ const Navbar = () => {
             className="sm:block hidden"
           />
         </a>
-        <a href="/homepage">
+        <a href="/homepage" className="w-full">
           <img src="/logo/logo.svg" alt="logo" className="sm:hidden w-6" />
         </a>
 
@@ -126,7 +126,7 @@ const Navbar = () => {
                 opacity: isSearchVisible ? 1 : 0,
               }}
               transition={{ duration: 0.2, ease: "easeInOut" }}
-              className="text-secondaryBase text-sm outline-none bg-transparent"
+              className="text-secondaryBase sm:text-sm text-[12px] outline-none bg-transparent"
               onClick={(e) => e.stopPropagation()}
             />
           </motion.div>
