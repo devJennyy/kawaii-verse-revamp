@@ -26,7 +26,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="fixed left-0 5xl:right-0 top-0 w-full !mx-auto sm:h-16 5xl:h-18 h-12 flex items-center px-5 border-b border-base/10 z-50 bg-main">
+    <nav className="fixed left-0 5xl:right-0 top-0 w-full !mx-auto sm:h-16 5xl:h-18 h-12 flex items-center px-4 border-b border-base/10 z-50 bg-main">
       {/* Web Menu */}
       <div className="hidden w-full xl:flex items-center 3xl:gap-10 gap-5">
         <a
@@ -92,7 +92,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div className="relative xl:hidden w-full flex justify-between items-center z-30">
-        <img src="/logo/logo.svg" alt="logo-icon" className="h-[26px]" />
+        <img src="/logo/logo.svg" alt="logo-icon" className="h-6" />
 
         <motion.img
           src="/logo/logo-text.svg"
@@ -103,7 +103,7 @@ const Navbar = () => {
             duration: 0.3,
             delay: isSearchVisible ? 0 : 0.4,
           }}
-          className="absolute h-[26px]"
+          className="absolute h-6"
         />
 
         {/* Desktop logo */}
@@ -119,9 +119,9 @@ const Navbar = () => {
         <div className="flex gap-4">
           <motion.div
             ref={searchRef}
-            animate={{ width: isSearchVisible ? "240px" : "45px" }}
+            animate={{ width: isSearchVisible ? "266px" : "35px" }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="flex items-center border border-base/10 sm:py-3 sm:px-3 py-[6px] px-[14px] rounded-md cursor-pointer gap-2 overflow-hidden focus-within:outline outline-neonAqua transition-default"
+            className="flex items-center border border-base/10 sm:py-3 sm:px-3 py-[6px] px-[9px] rounded-md cursor-pointer gap-2 overflow-hidden focus-within:outline outline-neonAqua transition-default"
             onClick={() => setIsSearchVisible(true)}
           >
             <FiSearch
@@ -148,7 +148,7 @@ const Navbar = () => {
             onClick={() => setShowMenu(!showMenu)}
             className={`transition-default ${showMenu ? "text-neonAqua" : ""}`}
           >
-            <RxHamburgerMenu className="sm:text-[2rem] text-2xl" />
+            <RxHamburgerMenu className="sm:text-[2rem] text-xl" />
           </button>
 
           {/* Dropdown menu */}
