@@ -39,7 +39,7 @@ const AnimeGallery = ({ type, delay = 0 }: AnimeShowcaseProps) => {
 
   return (
     <div className="w-full flex flex-col items-center gap-20">
-      <div className="grid 4xl:grid-cols-7 grid-cols-5 xl:gap-5 gap-2 transition-slow">
+      <div className="grid 4xl:grid-cols-7 lg:grid-cols-5 grid-cols-2 xl:gap-5 lg:gap-2 transition-slow">
         {animeList?.map((anime, index) => {
           return (
             <motion.div
@@ -47,7 +47,7 @@ const AnimeGallery = ({ type, delay = 0 }: AnimeShowcaseProps) => {
               className="relative w-full !mt-2 cursor-pointer p-2"
             >
               {/* Image Container */}
-              <div className="w-full h-[320px]">
+              <div className="w-full lg:h-[320px] h-[245px]">
                 <img
                   src={anime?.images?.jpg?.large_image_url}
                   alt={anime?.title}
@@ -57,10 +57,10 @@ const AnimeGallery = ({ type, delay = 0 }: AnimeShowcaseProps) => {
 
               {/* Text Section */}
               <div className="flex flex-col text-left gap-1 tracking-wider !mt-3">
-                <p className="line-clamp-3 overflow-hidden text-ellipsis">
+                <p className="line-clamp-3 overflow-hidden text-ellipsis lg:text-default text-sm">
                   {anime?.title}
                 </p>
-                <p className="text-sm opacity-60 capitalize">
+                <p className="lg:text-sm text-[12px] opacity-60 capitalize">
                   {anime.season} <span className="ml-1">{anime.year}</span>
                 </p>
               </div>

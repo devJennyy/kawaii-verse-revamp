@@ -36,7 +36,7 @@ function SelectTrigger({
   variant?: "default" | "secondary"
 }) {
   const DefaultIcon = <ChevronDownIcon className="size-4 opacity-100" />
-  const SecondaryIcon = <PiSlidersHorizontalBold className="size-4 opacity-100" />
+  const SecondaryIcon = <PiSlidersHorizontalBold className="size-4 lg:!ml-0 !ml-1 opacity-100" />
 
   const RenderedIcon = icon ?? (variant === "secondary" ? SecondaryIcon : DefaultIcon)
 
@@ -45,7 +45,7 @@ function SelectTrigger({
       data-slot="select-trigger"
       data-size={size}
       className={cn(
-        "tracking-wide transition-default border-base/20 hover:bg-base/10 outline-none flex w-fit items-center justify-between gap-2 rounded-sm border bg-transparent px-3 py-3 text-sm whitespace-nowrap shadow-xs cursor-pointer",
+        "tracking-wide transition-default border-base/20 hover:bg-base/10 outline-none flex w-fit items-center justify-between gap-2 rounded-sm border bg-transparent lg:p-3 p-2 lg:text-sm text-[12px] whitespace-nowrap shadow-xs cursor-pointer",
         className
       )}
       {...props}

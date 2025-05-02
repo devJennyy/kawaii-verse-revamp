@@ -16,7 +16,7 @@ function App() {
         <Route path="/homepage" element={<Homepage />} />
         <Route path="/characters" element={<Characters />} />
         <Route path="/anime-overview" element={<AnimeOverview />} />
-        <Route path="/new" element={<NewestSeason />} />
+        <Route path="/newest-season" element={<NewestSeason />} />
         <Route path="/popular" element={<Popular />} />
       </Routes>
       <Footer />

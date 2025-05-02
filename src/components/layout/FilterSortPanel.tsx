@@ -5,7 +5,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { BsGridFill } from "react-icons/bs";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
@@ -13,7 +12,6 @@ import {
   SelectLabel,
   SelectSeparator,
 } from "@radix-ui/react-select";
-import { FaList } from "react-icons/fa";
 import { useState } from "react";
 
 type FilterSortPanelProps = {
@@ -24,19 +22,19 @@ type FilterSortPanelProps = {
 };
 
 const FilterSortPanel = ({ title = { highlighted: "Highlighted", normal: "Normal" } }: FilterSortPanelProps) => {
-  const [active, setActive] = useState<"grid" | "list">("grid");
+  // const [active, setActive] = useState<"grid" | "list">("grid");
   const [mediaType, setMediaType] = useState("default");
 
   return (
-    <div className="flex flex-col gap-5 !my-12">
+    <div className="flex flex-col lg:gap-5 gap-4 lg:!my-12 !my-4">
       <div className="w-full flex justify-between items-center">
-        <p className="4xl:text-4xl text-3xl font-bold z-20 tracking-wide">
+        <p className="4xl:text-4xl lg:text-3xl text-xl font-bold z-20 tracking-wide">
           <span className="text-neonAqua">{title.highlighted}</span> {title.normal}
         </p>
         <div className="flex gap-1">
           {/* Sorting */}
           <Select>
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="lg:w-[180px] w-[90px]">
               <SelectValue placeholder="Newest" />
             </SelectTrigger>
             <SelectContent>
@@ -48,10 +46,12 @@ const FilterSortPanel = ({ title = { highlighted: "Highlighted", normal: "Normal
           {/* Filter */}
           <Select>
             <SelectSeparator />
-            <SelectTrigger variant="secondary" className="w-[180px]">
+            <SelectTrigger variant="secondary" className="lg:w-[180px] w-[40px]">
+              <div className="lg:block hidden">
               <SelectValue placeholder="Filter" />
+              </div>
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="lg:!mr-0 !mr-1">
               <SelectGroup className="!m-1">
                 <SelectLabel>Media</SelectLabel>
                 <SelectSeparator />
@@ -124,7 +124,7 @@ const FilterSortPanel = ({ title = { highlighted: "Highlighted", normal: "Normal
           </Select>
 
           {/* Layout Toggle */}
-          <div className="!ml-1 flex justify-between items-center border w-[95px] rounded-sm border-base/20 overflow-hidden p-[5px]">
+          {/* <div className="!ml-1 flex justify-between items-center border w-[95px] rounded-sm border-base/20 overflow-hidden p-[5px]">
             <button
               onClick={() => setActive("grid")}
               className={`w-1/2 h-full flex justify-center items-center cursor-pointer rounded-[4px] hover:text-base transition-default ${
@@ -141,13 +141,13 @@ const FilterSortPanel = ({ title = { highlighted: "Highlighted", normal: "Normal
             >
               <FaList size={18} />
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
 
       <div className="flex items-center">
-        <div className="w-32 border-2 border-neonAqua rounded-full"></div>
-        <div className="w-full h-[2px] bg-base/10"></div>
+        <div className="w-32 lg:border-2 border border-neonAqua rounded-full"></div>
+        <div className="w-full lg:h-[2px] h-[1px] bg-base/10"></div>
       </div>
     </div>
   );

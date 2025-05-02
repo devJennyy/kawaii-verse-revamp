@@ -92,22 +92,26 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div className="relative xl:hidden w-full flex justify-between items-center z-30">
-        <img src="/logo/logo.svg" alt="logo-icon" className="h-6" />
+        <a href="/">
+          <img src="/logo/logo.svg" alt="logo-icon" className="h-6" />
+        </a>
 
-        <motion.img
-          src="/logo/logo-text.svg"
-          alt="logo-text"
-          initial={false}
-          animate={{ opacity: isSearchVisible ? 0 : 1 }}
-          transition={{
-            duration: 0.3,
-            delay: isSearchVisible ? 0 : 0.4,
-          }}
-          className="absolute h-6"
-        />
+        <motion.a href="/" className="absolute">
+          <motion.img
+            src="/logo/logo-text.svg"
+            alt="logo-text"
+            initial={false}
+            animate={{ opacity: isSearchVisible ? 0 : 1 }}
+            transition={{
+              duration: 0.3,
+              delay: isSearchVisible ? 0 : 0.4,
+            }}
+            className="h-6"
+          />
+        </motion.a>
 
         {/* Desktop logo */}
-        <a href="/homepage">
+        <a href="/">
           <img
             src="/logo/logo-text.svg"
             alt="logo"

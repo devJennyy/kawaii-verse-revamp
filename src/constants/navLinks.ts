@@ -1,7 +1,7 @@
 export const navLinks = [
   {
     label: "Newest Season",
-    href: "/new",
+    href: "/newest-season",
   },
   {
     label: "Popular",
