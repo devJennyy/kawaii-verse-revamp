@@ -58,7 +58,7 @@ const AnimeShowcase = ({ type, delay = 0 }: AnimeShowcaseProps) => {
   }, [type, screenWidth, delay]);
 
   return (
-    <div className="lg:flex flex-col items-start 4xl:gap-12 3xl:gap-10 xl:gap-7 gap-5 z-30 4xl:px-20 lg:px-12 pl-4 4xl:pb-24 3xl:pb-18 xl:pb-14 pb-10">
+    <div className="lg:flex flex-col items-start 4xl:gap-12 3xl:gap-10 xl:gap-7 gap-5 z-30 4xl:pl-20 lg:pl-12 pl-4 4xl:pb-24 3xl:pb-18 xl:pb-14 pb-10">
       <p className="4xl:text-4xl 3xl:text-3xl xl:text-2xl sm:text-xl text-lg font-bold z-20 tracking-wide lg:!mb-0 !mb-4">
         {animeTypes[type].title}
       </p>

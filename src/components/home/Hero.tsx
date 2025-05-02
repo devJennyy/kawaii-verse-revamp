@@ -114,7 +114,7 @@ const Hero = () => {
               <Swiper
                 onSwiper={(swiper) => (swiperRef.current = swiper)}
                 onSlideChange={(swiper) => setCurrentIndex(swiper.realIndex)}
-                // autoplay={{ delay: 3000, disableOnInteraction: false }}
+                autoplay={{ delay: 3000, disableOnInteraction: false }}
                 speed={500}
                 loop={true}
                 slidesPerView={"auto"}
@@ -223,8 +223,11 @@ const Hero = () => {
             spaceBetween={20}
             centeredSlides={true}
             loop={true}
+            autoplay={{ delay: 3000, disableOnInteraction: false }}
+                speed={500}
             onSlideChange={(swiper) => setCurrentIndex(swiper.realIndex)}
             className="mySwiperMobile"
+            modules={[Autoplay]}
           >
             {topAnime?.map((img, index) => (
               <SwiperSlide key={index}>
