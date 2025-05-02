@@ -9,6 +9,7 @@ import { FaPause, FaPlay, FaStar } from "react-icons/fa6";
 import { GET_TOP_ANIME } from "@/constants/api";
 import CustomNavButtons from "../ui/CustomNavButtons";
 import "../../styles/swiper.css";
+import Button from "../shared/Button";
 
 const Hero = () => {
   const swiperRef = useRef<SwiperType | null>(null);
@@ -197,7 +198,7 @@ const Hero = () => {
       </div>
 
       {/* Mobile */}
-      <div className="relative sm:hidden w-full !pt-10">
+      <div className="relative sm:hidden w-full h-screen !pt-10 flex flex-col justify-center">
         <div className="absolute inset-0 z-0">
           {topAnime.map((anime, index) => (
             <div
@@ -209,14 +210,14 @@ const Hero = () => {
               <img
                 src={anime.images.jpg.large_image_url}
                 alt={anime.title}
-                className="w-full h-[370px] object-cover"
+                className="w-full h-[370px] object-cover object-top"
               />
               <div className="absolute inset-0 h-[371px] bg-gradient-to-t from-main to-main/40" />
             </div>
           ))}
         </div>
 
-        <div className="relative z-20 flex flex-col justify-center items-center gap-5 w-full !mt-20">
+        <div className="relative z-20 flex flex-col justify-center items-center gap-5 w-full !mt-10">
           <Swiper
             slidesPerView="auto"
             spaceBetween={20}
@@ -226,7 +227,7 @@ const Hero = () => {
             className="mySwiperMobile"
           >
             {topAnime?.map((img, index) => (
-              <SwiperSlide key={index} className="!w-[230px]">
+              <SwiperSlide key={index} className="!w-[230px] !h-[300px]">
                 <div
                   className={`w-[230px] h-[300px] border-gradient bg-main/50 rounded-3xl z-40 border-neonAqua overflow-hidden p-4 flex justify-center items-center transition-transform duration-500 ease-in-out ${
                     index === currentIndex
@@ -244,8 +245,8 @@ const Hero = () => {
             ))}
           </Swiper>
 
-          <div className="relative w-full h-[200px]">
-            {topAnime.map((anime, index) => (
+          <div className="w-full h-[185px] relative flex flex-col justify-end items-center">
+            {topAnime?.map((anime, index) => (
               <div
                 key={index}
                 className={`absolute inset-0 flex flex-col items-center gap-4 transition-opacity duration-500 ease-in-out ${
@@ -271,12 +272,14 @@ const Hero = () => {
                   <FaStar />
                   <p className="font-semibold">{anime.score}</p>
                 </div>
-
-                <button className="w-fit px-18 h-12 border border-neonAqua text-neonAqua rounded-full font-medium !mt-3">
-                  Watch Now
-                </button>
               </div>
             ))}
+            <Button
+              hasIcon={false}
+              label="Watch Now"
+              colorType="tertiary"
+              customClass="w-fit px-18 h-12"
+            />
           </div>
         </div>
       </div>
