@@ -26,7 +26,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="fixed left-0 5xl:right-0 top-0 w-full !mx-auto sm:h-16 5xl:h-18 h-12 flex items-center px-4 border-b border-base/10 z-50 bg-main">
+    <nav className="fixed left-0 5xl:right-0 top-0 w-full !mx-auto lg:h-16 sm:h-14 5xl:h-18 h-12 flex items-center px-4 border-b border-base/10 z-50 bg-main">
       {/* Web Menu */}
       <div className="hidden w-full xl:flex items-center 3xl:gap-10 gap-5">
         <a
@@ -92,9 +92,11 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div className="relative xl:hidden w-full flex justify-between items-center z-30">
-        <a href="/">
+       <div className="w-full sm:hidden">
+       <a href="/">
           <img src="/logo/logo.svg" alt="logo-icon" className="h-6" />
         </a>
+       </div>
 
         <motion.a href="/" className="absolute">
           <motion.img
@@ -106,11 +108,12 @@ const Navbar = () => {
               duration: 0.3,
               delay: isSearchVisible ? 0 : 0.4,
             }}
-            className="h-6"
+            className="h-6 sm:hidden"
           />
         </motion.a>
 
         {/* Desktop logo */}
+        <div className="w-full">
         <a href="/">
           <img
             src="/logo/logo-text.svg"
@@ -118,14 +121,15 @@ const Navbar = () => {
             className="sm:block hidden"
           />
         </a>
+        </div>
 
         {/* Search bar */}
         <div className="flex gap-3">
           <motion.div
             ref={searchRef}
-            animate={{ width: isSearchVisible ? "260px" : "35px" }}
+            animate={{ width: isSearchVisible ? "250px" : "35px" }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="flex items-center border border-base/10 sm:py-3 sm:px-3 py-[5px] px-[9px] rounded-md cursor-pointer gap-2 overflow-hidden focus-within:outline outline-neonAqua transition-default"
+            className="flex items-center border border-base/10 sm:py-2 sm:px-[7px] py-[5px] px-[9px] rounded-md cursor-pointer gap-2 overflow-hidden focus-within:outline outline-neonAqua transition-default"
             onClick={() => setIsSearchVisible(true)}
           >
             <FiSearch
@@ -152,7 +156,7 @@ const Navbar = () => {
             onClick={() => setShowMenu(!showMenu)}
             className={`transition-default ${showMenu ? "text-neonAqua" : ""}`}
           >
-            <RxHamburgerMenu className="sm:text-[2rem] text-xl" />
+            <RxHamburgerMenu className="sm:text-[1.7rem] text-xl" />
           </button>
 
           {/* Dropdown menu */}
@@ -169,7 +173,7 @@ const Navbar = () => {
                   return (
                     <li
                       key={index}
-                      className="w-full flex justify-start items-center text-neonAqua sm:px-3 sm:py-3 px-2 py-2 active:bg-neonAqua active:text-main focus:bg-neonAqua focus:text-main transition-default sm:rounded-md rounded-sm"
+                      className="w-full flex justify-start items-center text-neonAqua p-2 active:bg-neonAqua active:text-main focus:bg-neonAqua focus:text-main transition-default sm:rounded-md rounded-sm"
                     >
                       <a href={item.href}>
                         <p className="font-semibold tracking-wide sm:text-[16px] text-sm">
@@ -180,7 +184,7 @@ const Navbar = () => {
                   );
                 })}
 
-                <div className="sm:!mt-1 !mt-2">
+                <div className="!mt-2">
                   <Button colorType={"secondary"} />
                 </div>
               </motion.div>

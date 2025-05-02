@@ -35,7 +35,7 @@ const Hero = () => {
   return (
     <>
       {/* Web */}
-      <div className="relative w-full xl:flex justify-center items-center 4xl:px-20 px-12 5xl:h-[2020px] 4xxl:h-[1590px] 4xl:h-[1500px] 3xl:h-[1080px] 2xl:h-[808px] h-[752px] hidden transition-slow z-0">
+      <div className="relative w-full lg:flex justify-center items-center 4xl:px-20 px-12 5xl:h-[2020px] 4xxl:h-[1590px] 4xl:h-[1500px] 3xl:h-[1080px] 2xl:h-[808px] h-[752px] hidden transition-slow z-0">
         {/* Bg Image */}
         <div className="absolute inset-0 w-full h-full z-0 border-b-20 border-black">
           {topAnime[currentIndex] && (
@@ -70,11 +70,11 @@ const Hero = () => {
               {topAnime[currentIndex] && (
                 <p
                   key={topAnime[currentIndex].title}
-                  className={`uppercase tracking-wide 5xl:!mt-[-2rem] 4xl:!mt-[-1rem] 3xl:!mt-[-20px] 2xl:!mt-[-16px] !mt-[-5px] 5xl:w-[1300px] 4xxl:w-[1000px] 4xl:w-[850px] 3xl:w-[640px] 2xl:w-[459px] w-[401px] 
+                  className={`uppercase tracking-wide 5xl:!mt-[-2rem] 4xl:!mt-[-1rem] 3xl:!mt-[-20px] 2xl:!mt-[-16px] !mt-[-5px] 5xl:w-[1300px] 4xxl:w-[1000px] 4xl:w-[850px] 3xl:w-[640px] 2xl:w-[459px] xl:w-[401px] w-[350px] 
               ${
                 topAnime[currentIndex].title.length > 20
-                  ? "text-[40px] 2xl:text-[42px] 3xl:text-[70px] 4xl:text-[90px] 4xxl:text-[110px] 5xl:text-[140px] 5xl:leading-[11.5rem] 4xl:leading-[7.5rem] 4xxl:leading-[9.5rem] 3xl:leading-[6rem] leading-[3.4rem]"
-                  : "text-[90px] 2xl:text-[80px] 3xl:text-[135px] 4xl:text-[185px] 4xxl:text-[210px] 5xl:text-[260px] 5xl:leading-[17rem] 4xl:leading-[12.5rem] 3xl:leading-[9rem] leading-[6rem]"
+                  ? "text-[35px] xl:text-[40px] 2xl:text-[42px] 3xl:text-[70px] 4xl:text-[90px] 4xxl:text-[110px] 5xl:text-[140px] 5xl:leading-[11.5rem] 4xl:leading-[7.5rem] 4xxl:leading-[9.5rem] 3xl:leading-[6rem] leading-[3.4rem]"
+                  : "text-[80px] xl:text-[90px] 2xl:text-[80px] 3xl:text-[135px] 4xl:text-[185px] 4xxl:text-[210px] 5xl:text-[260px] 5xl:leading-[17rem] 4xl:leading-[12.5rem] 3xl:leading-[9rem] leading-[6rem]"
               }`}
                 >
                   {topAnime[currentIndex].title}
@@ -82,7 +82,7 @@ const Hero = () => {
               )}
 
               {topAnime[currentIndex] && (
-                <p className="line-clamp-2 5xl:text-[44px] 4xxl:text-[32px] 4xl:text-[28px] 3xl:text-[24px] 2xl:text-lg text-sm 5xl:w-[1028px] 4xxl:w-[936px] 4xl:w-[736px] 3xl:w-[552px] 2xl:w-[429px] w-[371px] 5xl:leading-20 4xl:leading-13 3xl:leading-9 2xl:leading-7 leading-6">
+                <p className="line-clamp-2 5xl:text-[44px] 4xxl:text-[32px] 4xl:text-[28px] 3xl:text-[24px] 2xl:text-lg text-sm 5xl:w-[1028px] 4xxl:w-[936px] 4xl:w-[736px] 3xl:w-[552px] 2xl:w-[429px] xl:w-[371px] w-[340px] 5xl:leading-20 4xl:leading-13 3xl:leading-9 2xl:leading-7 leading-6">
                   {topAnime[currentIndex].synopsis}
                 </p>
               )}
@@ -114,7 +114,7 @@ const Hero = () => {
               <Swiper
                 onSwiper={(swiper) => (swiperRef.current = swiper)}
                 onSlideChange={(swiper) => setCurrentIndex(swiper.realIndex)}
-                autoplay={{ delay: 3000, disableOnInteraction: false }}
+                // autoplay={{ delay: 3000, disableOnInteraction: false }}
                 speed={500}
                 loop={true}
                 slidesPerView={"auto"}
@@ -123,7 +123,7 @@ const Hero = () => {
                   clickable: true,
                 }}
                 breakpoints={{
-                  1280: {
+                  1024: {
                     spaceBetween: 20,
                   },
                   1920: {
@@ -198,7 +198,7 @@ const Hero = () => {
       </div>
 
       {/* Mobile */}
-      <div className="relative sm:hidden w-full h-screen !pt-10 flex flex-col justify-center">
+      <div className="relative lg:hidden w-full md:h-[850px] sm:h-[800px] h-screen !pt-10 flex flex-col justify-center">
         <div className="absolute inset-0 z-0">
           {topAnime.map((anime, index) => (
             <div
@@ -210,14 +210,14 @@ const Hero = () => {
               <img
                 src={anime.images.jpg.large_image_url}
                 alt={anime.title}
-                className="w-full h-[370px] object-cover object-top"
+                className="w-full sm:h-[440px] h-[370px] object-cover object-top transition-slow"
               />
-              <div className="absolute inset-0 h-[371px] bg-gradient-to-t from-main to-main/40" />
+              <div className="absolute inset-0 sm:h-[441px] h-[371px] bg-gradient-to-t from-main to-main/40 transition-slow" />
             </div>
           ))}
         </div>
 
-        <div className="relative z-20 flex flex-col justify-center items-center gap-5 w-full !mt-5">
+        <div className="relative z-20 flex flex-col justify-center items-center sm:gap-8 gap-5 w-full md:!mt-28 sm:!mt-16 !mt-5 transition-slow">
           <Swiper
             slidesPerView="auto"
             spaceBetween={20}
@@ -227,9 +227,9 @@ const Hero = () => {
             className="mySwiperMobile"
           >
             {topAnime?.map((img, index) => (
-              <SwiperSlide key={index} className="!w-[230px] !h-[300px]">
+              <SwiperSlide key={index}>
                 <div
-                  className={`w-[230px] h-[300px] border-gradient bg-main/50 rounded-3xl z-40 border-neonAqua overflow-hidden p-4 flex justify-center items-center transition-transform duration-500 ease-in-out ${
+                  className={`md:w-[300px] sm:w-[280px] sm:h-[380px] w-[230px] h-[300px] border-gradient bg-main/50 rounded-3xl z-40 border-neonAqua overflow-hidden p-4 flex justify-center items-center transition-transform duration-500 ease-in-out ${
                     index === currentIndex
                       ? "scale-100 opacity-100"
                       : "scale-85 opacity-85"
@@ -245,7 +245,7 @@ const Hero = () => {
             ))}
           </Swiper>
 
-          <div className="w-full h-[180px] relative flex flex-col justify-end items-center">
+          <div className="w-full sm:h-[190px] h-[180px] relative flex flex-col justify-end items-center transition-slow">
             {topAnime?.map((anime, index) => (
               <div
                 key={index}
@@ -255,7 +255,7 @@ const Hero = () => {
                     : "opacity-0 pointer-events-auto"
                 }`}
               >
-                <p className="text-lg font-bold">{anime.title}</p>
+                <p className="sm:text-2xl text-lg font-bold">{anime.title}</p>
 
                 <div className="flex gap-2 flex-wrap justify-center">
                   {anime.genres?.map((genre: any, index: number) => (
@@ -263,12 +263,12 @@ const Hero = () => {
                       key={index}
                       className="px-3 py-1 rounded-full bg-[#262930]"
                     >
-                      <p className="text-[12px]">{genre.name}</p>
+                      <p className="sm:text-sm text-[12px]">{genre.name}</p>
                     </div>
                   ))}
                 </div>
 
-                <div className="flex justify-center items-center gap-1 text-neonAqua">
+                <div className="flex justify-center items-center gap-1 text-neonAqua sm:text-lg text-default">
                   <FaStar />
                   <p className="font-semibold">{anime.score}</p>
                 </div>
@@ -278,7 +278,7 @@ const Hero = () => {
               hasIcon={false}
               label="Watch Now"
               colorType="tertiary"
-              customClass="w-fit px-18 h-12"
+              customClass="w-fit px-18 sm:h-13 h-12"
             />
           </div>
         </div>
