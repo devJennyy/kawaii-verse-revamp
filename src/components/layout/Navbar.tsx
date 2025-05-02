@@ -116,12 +116,12 @@ const Navbar = () => {
         </a>
 
         {/* Search bar */}
-        <div className="flex gap-4">
+        <div className="flex gap-2">
           <motion.div
             ref={searchRef}
             animate={{ width: isSearchVisible ? "266px" : "35px" }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="flex items-center border border-base/10 sm:py-3 sm:px-3 py-[6px] px-[9px] rounded-md cursor-pointer gap-2 overflow-hidden focus-within:outline outline-neonAqua transition-default"
+            className="flex items-center border border-base/10 sm:py-3 sm:px-3 py-[5px] px-[9px] rounded-md cursor-pointer gap-2 overflow-hidden focus-within:outline outline-neonAqua transition-default"
             onClick={() => setIsSearchVisible(true)}
           >
             <FiSearch
@@ -146,9 +146,9 @@ const Navbar = () => {
           {/* Hamburger menu */}
           <button
             onClick={() => setShowMenu(!showMenu)}
-            className={`transition-default ${showMenu ? "text-neonAqua" : ""}`}
+            className={`transition-default bg-base/10 sm:py-3 sm:px-3 py-[5px] px-[9px] rounded-md ${showMenu ? "text-neonAqua bg-midnightNavy" : ""}`}
           >
-            <RxHamburgerMenu className="sm:text-[2rem] text-xl" />
+            <RxHamburgerMenu className="sm:text-[2rem]" />
           </button>
 
           {/* Dropdown menu */}
@@ -159,7 +159,7 @@ const Navbar = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="absolute top-15 right-0 bg-midnightNavy rounded-md p-3 flex flex-col justify-center items-start"
+                className="absolute top-10 right-0 bg-midnightNavy rounded-md p-3 flex flex-col justify-center items-start"
               >
                 {navLinks?.map((item, index) => {
                   return (
