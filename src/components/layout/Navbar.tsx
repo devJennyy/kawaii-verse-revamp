@@ -116,7 +116,7 @@ const Navbar = () => {
         </a>
 
         {/* Search bar */}
-        <div className="flex gap-2">
+        <div className="flex gap-4">
           <motion.div
             ref={searchRef}
             animate={{ width: isSearchVisible ? "266px" : "35px" }}
@@ -146,9 +146,9 @@ const Navbar = () => {
           {/* Hamburger menu */}
           <button
             onClick={() => setShowMenu(!showMenu)}
-            className={`transition-default bg-base/10 sm:py-3 sm:px-3 py-[5px] px-[9px] rounded-md ${showMenu ? "text-neonAqua bg-midnightNavy" : ""}`}
+            className={`transition-default ${showMenu ? "text-neonAqua" : ""}`}
           >
-            <RxHamburgerMenu className="sm:text-[2rem]" />
+            <RxHamburgerMenu className="sm:text-[2rem] text-xl" />
           </button>
 
           {/* Dropdown menu */}
