@@ -2,9 +2,9 @@ import { navLinks } from "@/constants/navLinks";
 import { FiSearch } from "react-icons/fi";
 import Button from "../shared/Button";
 import { useEffect, useRef, useState } from "react";
-import { PiDotsNineBold } from "react-icons/pi";
 import { AnimatePresence, motion } from "framer-motion";
 import { useLocation } from "react-router";
+import { RxHamburgerMenu } from "react-icons/rx";
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -26,7 +26,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="fixed left-0 5xl:right-0 top-0 w-full !mx-auto sm:h-16 5xl:h-18 h-15 flex items-center px-5 border-b border-base/10 z-50 bg-main">
+    <nav className="fixed left-0 5xl:right-0 top-0 w-full !mx-auto sm:h-16 5xl:h-18 h-12 flex items-center px-5 border-b border-base/10 z-50 bg-main">
       {/* Web Menu */}
       <div className="hidden w-full xl:flex items-center 3xl:gap-10 gap-5">
         <a
@@ -92,6 +92,21 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div className="relative xl:hidden w-full flex justify-between items-center z-30">
+        <img src="/logo/logo.svg" alt="logo-icon" className="h-[26px]" />
+
+        <motion.img
+          src="/logo/logo-text.svg"
+          alt="logo-text"
+          initial={false}
+          animate={{ opacity: isSearchVisible ? 0 : 1 }}
+          transition={{
+            duration: 0.3,
+            delay: isSearchVisible ? 0 : 0.4,
+          }}
+          className="absolute h-[26px]"
+        />
+
+        {/* Desktop logo */}
         <a href="/homepage">
           <img
             src="/logo/logo-text.svg"
@@ -99,10 +114,8 @@ const Navbar = () => {
             className="sm:block hidden"
           />
         </a>
-        <a href="/homepage" className="w-full">
-          <img src="/logo/logo.svg" alt="logo" className="sm:hidden w-6" />
-        </a>
 
+        {/* Search bar */}
         <div className="flex gap-4">
           <motion.div
             ref={searchRef}
@@ -116,7 +129,6 @@ const Navbar = () => {
                 isSearchVisible ? "text-neonAqua" : "text-secondaryBase"
               } shrink-0`}
             />
-
             <motion.input
               type="text"
               placeholder="Search anime series or movies"
@@ -131,13 +143,15 @@ const Navbar = () => {
             />
           </motion.div>
 
+          {/* Hamburger menu */}
           <button
             onClick={() => setShowMenu(!showMenu)}
             className={`transition-default ${showMenu ? "text-neonAqua" : ""}`}
           >
-            <PiDotsNineBold className="sm:text-[2rem] text-2xl" />
+            <RxHamburgerMenu className="sm:text-[2rem] text-2xl" />
           </button>
 
+          {/* Dropdown menu */}
           <AnimatePresence>
             {showMenu && (
               <motion.div

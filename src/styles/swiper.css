@@ -12,7 +12,7 @@
     }
   }
 
-  .mySwiperMobile .swiper-slide {
+  /* .mySwiperMobile .swiper-slide {
     transition: transform 0.3s ease;
   }
   
@@ -23,7 +23,7 @@
   .mySwiperMobile .swiper-slide.swiper-slide-active {
     transform: scale(1);
   }
-  
+   */
   
 
   @media (min-width: 1024px) {

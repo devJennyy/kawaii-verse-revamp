@@ -5,17 +5,12 @@ import { Autoplay, Navigation } from "swiper/modules";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Swiper as SwiperType } from "swiper";
-import { FaPause, FaPlay } from "react-icons/fa6";
+import { FaPause, FaPlay, FaStar } from "react-icons/fa6";
 import { GET_TOP_ANIME } from "@/constants/api";
 import CustomNavButtons from "../ui/CustomNavButtons";
 import "../../styles/swiper.css";
 
 const Hero = () => {
-  const images = [
-    "/images/frieren.jpg",
-    "/images/frieren.jpg",
-    "/images/frieren.jpg",
-  ];
   const swiperRef = useRef<SwiperType | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTrailerPlaying, setIsTrailerPlaying] = useState(false);
@@ -202,62 +197,86 @@ const Hero = () => {
       </div>
 
       {/* Mobile */}
-      <div className="relative sm:hidden w-full !pt-15">
+      <div className="relative sm:hidden w-full !pt-10">
         <div className="absolute inset-0 z-0">
-          <img
-            src="/images/frieren.jpg"
-            alt=""
-            className="w-full h-[370px] object-cover"
-          />
-          <div className="absolute inset-0 h-[371px] bg-gradient-to-t from-main to-main/40"></div>
+          {topAnime.map((anime, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                index === currentIndex ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <img
+                src={anime.images.jpg.large_image_url}
+                alt={anime.title}
+                className="w-full h-[370px] object-cover"
+              />
+              <div className="absolute inset-0 h-[371px] bg-gradient-to-t from-main to-main/40" />
+            </div>
+          ))}
         </div>
 
         <div className="relative z-20 flex flex-col justify-center items-center gap-5 w-full !mt-20">
           <Swiper
             slidesPerView="auto"
-            spaceBetween={10}
-            pagination={{ clickable: true }}
+            spaceBetween={20}
             centeredSlides={true}
             loop={true}
+            onSlideChange={(swiper) => setCurrentIndex(swiper.realIndex)}
             className="mySwiperMobile"
-            effect="coverflow"
-            coverflowEffect={{
-              rotate: 50,
-              stretch: 0,
-              depth: 100,
-              modifier: 1,
-              slideShadows: true,
-            }}
           >
-            {images?.map((img, index) => {
-              return (
-                <SwiperSlide key={index} className="!w-[230px]">
-                  <div className="w-[230px] h-[300px] border-gradient bg-main/50 rounded-3xl z-40 border-neonAqua overflow-hidden p-4 flex justify-center items-center">
-                    <img
-                      src={img}
-                      alt=""
-                      className="rounded-3xl w-full h-full object-cover"
-                    />
-                  </div>
-                </SwiperSlide>
-              );
-            })}
+            {topAnime?.map((img, index) => (
+              <SwiperSlide key={index} className="!w-[230px]">
+                <div
+                  className={`w-[230px] h-[300px] border-gradient bg-main/50 rounded-3xl z-40 border-neonAqua overflow-hidden p-4 flex justify-center items-center transition-transform duration-500 ease-in-out ${
+                    index === currentIndex
+                      ? "scale-100 opacity-100"
+                      : "scale-90 opacity-85"
+                  }`}
+                >
+                  <img
+                    src={img.images.jpg.large_image_url}
+                    alt={img.title}
+                    className="rounded-3xl w-full h-full object-cover"
+                  />
+                </div>
+              </SwiperSlide>
+            ))}
           </Swiper>
 
-          <div className="w-full flex flex-col items-center gap-4">
-            <p className="text-lg font-bold">Frieren: Beyond Journey's End</p>
+          <div className="relative w-full h-[200px]">
+            {topAnime.map((anime, index) => (
+              <div
+                key={index}
+                className={`absolute inset-0 flex flex-col items-center gap-4 transition-opacity duration-500 ease-in-out ${
+                  index === currentIndex
+                    ? "opacity-100"
+                    : "opacity-0 pointer-events-auto"
+                }`}
+              >
+                <p className="text-lg font-bold">{anime.title}</p>
 
-            <div className="flex gap-2">
-              <div className="w-12 h-[18px] rounded-full bg-[#262930]"></div>
-              <div className="w-12 h-[18px] rounded-full bg-[#262930]"></div>
-              <div className="w-12 h-[18px] rounded-full bg-[#262930]"></div>
-            </div>
+                <div className="flex gap-2 flex-wrap justify-center">
+                  {anime.genres?.map((genre: any, index: number) => (
+                    <div
+                      key={index}
+                      className="px-3 py-1 rounded-full bg-[#262930]"
+                    >
+                      <p className="text-[12px]">{genre.name}</p>
+                    </div>
+                  ))}
+                </div>
 
-            <p className="font-semibold">9.0 Total Score</p>
+                <div className="flex justify-center items-center gap-1 text-neonAqua">
+                  <FaStar />
+                  <p className="font-semibold">{anime.score}</p>
+                </div>
 
-            <button className="w-fit px-18 h-12 border border-neonAqua text-neonAqua rounded-full font-medium !mt-3">
-              Watch Now
-            </button>
+                <button className="w-fit px-18 h-12 border border-neonAqua text-neonAqua rounded-full font-medium !mt-3">
+                  Watch Now
+                </button>
+              </div>
+            ))}
           </div>
         </div>
       </div>
