@@ -217,7 +217,7 @@ const Hero = () => {
           ))}
         </div>
 
-        <div className="relative z-20 flex flex-col justify-center items-center gap-5 w-full !mt-10">
+        <div className="relative z-20 flex flex-col justify-center items-center gap-5 w-full !mt-5">
           <Swiper
             slidesPerView="auto"
             spaceBetween={20}
@@ -245,7 +245,7 @@ const Hero = () => {
             ))}
           </Swiper>
 
-          <div className="w-full h-[185px] relative flex flex-col justify-end items-center">
+          <div className="w-full h-[180px] relative flex flex-col justify-end items-center">
             {topAnime?.map((anime, index) => (
               <div
                 key={index}
@@ -282,6 +282,23 @@ const Hero = () => {
             />
           </div>
         </div>
+
+        {/* <div className="w-full flex justify-center items-end fixed bottom-2 z-50">
+          <motion.button
+            className="flex justify-center items-center gap-1 opacity-50 w-fit h-fit py-2 px-12"
+            animate={{
+              y: [0, -6, 0],
+            }}
+            transition={{
+              duration: 1,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
+            <p className="text-[12px]">Show all anime</p>
+            <IoChevronDownOutline size={14} className="!mt-[3px]"/>
+          </motion.button>
+        </div> */}
       </div>
     </>
   );

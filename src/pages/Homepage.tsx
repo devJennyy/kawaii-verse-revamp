@@ -23,7 +23,7 @@ const Homepage = () => {
         }`}
       >
         <Hero />
-        <div className="3xl:!mt-[-8rem] !mt-[-5rem]">
+        <div className="3xl:!mt-[-8rem] lg:!mt-[-5rem]">
           <AnimeShowcase type={"newest-season"} delay={2000} />
           <AnimeShowcase type={"top-anime"} delay={3000} />
           <SeasonalShowcase />

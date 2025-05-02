@@ -1,3 +1,4 @@
+import Footer from "./components/layout/Footer";
 import Navbar from "./components/layout/Navbar";
 import AnimeOverview from "./components/shared/AnimeOverview";
 import Characters from "./pages/Characters";
@@ -18,7 +19,7 @@ function App() {
         <Route path="/new" element={<NewestSeason />} />
         <Route path="/popular" element={<Popular />} />
       </Routes>
-      {/* <Footer /> */}
+      <Footer />
     </Router>
   );
 }

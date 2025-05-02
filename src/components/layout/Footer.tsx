@@ -3,9 +3,9 @@ import { GoArrowUpRight } from "react-icons/go";
 
 const Footer = () => {
   return (
-    <div className="w-full flex justify-center items-center 4xl:py-7 py-4 px-10 border-t border-base/10">
-      <div className="flex md:flex-row flex-col justify-between items-center w-full text-[12px] xl:text-sm 4xl:text-lg tracking-wider font-light sm:gap-0 gap-8">
-        <p className="md:hidden mt-4">Designed & Developed by Jenny Pieloor</p>
+    <div className="w-full flex justify-center items-center 4xl:py-7 py-4 sm:px-10 px-4 border-t border-base/10">
+      <div className="flex md:flex-row flex-col justify-between items-center w-full text-[12px] xl:text-sm 4xl:text-lg tracking-wider font-light sm:gap-0 gap-5">
+        <p className="md:hidden mt-4 font-medium">Designed & Developed by Jenny Pieloor</p>
         <div className="flex justify-between items-center w-full sm:mt-5 mt-0 font-medium">
           <button className="flex justify-start items-center sm:w-[230px] gap-[3px] hover:gap-[6px] duration-100 active:text-white/60 transition-default">
             <a href="https://github.com/devJennyy/kawaii-verse-revamp" target="_blank">
@@ -13,10 +13,10 @@ const Footer = () => {
             </a>
             <GoArrowUpRight className="4xl:!mt-[5px] !mt-[3px] text-[15px] 4xl:text-[24px] xl:text-[18px]" />
           </button>
-          <p className="md:block hidden">
+          <p className="md:block hidden font-medium">
             Designed & Developed by Jenny Pieloor <span className="text-neonAqua">Powered by Jikan API</span>
           </p>
-          <div className="flex 3xl:gap-3 gap-2">
+          <div className="flex 3xl:gap-3 sm:gap-2 gap-1">
             {socialButtons?.map(
               ({ url, id, icon: Icon, size, smSize, className }) => (
                 <a
