@@ -232,7 +232,7 @@ const Hero = () => {
                   className={`w-[230px] h-[300px] border-gradient bg-main/50 rounded-3xl z-40 border-neonAqua overflow-hidden p-4 flex justify-center items-center transition-transform duration-500 ease-in-out ${
                     index === currentIndex
                       ? "scale-100 opacity-100"
-                      : "scale-90 opacity-85"
+                      : "scale-85 opacity-85"
                   }`}
                 >
                   <img
