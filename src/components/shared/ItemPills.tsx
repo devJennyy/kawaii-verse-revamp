@@ -8,7 +8,7 @@ interface ItemPillsProps {
 }
 
 const getPillClasses = (isClickable: boolean) => {
-  const baseClasses = '4xl:px-6 4xl:py-[9px] px-4 lg:py-2 py-1 lg:rounded-md rounded-sm 4xl:text-lg xl:text-default lg:text-sm text-[12px] transition-default tracking-wide';
+  const baseClasses = '4xl:px-6 4xl:py-[9px] px-4 lg:py-2 py-1 lg:rounded-md rounded-sm 4xl:text-lg xl:text-default md:text-sm text-[12px] transition-default tracking-wide';
   const interactiveClasses =
     'bg-base/10 hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua hover:text-neonAqua';
 
@@ -28,7 +28,7 @@ const ItemPills = ({
 
   return (
     <div className="flex flex-col 4xl:gap-5 xl:gap-4 gap-3">
-      {title && <h2 className="4xl:text-xl xl:text-lg 4xl:font-bold font-medium text-left w-full">{title}</h2>}
+      {title && <h2 className="4xl:text-xl sm:text-lg 4xl:font-bold font-medium text-left w-full">{title}</h2>}
 
       {children && <div>{children}</div>}
 

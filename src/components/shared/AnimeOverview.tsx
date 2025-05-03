@@ -268,9 +268,9 @@ const AnimeOverview = () => {
                         animeOverview?.images?.jpg?.large_image_url
                       }
                       alt={animeOverview?.title}
-                      className="w-full h-[280px] object-cover object-center transition-slow"
+                      className="w-full sm:h-[300px] h-[280px] object-cover object-center transition-slow"
                     />
-                    <div className="absolute inset-0 h-[281px] bg-gradient-to-t from-main to-main/60 transition-slow" />
+                    <div className="absolute inset-0 sm:h-[301px] h-[281px] bg-gradient-to-t from-main to-main/60 transition-slow" />
                   </div>
 
                   <div className="z-30 !mt-28 px-4">
@@ -278,7 +278,7 @@ const AnimeOverview = () => {
                       <img
                         src={animeOverview?.images?.jpg?.large_image_url}
                         alt={animeOverview?.title}
-                        className="w-[145px] h-[224px] object-cover rounded-md"
+                        className="sm:w-[195px] sm:h-[274px] w-[145px] h-[224px] object-cover rounded-md"
                       />
 
                       <div className="flex flex-col gap-2 !mb-2">
@@ -286,29 +286,29 @@ const AnimeOverview = () => {
                           className={`line-clamp-2 ${
                             animeOverview?.title_english
                               ? animeOverview?.title_english.length > 30
-                                ? "text-2xl leading-8"
-                                : "text-[28px] leading-9"
+                                ? "sm:text-4xl text-2xl leading-8"
+                                : "sm:text-3xl text-[28px] leading-9"
                               : "text-[28px] leading-9"
                           }`}
                         >
                           {animeOverview?.title_english || animeOverview?.title}
                         </p>
-                        <p className="text-sm line-clamp-1">
+                        <p className="sm:text-xl text-sm line-clamp-1">
                           {animeOverview?.title_japanese}
                         </p>
                         <Button
                           colorType={"tertiary"}
                           hasIcon={false}
                           label="WATCH NOW"
-                          customClass="px-8 py-2 w-fit text-[10px] !my-2 font-medium"
+                          customClass="sm:px-12 sm:py-3 px-8 py-2 w-fit sm:text-[12px] text-[10px] !my-2 font-medium"
                         />
                         <div className="flex flex-col gap-2">
-                          <p className="text-sm">Main Characters</p>
+                          <p className="sm:text-default text-sm">Main Characters</p>
                           <div className="flex gap-1 items-center">
                             {visibleCharacters?.map((charData) => (
                               <button
                                 key={charData.character.mal_id}
-                                className="w-7 h-7 rounded-full overflow-hidden border-2 border-transparent hover:border-neonAqua transition-default cursor-pointer"
+                                className="sm:w-9 sm:h-9 w-7 h-7 rounded-full overflow-hidden border-2 border-transparent hover:border-neonAqua transition-default cursor-pointer"
                                 title={charData.character.name}
                               >
                                 <img
@@ -331,7 +331,7 @@ const AnimeOverview = () => {
                                             behavior: "smooth",
                                           })
                                       }
-                                      className="w-7 h-7 rounded-full flex items-center justify-center bg-transparent border-2 4xl:text-lg xl:text-default text-[10px] border-neonAqua hover:bg-neonAqua/10 transition-default cursor-pointer text-neonAqua font-semibold "
+                                      className="sm:w-9 sm:h-9 w-7 h-7 rounded-full flex items-center justify-center bg-transparent border-2 4xl:text-lg xl:text-default text-[10px] border-neonAqua hover:bg-neonAqua/10 transition-default cursor-pointer text-neonAqua font-semibold "
                                     >
                                       {`+${remainingCount}`}
                                     </button>
@@ -352,7 +352,7 @@ const AnimeOverview = () => {
 
                   <div className="flex flex-col px-4 !mt-8">
                     <div className="flex flex-col gap-2 relative">
-                      <div className="flex gap-5 text-sm tracking-wide font-semibold">
+                      <div className="flex gap-5 4xl:text-xl sm:text-lg tracking-wide 4xl:font-bold font-medium">
                         <button
                           onClick={() => handleTabChange("overview")}
                           className={`transition duration-300 ${
@@ -393,11 +393,11 @@ const AnimeOverview = () => {
                     {/* Conditionally rendered content */}
                     <div className="mt-4">
                       {activeTab === "overview" ? (
-                        <p className="opacity-70 font-semibold tracking-wide">
+                        <p className="opacity-40 font-medium tracking-wide">
                           (WIP) Overview content.
                         </p>
                       ) : (
-                        <p className="opacity-70 font-semibold tracking-wide">
+                        <p className="opacity-40 font-medium tracking-wide">
                           (WIP) Details content.
                         </p>
                       )}
@@ -408,10 +408,10 @@ const AnimeOverview = () => {
                 {/* Bottom */}
                 <div className="text-left flex flex-col 4xl:gap-14 2xl:gap-8 gap-6 relative lg:px-0 px-4">
                   <div className="flex flex-col gap-1 lg:hidden">
-                    <p className="text-lg">
+                    <p className="xl:text-2xl sm:text-xl text-lg tracking-wide">
                       {animeOverview?.title_english || animeOverview?.title}
                     </p>
-                    <p className="text-sm"> {animeOverview?.title_japanese}</p>
+                    <p className="xl:text-lg sm:text-default text-sm"> {animeOverview?.title_japanese}</p>
                   </div>
 
                   <div className="w-full flex flex-col gap-4 text-start bg-secondaryFill rounded-md">
@@ -424,7 +424,7 @@ const AnimeOverview = () => {
                         className={`tracking-wide leading-loose opacity-95 ${
                           animeOverview?.synopsis?.length < 120
                             ? "4xl:text-3xl xl:text-xl"
-                            : "xl:text-lg lg:text-default text-sm"
+                            : "xl:text-lg sm:text-default text-sm"
                         }`}
                       >
                         {animeOverview?.synopsis || "No synopsis available."}
@@ -437,7 +437,7 @@ const AnimeOverview = () => {
                         className="text-left italic"
                         aria-expanded={isExpanded}
                       >
-                        <p className="xl:text-lg lg:text-default text-sm transition-slow cursor-pointer hover:text-neonAqua hover:underline underline-offset-4">
+                        <p className="xl:text-lg sm:text-default text-sm transition-slow cursor-pointer hover:text-neonAqua hover:underline underline-offset-4">
                           {isExpanded ? "See Less . ." : "See More . ."}
                         </p>
                       </button>
@@ -480,7 +480,7 @@ const AnimeOverview = () => {
 
                   <div id="characters" className="scroll-mt-24">
                     <ItemPills title="Characters">
-                      <div className="grid 3xl:grid-cols-5 lg:grid-cols-4 grid-cols-3 4xl:gap-4 lg:gap-3 gap-2">
+                      <div className="grid 3xl:grid-cols-5 sm:grid-cols-4 grid-cols-3 4xl:gap-4 lg:gap-3 gap-2">
                         {characters?.map((charData, index) => {
                           return (
                             <div
@@ -492,9 +492,9 @@ const AnimeOverview = () => {
                                   charData?.character?.images?.jpg?.image_url
                                 }
                                 alt={charData?.character?.name}
-                                className="w-full 4xl:h-[230px] 3xl:h-[200px] xl:h-[175px] lg:h-[140px] h-[109px] object-cover lg:rounded-md rounded-sm"
+                                className="w-full 4xl:h-[230px] 3xl:h-[200px] md:h-[175px] sm:h-[140px] h-[109px] object-cover lg:rounded-md rounded-sm"
                               />
-                              <div className="flex flex-col 4xl:gap-1 4xl:text-lg xl:text-default lg:text-sm text-[12px] lg:pt-2 pt-1 tracking-wide">
+                              <div className="flex flex-col 4xl:gap-1 4xl:text-lg xl:text-default sm:text-sm text-[12px] lg:pt-2 pt-1 tracking-wide">
                                 <p className="text-neonAqua font-semibold whitespace-nowrap overflow-hidden text-ellipsis">
                                   {charData?.character?.name}
                                 </p>
