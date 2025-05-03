@@ -455,7 +455,7 @@ const AnimeOverview = () => {
                       <div className="w-full rounded-xl overflow-hidden aspect-video">
                         <iframe
                           className="w-full h-full"
-                          src={`${animeOverview.trailer.embed_url}?autoplay=1`}
+                          src={`${animeOverview.trailer.embed_url}&autoplay=1`}
                           title="Anime Trailer"
                           allow="autoplay; encrypted-media"
                           allowFullScreen
