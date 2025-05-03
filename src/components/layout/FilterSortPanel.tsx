@@ -26,15 +26,15 @@ const FilterSortPanel = ({ title = { highlighted: "Highlighted", normal: "Normal
   const [mediaType, setMediaType] = useState("default");
 
   return (
-    <div className="flex flex-col lg:gap-5 gap-4 lg:!my-12 !my-4">
+    <div className="flex flex-col lg:gap-5 sm:gap-4 gap-[14px] lg:!my-8 sm:!my-6 !my-5">
       <div className="w-full flex justify-between items-center">
-        <p className="4xl:text-4xl lg:text-3xl text-xl font-bold z-20 tracking-wide">
+        <p className="4xl:text-4xl lg:text-3xl sm:text-2xl text-xl font-bold z-20 tracking-wide">
           <span className="text-neonAqua">{title.highlighted}</span> {title.normal}
         </p>
         <div className="flex gap-1">
           {/* Sorting */}
           <Select>
-            <SelectTrigger className="lg:w-[180px] w-[90px]">
+            <SelectTrigger className="lg:w-[180px] sm:w-[130px] w-[90px]">
               <SelectValue placeholder="Newest" />
             </SelectTrigger>
             <SelectContent>

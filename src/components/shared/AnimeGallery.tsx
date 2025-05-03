@@ -39,12 +39,12 @@ const AnimeGallery = ({ type, delay = 0 }: AnimeShowcaseProps) => {
 
   return (
     <div className="w-full flex flex-col items-center gap-20">
-      <div className="grid 4xl:grid-cols-7 lg:grid-cols-5 grid-cols-2 xl:gap-5 lg:gap-2 transition-slow">
+      <div className="grid 4xl:grid-cols-7 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 xl:gap-5 lg:gap-2 gap-3 transition-slow">
         {animeList?.map((anime, index) => {
           return (
             <motion.div
               key={index}
-              className="relative w-full !mt-2 cursor-pointer p-2"
+              className="relative w-full !mt-2 cursor-pointer lg:p-2"
             >
               {/* Image Container */}
               <div className="w-full lg:h-[320px] h-[245px]">
@@ -67,7 +67,7 @@ const AnimeGallery = ({ type, delay = 0 }: AnimeShowcaseProps) => {
 
               {/* Black Overlay with Hover Image */}
               <motion.div
-                className="absolute inset-0 flex items-center justify-center text-white font-bold text-xl"
+                className="absolute inset-0 hidden lg:flex items-center justify-center text-white font-bold text-xl"
                 initial={{ opacity: 0 }}
                 whileHover={{ opacity: 1 }}
                 title={anime?.title}

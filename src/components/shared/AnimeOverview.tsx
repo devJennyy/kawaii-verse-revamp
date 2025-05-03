@@ -273,7 +273,7 @@ const AnimeOverview = () => {
                     <div className="absolute inset-0 sm:h-[301px] h-[281px] bg-gradient-to-t from-main to-main/60 transition-slow" />
                   </div>
 
-                  <div className="z-30 !mt-28 px-4">
+                  <div className="z-30 !mt-28 lg:px-0 sm:px-5 px-4">
                     <div className="flex items-end gap-5">
                       <img
                         src={animeOverview?.images?.jpg?.large_image_url}
@@ -350,7 +350,7 @@ const AnimeOverview = () => {
                     </div>
                   </div>
 
-                  <div className="flex flex-col px-4 !mt-8">
+                  <div className="flex flex-col lg:px-0 sm:px-5 px-4 !mt-8">
                     <div className="flex flex-col gap-2 relative">
                       <div className="flex gap-5 4xl:text-xl sm:text-lg tracking-wide 4xl:font-bold font-medium">
                         <button
@@ -406,7 +406,7 @@ const AnimeOverview = () => {
                 </div>
 
                 {/* Bottom */}
-                <div className="text-left flex flex-col 4xl:gap-14 2xl:gap-8 gap-6 relative lg:px-0 px-4">
+                <div className="text-left flex flex-col 4xl:gap-14 2xl:gap-8 gap-6 relative lg:px-0 sm:px-5 px-4">
                   <div className="flex flex-col gap-1 lg:hidden">
                     <p className="xl:text-2xl sm:text-xl text-lg tracking-wide">
                       {animeOverview?.title_english || animeOverview?.title}
@@ -480,21 +480,21 @@ const AnimeOverview = () => {
 
                   <div id="characters" className="scroll-mt-24">
                     <ItemPills title="Characters">
-                      <div className="grid 3xl:grid-cols-5 sm:grid-cols-4 grid-cols-3 4xl:gap-4 lg:gap-3 gap-2">
+                      <div className="grid 3xl:grid-cols-5 sm:grid-cols-4 grid-cols-3 4xl:gap-4 sm:gap-3 gap-2">
                         {characters?.map((charData, index) => {
                           return (
                             <div
                               key={index}
-                              className="w-full gap-5 lg:rounded-lg rounded-md 4xl:p-3 lg:p-2 p-1 overflow-hidden cursor-pointer bg-base/10 hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default"
+                              className="w-full gap-5 lg:rounded-lg rounded-md 4xl:p-3 sm:p-2 p-1 overflow-hidden cursor-pointer bg-base/10 hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default"
                             >
                               <img
                                 src={
                                   charData?.character?.images?.jpg?.image_url
                                 }
                                 alt={charData?.character?.name}
-                                className="w-full 4xl:h-[230px] 3xl:h-[200px] md:h-[175px] sm:h-[140px] h-[109px] object-cover lg:rounded-md rounded-sm"
+                                className="w-full 4xl:h-[230px] 3xl:h-[200px] md:h-[175px] sm:h-[140px] h-[109px] object-cover sm:rounded-md rounded-sm"
                               />
-                              <div className="flex flex-col 4xl:gap-1 4xl:text-lg xl:text-default sm:text-sm text-[12px] lg:pt-2 pt-1 tracking-wide">
+                              <div className="flex flex-col 4xl:gap-1 4xl:text-lg xl:text-default sm:text-sm text-[12px] sm:pt-2 pt-1 tracking-wide">
                                 <p className="text-neonAqua font-semibold whitespace-nowrap overflow-hidden text-ellipsis">
                                   {charData?.character?.name}
                                 </p>
