@@ -85,8 +85,6 @@ html > body[data-scroll-locked] {
 }
 
 
-
-
 :root {
   --radius: 0.625rem;
   --main: #121419;
@@ -223,3 +221,5 @@ html > body[data-scroll-locked] {
   mask-composite: exclude;
   pointer-events: none;
 }
+
+

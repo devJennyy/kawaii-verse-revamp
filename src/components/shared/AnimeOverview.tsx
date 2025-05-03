@@ -20,6 +20,7 @@ const AnimeOverview = () => {
   const [animeOverview, setAnimeOverview] = useState<any>();
   const [characters, setCharacters] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
   const animeStats = [
     {
       label: "Scores",
@@ -47,6 +48,11 @@ const AnimeOverview = () => {
     { label: "Duration", value: animeOverview?.duration },
     { label: "Rating", value: animeOverview?.rating },
   ];
+  const [activeTab, setActiveTab] = useState("overview");
+
+  const handleTabChange = (tab: string) => {
+    setActiveTab(tab);
+  };
 
   useEffect(() => {
     // window.scrollTo({ top: 0, behavior: "smooth" });
@@ -254,39 +260,90 @@ const AnimeOverview = () => {
                 </div>
 
                 {/* For Mobile */}
-                <div className="lg:hidden relative w-full !pt-10 flex flex-col justify-center">
+                <div className="lg:hidden relative w-full flex flex-col justify-center">
                   <div className="absolute inset-0 z-0">
                     <img
-                      src="/images/frieren.jpg"
-                      alt=""
-                      className="w-full h-[300px] object-cover object-center transition-slow"
+                      src={
+                        animeOverview?.trailer?.images?.maximum_image_url ||
+                        animeOverview?.images?.jpg?.large_image_url
+                      }
+                      alt={animeOverview?.title}
+                      className="w-full h-[280px] object-cover object-center transition-slow"
                     />
-                    <div className="absolute inset-0 h-[301px] bg-gradient-to-t from-main to-main/60 transition-slow" />
+                    <div className="absolute inset-0 h-[281px] bg-gradient-to-t from-main to-main/60 transition-slow" />
                   </div>
 
-                  <div className="z-30 !mt-32 px-4">
+                  <div className="z-30 !mt-28 px-4">
                     <div className="flex items-end gap-5">
                       <img
-                        src="/images/frieren.jpg"
-                        alt=""
-                        className="w-[145px] h-[204px] object-cover rounded-md"
+                        src={animeOverview?.images?.jpg?.large_image_url}
+                        alt={animeOverview?.title}
+                        className="w-[145px] h-[224px] object-cover rounded-md"
                       />
 
                       <div className="flex flex-col gap-2 !mb-2">
-                        <p className="text-3xl leading-none">Frieren Ghoul</p>
-                        <p className="text-[12px]">葬送のフリーレン</p>
+                        <p
+                          className={`line-clamp-2 ${
+                            animeOverview?.title_english
+                              ? animeOverview?.title_english.length > 30
+                                ? "text-2xl leading-8"
+                                : "text-[28px] leading-9"
+                              : "text-[28px] leading-9"
+                          }`}
+                        >
+                          {animeOverview?.title_english || animeOverview?.title}
+                        </p>
+                        <p className="text-sm line-clamp-1">
+                          {animeOverview?.title_japanese}
+                        </p>
                         <Button
                           colorType={"tertiary"}
                           hasIcon={false}
                           label="WATCH NOW"
-                          customClass="px-8 py-[7px] w-fit text-[10px] !my-2 font-medium"
+                          customClass="px-8 py-2 w-fit text-[10px] !my-2 font-medium"
                         />
                         <div className="flex flex-col gap-2">
-                          <p className="text-[12px]">Main Characters</p>
-                          <div className="flex gap-1">
-                            <div className="w-5 h-5 rounded-full bg-white"></div>
-                            <div className="w-5 h-5 rounded-full bg-white"></div>
-                            <div className="w-5 h-5 rounded-full bg-white"></div>
+                          <p className="text-sm">Main Characters</p>
+                          <div className="flex gap-1 items-center">
+                            {visibleCharacters?.map((charData) => (
+                              <button
+                                key={charData.character.mal_id}
+                                className="w-7 h-7 rounded-full overflow-hidden border-2 border-transparent hover:border-neonAqua transition-default cursor-pointer"
+                                title={charData.character.name}
+                              >
+                                <img
+                                  src={charData.character.images.jpg.image_url}
+                                  alt={charData.character.name}
+                                  className="w-full h-full object-cover"
+                                />
+                              </button>
+                            ))}
+
+                            <TooltipProvider>
+                              <Tooltip>
+                                <TooltipTrigger className="cursor-pointer">
+                                  {remainingCount > 0 && (
+                                    <button
+                                      onClick={() =>
+                                        document
+                                          .getElementById("characters")
+                                          ?.scrollIntoView({
+                                            behavior: "smooth",
+                                          })
+                                      }
+                                      className="w-7 h-7 rounded-full flex items-center justify-center bg-transparent border-2 4xl:text-lg xl:text-default text-[10px] border-neonAqua hover:bg-neonAqua/10 transition-default cursor-pointer text-neonAqua font-semibold "
+                                    >
+                                      {`+${remainingCount}`}
+                                    </button>
+                                  )}
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <p className="text-sm py-[2px] px-1 tracking-wide">
+                                    See More
+                                  </p>
+                                </TooltipContent>
+                              </Tooltip>
+                            </TooltipProvider>
                           </div>
                         </div>
                       </div>
@@ -294,31 +351,98 @@ const AnimeOverview = () => {
                   </div>
 
                   <div className="flex flex-col px-4 !mt-8">
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2 relative">
                       <div className="flex gap-5 text-sm tracking-wide font-semibold">
-                        <p>Overview</p>
-                        <p>More Details</p>
+                        <button
+                          onClick={() => handleTabChange("overview")}
+                          className={`transition duration-300 ${
+                            activeTab === "overview"
+                              ? "text-neonAqua"
+                              : "text-base/60"
+                          }`}
+                        >
+                          Overview
+                        </button>
+                        <button
+                          onClick={() => handleTabChange("details")}
+                          className={`transition duration-300 ${
+                            activeTab === "details"
+                              ? "text-neonAqua"
+                              : "text-base/60"
+                          }`}
+                        >
+                          More Details
+                        </button>
                       </div>
-                      <div className="flex items-center">
-                        <div className="w-16 lg:border-2 border border-neonAqua rounded-full"></div>
-                        <div className="w-full lg:h-[2px] h-[1px] bg-base/10"></div>
+
+                      <div className="flex items-center relative !mb-6">
+                        <div
+                          className="absolute top-0 left-0 w-14 lg:border-2 border border-neonAqua rounded-full transition-transform duration-300"
+                          style={{
+                            transform:
+                              activeTab === "details"
+                                ? "translateX(140%)"
+                                : "translateX(0)",
+                          }}
+                        ></div>
+
+                        <div className="w-full lg:h-[2px] h-[1px] bg-base/10 mt-2"></div>
                       </div>
+                    </div>
+
+                    {/* Conditionally rendered content */}
+                    <div className="mt-4">
+                      {activeTab === "overview" ? (
+                        <p className="opacity-70 font-semibold tracking-wide">
+                          (WIP) Overview content.
+                        </p>
+                      ) : (
+                        <p className="opacity-70 font-semibold tracking-wide">
+                          (WIP) Details content.
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
 
                 {/* Bottom */}
                 <div className="text-left flex flex-col 4xl:gap-14 2xl:gap-8 gap-6 relative lg:px-0 px-4">
-                  <p
-                    className={`tracking-wide leading-loose opacity-95 ${
-                      animeOverview?.synopsis &&
-                      animeOverview.synopsis.length < 120
-                        ? "4xl:text-3xl xl:text-xl"
-                        : "xl:text-lg lg:text-default text-sm"
-                    }`}
-                  >
-                    {animeOverview?.synopsis}
-                  </p>
+                  <div className="flex flex-col gap-1 lg:hidden">
+                    <p className="text-lg">
+                      {animeOverview?.title_english || animeOverview?.title}
+                    </p>
+                    <p className="text-sm"> {animeOverview?.title_japanese}</p>
+                  </div>
+
+                  <div className="w-full flex flex-col gap-4 text-start bg-secondaryFill rounded-md">
+                    <div
+                      className={`transition-max-height duration-1000 ease-in-out overflow-hidden ${
+                        isExpanded ? "max-h-full" : "lg:max-h-[100px] sm:max-h-[90px] max-h-[80px]"
+                      }`}
+                    >
+                      <p
+                        className={`tracking-wide leading-loose opacity-95 ${
+                          animeOverview?.synopsis?.length < 120
+                            ? "4xl:text-3xl xl:text-xl"
+                            : "xl:text-lg lg:text-default text-sm"
+                        }`}
+                      >
+                        {animeOverview?.synopsis || "No synopsis available."}
+                      </p>
+                    </div>
+
+                    {animeOverview?.synopsis?.length > 120 && (
+                      <button
+                        onClick={() => setIsExpanded(!isExpanded)}
+                        className="text-left italic"
+                        aria-expanded={isExpanded}
+                      >
+                        <p className="xl:text-lg lg:text-default text-sm transition-slow cursor-pointer hover:text-neonAqua hover:underline underline-offset-4">
+                          {isExpanded ? "See Less . ." : "See More . ."}
+                        </p>
+                      </button>
+                    )}
+                  </div>
 
                   <ItemPills
                     items={animeOverview?.genres || []}
@@ -326,17 +450,19 @@ const AnimeOverview = () => {
                     onClick={(url) => window.open(url, "_blank")}
                   />
 
-                  {animeOverview?.trailer?.embed_url && (
-                    <div className="w-full rounded-xl overflow-hidden aspect-video">
-                      <iframe
-                        className="w-full h-full"
-                        src={`${animeOverview.trailer.embed_url}.?autoplay=1`}
-                        title="Anime Trailer"
-                        allow="autoplay; encrypted-media"
-                        allowFullScreen
-                      ></iframe>
-                    </div>
-                  )}
+                  <ItemPills title="Trailer">
+                    {animeOverview?.trailer?.embed_url && (
+                      <div className="w-full rounded-xl overflow-hidden aspect-video">
+                        <iframe
+                          className="w-full h-full"
+                          src={`${animeOverview.trailer.embed_url}?autoplay=1`}
+                          title="Anime Trailer"
+                          allow="autoplay; encrypted-media"
+                          allowFullScreen
+                        ></iframe>
+                      </div>
+                    )}
+                  </ItemPills>
 
                   <ItemPills
                     title="Streaming"
@@ -368,10 +494,11 @@ const AnimeOverview = () => {
                                 alt={charData?.character?.name}
                                 className="w-full 4xl:h-[230px] 3xl:h-[200px] xl:h-[175px] lg:h-[140px] h-[109px] object-cover lg:rounded-md rounded-sm"
                               />
-                              <div className="flex flex-col 4xl:gap-1 4xl:text-lg xl:text-default lg:text-sm text-[12px] pt-2 tracking-wide">
-                                <p className="text-neonAqua font-semibold">
+                              <div className="flex flex-col 4xl:gap-1 4xl:text-lg xl:text-default lg:text-sm text-[12px] lg:pt-2 pt-1 tracking-wide">
+                                <p className="text-neonAqua font-semibold whitespace-nowrap overflow-hidden text-ellipsis">
                                   {charData?.character?.name}
                                 </p>
+
                                 <p className="opacity-60">{charData?.role}</p>
                               </div>
                             </div>
