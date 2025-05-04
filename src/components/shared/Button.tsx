@@ -21,7 +21,7 @@ const Button = ({
       "font-semibold bg-midnightNavy text-neonAqua active:bg-neonAqua active:text-main hover:bg-neonAqua hover:text-main focus:bg-neonAqua focus:text-main transition-default",
     secondary:
       "font-semibold bg-neonAqua border border-neonAqua text-main hover:bg-transparent hover:text-neonAqua active:bg-transparent active:text-neonAqua focus:bg-transparent focus:text-neonAqua transition-default",
-    tertiary: "flex justify-center items-center border border-neonAqua rounded-full text-neonAqua",
+    tertiary: "flex justify-center items-center border border-neonAqua rounded-full",
   };
 
   const appliedStyles =

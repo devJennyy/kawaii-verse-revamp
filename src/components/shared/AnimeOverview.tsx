@@ -186,11 +186,11 @@ const AnimeOverview = () => {
                 {/* Top */}
                 <div className="hidden lg:flex flex-col justify-end text-left 4xl:leading-tight 4xl:h-[37em] xl:h-[26.5rem] h-[22rem] 4xl:!pb-14 pb-5">
                   <p
-                    className={`w-full 4xl:max-w-full xl:max-w-[700px] max-w-[600px] leading-normal ${
+                    className={`w-full 4xl:max-w-full xl:max-w-[700px] max-w-[600px] ${
                       animeOverview?.title_english
                         ? animeOverview?.title_english.length > 30
-                          ? "4xl:text-[55px] xl:text-[35px] text-[30px]"
-                          : "4xl:text-[90px] xl:text-[65px] text-[55px]"
+                          ? "4xl:text-[55px] xl:text-[35px] text-[30px] leading-normal"
+                          : "4xl:text-[90px] xl:text-[65px] text-[55px] leading-none"
                         : "4xl:text-[90px] xl:text-[65px] text-[55px]"
                     }`}
                   >
@@ -207,11 +207,18 @@ const AnimeOverview = () => {
                     {animeOverview?.title_japanese}
                   </p>
 
-                  <button className="5xl:h-[130px] 4xl:h-[75px] xl:h-[56px] h-[40px] 5xl:px-36 xl:px-13 px-7 w-fit flex justify-center items-center 4xl:border-2 3xl:border-2 border text-main border-neonAqua rounded-full cursor-pointer bg-neonAqua hover:bg-neonAqua/10 hover:text-neonAqua transition-default">
+                  {/* <button className="!mt-5 5xl:h-[130px] 4xl:h-[75px] xl:h-[56px] h-[40px] 5xl:px-36 xl:px-13 px-7 w-fit flex justify-center items-center 4xl:border-2 3xl:border-2 border text-main border-neonAqua rounded-full cursor-pointer bg-neonAqua hover:bg-neonAqua/10 hover:text-neonAqua transition-default">
                     <p className="uppercase 5xl:text-[38px] 4xl:text-[20px] xl:text-default text-[12px] font-medium tracking-wide">
                       Watch Now
                     </p>
-                  </button>
+                  </button> */}
+
+                  <Button
+                    colorType={"tertiary"}
+                    hasIcon={false}
+                    label="WATCH NOW"
+                    customClass="w-fit 4xl:text-xl text-default 4xl:px-18 4xl:py-5 px-16 py-4 font-medium !my-3 text-main hover:text-neonAqua bg-neonAqua hover:bg-neonAqua/10 cursor-pointer transition-default"
+                  />
 
                   <div className="flex flex-col items-start 4xl:gap-5 gap-3 4xl:!mt-14 !mt-7">
                     <p className="4xl:text-2xl xl:text-xl font-medium">
@@ -300,10 +307,12 @@ const AnimeOverview = () => {
                           colorType={"tertiary"}
                           hasIcon={false}
                           label="WATCH NOW"
-                          customClass="sm:px-12 sm:py-3 px-8 py-2 w-fit sm:text-[12px] text-[10px] !my-2 font-medium"
+                          customClass="sm:px-12 sm:py-3 px-8 py-2 w-fit sm:text-[12px] text-[10px] !my-2 font-medium text-neonAqua"
                         />
                         <div className="flex flex-col gap-2">
-                          <p className="sm:text-default text-sm">Main Characters</p>
+                          <p className="sm:text-default text-sm">
+                            Main Characters
+                          </p>
                           <div className="flex gap-1 items-center">
                             {visibleCharacters?.map((charData) => (
                               <button
@@ -350,6 +359,7 @@ const AnimeOverview = () => {
                     </div>
                   </div>
 
+                  {/* Switch Content */}
                   <div className="flex flex-col lg:px-0 sm:px-5 px-4 !mt-8">
                     <div className="flex flex-col gap-2 relative">
                       <div className="flex gap-5 4xl:text-xl sm:text-lg tracking-wide 4xl:font-bold font-medium">
@@ -377,13 +387,13 @@ const AnimeOverview = () => {
 
                       <div className="flex items-center relative !mb-6">
                         <div
-                          className="absolute top-0 left-0 w-14 lg:border-2 border border-neonAqua rounded-full transition-transform duration-300"
-                          style={{
-                            transform:
-                              activeTab === "details"
-                                ? "translateX(140%)"
-                                : "translateX(0)",
-                          }}
+                          className={`absolute top-0 left-0 ${
+                            activeTab === "details" ? "w-20" : "w-15"
+                          } lg:border-2 border border-neonAqua rounded-full transition-all duration-300 transform ${
+                            activeTab === "details"
+                              ? "translate-x-[100%]"
+                              : "translate-x-0"
+                          }`}
                         ></div>
 
                         <div className="w-full lg:h-[2px] h-[1px] bg-base/10 mt-2"></div>
@@ -411,13 +421,17 @@ const AnimeOverview = () => {
                     <p className="xl:text-2xl sm:text-xl text-lg tracking-wide">
                       {animeOverview?.title_english || animeOverview?.title}
                     </p>
-                    <p className="xl:text-lg sm:text-default text-sm"> {animeOverview?.title_japanese}</p>
+                    <p className="xl:text-lg sm:text-default text-sm">
+                      {animeOverview?.title_japanese}
+                    </p>
                   </div>
 
                   <div className="w-full flex flex-col gap-4 text-start bg-secondaryFill rounded-md">
                     <div
                       className={`transition-max-height duration-1000 ease-in-out overflow-hidden ${
-                        isExpanded ? "max-h-full" : "lg:max-h-[100px] sm:max-h-[90px] max-h-[80px]"
+                        isExpanded
+                          ? "max-h-full"
+                          : "lg:max-h-[100px] sm:max-h-[90px] max-h-[80px]"
                       }`}
                     >
                       <p

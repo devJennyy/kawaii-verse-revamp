@@ -10,6 +10,7 @@ import { GET_TOP_ANIME } from "@/constants/api";
 import CustomNavButtons from "../ui/CustomNavButtons";
 import "../../styles/swiper.css";
 import Button from "../shared/Button";
+import { Link } from "react-router";
 
 const Hero = () => {
   const swiperRef = useRef<SwiperType | null>(null);
@@ -136,7 +137,7 @@ const Hero = () => {
                 modules={[Navigation, Autoplay]}
                 className="mySwiper"
               >
-                {topAnime?.map((image: any, index) => {
+                {topAnime?.map((item: any, index) => {
                   const isActive = index === currentIndex;
                   const heightClass = isActive
                     ? "h-full"
@@ -144,22 +145,24 @@ const Hero = () => {
 
                   return (
                     <SwiperSlide className="z-50" key={index}>
-                      <motion.div
-                        onClick={() => swiperRef.current?.slideToLoop(index)}
-                        className={`relative transition-all duration-500 ease-in-out transform cursor-pointer  
+                      <Link to={`/anime-overview?id=${item.mal_id}`}>
+                        <motion.div
+                          onClick={() => swiperRef.current?.slideToLoop(index)}
+                          className={`relative transition-all duration-500 ease-in-out transform cursor-pointer  
       ${heightClass} 5xl:w-[557px] 4xl:w-[400px] 3xl:w-[286px] 2xl:w-[214px] w-[190px] 4xl:rounded-[3rem] rounded-3xl overflow-hidden 4xl:border-8 3xl:border-6 border-4 ${
-                          isActive ? "border-neonAqua" : "border-white/2"
-                        }`}
-                      >
-                        <img
-                          src={image.images.jpg.large_image_url}
-                          alt={image.title}
-                          className="w-full h-full object-cover transition-all duration-500 ease-in-out"
-                        />
-                        {!isActive && (
-                          <div className="absolute inset-0 bg-black/10 transition-all duration-500"></div>
-                        )}
-                      </motion.div>
+                            isActive ? "border-neonAqua" : "border-white/2"
+                          }`}
+                        >
+                          <img
+                            src={item.images.jpg.large_image_url}
+                            alt={item.title}
+                            className="w-full h-full object-cover transition-all duration-500 ease-in-out"
+                          />
+                          {!isActive && (
+                            <div className="absolute inset-0 bg-black/10 transition-all duration-500"></div>
+                          )}
+                        </motion.div>
+                      </Link>
                     </SwiperSlide>
                   );
                 })}
@@ -224,14 +227,15 @@ const Hero = () => {
             centeredSlides={true}
             loop={true}
             autoplay={{ delay: 3000, disableOnInteraction: false }}
-                speed={500}
+            speed={500}
             onSlideChange={(swiper) => setCurrentIndex(swiper.realIndex)}
             className="mySwiperMobile"
             modules={[Autoplay]}
           >
-            {topAnime?.map((img, index) => (
+            {topAnime?.map((item, index) => (
               <SwiperSlide key={index}>
-                <div
+                <Link
+                  to={`/anime-overview?id=${item.mal_id}`}
                   className={`md:w-[300px] sm:w-[280px] sm:h-[380px] w-[230px] h-[300px] border-gradient bg-main/50 rounded-3xl z-40 border-neonAqua overflow-hidden p-4 flex justify-center items-center transition-transform duration-500 ease-in-out ${
                     index === currentIndex
                       ? "scale-100 opacity-100"
@@ -239,11 +243,11 @@ const Hero = () => {
                   }`}
                 >
                   <img
-                    src={img.images.jpg.large_image_url}
-                    alt={img.title}
+                    src={item.images.jpg.large_image_url}
+                    alt={item.title}
                     className="rounded-3xl w-full h-full object-cover"
                   />
-                </div>
+                </Link>
               </SwiperSlide>
             ))}
           </Swiper>
@@ -261,7 +265,7 @@ const Hero = () => {
                 <p className="sm:text-2xl text-lg font-bold">{anime.title}</p>
 
                 <div className="flex gap-2 flex-wrap justify-center">
-                  {anime.genres?.map((genre: any, index: number) => (
+                  {anime?.genres?.map((genre: any, index: number) => (
                     <div
                       key={index}
                       className="px-3 py-1 rounded-full bg-[#262930]"
@@ -281,7 +285,7 @@ const Hero = () => {
               hasIcon={false}
               label="Watch Now"
               colorType="tertiary"
-              customClass="w-fit px-18 sm:h-13 h-12"
+              customClass="w-fit px-18 sm:h-13 h-12 text-neonAqua"
             />
           </div>
         </div>
