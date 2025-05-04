@@ -184,14 +184,14 @@ const AnimeOverview = () => {
               {/* Right Content */}
               <div className="4xl:w-[1190px] xl:w-[900px] w-full flex flex-col gap-6">
                 {/* Top */}
-                <div className="hidden lg:flex flex-col justify-end text-left 4xl:leading-tight 4xl:h-[37em] xl:h-[26.5rem] h-[22rem] 4xl:!pb-14 pb-5">
+                <div className="hidden lg:flex flex-col justify-end text-left 4xl:leading-tight 4xl:h-[37em] xl:h-[26.5rem] h-[22rem] 4xl:!pb-14 pb-5 4xl:gap-5 gap-2">
                   <p
-                    className={`w-full 4xl:max-w-full xl:max-w-[700px] max-w-[600px] ${
+                    className={`w-full xl:max-w-full max-w-[600px] 4xl:pr-0 xl:pr-5 pr-0 ${
                       animeOverview?.title_english
-                        ? animeOverview?.title_english.length > 30
+                        ? animeOverview?.title_english.length > 40
                           ? "4xl:text-[55px] xl:text-[35px] text-[30px] leading-normal"
-                          : "4xl:text-[90px] xl:text-[65px] text-[55px] leading-none"
-                        : "4xl:text-[90px] xl:text-[65px] text-[55px]"
+                          : "4xl:text-[90px] xl:text-[65px] text-[45px] leading-tight"
+                        : "4xl:text-[90px] xl:text-[65px] text-[45px] leading-tight"
                     }`}
                   >
                     {animeOverview?.title_english || animeOverview?.title}
@@ -202,25 +202,19 @@ const AnimeOverview = () => {
                       animeOverview?.title_japanese?.length > 30
                         ? "xl:text-[25px] text-[20px]"
                         : "4xl:text-[30px] xl:text-2xl text-xl"
-                    } 4xl:!my-8 xl:!my-5 !my-3`}
+                    } !my-3`}
                   >
                     {animeOverview?.title_japanese}
                   </p>
-
-                  {/* <button className="!mt-5 5xl:h-[130px] 4xl:h-[75px] xl:h-[56px] h-[40px] 5xl:px-36 xl:px-13 px-7 w-fit flex justify-center items-center 4xl:border-2 3xl:border-2 border text-main border-neonAqua rounded-full cursor-pointer bg-neonAqua hover:bg-neonAqua/10 hover:text-neonAqua transition-default">
-                    <p className="uppercase 5xl:text-[38px] 4xl:text-[20px] xl:text-default text-[12px] font-medium tracking-wide">
-                      Watch Now
-                    </p>
-                  </button> */}
 
                   <Button
                     colorType={"tertiary"}
                     hasIcon={false}
                     label="WATCH NOW"
-                    customClass="w-fit 4xl:text-xl text-default 4xl:px-18 4xl:py-5 px-16 py-4 font-medium !my-3 text-main hover:text-neonAqua bg-neonAqua hover:bg-neonAqua/10 cursor-pointer transition-default"
+                    customClass="!mt-1 w-fit 4xl:text-xl xl:text-default text-sm 4xl:px-18 4xl:py-5 xl:px-16 xl:py-4 px-12 py-[14px] font-medium text-main hover:text-neonAqua bg-neonAqua hover:bg-neonAqua/10 cursor-pointer transition-default"
                   />
 
-                  <div className="flex flex-col items-start 4xl:gap-5 gap-3 4xl:!mt-14 !mt-7">
+                  <div className="flex flex-col items-start 4xl:gap-5 gap-3 4xl:!mt-14 xl:!mt-7 !mt-4">
                     <p className="4xl:text-2xl xl:text-xl font-medium">
                       Main Characters
                     </p>
