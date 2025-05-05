@@ -118,7 +118,7 @@ const AnimeOverview = () => {
             <div className="absolute inset-0 bg-black opacity-85 z-10  overflow-hidden"></div>
           </div>
           <div
-            className={`z-30 4xl:!mt-[23rem] xl:!mt-[13rem] lg:!mt-[10rem] !mt-12 transition-slow ${
+            className={`z-30 4xl:!mt-[23rem] xl:!mt-[13rem] lg:!mt-[10rem] !mt-12 transition-slow w-full ${
               isLoading
                 ? "opacity-0"
                 : "opacity-100 transition-opacity duration-500"

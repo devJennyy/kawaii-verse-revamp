@@ -24,22 +24,16 @@ const AnimeOverviewContent = ({animeOverview, isExpanded, setIsExpanded, charact
         <div
           className={`transition-max-height duration-1000 ease-in-out overflow-hidden ${
             isExpanded
-              ? "max-h-full"
-              : "lg:max-h-[100px] sm:max-h-[90px] max-h-[80px]"
+              ? "max-h-[1000px]"
+              : "4xl:max-h-[110px] sm:max-h-[100px] max-h-[90px]"
           }`}
         >
-          <p
-            className={`tracking-wide leading-loose opacity-95 ${
-              animeOverview?.synopsis?.length < 120
-                ? "4xl:text-3xl xl:text-xl"
-                : "xl:text-lg sm:text-default text-sm"
-            }`}
-          >
-            {animeOverview?.synopsis || "No synopsis available."}
+          <p className="tracking-wide leading-loose opacity-95 xl:text-lg sm:text-default text-sm">
+            {animeOverview.synopsis}
           </p>
         </div>
 
-        {animeOverview?.synopsis?.length > 120 && (
+        {animeOverview?.synopsis?.length > 300 && (
           <button
             onClick={() => setIsExpanded(!isExpanded)}
             className="text-left italic"
@@ -88,7 +82,7 @@ const AnimeOverviewContent = ({animeOverview, isExpanded, setIsExpanded, charact
 
       <div id="characters" className="scroll-mt-24">
         <ItemPills title="Characters">
-          <div className="grid 3xl:grid-cols-5 sm:grid-cols-4 grid-cols-3 4xl:gap-4 sm:gap-3 gap-2">
+          <div className="grid 2xl:grid-cols-5 sm:grid-cols-4 grid-cols-3 4xl:gap-4 sm:gap-3 gap-2">
             {characters?.map((charData, index) => {
               return (
                 <div
@@ -98,7 +92,7 @@ const AnimeOverviewContent = ({animeOverview, isExpanded, setIsExpanded, charact
                   <img
                     src={charData?.character?.images?.jpg?.image_url}
                     alt={charData?.character?.name}
-                    className="w-full 4xl:h-[230px] 3xl:h-[200px] md:h-[175px] sm:h-[140px] h-[109px] object-cover sm:rounded-md rounded-sm"
+                    className="w-full 4xl:h-[230px] xl:h-[175px] sm:h-[140px] h-[109px] object-cover sm:rounded-md rounded-sm"
                   />
                   <div className="flex flex-col 4xl:gap-1 4xl:text-lg xl:text-default sm:text-sm text-[12px] sm:pt-2 pt-1 tracking-wide">
                     <p className="text-neonAqua font-semibold whitespace-nowrap overflow-hidden text-ellipsis">
