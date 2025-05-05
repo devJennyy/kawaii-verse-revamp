@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { IoLogoGithub } from "react-icons/io";
 
 interface ButtonProps {
@@ -5,6 +6,7 @@ interface ButtonProps {
   hasIcon?: boolean;
   label?: string;
   customClass?: string;
+  onClick?: any;
 }
 
 const Button = ({
@@ -12,6 +14,7 @@ const Button = ({
   label = "Visit Github",
   hasIcon = true,
   customClass = "",
+  onClick
 }: ButtonProps) => {
   const baseStyles =
     "flex justify-center items-center 5xl:gap-2 gap-[6px] sm:px-5 px-4 sm:py-[9px] 5xl:py-[13px] py-2 rounded-sm cursor-pointer transition-default text-sm";
@@ -30,7 +33,7 @@ const Button = ({
       : `${baseStyles} ${colorStyle[colorType]} ${customClass}`;
 
   return (
-    <div className={appliedStyles}>
+    <div className={appliedStyles} onClick={() => onClick()}>
       {hasIcon && <IoLogoGithub className="sm:text-md text-lg !mb-[2px]" />}
       <p className="whitespace-nowrap tracking-wide capitalize">
         {label}

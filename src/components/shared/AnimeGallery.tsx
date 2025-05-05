@@ -16,6 +16,9 @@ const AnimeGallery = ({ type, delay = 0 }: AnimeShowcaseProps) => {
   const [animeList, setAnimeList] = useState<any[]>([]);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
+  const [hasNextPage, setHasNextPage] = useState(true);
+  const [page, setPage] = useState(1);
+
   useEffect(() => {
     const handleResize = () => setScreenWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
@@ -23,19 +26,20 @@ const AnimeGallery = ({ type, delay = 0 }: AnimeShowcaseProps) => {
   }, []);
 
   useEffect(() => {
-    const fetchAnime = async () => {
-      try {
-        const url = type === "newest-season" ? NEWEST_SEASON : TOP_ANIME;
-
-        const res = await axios.get(url);
-        setAnimeList(res.data.data);
-      } catch (err) {
-        console.error("Oops! something went wrong", err);
-      }
-    };
-
     fetchAnime();
-  }, [type, screenWidth, delay]);
+  }, [type, screenWidth, delay, page]);
+
+  const fetchAnime = async () => {
+    try {
+      const url = type === "newest-season" ? NEWEST_SEASON.replace("{page}", page.toString()) : TOP_ANIME.replace("{page}", page.toString());
+
+      const res = await axios.get(url);
+      setAnimeList((prev) => [...prev, ...res.data.data]);
+      setHasNextPage(res.data.pagination.has_next_page);
+    } catch (err) {
+      console.error("Oops! something went wrong", err);
+    }
+  };
 
   return (
     <div className="w-full flex flex-col items-center gap-20">
@@ -110,12 +114,13 @@ const AnimeGallery = ({ type, delay = 0 }: AnimeShowcaseProps) => {
           );
         })}
       </div>
-      <Button
+      {hasNextPage && <Button
         colorType={"primary"}
         label="Load More"
         hasIcon={false}
         customClass="text-xl font-light"
-      />
+        onClick={() => setPage((prev) => prev + 1)}
+      />}
     </div>
   );
 };
