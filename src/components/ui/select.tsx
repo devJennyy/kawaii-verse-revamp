@@ -35,7 +35,7 @@ function SelectTrigger({
   icon?: React.ReactNode
   variant?: "default" | "secondary"
 }) {
-  const DefaultIcon = <ChevronDownIcon className="size-4 opacity-100" />
+  const DefaultIcon = <ChevronDownIcon className="size-4 opacity-100 lg:!ml-0 !ml-[3px]" />
   const SecondaryIcon = <PiSlidersHorizontalBold className="size-4 lg:!ml-0 !ml-1 opacity-100" />
 
   const RenderedIcon = icon ?? (variant === "secondary" ? SecondaryIcon : DefaultIcon)

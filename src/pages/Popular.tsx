@@ -14,7 +14,7 @@ const Popular = () => {
     <section id="popular" className="w-full">
       {isLoading && <LoadingStyle />}
       <div
-        className={`w-full 4xl:max-w-[1920px] max-w-[1280px] !mx-auto 4xl:!my-48 lg:!my-36 !my-20 lg:px-5 px-4 transition-slow ${
+        className={`w-full 4xl:max-w-[1920px] max-w-[1280px] !mx-auto xl:!mt-16 lg:!mt-10 !mt-5 !py-10 lg:px-5 px-4 transition-slow ${
           isLoading
             ? "opacity-0"
             : "opacity-100 transition-opacity duration-500"
