@@ -118,13 +118,13 @@ const AnimeOverview = () => {
             <div className="absolute inset-0 bg-black opacity-85 z-10  overflow-hidden"></div>
           </div>
           <div
-            className={`z-30 4xl:!mt-[23rem] xl:!mt-[13rem] lg:!mt-[10rem] !mt-12 transition-slow w-full ${
+            className={`z-30 4xl:!mt-[23rem] xl:!mt-[13rem] lg:!mt-[10rem] !mt-12 transition-slow lg:w-fit w-full ${
               isLoading
                 ? "opacity-0"
                 : "opacity-100 transition-opacity duration-500"
             }`}
           >
-            <div className="w-full flex gap-16 lg:px-10">
+            <div className="flex gap-16 lg:px-10">
               {/* Left Content */}
               <div className="hidden w-full 4xl:max-w-[477px] xl:max-w-[330px] max-w-[270px] lg:flex flex-col gap-10 transition-slow">
                 <div className="bg-base/5 rounded-xl overflow-hidden">
@@ -275,7 +275,8 @@ const AnimeOverview = () => {
                     <div className="absolute inset-0 sm:h-[301px] h-[281px] bg-gradient-to-t from-main to-main/60 transition-slow" />
                   </div>
 
-                  <div className="z-30 !mt-28 lg:px-0 sm:px-5 px-4">
+                 
+                  <div className="z-30 !mt-28 lg:px-0 sm:px-5 px-4 !mx-auto sm:w-[640px] w-full">
                     <div className="flex items-end gap-5">
                       <img
                         src={animeOverview?.images?.jpg?.large_image_url}
@@ -355,7 +356,7 @@ const AnimeOverview = () => {
                   </div>
 
                   {/* Switch Content */}
-                  <div className="flex flex-col lg:px-0 sm:px-5 px-4 !mt-8">
+                  <div className="flex flex-col lg:px-0 sm:px-5 px-4 !mt-8 !mx-auto sm:w-[640px] w-full">
                     <div className="flex flex-col gap-2 relative">
                       <div className="flex gap-5 4xl:text-xl sm:text-lg tracking-wide 4xl:font-bold font-medium">
                         <button
@@ -383,10 +384,10 @@ const AnimeOverview = () => {
                       <div className="flex items-center relative !mb-6">
                         <div
                           className={`absolute top-0 left-0 ${
-                            activeTab === "details" ? "w-20" : "w-15"
+                            activeTab === "details" ? "sm:w-24 w-20" : "sm:w-16 w-15"
                           } lg:border-2 border border-neonAqua rounded-full transition-all duration-300 transform ${
                             activeTab === "details"
-                              ? "translate-x-[100%]"
+                              ? "sm:translate-x-[85%] translate-x-[100%]"
                               : "translate-x-0"
                           }`}
                         ></div>
@@ -461,6 +462,7 @@ const AnimeOverview = () => {
                       )}
                     </div>
                   </div>
+                
                 </div>
 
                 {/* Bottom */}
