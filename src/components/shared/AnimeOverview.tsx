@@ -14,6 +14,7 @@ import {
 import LoadingStyle from "../ui/LoadingStyle";
 import ErrorMessage from "../ui/ErrorMessage";
 import Button from "./Button";
+import AnimeOverviewContent from "./AnimeOverviewContent";
 
 const AnimeOverview = () => {
   const location = useLocation();
@@ -397,124 +398,79 @@ const AnimeOverview = () => {
                     {/* Conditionally rendered content */}
                     <div className="mt-4">
                       {activeTab === "overview" ? (
-                        <p className="opacity-40 font-medium tracking-wide">
-                          (WIP) Overview content.
-                        </p>
+                        <AnimeOverviewContent
+                          animeOverview={animeOverview}
+                          isExpanded={isExpanded}
+                          setIsExpanded={setIsExpanded}
+                          characters={characters}
+                        />
                       ) : (
-                        <p className="opacity-40 font-medium tracking-wide">
-                          (WIP) Details content.
-                        </p>
+                        <div className=" w-full flex flex-col gap-10 transition-slow">
+                          <div className="flex flex-col w-full bg-base/5 4xl:gap-10 gap-6 4xl:px-6 4xl:py-6 xl:p-5 xl:px-4 px-3 py-3 rounded-lg">
+                            <ItemPills title="Statistics">
+                              <div className="w-full rounded-lg bg-base/8 4xl:p-5 xl:p-4 p-3 flex flex-col gap-2 font-medium tracking-wide">
+                                {animeStats?.map(
+                                  ({ label, value, className }, index) => (
+                                    <div
+                                      key={index}
+                                      className={`w-full flex justify-between 4xl:text-lg xl:text-default text-sm ${
+                                        className || ""
+                                      }`}
+                                    >
+                                      <p>{label}</p>
+                                      <p className="!mb-1">{value}</p>
+                                    </div>
+                                  )
+                                )}
+                              </div>
+                            </ItemPills>
+
+                            <ItemPills title="Information">
+                              <div className="w-full rounded-lg bg-base/8 4xl:p-5 xl:p-4 p-3 flex flex-col gap-2">
+                                {animeDetails?.map(
+                                  ({ label, value }, index) => (
+                                    <div
+                                      key={index}
+                                      className="flex gap-2 4xl:text-lg xl:text-default text-sm"
+                                    >
+                                      <p className="text-base/60">{label}:</p>
+                                      <p className="tracking-wide">
+                                        {value || "N/A"}
+                                      </p>
+                                    </div>
+                                  )
+                                )}
+                              </div>
+                            </ItemPills>
+
+                            <ItemPills title="Opening Themes">
+                              <ThemeList
+                                themes={animeOverview?.theme?.openings || []}
+                                label="Opening Themes"
+                              />
+                            </ItemPills>
+
+                            <ItemPills title="Ending Themes">
+                              <ThemeList
+                                themes={animeOverview?.theme?.endings || []}
+                                label="Ending Themes"
+                              />
+                            </ItemPills>
+                          </div>
+                        </div>
                       )}
                     </div>
                   </div>
                 </div>
 
                 {/* Bottom */}
-                <div className="text-left flex flex-col 4xl:gap-14 2xl:gap-8 gap-6 relative lg:px-0 sm:px-5 px-4">
-                  <div className="flex flex-col gap-1 lg:hidden">
-                    <p className="xl:text-2xl sm:text-xl text-lg tracking-wide">
-                      {animeOverview?.title_english || animeOverview?.title}
-                    </p>
-                    <p className="xl:text-lg sm:text-default text-sm">
-                      {animeOverview?.title_japanese}
-                    </p>
-                  </div>
-
-                  <div className="w-full flex flex-col gap-4 text-start bg-secondaryFill rounded-md">
-                    <div
-                      className={`transition-max-height duration-1000 ease-in-out overflow-hidden ${
-                        isExpanded
-                          ? "max-h-full"
-                          : "lg:max-h-[100px] sm:max-h-[90px] max-h-[80px]"
-                      }`}
-                    >
-                      <p
-                        className={`tracking-wide leading-loose opacity-95 ${
-                          animeOverview?.synopsis?.length < 120
-                            ? "4xl:text-3xl xl:text-xl"
-                            : "xl:text-lg sm:text-default text-sm"
-                        }`}
-                      >
-                        {animeOverview?.synopsis || "No synopsis available."}
-                      </p>
-                    </div>
-
-                    {animeOverview?.synopsis?.length > 120 && (
-                      <button
-                        onClick={() => setIsExpanded(!isExpanded)}
-                        className="text-left italic"
-                        aria-expanded={isExpanded}
-                      >
-                        <p className="xl:text-lg sm:text-default text-sm transition-slow cursor-pointer hover:text-neonAqua hover:underline underline-offset-4">
-                          {isExpanded ? "See Less . ." : "See More . ."}
-                        </p>
-                      </button>
-                    )}
-                  </div>
-
-                  <ItemPills
-                    items={animeOverview?.genres || []}
-                    isClickable
-                    onClick={(url) => window.open(url, "_blank")}
+                <div className="hidden lg:block">
+                  <AnimeOverviewContent
+                    animeOverview={animeOverview}
+                    isExpanded={isExpanded}
+                    setIsExpanded={setIsExpanded}
+                    characters={characters}
                   />
-
-                  <ItemPills title="Trailer">
-                    {animeOverview?.trailer?.embed_url && (
-                      <div className="w-full rounded-xl overflow-hidden aspect-video">
-                        <iframe
-                          className="w-full h-full"
-                          src={`${animeOverview.trailer.embed_url}&autoplay=1&mute=1`}
-                          title="Anime Trailer"
-                          allow="autoplay; encrypted-media"
-                          allowFullScreen
-                        ></iframe>
-                      </div>
-                    )}
-                  </ItemPills>
-
-                  <ItemPills
-                    title="Streaming"
-                    items={animeOverview?.streaming || []}
-                    isClickable
-                    onClick={(url) => window.open(url, "_blank")}
-                  />
-
-                  <ItemPills
-                    title="Other Site"
-                    items={animeOverview?.external || []}
-                    isClickable
-                    onClick={(url) => window.open(url, "_blank")}
-                  />
-
-                  <div id="characters" className="scroll-mt-24">
-                    <ItemPills title="Characters">
-                      <div className="grid 3xl:grid-cols-5 sm:grid-cols-4 grid-cols-3 4xl:gap-4 sm:gap-3 gap-2">
-                        {characters?.map((charData, index) => {
-                          return (
-                            <div
-                              key={index}
-                              className="w-full gap-5 lg:rounded-lg rounded-md 4xl:p-3 sm:p-2 p-1 overflow-hidden cursor-pointer bg-base/10 hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default"
-                            >
-                              <img
-                                src={
-                                  charData?.character?.images?.jpg?.image_url
-                                }
-                                alt={charData?.character?.name}
-                                className="w-full 4xl:h-[230px] 3xl:h-[200px] md:h-[175px] sm:h-[140px] h-[109px] object-cover sm:rounded-md rounded-sm"
-                              />
-                              <div className="flex flex-col 4xl:gap-1 4xl:text-lg xl:text-default sm:text-sm text-[12px] sm:pt-2 pt-1 tracking-wide">
-                                <p className="text-neonAqua font-semibold whitespace-nowrap overflow-hidden text-ellipsis">
-                                  {charData?.character?.name}
-                                </p>
-
-                                <p className="opacity-60">{charData?.role}</p>
-                              </div>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </ItemPills>
-                  </div>
                 </div>
               </div>
             </div>
