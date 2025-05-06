@@ -22,6 +22,20 @@ const AnimeOverview = () => {
   const [characters, setCharacters] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [visibleOpeningCount, setVisibleOpeningCount] = useState(5);
+  const [visibleEndingCount, setVisibleEndingCount] = useState(5);
+  const openingThemes =
+    animeOverview?.theme?.openings?.slice(0, visibleOpeningCount) || [];
+  const endingThemes =
+    animeOverview?.theme?.endings?.slice(0, visibleEndingCount) || [];
+
+  const handleLoadMoreOpenings = () => {
+    setVisibleOpeningCount((prev) => prev + 5);
+  };
+
+  const handleLoadMoreEndings = () => {
+    setVisibleEndingCount((prev) => prev + 5);
+  };
   const animeStats = [
     {
       label: "Scores",
@@ -167,17 +181,38 @@ const AnimeOverview = () => {
                   </ItemPills>
 
                   <ItemPills title="Opening Themes">
-                    <ThemeList
-                      themes={animeOverview?.theme?.openings || []}
-                      label="Opening Themes"
-                    />
+                    <>
+                      <ThemeList
+                        themes={openingThemes}
+                        label="Opening Themes"
+                      />
+                      {animeOverview?.theme?.openings?.length >
+                        visibleOpeningCount && (
+                        <Button
+                          colorType={"tertiary"}
+                          hasIcon={false}
+                          label="Load More"
+                          onClick={() => handleLoadMoreOpenings()}
+                          customClass="text-xl !mt-5 text-center w-full border-white/30 rounded-lg gap-5 py-4 px-4 cursor-pointer hover:text-neonAqua hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default"
+                        />
+                      )}
+                    </>
                   </ItemPills>
 
                   <ItemPills title="Ending Themes">
-                    <ThemeList
-                      themes={animeOverview?.theme?.endings || []}
-                      label="Ending Themes"
-                    />
+                    <>
+                      <ThemeList themes={endingThemes} label="Ending Themes" />
+                      {animeOverview?.theme?.openings?.length >
+                        visibleEndingCount && (
+                        <Button
+                          colorType={"tertiary"}
+                          hasIcon={false}
+                          label="Load More"
+                          onClick={() => handleLoadMoreEndings()}
+                          customClass="text-xl !mt-5 text-center w-full border-white/30 rounded-lg gap-5 py-4 px-4 cursor-pointer hover:text-neonAqua hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default"
+                        />
+                      )}
+                    </>
                   </ItemPills>
                 </div>
               </div>
@@ -238,7 +273,7 @@ const AnimeOverview = () => {
                         <Tooltip>
                           <TooltipTrigger className="cursor-pointer">
                             {remainingCount > 0 && (
-                              <button
+                              <div
                                 onClick={() =>
                                   document
                                     .getElementById("characters")
@@ -247,7 +282,7 @@ const AnimeOverview = () => {
                                 className="4xl:w-16 4xl:h-16 xl:w-11 xl:h-11 w-9 h-9 rounded-full flex items-center justify-center bg-transparent border-2 4xl:text-lg xl:text-default text-sm border-neonAqua hover:bg-neonAqua/10 transition-default cursor-pointer text-neonAqua font-semibold "
                               >
                                 {`+${remainingCount}`}
-                              </button>
+                              </div>
                             )}
                           </TooltipTrigger>
                           <TooltipContent>
@@ -275,7 +310,6 @@ const AnimeOverview = () => {
                     <div className="absolute inset-0 sm:h-[301px] h-[281px] bg-gradient-to-t from-main to-main/60 transition-slow" />
                   </div>
 
-                 
                   <div className="z-30 !mt-28 lg:px-0 sm:px-5 px-4 !mx-auto sm:w-[640px] w-full">
                     <div className="flex items-end gap-5">
                       <img
@@ -328,7 +362,7 @@ const AnimeOverview = () => {
                               <Tooltip>
                                 <TooltipTrigger className="cursor-pointer">
                                   {remainingCount > 0 && (
-                                    <button
+                                    <div
                                       onClick={() =>
                                         document
                                           .getElementById("characters")
@@ -339,7 +373,7 @@ const AnimeOverview = () => {
                                       className="sm:w-9 sm:h-9 w-7 h-7 rounded-full flex items-center justify-center bg-transparent border-2 4xl:text-lg xl:text-default text-[10px] border-neonAqua hover:bg-neonAqua/10 transition-default cursor-pointer text-neonAqua font-semibold "
                                     >
                                       {`+${remainingCount}`}
-                                    </button>
+                                    </div>
                                   )}
                                 </TooltipTrigger>
                                 <TooltipContent>
@@ -384,7 +418,9 @@ const AnimeOverview = () => {
                       <div className="flex items-center relative !mb-6">
                         <div
                           className={`absolute top-0 left-0 ${
-                            activeTab === "details" ? "sm:w-24 w-20" : "sm:w-16 w-15"
+                            activeTab === "details"
+                              ? "sm:w-24 w-20"
+                              : "sm:w-16 w-15"
                           } lg:border-2 border border-neonAqua rounded-full transition-all duration-300 transform ${
                             activeTab === "details"
                               ? "sm:translate-x-[85%] translate-x-[100%]"
@@ -462,7 +498,6 @@ const AnimeOverview = () => {
                       )}
                     </div>
                   </div>
-                
                 </div>
 
                 {/* Bottom */}

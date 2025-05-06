@@ -56,11 +56,11 @@ interface ThemeListProps {
   label: string;
 }
 
-const ThemeList = ({ themes }: ThemeListProps) => {
+const ThemeList = ({ themes }: ThemeListProps) => { 
   if (!themes || themes.length === 0) return null;
 
   return (
-    <div className="flex flex-col 4xl:gap-6 gap-4 mt-6">
+    <div className="flex flex-col gap-4 mt-6">
       {themes.map((theme, index) => {
         const cleanedQuery = theme
           .replace(/^(\d+: )?/, "")
@@ -91,20 +91,21 @@ const ThemeList = ({ themes }: ThemeListProps) => {
                   </div>
                 </div>
               </DialogTrigger>
-              <DialogContent className="bg-main px-8 scale-115">
+              <DialogContent className="bg-main p-5 scale-115">
                 <DialogHeader>
                   <DialogDescription>
-                    <div className="grid grid-cols-2 gap-4 !mt-5">
+                    <p className="text-left lg:text-default sm:text-sm text-[12px] text-white leading-relaxed sm:pr-10 pr-5">{theme}</p>
+                    <div className="grid grid-cols-2 4xl:gap-4 gap-2 !mt-5">
                       {platforms?.map(({ name, urlKey, Icon, color }) => (
                         <a
                           key={name}
                           href={searchUrls[urlKey as keyof typeof searchUrls]}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex justify-start items-center gap-2 text-base text-[16px] rounded-md px-3 py-3 bg-base/10 hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua hover:text-neonAqua transition-default"
+                          className="flex justify-start items-center gap-2 text-base text-[16px] rounded-md px-3 4xl:py-3 lg:py-[10px] py-2 bg-base/10 hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua hover:text-neonAqua transition-default"
                         >
-                          <Icon size={28} style={{ color }} />
-                          <p>{name}</p>
+                          <Icon className="4xl:text-[28px] lg:text-2xl sm:text-xl" style={{ color }} />
+                          <p className="4xl:text-default sm:text-sm text-[12px]">{name}</p>
                         </a>
                       ))}
                     </div>
