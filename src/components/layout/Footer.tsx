@@ -15,7 +15,7 @@ const Footer = () => {
           Designed & Developed by Jenny Pieloor
         </p>
         <div className="flex justify-between items-center w-full sm:mt-5 mt-0 font-medium">
-          <button className="flex justify-start items-center sm:w-[230px] gap-[3px] hover:gap-[6px] duration-100 active:text-white/60 transition-default">
+          <button className="flex justify-start items-center lg:w-[230px] sm:w-[120px] gap-[3px] hover:gap-[6px] duration-100 active:text-white/60 transition-default">
             <a
               href="https://github.com/devJennyy/kawaii-verse-revamp"
               target="_blank"

@@ -122,7 +122,7 @@ const AnimeOverviewContent = ({
               hasIcon={false}
               label="Load More"
               onClick={() => handleLoadMore()}
-              customClass="!mt-16 !mx-auto cursor-pointer sm:px-12 sm:py-3 px-8 py-2 w-fit xl:text-xl sm:text-[12px] text-[10px] !my-2 font-medium text-neonAqua hover:bg-neonAqua/10 transition-default"
+              customClass="sm:!mt-12 !mt-10 !mx-auto cursor-pointer sm:px-12 sm:py-3 px-8 py-2 w-fit xl:text-xl sm:text-[12px] text-[10px] !my-2 font-medium text-neonAqua hover:bg-neonAqua/10 transition-default"
             />
           )}
         </ItemPills>

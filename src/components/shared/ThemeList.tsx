@@ -60,7 +60,7 @@ const ThemeList = ({ themes }: ThemeListProps) => {
   if (!themes || themes.length === 0) return null;
 
   return (
-    <div className="flex flex-col gap-4 mt-6">
+    <div className="flex flex-col 4xl:gap-4 gap-3">
       {themes.map((theme, index) => {
         const cleanedQuery = theme
           .replace(/^(\d+: )?/, "")

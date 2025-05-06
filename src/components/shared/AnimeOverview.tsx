@@ -193,7 +193,7 @@ const AnimeOverview = () => {
                           hasIcon={false}
                           label="Load More"
                           onClick={() => handleLoadMoreOpenings()}
-                          customClass="text-xl !mt-5 text-center w-full border-white/30 rounded-lg gap-5 py-4 px-4 cursor-pointer hover:text-neonAqua hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default"
+                          customClass="4xl:text-xl lg:text-default text-sm 4xl:!mt-5 lg:!mt-3 !mt-2 text-center w-full border-white/30 rounded-lg gap-5 4xl:py-4 py-3 px-4 cursor-pointer hover:text-neonAqua hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default"
                         />
                       )}
                     </>
@@ -209,7 +209,7 @@ const AnimeOverview = () => {
                           hasIcon={false}
                           label="Load More"
                           onClick={() => handleLoadMoreEndings()}
-                          customClass="text-xl !mt-5 text-center w-full border-white/30 rounded-lg gap-5 py-4 px-4 cursor-pointer hover:text-neonAqua hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default"
+                          customClass="4xl:text-xl lg:text-default text-sm 4xl:!mt-5 lg:!mt-3 !mt-2 text-center w-full border-white/30 rounded-lg gap-5 4xl:py-4 py-3 px-4 cursor-pointer hover:text-neonAqua hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default"
                         />
                       )}
                     </>
@@ -481,18 +481,39 @@ const AnimeOverview = () => {
                             </ItemPills>
 
                             <ItemPills title="Opening Themes">
-                              <ThemeList
-                                themes={animeOverview?.theme?.openings || []}
-                                label="Opening Themes"
-                              />
-                            </ItemPills>
+                    <>
+                      <ThemeList
+                        themes={openingThemes}
+                        label="Opening Themes"
+                      />
+                      {animeOverview?.theme?.openings?.length >
+                        visibleOpeningCount && (
+                        <Button
+                          colorType={"tertiary"}
+                          hasIcon={false}
+                          label="Load More"
+                          onClick={() => handleLoadMoreOpenings()}
+                          customClass="4xl:text-xl text-default 4xl:!mt-5 !mt-3 text-center w-full border-white/30 rounded-lg gap-5 4xl:py-4 py-3 px-4 cursor-pointer hover:text-neonAqua hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default"
+                        />
+                      )}
+                    </>
+                  </ItemPills>
 
-                            <ItemPills title="Ending Themes">
-                              <ThemeList
-                                themes={animeOverview?.theme?.endings || []}
-                                label="Ending Themes"
-                              />
-                            </ItemPills>
+                  <ItemPills title="Ending Themes">
+                    <>
+                      <ThemeList themes={endingThemes} label="Ending Themes" />
+                      {animeOverview?.theme?.openings?.length >
+                        visibleEndingCount && (
+                        <Button
+                          colorType={"tertiary"}
+                          hasIcon={false}
+                          label="Load More"
+                          onClick={() => handleLoadMoreEndings()}
+                          customClass="4xl:text-xl text-default 4xl:!mt-5 !mt-3 text-center w-full border-white/30 rounded-lg gap-5 4xl:py-4 py-3 px-4 cursor-pointer hover:text-neonAqua hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default"
+                        />
+                      )}
+                    </>
+                  </ItemPills>
                           </div>
                         </div>
                       )}
