@@ -9,10 +9,9 @@ import { SiApplemusic } from "react-icons/si";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
-  DialogHeader,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { DialogTitle } from "@radix-ui/react-dialog";
 
 const getSearchUrls = (query: string) => {
   const encoded = encodeURIComponent(query);
@@ -92,25 +91,28 @@ const ThemeList = ({ themes }: ThemeListProps) => {
                 </div>
               </DialogTrigger>
               <DialogContent className="bg-main p-5 scale-115">
-                <DialogHeader>
-                  <DialogDescription>
-                    <p className="text-left lg:text-default sm:text-sm text-[12px] text-white leading-relaxed sm:pr-10 pr-5">{theme}</p>
-                    <div className="grid grid-cols-2 4xl:gap-4 gap-2 !mt-5">
-                      {platforms?.map(({ name, urlKey, Icon, color }) => (
-                        <a
-                          key={name}
-                          href={searchUrls[urlKey as keyof typeof searchUrls]}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex justify-start items-center gap-2 text-base text-[16px] rounded-md px-3 4xl:py-3 lg:py-[10px] py-2 bg-base/10 hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua hover:text-neonAqua transition-default"
-                        >
-                          <Icon className="4xl:text-[28px] lg:text-2xl sm:text-xl" style={{ color }} />
-                          <p className="4xl:text-default sm:text-sm text-[12px]">{name}</p>
-                        </a>
-                      ))}
-                    </div>
-                  </DialogDescription>
-                </DialogHeader>
+                <DialogTitle className="tracking-wide text-left lg:text-default sm:text-sm text-[12px] text-white leading-relaxed sm:pr-10 pr-5">
+                  {theme}
+                </DialogTitle>
+                <div className="grid grid-cols-2 4xl:gap-4 gap-2">
+                  {platforms?.map(({ name, urlKey, Icon, color }) => (
+                    <a
+                      key={name}
+                      href={searchUrls[urlKey as keyof typeof searchUrls]}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex justify-start items-center gap-2 text-base text-[16px] rounded-md px-3 4xl:py-3 lg:py-[10px] py-2 bg-base/10 hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua hover:text-neonAqua transition-default"
+                    >
+                      <Icon
+                        className="4xl:text-[28px] lg:text-2xl sm:text-xl"
+                        style={{ color }}
+                      />
+                      <p className="4xl:text-default sm:text-sm text-[12px]">
+                        {name}
+                      </p>
+                    </a>
+                  ))}
+                </div>
               </DialogContent>
             </Dialog>
           </div>

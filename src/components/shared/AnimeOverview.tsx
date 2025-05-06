@@ -15,6 +15,8 @@ import LoadingStyle from "../ui/LoadingStyle";
 import ErrorMessage from "../ui/ErrorMessage";
 import Button from "./Button";
 import AnimeOverviewContent from "./AnimeOverviewContent";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { DialogTitle } from "@radix-ui/react-dialog";
 
 const AnimeOverview = () => {
   const location = useLocation();
@@ -243,12 +245,38 @@ const AnimeOverview = () => {
                     {animeOverview?.title_japanese}
                   </p>
 
-                  <Button
-                    colorType={"tertiary"}
-                    hasIcon={false}
-                    label="WATCH NOW"
-                    customClass="!mt-1 w-fit 4xl:text-xl xl:text-default text-sm 4xl:px-18 4xl:py-5 xl:px-16 xl:py-4 px-12 py-[14px] font-medium text-main hover:text-neonAqua bg-neonAqua hover:bg-neonAqua/10 cursor-pointer transition-default"
-                  />
+                  <Dialog>
+                    <DialogTrigger>
+                      <Button
+                        colorType={"tertiary"}
+                        hasIcon={false}
+                        label="WATCH NOW"
+                        customClass="!mt-1 w-fit 4xl:text-xl xl:text-default text-sm 4xl:px-18 4xl:py-5 xl:px-16 xl:py-4 px-12 py-[14px] font-medium text-main hover:text-neonAqua bg-neonAqua hover:bg-neonAqua/10 cursor-pointer transition-default"
+                      />
+                    </DialogTrigger>
+                    <DialogContent className="bg-main p-5 scale-115">
+                      <DialogTitle className="tracking-wide text-left lg:text-default sm:text-sm text-[12px] text-white leading-relaxed sm:pr-10 pr-5">
+                        Available Streaming Platform
+                      </DialogTitle>
+                      <div className="grid grid-cols-2 4xl:gap-4 gap-2">
+                        {animeOverview?.streaming?.map(
+                          (platform: any, index: any) => (
+                            <a
+                              key={index}
+                              href={platform.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="cursor-pointer flex justify-start items-center gap-2 text-base text-[16px] rounded-md px-3 4xl:py-3 lg:py-[10px] py-2 bg-base/10 hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua hover:text-neonAqua transition-default"
+                            >
+                              <p className="4xl:text-default sm:text-sm text-[12px]">
+                                {platform.name}
+                              </p>
+                            </a>
+                          )
+                        )}
+                      </div>
+                    </DialogContent>
+                  </Dialog>
 
                   <div className="flex flex-col items-start 4xl:gap-5 gap-3 4xl:!mt-14 xl:!mt-7 !mt-4">
                     <p className="4xl:text-2xl xl:text-xl font-medium">
@@ -333,12 +361,39 @@ const AnimeOverview = () => {
                         <p className="sm:text-xl text-sm line-clamp-1">
                           {animeOverview?.title_japanese}
                         </p>
-                        <Button
-                          colorType={"tertiary"}
-                          hasIcon={false}
-                          label="WATCH NOW"
-                          customClass="sm:px-12 sm:py-3 px-8 py-2 w-fit sm:text-[12px] text-[10px] !my-2 font-medium text-neonAqua"
-                        />
+
+                        <Dialog>
+                          <DialogTrigger>
+                            <Button
+                              colorType={"tertiary"}
+                              hasIcon={false}
+                              label="WATCH NOW"
+                              customClass="sm:px-12 sm:py-3 px-8 py-2 w-fit sm:text-[12px] text-[10px] !my-2 font-medium text-neonAqua"
+                            />
+                          </DialogTrigger>
+                          <DialogContent className="bg-main lg:p-5 p-4 scale-115">
+                            <DialogTitle className="tracking-wide text-left 4xl:text-lg sm:text-default text-sm text-white leading-relaxed sm:pr-10 pr-5">
+                              Available Streaming Platform
+                            </DialogTitle>
+                            <div className="grid grid-cols-2 4xl:gap-4 gap-2">
+                              {animeOverview?.streaming?.map(
+                                (platform: any, index: any) => (
+                                  <a
+                                    key={index}
+                                    href={platform.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="cursor-pointer flex justify-start items-center gap-2 text-base text-[16px] rounded-md px-3 4xl:py-3 lg:py-[10px] py-2 bg-base/10 hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua hover:text-neonAqua transition-default"
+                                  >
+                                    <p className="4xl:text-default sm:text-sm text-[12px] whitespace-nowrap truncate">
+                                      {platform.name}
+                                    </p>
+                                  </a>
+                                )
+                              )}
+                            </div>
+                          </DialogContent>
+                        </Dialog>
                         <div className="flex flex-col gap-2">
                           <p className="sm:text-default text-sm">
                             Main Characters
@@ -481,39 +536,42 @@ const AnimeOverview = () => {
                             </ItemPills>
 
                             <ItemPills title="Opening Themes">
-                    <>
-                      <ThemeList
-                        themes={openingThemes}
-                        label="Opening Themes"
-                      />
-                      {animeOverview?.theme?.openings?.length >
-                        visibleOpeningCount && (
-                        <Button
-                          colorType={"tertiary"}
-                          hasIcon={false}
-                          label="Load More"
-                          onClick={() => handleLoadMoreOpenings()}
-                          customClass="4xl:text-xl text-default 4xl:!mt-5 !mt-3 text-center w-full border-white/30 rounded-lg gap-5 4xl:py-4 py-3 px-4 cursor-pointer hover:text-neonAqua hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default"
-                        />
-                      )}
-                    </>
-                  </ItemPills>
+                              <>
+                                <ThemeList
+                                  themes={openingThemes}
+                                  label="Opening Themes"
+                                />
+                                {animeOverview?.theme?.openings?.length >
+                                  visibleOpeningCount && (
+                                  <Button
+                                    colorType={"tertiary"}
+                                    hasIcon={false}
+                                    label="Load More"
+                                    onClick={() => handleLoadMoreOpenings()}
+                                    customClass="4xl:text-xl text-default 4xl:!mt-5 !mt-3 text-center w-full border-white/30 rounded-lg gap-5 4xl:py-4 py-3 px-4 cursor-pointer hover:text-neonAqua hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default"
+                                  />
+                                )}
+                              </>
+                            </ItemPills>
 
-                  <ItemPills title="Ending Themes">
-                    <>
-                      <ThemeList themes={endingThemes} label="Ending Themes" />
-                      {animeOverview?.theme?.openings?.length >
-                        visibleEndingCount && (
-                        <Button
-                          colorType={"tertiary"}
-                          hasIcon={false}
-                          label="Load More"
-                          onClick={() => handleLoadMoreEndings()}
-                          customClass="4xl:text-xl text-default 4xl:!mt-5 !mt-3 text-center w-full border-white/30 rounded-lg gap-5 4xl:py-4 py-3 px-4 cursor-pointer hover:text-neonAqua hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default"
-                        />
-                      )}
-                    </>
-                  </ItemPills>
+                            <ItemPills title="Ending Themes">
+                              <>
+                                <ThemeList
+                                  themes={endingThemes}
+                                  label="Ending Themes"
+                                />
+                                {animeOverview?.theme?.openings?.length >
+                                  visibleEndingCount && (
+                                  <Button
+                                    colorType={"tertiary"}
+                                    hasIcon={false}
+                                    label="Load More"
+                                    onClick={() => handleLoadMoreEndings()}
+                                    customClass="4xl:text-xl text-default 4xl:!mt-5 !mt-3 text-center w-full border-white/30 rounded-lg gap-5 4xl:py-4 py-3 px-4 cursor-pointer hover:text-neonAqua hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default"
+                                  />
+                                )}
+                              </>
+                            </ItemPills>
                           </div>
                         </div>
                       )}
