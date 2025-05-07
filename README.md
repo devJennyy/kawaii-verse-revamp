@@ -16,23 +16,22 @@
   </h3>
 
   <div align="center">
-    An anime archive showcasing movies, series, characters, and streaming availability powered by 
+    An anime archive showcasing movies, series, characters, and streaming availability — powered by the
     <img src="https://img.shields.io/badge/Jikan_API-100000?style=flat&logoColor=white&color=blue" alt="Jikan API" />.
   </div>
   </br>
   
-  `Status: Work in Progress. Best viewed on a 4K monitor with 125% resolution`
+  `WIP: Currently working on the Top Characters page.`
 </div>
 
 ## <a name="tech-stack">⚙️ Tech Stack </a>
 
 - React.js
-- Tailwind CSS
+- TailwindCSS
+- TypeScript
 - ShadCN
 - Framer Motion
 - SwiperJS
-- Vite
-- TypeScript
 - Jikan API
 - Axios
 
@@ -52,6 +51,6 @@ npm run dev
 ```
 
 ##
-> **Designed and Developed by [@devjenny](https)**
+> **Designed and Developed by [@devjenny](https://www.linkedin.com/in/jennypieloor/)**
 
 
