@@ -42,9 +42,9 @@ const AnimeShowcase = ({ type, delay = 0 }: AnimeShowcaseProps) => {
           type === "movies"
             ? getPopularMoviesUrl(screenWidth)
             : type === "newest-season"
-            ? NEWEST_SEASON
+            ? NEWEST_SEASON.replace("{page}", "1")
             : type === "top-anime"
-            ? TOP_ANIME
+            ? TOP_ANIME.replace("{page}", "1")
             : LONG_WEEKEND_WATCHLIST;
 
         const res = await axios.get(url);
@@ -147,7 +147,7 @@ const AnimeShowcase = ({ type, delay = 0 }: AnimeShowcaseProps) => {
         <>
           <div className="w-full lg:grid 4xl:grid-cols-7 2xl:grid-cols-6 lg:grid-cols-5 grid-cols-1 3xl:gap-12 xl:gap-8 gap-5 hidden">
             {animeList?.map((item, index) => (
-              <Link to={`/anime-overview?id=${item.mal_id}`}>
+              <Link key={index} to={`/anime-overview?id=${item.mal_id}`}>
                 <motion.div
                   key={index}
                   className="relative 4xxl:w-[373px] 4xl:h-[223px] 4xl:w-[316px] 3xxl:w-[275px] 3xxl:h-[203px] xl:w-[205px] xl:h-[140px] w-[170px] h-[120px] group cursor-pointer"

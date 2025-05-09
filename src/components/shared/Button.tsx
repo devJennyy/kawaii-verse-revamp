@@ -21,9 +21,9 @@ const Button = ({
 
   const colorStyle = {
     primary:
-      "font-semibold bg-midnightNavy text-neonAqua active:bg-neonAqua active:text-main hover:bg-neonAqua hover:text-main focus:bg-neonAqua focus:text-main transition-default",
+      "capitalize font-semibold bg-midnightNavy text-neonAqua active:bg-neonAqua active:text-main hover:bg-neonAqua hover:text-main focus:bg-neonAqua focus:text-main transition-default",
     secondary:
-      "font-semibold bg-neonAqua border border-neonAqua text-main hover:bg-transparent hover:text-neonAqua active:bg-transparent active:text-neonAqua focus:bg-transparent focus:text-neonAqua transition-default",
+      "capitalize font-semibold bg-neonAqua border border-neonAqua text-main hover:bg-transparent hover:text-neonAqua active:bg-transparent active:text-neonAqua focus:bg-transparent focus:text-neonAqua transition-default",
     tertiary: "flex justify-center items-center border border-neonAqua rounded-full",
   };
 
@@ -35,7 +35,7 @@ const Button = ({
   return (
     <div className={appliedStyles} onClick={() => onClick()}>
       {hasIcon && <IoLogoGithub className="sm:text-md text-lg !mb-[2px]" />}
-      <p className="whitespace-nowrap tracking-wide capitalize">
+      <p className="whitespace-nowrap tracking-wide">
         {label}
       </p>
     </div>

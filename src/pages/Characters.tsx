@@ -1,3 +1,5 @@
+import FavoritesTable from "@/components/characters/FavoritesTable";
+import Leaderboard from "@/components/characters/Leaderboard";
 import LoadingStyle from "@/components/ui/LoadingStyle";
 import { useState } from "react";
 
@@ -12,13 +14,14 @@ const Characters = () => {
     <section id="characters" className="w-full">
     {isLoading && <LoadingStyle />}
     <div
-      className={`w-full max-w-[1920px] !mx-auto !my-48 ${
+      className={`w-full !mx-auto lg:!my-30 !my-24 transition-slow ${
         isLoading
           ? "opacity-0"
           : "opacity-100 transition-opacity duration-500"
       }`}
     >
-      <p className="text-white text-[5rem]">Currently Work In Progress!</p>
+      <Leaderboard />
+      <FavoritesTable />
     </div>
   </section>
   );

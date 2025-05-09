@@ -5,7 +5,7 @@ import { Autoplay, Navigation } from "swiper/modules";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Swiper as SwiperType } from "swiper";
-import { FaPause, FaPlay, FaStar } from "react-icons/fa6";
+import { FaStar } from "react-icons/fa6";
 import { GET_TOP_ANIME } from "@/constants/api";
 import CustomNavButtons from "../ui/CustomNavButtons";
 import "../../styles/swiper.css";
@@ -15,7 +15,6 @@ import { Link } from "react-router";
 const Hero = () => {
   const swiperRef = useRef<SwiperType | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTrailerPlaying, setIsTrailerPlaying] = useState(false);
   const [topAnime, setTopAnime] = useState<any[]>([]);
 
   const fetchTopAnime = () => {
@@ -39,17 +38,19 @@ const Hero = () => {
       <div className="relative w-full lg:flex justify-center items-center 4xl:px-20 px-12 5xl:h-[2020px] 4xxl:h-[1590px] 4xl:h-[1500px] 3xl:h-[1080px] 2xl:h-[808px] h-[752px] hidden transition-slow z-0">
         {/* Bg Image */}
         <div className="absolute inset-0 w-full h-full z-0 border-b-20 border-black">
-          {topAnime[currentIndex] && (
+          {topAnime?.map((anime, index) => (
             <img
-              key={currentIndex}
+              key={index}
               src={
-                topAnime[currentIndex].trailer.images.maximum_image_url ||
-                topAnime[currentIndex].images.jpg.large_image_url
+                anime.trailer?.images?.maximum_image_url ||
+                anime.images.jpg.large_image_url
               }
-              alt={topAnime[currentIndex].title}
-              className="w-full h-full object-cover blur-[4px]"
+              alt={anime.title}
+              className={`absolute inset-0 w-full h-full object-cover blur-[4px] transition-opacity duration-700 ease-in-out ${
+                index === currentIndex ? "opacity-100" : "opacity-0"
+              }`}
             />
-          )}
+          ))}
         </div>
 
         {/* Gradient Overlay */}
@@ -60,52 +61,52 @@ const Hero = () => {
         {/* Content */}
         <div className="absolute w-full max-w-full !mx-auto 5xl:w-[3840px] h-full flex z-20 5xl:pb-30 4xl:pb-40 3xl:pb-44 pb-20">
           {/* Details */}
-          <div className="w-full h-full flex flex-col justify-end items-start 5xl:gap-14 4xl:gap-12 gap-12 transition-slow">
-            <div className="flex flex-col justify-end items-start text-start 4xl:pl-20 pl-12 5xl:gap-8 4xl:gap-7 3xl:gap-6 2xl:gap-4 gap-2">
-              {topAnime[currentIndex] && (
-                <p className="font-semibold tracking-wider 5xl:text-[54px] 4xxl:text-[44px] 4xl:text-[38px] 3xl:text-[28px] 2xl:text-lg text-neonAqua uppercase">
-                  #{topAnime[currentIndex].rank} Ranking
-                </p>
-              )}
+          <div className="relative w-full h-full flex flex-col justify-end items-start transition-slow">
+            <div className="relative flex-1">
+              {topAnime?.map((anime, index) => {
+                return (
+                  <div
+                    key={index}
+                    className={`flex flex-col justify-end items-start text-start 4xl:pl-20 pl-12 5xl:gap-8 4xl:gap-7 3xl:gap-6 2xl:gap-4 gap-2 absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                      index === currentIndex ? "opacity-100" : "opacity-0"
+                    }`}
+                  >
+                    <p className="font-semibold tracking-wider 5xl:text-[54px] 4xxl:text-[44px] 4xl:text-[38px] 3xl:text-[28px] 2xl:text-lg text-neonAqua uppercase whitespace-nowrap">
+                      #{anime?.rank ?? ""} Ranking
+                    </p>
 
-              {topAnime[currentIndex] && (
-                <p
-                  key={topAnime[currentIndex].title}
-                  className={`uppercase tracking-wide 5xl:!mt-[-2rem] 4xl:!mt-[-1rem] 3xl:!mt-[-20px] 2xl:!mt-[-16px] !mt-[-5px] 5xl:w-[1300px] 4xxl:w-[1000px] 4xl:w-[850px] 3xl:w-[640px] 2xl:w-[459px] xl:w-[401px] w-[350px] 
-              ${
-                topAnime[currentIndex].title.length > 20
-                  ? "text-[35px] xl:text-[40px] 2xl:text-[42px] 3xl:text-[70px] 4xl:text-[90px] 4xxl:text-[110px] 5xl:text-[140px] 5xl:leading-[11.5rem] 4xl:leading-[7.5rem] 4xxl:leading-[9.5rem] 3xl:leading-[6rem] leading-[3.4rem]"
-                  : "text-[80px] xl:text-[90px] 2xl:text-[80px] 3xl:text-[135px] 4xl:text-[185px] 4xxl:text-[210px] 5xl:text-[260px] 5xl:leading-[17rem] 4xl:leading-[12.5rem] 3xl:leading-[9rem] leading-[6rem]"
-              }`}
-                >
-                  {topAnime[currentIndex].title}
-                </p>
-              )}
+                    <p
+                      className={`uppercase tracking-wide 5xl:!mt-[-2rem] 4xl:!mt-[-1rem] 3xl:!mt-[-20px] 2xl:!mt-[-16px] !mt-[-5px] 5xl:w-[1300px] 4xxl:w-[1000px] 4xl:w-[850px] 3xl:w-[640px] 2xl:w-[459px] xl:w-[401px] w-[350px] ${
+                        anime.title.length > 20
+                          ? "text-[35px] xl:text-[40px] 2xl:text-[42px] 3xl:text-[70px] 4xl:text-[90px] 4xxl:text-[110px] 5xl:text-[140px] 5xl:leading-[11.5rem] 4xl:leading-[7.5rem] 4xxl:leading-[9.5rem] 3xl:leading-[6rem] leading-[3.4rem]"
+                          : "text-[80px] xl:text-[90px] 2xl:text-[80px] 3xl:text-[135px] 4xl:text-[185px] 4xxl:text-[210px] 5xl:text-[260px] 5xl:leading-[17rem] 4xl:leading-[12.5rem] 3xl:leading-[9rem] leading-[6rem]"
+                      }`}
+                    >
+                      {anime.title}
+                    </p>
 
-              {topAnime[currentIndex] && (
-                <p className="line-clamp-2 5xl:text-[44px] 4xxl:text-[32px] 4xl:text-[28px] 3xl:text-[24px] 2xl:text-lg text-sm 5xl:w-[1028px] 4xxl:w-[936px] 4xl:w-[736px] 3xl:w-[552px] 2xl:w-[429px] xl:w-[371px] w-[340px] 5xl:leading-20 4xl:leading-13 3xl:leading-9 2xl:leading-7 leading-6">
-                  {topAnime[currentIndex].synopsis}
-                </p>
-              )}
-              <div className="flex 4xl:gap-8 3xl:gap-4 gap-3 5xl:h-[130px] 4xl:h-[90px] 3xl:h-[64px] h-[44px] 5xl:!mt-12 4xl:!mt-8 !mt-6">
-                <button
-                  onClick={() => setIsTrailerPlaying(!isTrailerPlaying)}
-                  className="5xl:w-[130px] 4xl:w-[90px] 3xl:w-[64px] w-[44px] h-full rounded-full bg-neonAqua border border-neonAqua text-main flex justify-center items-center cursor-pointer hover:bg-transparent hover:text-neonAqua transition-default"
-                >
-                  {isTrailerPlaying ? (
-                    <FaPause className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg" />
-                  ) : (
-                    <FaPlay className="5xl:text-[44px] 4xl:text-[32px] 3xl:text-[24px] 2xl:text-lg" />
-                  )}
-                </button>
-                <button className="5xl:px-36 4xl:px-24 3xl:px-18 px-12 w-fit h-full flex justify-center items-center 4xl:border-2 3xl:border-2 border border-neonAqua text-neonAqua rounded-full cursor-pointer hover:bg-neonAqua hover:text-main transition-default">
-                  <p className="uppercase 5xl:text-[38px] 4xl:text-[28px] 3xl:text-lg text-sm font-normal">
-                    View Details
-                  </p>
-                </button>
-              </div>
+                    <p className="line-clamp-2 5xl:text-[44px] 4xxl:text-[32px] 4xl:text-[28px] 3xl:text-[24px] 2xl:text-lg text-sm 5xl:w-[1028px] 4xxl:w-[936px] 4xl:w-[736px] 3xl:w-[552px] 2xl:w-[429px] xl:w-[371px] w-[340px] 5xl:leading-20 4xl:leading-13 3xl:leading-9 2xl:leading-7 leading-6">
+                      {anime.synopsis}
+                    </p>
+
+                    {topAnime && topAnime[currentIndex] && (
+                      <Link
+                        to={`/anime-overview?id=${topAnime[currentIndex].mal_id}`}
+                        className="z-10"
+                      >
+                        <Button
+                          hasIcon={false}
+                          label="View Details"
+                          colorType="tertiary"
+                          customClass="z-50 uppercase 5xl:text-[38px] 4xl:text-[28px] 3xl:text-lg text-sm font-normal 5xl:px-36 4xl:px-24 3xl:px-18 px-12 w-fit h-full flex justify-center items-center 4xl:border-2 3xl:border-2 border border-neonAqua text-neonAqua rounded-full cursor-pointer hover:bg-neonAqua/10 transition-default 5xl:h-[130px] 4xl:h-[90px] 3xl:h-[64px] h-[44px] 5xl:!mt-12 4xl:!mt-8 !mt-6"
+                        />
+                      </Link>
+                    )}
+                  </div>
+                );
+              })}
             </div>
-            <div className="5xl:h-[202px] 4xl:h-[130px] 3xl:h-[99px] 2xl:h-[75px] h-[68px] transition-slow"></div>
+            <div className="w-full 5xl:h-[245px] 4xl:h-[180px] 3xl:h-[145px] 2xl:h-[95px] h-[90px] transition-slow"></div>
           </div>
 
           {/* Slider */}
@@ -145,24 +146,25 @@ const Hero = () => {
 
                   return (
                     <SwiperSlide className="z-50" key={index}>
-                      <Link to={`/anime-overview?id=${item.mal_id}`}>
-                        <motion.div
-                          onClick={() => swiperRef.current?.slideToLoop(index)}
-                          className={`relative transition-all duration-500 ease-in-out transform cursor-pointer  
-      ${heightClass} 5xl:w-[557px] 4xl:w-[400px] 3xl:w-[286px] 2xl:w-[214px] w-[190px] 4xl:rounded-[3rem] rounded-3xl overflow-hidden 4xl:border-8 3xl:border-6 border-4 ${
-                            isActive ? "border-neonAqua" : "border-white/2"
-                          }`}
-                        >
-                          <img
-                            src={item.images.jpg.large_image_url}
-                            alt={item.title}
-                            className="w-full h-full object-cover transition-all duration-500 ease-in-out"
-                          />
-                          {!isActive && (
-                            <div className="absolute inset-0 bg-black/10 transition-all duration-500"></div>
-                          )}
-                        </motion.div>
-                      </Link>
+                      <motion.div
+                        onClick={() => swiperRef.current?.slideToLoop(index)}
+                        className={`relative transition-all duration-500 ease-in-out transform cursor-pointer ${heightClass} 5xl:w-[557px] 4xl:w-[400px] 3xl:w-[286px] 2xl:w-[214px] w-[190px] 4xl:rounded-[3rem] rounded-3xl overflow-hidden 4xl:border-8 3xl:border-6 border-4 ${
+                          isActive ? "border-neonAqua/80" : "border-white/2"
+                        }`}
+                      >
+                        <Link
+                          to={`/anime-overview?id=${item.mal_id}`}
+                          className="absolute inset-0 z-10"
+                        />
+                        <img
+                          src={item.images.jpg.large_image_url}
+                          alt={item.title}
+                          className="w-full h-full object-cover transition-all duration-500 ease-in-out"
+                        />
+                        {!isActive && (
+                          <div className="absolute inset-0 bg-black/10 transition-all duration-500"></div>
+                        )}
+                      </motion.div>
                     </SwiperSlide>
                   );
                 })}
@@ -171,20 +173,6 @@ const Hero = () => {
 
             {/* Pagination Controls */}
             <div className="w-full flex justify-start items-end 5xl:h-[150px] 4xl:h-[100px] 3xl:h-[80px] 2xl:h-[65px] h-[58px] 5xl:gap-16 4xl:gap-13 3xl:gap-8 2xl:gap-7 gap-6 5xl:pr-30 pr-10 transition-slow">
-              {/* <div className="flex 5xl:gap-9 4xl:gap-6 3xl:gap-4 gap-3 h-full transition-slow">
-            <button
-              onClick={handlePrev}
-              className="5xl:w-[150px] 4xl:w-[100px] 3xl:w-[80px] 2xl:w-[65px] w-[58px] h-full flex justify-center items-center rounded-full 5xl:border-3 4xl:border-2 border hover:bg-secondaryBase/20 bg-white/10 cursor-pointer transition-slow"
-            >
-              <FiChevronLeft className="5xl:text-[55px] 4xl:text-[36px] 3xl:text-[32px] text-[23px]" />
-            </button>
-            <button
-              onClick={handleNext}
-              className="5xl:w-[150px] 4xl:w-[100px] 3xl:w-[80px] 2xl:w-[65px] w-[58px] h-full flex justify-center items-center rounded-full 5xl:border-3 4xl:border-2 border hover:bg-secondaryBase/20 bg-white/10 cursor-pointer transition-slow"
-            >
-              <FiChevronRight className="5xl:text-[55px] 4xl:text-[36px] 3xl:text-[32px] text-[23px]" />
-            </button>
-          </div> */}
               <CustomNavButtons swiperRef={swiperRef} />
               <div className="h-full 5xl:w-[1437px] 4xl:w-[953px] 3xl:w-[723px] 2xl:w-[537px] w-[480px] flex justify-center items-center transition-slow">
                 <div className="5xl:h-1 4xl:h-[3px] 3xl:h-[2px] h-[1px] w-full bg-white transition-slow"></div>
@@ -279,33 +267,23 @@ const Hero = () => {
                   <FaStar />
                   <p className="font-semibold">{anime.score}</p>
                 </div>
+
+                {topAnime[currentIndex] && (
+                  <Link
+                    to={`/anime-overview?id=${topAnime[currentIndex].mal_id}`}
+                  >
+                    <Button
+                      hasIcon={false}
+                      label="Watch Now"
+                      colorType="tertiary"
+                      customClass="w-fit px-18 sm:h-13 h-12 text-neonAqua"
+                    />
+                  </Link>
+                )}
               </div>
             ))}
-            <Button
-              hasIcon={false}
-              label="Watch Now"
-              colorType="tertiary"
-              customClass="w-fit px-18 sm:h-13 h-12 text-neonAqua"
-            />
           </div>
         </div>
-
-        {/* <div className="w-full flex justify-center items-end fixed bottom-2 z-50">
-          <motion.button
-            className="flex justify-center items-center gap-1 opacity-50 w-fit h-fit py-2 px-12"
-            animate={{
-              y: [0, -6, 0],
-            }}
-            transition={{
-              duration: 1,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          >
-            <p className="text-[12px]">Show all anime</p>
-            <IoChevronDownOutline size={14} className="!mt-[3px]"/>
-          </motion.button>
-        </div> */}
       </div>
     </>
   );

@@ -194,7 +194,6 @@ const FilterSortPanel = ({
                   value={searchKeyword}
                   onChange={(e) => setSearchKeyword(e.target.value)}
                   onKeyDown={(e) => {
-                    console.log("SSSS");
                     if (e.key === "Enter") {
                       searchFunction();
                     }

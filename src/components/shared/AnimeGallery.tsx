@@ -97,6 +97,7 @@ const AnimeGallery = ({ type, delay = 0 }: AnimeShowcaseProps) => {
                       <p className="4xl:text-xl text-[16px] opacity-75 font-normal">
                         {anime?.duration}
                       </p>
+                      
                     </div>
 
                     <Link to={`/anime-overview?id=${anime.mal_id}`}>

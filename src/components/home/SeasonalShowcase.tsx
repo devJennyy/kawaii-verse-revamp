@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useEffect, useRef, useState } from "react";
 import { Swiper as SwiperType } from "swiper";
 import { motion } from "framer-motion";
+import { Link } from "react-router";
 
 const SeasonalShowcase = () => {
   const swiperRef = useRef<SwiperType | null>(null);
@@ -35,7 +36,7 @@ const SeasonalShowcase = () => {
             {seasonalAnime?.map((anime, index) => {
               return (
                 <SwiperSlide key={index}>
-                  <div className="w-[1940px] h-[1200px] relative flex justify-center items-center overflow-visible">
+                  <Link to={`/anime-overview?id=${anime.mal_id}`} className="w-[1940px] h-[1200px] relative flex justify-center items-center overflow-visible">
                     <div
                       className={
                         anime.id === "mitsuri"
@@ -181,7 +182,7 @@ const SeasonalShowcase = () => {
                         )}
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 </SwiperSlide>
               );
             })}

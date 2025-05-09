@@ -4,7 +4,7 @@ export const TOP_ANIME = "https://api.jikan.moe/v4/top/anime?type=tv&order_by=st
 export const LONG_WEEKEND_WATCHLIST = "https://api.jikan.moe/v4/anime?order_by=popularity&sort=asc&limit=7";
 export const GET_OVERVIEW = "https://api.jikan.moe/v4/anime/{id}/full";
 export const GET_CHARACTERS = "https://api.jikan.moe/v4/anime/{id}/characters";
-export const SEARCH_ANIME = "https://api.jikan.moe/v4/anime?q={searchKey}"
+export const SEARCH_ANIME = "https://api.jikan.moe/v4/anime?q={searchKey}";
 
 
 export const getPopularMoviesUrl = (width: number): string => {
@@ -29,7 +29,7 @@ export const seasonalAnime = [
     soloCharacter: "/images/mitsuri.png",
     englishTitle: "Demon Slayer",
     japaneseTitle: "鬼滅の刃, Kimetsu no Yaiba",
-    href: ""
+    mal_id: "55701"
   },
   {
     id: "luffy",
@@ -38,7 +38,7 @@ export const seasonalAnime = [
     soloCharacter: "/images/luffy.png",
     englishTitle: "One Piece",
     japaneseTitle: "ワンピース, Wan Pīsu",
-    href: ""
+    mal_id: "61393"
   },
   {
     id: "anya",
@@ -47,7 +47,7 @@ export const seasonalAnime = [
     soloCharacter: "/images/anya.png",
     englishTitle: "Spy X Family",
     japaneseTitle: "スパイファミリー, Supai Famirī",
-    href: ""
+    mal_id: ""
   },
   {
     id: "power",
@@ -56,7 +56,7 @@ export const seasonalAnime = [
     soloCharacter: "/images/power.png",
     englishTitle: "Chainsaw Man",
     japaneseTitle: "チェンソーマン, Chensōman",
-    href: ""
+    mal_id: "59027"
   },
   {
     id: "mash-burnedead",
@@ -65,7 +65,7 @@ export const seasonalAnime = [
     soloCharacter: "/images/mash-burnedead.png",
     englishTitle: "Magic & Muscles",
     japaneseTitle: "マッシュル, Mashle",
-    href: ""
+    mal_id: "55813"
   },
   {
     id: "yuji",
@@ -74,7 +74,7 @@ export const seasonalAnime = [
     soloCharacter: "/images/yuji.png",
     englishTitle: "Sorcery Battle",
     japaneseTitle: "呪術廻戦, Jujutsu Kaisen",
-    href: ""
+    mal_id: "59654"
   },
   {
     id: "levi",
@@ -83,7 +83,7 @@ export const seasonalAnime = [
     soloCharacter: "/images/levi.png",
     englishTitle: "Attack on Titan",
     japaneseTitle: "進撃の巨人, Shingeki no Kyojin",
-    href: ""
+    mal_id: "59571"
   },
 ];
 
