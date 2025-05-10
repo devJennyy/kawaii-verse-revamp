@@ -1,7 +1,7 @@
 const Leaderboard = () => {
   return (
     <div className="w-full !mx-auto flex justify-center border-b border-base/10">
-      <div className="w-full 3xl:max-w-[1440px] max-w-[1280px] flex justify-between items-end 3xl:px-0 lg:px-5 px-4 transition-slow">
+      <div className="w-full 3xl:max-w-[1440px] xl:max-w-[1280px] lg:max-w-[1024px] md:max-w-[768px] flex justify-between items-end 3xl:px-0 lg:px-5 px-4 transition-slow">
         <img src="/images/rem.png" alt="rem-render" className="sm:block hidden opacity-60 3xl:h-[460px] xl:h-[400px] lg:h-[300px] md:h-[220px] h-[200px] transition-slow" />
         <div className="w-full 3xl:h-[180px] xl:h-[160px] lg:h-[140px] sm:h-[90px] h-[80px] bg-[#181D27] lg:rounded-t-4xl rounded-t-2xl flex justify-center items-end transition-slow">
           {/* Left */}
