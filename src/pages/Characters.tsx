@@ -14,7 +14,7 @@ const Characters = () => {
     <section id="characters" className="w-full">
     {isLoading && <LoadingStyle />}
     <div
-      className={`w-full !mx-auto lg:!my-30 !my-24 transition-slow ${
+      className={`w-full !mx-auto lg:!my-30 sm:!my-24 !my-45 transition-slow ${
         isLoading
           ? "opacity-0"
           : "opacity-100 transition-opacity duration-500"

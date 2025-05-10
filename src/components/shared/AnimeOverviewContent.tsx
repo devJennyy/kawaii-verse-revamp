@@ -73,12 +73,13 @@ const AnimeOverviewContent = ({
       {animeOverview?.genres && animeOverview.genres.length > 0 ? (
         <ItemPills
           items={animeOverview.genres}
-          isClickable
+          isClickable={false}
           onClick={(url) => window.open(url, "_blank")}
+          classType="no-hover"
         />
       ) : (
         <ItemPills title="Genres">
-          <p className="text-white/50 4xl:text-lg xl:text-sm lg:text-[12px] text-sm italic">
+          <p className="text-white/50 4xl:text-lg xl:text-sm lg:text-[12px] text-sm italic hover:border-none">
             No genres have been added for this anime.
           </p>
         </ItemPills>
