@@ -7,7 +7,7 @@ const FavoritesTable = () => {
       <div className="flex sm:gap-3 gap-2 xl:h-14 sm:h-12 h-10">
         <input
           placeholder="Search Characters..."
-          className="w-full h-full tracking-wide pl-5 xl:text-default text-sm border border-midnightNavy active:border-neonAqua focus:border-neonAqua xl:rounded-lg rounded-md outline-none transition-default"
+          className="w-full h-full tracking-wide sm:pl-5 pl-4 xl:text-default text-sm border border-midnightNavy active:border-neonAqua focus:border-neonAqua xl:rounded-lg rounded-md outline-none transition-default"
         ></input>
         <div className="w-fit sm:px-5 px-3 h-full bg-midnightNavy border border-midnightNavy hover:bg-neonAqua/10 hover:border-neonAqua transition-default xl:rounded-lg rounded-md flex justify-center items-center cursor-pointer">
           <FiSearch className="xl:text-2xl text-xl  text-neonAqua" />

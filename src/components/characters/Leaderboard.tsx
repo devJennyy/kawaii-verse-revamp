@@ -21,7 +21,7 @@ const Leaderboard = () => {
 
           {/* Mid */}
           <div className="w-full flex flex-col items-center">
-            <div className="flex flex-col items-center sm:gap-3 gap-2 3xl:!mb-[-5rem] xl:!mb-[-4rem] lg:!mb-[-3.5rem] sm:!mb-[-2.5rem] !mb-[-1.8rem] z-30 transition-slow">
+            <div className="sm:!mx-0 !mx-6 flex flex-col items-center sm:gap-3 gap-2 3xl:!mb-[-5rem] xl:!mb-[-4rem] lg:!mb-[-3.5rem] sm:!mb-[-2.5rem] !mb-[-1.8rem] z-30 transition-slow">
               <img
                 src="/images/crown.svg"
                 alt="crown"
