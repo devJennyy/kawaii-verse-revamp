@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { tableData } from "@/constants/tableData";
 import { FiSearch } from "react-icons/fi";
 import { Link } from "react-router";

@@ -13,7 +13,6 @@ import {
   SelectLabel,
   SelectSeparator,
 } from "@radix-ui/react-select";
-import { useState } from "react";
 // import { FaList } from "react-icons/fa";
 // import { BsGridFill } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";

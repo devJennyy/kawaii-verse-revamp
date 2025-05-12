@@ -15,12 +15,10 @@ interface AnimeShowcaseProps {
 
 const AnimeGallery = ({ type, delay = 0, mediaType }: AnimeShowcaseProps) => {
   const [animeList, setAnimeList] = useState<any[]>([]);
-  const [filteredAnimeList, setFilteredAnimeList] = useState<any[]>([]);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   const [hasNextPage, setHasNextPage] = useState(true);
   const [page, setPage] = useState(1);
-  const [morePage, setMorePage] = useState(false);
 
   useEffect(() => {
     const handleResize = () => setScreenWidth(window.innerWidth);
