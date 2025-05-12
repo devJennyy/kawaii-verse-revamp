@@ -1,5 +1,7 @@
 import { tableData } from "@/constants/tableData";
 import { FiSearch } from "react-icons/fi";
+import { Link } from "react-router";
+import { motion } from "framer-motion";
 
 const FavoritesTable = () => {
   return (
@@ -14,13 +16,12 @@ const FavoritesTable = () => {
         </div>
       </div>
 
-      <div className="flex flex-col xl:gap-8 gap-5">
+      <div className="flex flex-col gap-1">
         <p className="4xl:text-3xl xl:text-2xl sm:text-xl tracking-wide">
           Most Favorited
         </p>
 
-        <div className="hidden lg:flex gap-1 w-full">
-          {tableData?.map((item, index) => {
+        {/* {tableData?.map((item, index) => {
             return (
               <div
                 key={index}
@@ -121,8 +122,112 @@ const FavoritesTable = () => {
                   })}
               </div>
             );
-          })}
+          })} */}
+
+        {/* Header */}
+        <div className="xl:!mt-7 !mt-4 w-full flex 3xl:h-14 h-10 transition-slow">
+          <div className="w-full xl:max-w-32 lg:max-w-24 md:max-w-32 sm:max-w-24 max-w-16 h-full bg-midnightNavy flex justify-center items-center transition-slow">
+            <p className="xl:text-lg text-sm text-neonAqua tracking-wide capitalize">
+              Rank
+            </p>
+          </div>
+          <div className="w-full h-full bg-midnightNavy flex lg:justify-center justify-start items-center px-5 transition-slow">
+            <p className="xl:text-lg text-sm text-neonAqua tracking-wide capitalize">
+              Character
+            </p>
+          </div>
+          <div className="w-full md:max-w-48 sm:max-w-40 max-w-28 h-full bg-midnightNavy flex justify-center items-center transition-slow">
+            <p className="xl:text-lg text-sm text-neonAqua tracking-wide capitalize">
+              Favorites
+            </p>
+          </div>
+          <div className="hidden w-full 2xl:max-w-72 xl:max-w-52 max-w-40 h-full bg-midnightNavy lg:flex justify-center items-center transition-slow">
+            <p className="xl:text-lg text-sm text-neonAqua tracking-wide capitalize">
+              Nickname
+            </p>
+          </div>
+          <div className="hidden w-full 2xl:max-w-72 xl:max-w-52 max-w-40 h-full bg-midnightNavy lg:flex justify-center items-center transition-slow">
+            <p className="xl:text-lg text-sm text-neonAqua tracking-wide capitalize">
+              Affiliation
+            </p>
+          </div>
         </div>
+
+        {tableData?.map((item, index) => {
+          const isEven = index % 2 === 0;
+          const baseBg = isEven ? "bg-midnightNavy/10" : "bg-midnightNavy/50";
+          const hoverBg = isEven
+            ? "hover:bg-midnightNavy/20"
+            : "hover:bg-midnightNavy/60";
+
+          return (
+            <motion.div
+              key={index}
+              whileHover={{ scale: 1.01 }}
+              transition={{ type: "spring", stiffness: 200, damping: 20 }}
+              className={`w-full flex gap-1 xl:h-[120px] h-[90px] ${baseBg} ${hoverBg} transition-colors duration-300`}
+            >
+              <Link to={`/character-info?id=${"character.id"}`} className="w-full flex transition-slow">
+                <div className="w-full xl:max-w-32 lg:max-w-24 md:max-w-32 sm:max-w-24 max-w-16 h-full flex justify-center items-center transition-slow">
+                  <p className="xl:text-2xl text-xl text-secondary/50 tracking-wide capitalize font-bold">
+                    {index + 1}
+                  </p>
+                </div>
+                <div className="w-full h-full flex justify-start items-center gap-5 py-4 px-5 transition-slow">
+                  <img
+                    src={item.images.webp.image_url}
+                    alt={item.name}
+                    className="xl:w-20 xl:h-20 sm:w-14 sm:h-14 w-10 h-10 object-cover rounded-full"
+                  />
+                  <div className="flex flex-col gap-1">
+                    <p className="text-default xl:text-xl whitespace-nowrap">
+                      <span className="block xl:hidden">
+                        {item.name.split(" ")[0]}
+                      </span>
+                      <span className="hidden xl:block whitespace-nowrap">{item.name}</span>
+                    </p>
+
+                    <p className="hidden sm:block xl:text-defeault text-sm whitespace-nowrap">
+                      {item.name_kanji}
+                    </p>
+                  </div>
+                </div>
+                <div className="w-full md:max-w-48 sm:max-w-40 max-w-28 h-full flex justify-center items-center transition-slow">
+                  <p className="xl:text-xl font-semibold">
+                    {item.favorites.toLocaleString()}
+                  </p>
+                </div>
+                <div className="w-full 2xl:max-w-72 xl:max-w-52 max-w-40 h-full hidden lg:flex flex-col justify-center items-center gap-2 px-5 transition-slow">
+                  <p className="w-full text-center capitalize 3xl:text-lg text-default truncate">
+                    {item.nicknames[0] || item.name}
+                  </p>
+                </div>
+                <div className="w-full 2xl:max-w-72 xl:max-w-52 max-w-40 h-full hidden lg:flex flex-col justify-center items-center gap-2 px-5 transition-slow">
+                  <p className="w-full text-center capitalize 3xl:text-lg text-default truncate">
+                    {(() => {
+                      const line = item.about
+                        ?.split("\n")
+                        .find(
+                          (line) =>
+                            line.startsWith("Affiliations:") ||
+                            line.startsWith("Affiliation:") ||
+                            line.startsWith("Occupation:")
+                        );
+
+                      if (!line) return null;
+
+                      const value = line.replace(
+                        /(Affiliations?|Occupation):\s*/,
+                        ""
+                      );
+                      return value.split(",")[0].trim();
+                    })()}
+                  </p>
+                </div>
+              </Link>
+            </motion.div>
+          );
+        })}
       </div>
     </div>
   );

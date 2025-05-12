@@ -1,10 +1,12 @@
 export const GET_TOP_ANIME = "https://api.jikan.moe/v4/top/anime?type=tv&filter=airing&limit=5";
-export const NEWEST_SEASON = "https://api.jikan.moe/v4/seasons/now?filter=tv&order_by=start_date&sort=desc&limit=25&page={page}";
-export const TOP_ANIME = "https://api.jikan.moe/v4/top/anime?type=tv&order_by=start_date&sort=desc&limit=25&page={page}";
+export const NEWEST_SEASON = "https://api.jikan.moe/v4/seasons/now?{type}order_by=start_date&sort=desc&limit=25&page={page}";
+export const TOP_ANIME = "https://api.jikan.moe/v4/top/anime?{type}order_by=start_date&sort=desc&limit=25&page={page}";
 export const LONG_WEEKEND_WATCHLIST = "https://api.jikan.moe/v4/anime?order_by=popularity&sort=asc&limit=7";
 export const GET_OVERVIEW = "https://api.jikan.moe/v4/anime/{id}/full";
 export const GET_CHARACTERS = "https://api.jikan.moe/v4/anime/{id}/characters";
 export const SEARCH_ANIME = "https://api.jikan.moe/v4/anime?q={searchKey}";
+export const TOP_CHARACTERS = "https://api.jikan.moe/v4/characters?{q}order_by=favorites&sort=desc&page={page}";
+export const CHARACTER_INFO = "https://api.jikan.moe/v4/characters/{id}/full";
 
 
 export const getPopularMoviesUrl = (width: number): string => {

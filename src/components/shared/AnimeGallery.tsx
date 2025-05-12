@@ -10,14 +10,17 @@ import { Link } from "react-router";
 interface AnimeShowcaseProps {
   type: "newest-season" | "popular";
   delay?: number;
+  mediaType?: string;
 }
 
-const AnimeGallery = ({ type, delay = 0 }: AnimeShowcaseProps) => {
+const AnimeGallery = ({ type, delay = 0, mediaType }: AnimeShowcaseProps) => {
   const [animeList, setAnimeList] = useState<any[]>([]);
+  const [filteredAnimeList, setFilteredAnimeList] = useState<any[]>([]);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   const [hasNextPage, setHasNextPage] = useState(true);
   const [page, setPage] = useState(1);
+  const [morePage, setMorePage] = useState(false);
 
   useEffect(() => {
     const handleResize = () => setScreenWidth(window.innerWidth);
@@ -27,30 +30,52 @@ const AnimeGallery = ({ type, delay = 0 }: AnimeShowcaseProps) => {
 
   useEffect(() => {
     fetchAnime();
-  }, [type, screenWidth, delay, page]);
+  }, [type, screenWidth, delay]);
 
-  const fetchAnime = async () => {
+  const fetchAnime = async (more = false, switchType = false, customPage = 0) => {
     try {
-      const url = type === "newest-season" ? NEWEST_SEASON.replace("{page}", page.toString()) : TOP_ANIME.replace("{page}", page.toString());
+      const url =
+        type === "newest-season"
+          ? NEWEST_SEASON.replace("{page}", (switchType ? "1" : customPage ? customPage.toString() : page.toString())).replace(
+              "{type}",
+              mediaType !== "All"
+                ? `filter=${mediaType === "Series" ? "TV" : "Movie"}&`
+                : ``
+            )
+          : TOP_ANIME.replace("{page}", (switchType ? "1" : customPage ? customPage.toString() : page.toString())).replace(
+              "{type}",
+              mediaType !== "All"
+                ? `type=${mediaType === "Series" ? "TV" : "Movie"}&`
+                : ``
+            );
 
       const res = await axios.get(url);
-      setAnimeList((prev) => [...prev, ...res.data.data]);
+      
+      if(more){
+        setAnimeList((prev) => [...prev, ...res.data.data]);
+      }
+      else {
+        setAnimeList(res.data.data);
+      }
+      
       setHasNextPage(res.data.pagination.has_next_page);
     } catch (err) {
       console.error("Oops! something went wrong", err);
     }
   };
 
+  useEffect(() => {
+    fetchAnime(false, true);
+    setPage(1);
+  }, [mediaType]);
+
   return (
     <div className="w-full flex flex-col items-center gap-20">
       <div className="grid 4xl:grid-cols-7 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 xl:gap-5 lg:gap-2 gap-3 transition-slow">
         {animeList?.map((anime, index) => {
           return (
-            <Link to={`/anime-overview?id=${anime.mal_id}`}>
-              <motion.div
-                key={index}
-                className="relative w-full !mt-2 cursor-pointer lg:p-2"
-              >
+            <Link key={index} to={`/anime-overview?id=${anime.mal_id}`}>
+              <motion.div className="relative w-full !mt-2 cursor-pointer lg:p-2">
                 {/* Image Container */}
                 <div className="w-full lg:h-[320px] h-[245px]">
                   <img
@@ -97,17 +122,14 @@ const AnimeGallery = ({ type, delay = 0 }: AnimeShowcaseProps) => {
                       <p className="4xl:text-xl text-[16px] opacity-75 font-normal">
                         {anime?.duration}
                       </p>
-                      
                     </div>
 
-                    <Link to={`/anime-overview?id=${anime.mal_id}`}>
-                      <Button
-                        label="View Details"
-                        hasIcon={false}
-                        colorType="secondary"
-                        customClass="3xl:h-11 xl:h-9 h-7 4xl:text-[16px] 3xl:text-sm xl:text-[12px] text-[10px]"
-                      />
-                    </Link>
+                    <Button
+                      label="View Details"
+                      hasIcon={false}
+                      colorType="secondary"
+                      customClass="3xl:h-11 xl:h-9 h-7 4xl:text-[16px] 3xl:text-sm xl:text-[12px] text-[10px]"
+                    />
                   </div>
                 </motion.div>
               </motion.div>
@@ -115,13 +137,18 @@ const AnimeGallery = ({ type, delay = 0 }: AnimeShowcaseProps) => {
           );
         })}
       </div>
-      {hasNextPage && <Button
-        colorType={"primary"}
-        label="Load More"
-        hasIcon={false}
-        customClass="text-xl font-light"
-        onClick={() => setPage((prev) => prev + 1)}
-      />}
+      {hasNextPage && (
+        <Button
+          colorType={"primary"}
+          label="Load More"
+          hasIcon={false}
+          customClass="text-xl font-light"
+          onClick={() => {
+            setPage((prev) => prev + 1);
+            fetchAnime(true, false, page + 1);
+          }}
+        />
+      )}
     </div>
   );
 };

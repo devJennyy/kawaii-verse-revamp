@@ -7,12 +7,15 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa6";
-import { Link } from "react-router";
+import { Link, useSearchParams } from "react-router";
 
 const Search = () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
   const [isLoading, setIsLoading] = useState(true);
-  const [searchKeyword, setSearchKeyword] = useState("");
+  const [searchParams] = useSearchParams();
+  const [searchKeyword, setSearchKeyword] = useState(
+    searchParams.get("q") ? searchParams.get("q") : ""
+  );
   const [animeList, setAnimeList] = useState<any[]>([]);
   const [isSearchLoading, setIsSearchLoading] = useState(true);
 
@@ -22,7 +25,7 @@ const Search = () => {
 
   const searchAnime = () => {
     setIsSearchLoading(true);
-    Promise.all([axios.get(SEARCH_ANIME.replace("{searchKey}", searchKeyword))])
+    Promise.all([axios.get(SEARCH_ANIME.replace("{searchKey}", searchKeyword ? searchKeyword : ""))])
       .then(([searchRes]) => {
         setAnimeList(searchRes?.data?.data);
         console.log(searchRes);
@@ -42,6 +45,16 @@ const Search = () => {
     searchAnime();
   }, []);
 
+  useEffect(() => {
+    // Get the value of the 'q' parameter from the URL
+    const query = searchParams.get("q");
+
+    if (query) {
+      setSearchKeyword(query);
+      searchAnime();
+    }
+  }, [searchParams]);
+
   return (
     <section id="search" className="w-full">
       {isLoading && <LoadingStyle />}
@@ -55,12 +68,14 @@ const Search = () => {
         <FilterSortPanel
           isSearchPage={true}
           searchFunction={searchAnime}
-          searchKeyword={searchKeyword}
+          searchKeyword={searchKeyword || ""}
           setSearchKeyword={setSearchKeyword}
           isSearch={true}
         />
         <div className="w-full flex flex-col 4xl:gap-4 gap-2 4xl:!mt-16 sm:!mt-10 !mt-5">
-          <p className="4xl:text-3xl xl:text-2xl sm:text-xl tracking-wide">Top Results</p>
+          <p className="4xl:text-3xl xl:text-2xl sm:text-xl tracking-wide">
+            Top Results
+          </p>
           {isSearchLoading && <div>...</div>}
           {!isSearchLoading && (
             <div className="w-full flex flex-col items-center gap-20">
@@ -68,11 +83,8 @@ const Search = () => {
                 {animeList?.length === 0 && <div>No anime found!</div>}
                 {animeList?.map((anime, index) => {
                   return (
-                    <Link to={`/anime-overview?id=${anime.mal_id}`}>
-                      <motion.div
-                        key={index}
-                        className="relative w-full !mt-2 cursor-pointer lg:p-2"
-                      >
+                    <Link key={index} to={`/anime-overview?id=${anime.mal_id}`}>
+                      <motion.div className="relative w-full !mt-2 cursor-pointer lg:p-2">
                         {/* Image Container */}
                         <div className="w-full lg:h-[320px] h-[245px]">
                           <img
@@ -122,14 +134,12 @@ const Search = () => {
                               </p>
                             </div>
 
-                            <Link to={`/anime-overview?id=${anime.mal_id}`}>
-                              <Button
-                                label="View Details"
-                                hasIcon={false}
-                                colorType="secondary"
-                                customClass="3xl:h-11 xl:h-9 h-7 4xl:text-[16px] 3xl:text-sm xl:text-[12px] text-[10px]"
-                              />
-                            </Link>
+                            <Button
+                              label="View Details"
+                              hasIcon={false}
+                              colorType="secondary"
+                              customClass="3xl:h-11 xl:h-9 h-7 4xl:text-[16px] 3xl:text-sm xl:text-[12px] text-[10px]"
+                            />
                           </div>
                         </motion.div>
                       </motion.div>

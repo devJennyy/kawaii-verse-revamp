@@ -1,14 +1,24 @@
 import FilterSortPanel from "@/components/layout/FilterSortPanel";
 import AnimeGallery from "@/components/shared/AnimeGallery";
 import LoadingStyle from "@/components/ui/LoadingStyle";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 const NewestSeason = () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
   const [isLoading, setIsLoading] = useState(true);
+  const [sortBy, setSortBy] = useState("Newest");
+  const [mediaType, setMediaType] = useState("All");
+  const navigate = useNavigate();
   setTimeout(() => {
     setIsLoading(false);
   }, 1500);
+
+  useEffect(() => {
+    if(sortBy === "Popularity"){
+      navigate("/popular");
+    }
+  }, [sortBy])
 
   return (
     <section id="new" className="w-full">
@@ -20,8 +30,8 @@ const NewestSeason = () => {
             : "opacity-100 transition-opacity duration-500"
         }`}
       >
-        <FilterSortPanel title={{ highlighted: "Newest", normal: "Season" }} />
-        <AnimeGallery type={"newest-season"} />
+        <FilterSortPanel mediaType={mediaType} setMediaType={setMediaType} sortBy={sortBy} setSortBy={setSortBy} title={{ highlighted: "Newest", normal: "Season" }} />
+        <AnimeGallery mediaType={mediaType} type={"newest-season"} />
       </div>
     </section>
   );

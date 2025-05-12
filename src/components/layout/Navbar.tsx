@@ -3,20 +3,26 @@ import { FiSearch } from "react-icons/fi";
 import Button from "../shared/Button";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { RxHamburgerMenu } from "react-icons/rx";
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [isSearchVisible, setIsSearchVisible] = useState(false);
+  const [searchKeyword, setSearchKeyword] = useState("");
   const searchRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const handleClickOutside = (e: MouseEvent) => {
     if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
       setIsSearchVisible(false);
     }
   };
+
+  const handleSearch = () => {
+    navigate(`/search?q=${searchKeyword}`);
+  }
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -43,6 +49,13 @@ const Navbar = () => {
         <div className="w-full 5xl:max-w-[435px] 3xl:max-w-[335px] max-w-[235px] h-[35px] 5xl:h-[45px] transition-slow flex justify-center items-center gap-3 border border-base/10 py-3 px-3 rounded-sm focus-within:outline outline-neonAqua transition-default group">
           <FiSearch className="text-lg text-secondaryBase transition-default group-focus-within:text-neonAqua" />
           <input
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSearch();
+              }
+            }}
+            value={searchKeyword}
+            onChange={(e) => setSearchKeyword(e.target.value)}
             placeholder="Search anime series or movies"
             className="w-full text-secondaryBase text-[12px] 5xl:text-[16px] transition-slow outline-none"
           />
@@ -92,11 +105,11 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div className="relative xl:hidden w-full flex justify-between items-center z-30">
-       <div className="w-full sm:hidden">
-       <a href="/">
-          <img src="/logo/logo.svg" alt="logo-icon" className="h-6" />
-        </a>
-       </div>
+        <div className="w-full sm:hidden">
+          <a href="/">
+            <img src="/logo/logo.svg" alt="logo-icon" className="h-6" />
+          </a>
+        </div>
 
         <motion.a href="/" className="absolute">
           <motion.img
@@ -114,13 +127,13 @@ const Navbar = () => {
 
         {/* Desktop logo */}
         <div className="w-full">
-        <a href="/">
-          <img
-            src="/logo/logo-text.svg"
-            alt="logo"
-            className="sm:block hidden"
-          />
-        </a>
+          <a href="/">
+            <img
+              src="/logo/logo-text.svg"
+              alt="logo"
+              className="sm:block hidden"
+            />
+          </a>
         </div>
 
         {/* Search bar */}
@@ -145,6 +158,13 @@ const Navbar = () => {
                 width: isSearchVisible ? "100%" : 0,
                 opacity: isSearchVisible ? 1 : 0,
               }}
+              onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                  handleSearch();
+                }
+              }}
+              value={searchKeyword}
+              onChange={(e) => setSearchKeyword(e.target.value)}
               transition={{ duration: 0.2, ease: "easeInOut" }}
               className="text-secondaryBase sm:text-sm text-[12px] outline-none bg-transparent"
               onClick={(e) => e.stopPropagation()}

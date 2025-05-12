@@ -28,6 +28,10 @@ type FilterSortPanelProps = {
   setSearchKeyword?: any;
   searchFunction?: any;
   isSearchPage?: boolean;
+  sortBy?: string;
+  setSortBy?: any;
+  mediaType?: string;
+  setMediaType?: any;
 };
 
 const FilterSortPanel = ({
@@ -37,9 +41,12 @@ const FilterSortPanel = ({
   setSearchKeyword,
   searchFunction,
   isSearchPage = false,
+  sortBy,
+  setSortBy,
+  mediaType,
+  setMediaType
 }: FilterSortPanelProps) => {
   // const [active, setActive] = useState<"grid" | "list">("grid");
-  const [mediaType, setMediaType] = useState("default");
 
   return (
     <div className="flex flex-col lg:gap-5 sm:gap-4 gap-[14px] lg:!my-8 sm:!my-6 !my-5">
@@ -52,13 +59,13 @@ const FilterSortPanel = ({
             </p>
             <div className="flex gap-1">
               {/* Sorting */}
-              <Select>
+              <Select value={sortBy} onValueChange={setSortBy}>
                 <SelectTrigger className="lg:w-[180px] sm:w-[130px] w-[90px]">
                   <SelectValue placeholder="Newest" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="newest">Newest</SelectItem>
-                  <SelectItem value="popularity">Popularity</SelectItem>
+                  <SelectItem value="Newest">Newest</SelectItem>
+                  <SelectItem value="Popularity">Popularity</SelectItem>
                 </SelectContent>
               </Select>
 
@@ -83,15 +90,15 @@ const FilterSortPanel = ({
                       className="!mt-3 !ml-2"
                     >
                       <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="default" id="media-all" />
+                        <RadioGroupItem value="All" id="media-all" />
                         <Label htmlFor="media-all">All</Label>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="comfortable" id="media-series" />
+                        <RadioGroupItem value="Series" id="media-series" />
                         <Label htmlFor="media-series">Series</Label>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="compact" id="media-movies" />
+                        <RadioGroupItem value="Movies" id="media-movies" />
                         <Label htmlFor="media-movies">Movies</Label>
                       </div>
                     </RadioGroup>
