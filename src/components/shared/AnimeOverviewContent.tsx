@@ -2,12 +2,14 @@
 import { useState } from "react";
 import ItemPills from "./ItemPills";
 import Button from "./Button";
+import { Link } from "react-router";
 
 interface Props {
   animeOverview: any;
   isExpanded: boolean;
   setIsExpanded: any;
   characters: any[];
+  charactersWrapperId?: string;
 }
 
 const AnimeOverviewContent = ({
@@ -15,6 +17,7 @@ const AnimeOverviewContent = ({
   isExpanded,
   setIsExpanded,
   characters,
+  charactersWrapperId,
 }: Props) => {
   const [visibleCount, setVisibleCount] = useState(15);
   const handleLoadMore = () => {
@@ -133,12 +136,13 @@ const AnimeOverviewContent = ({
         </ItemPills>
       )}
 
-      <ItemPills title="Characters">
+      <div id={charactersWrapperId} className="sm:scroll-mt-20 scroll-mt-16">
+        <ItemPills title="Characters">
         {characters && characters.length > 0 ? (
           <>
             <div className="grid 2xl:grid-cols-5 sm:grid-cols-4 grid-cols-3 4xl:gap-4 sm:gap-3 gap-2">
               {characters.slice(0, visibleCount).map((charData, index) => (
-                <div
+                <Link to={`/character-info?id=${charData.character.mal_id}`}
                   key={index}
                   className="w-full gap-5 lg:rounded-lg rounded-md 4xl:p-3 sm:p-2 p-1 overflow-hidden cursor-pointer bg-base/10 hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default"
                 >
@@ -153,7 +157,7 @@ const AnimeOverviewContent = ({
                     </p>
                     <p className="opacity-60">{charData?.role}</p>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
 
@@ -173,6 +177,7 @@ const AnimeOverviewContent = ({
           </p>
         )}
       </ItemPills>
+      </div>
     </div>
   );
 };

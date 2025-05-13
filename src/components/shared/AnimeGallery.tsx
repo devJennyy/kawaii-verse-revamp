@@ -68,7 +68,7 @@ const AnimeGallery = ({ type, delay = 0, mediaType }: AnimeShowcaseProps) => {
   }, [mediaType]);
 
   return (
-    <div className="w-full flex flex-col items-center gap-20">
+    <div className="w-full flex flex-col items-center 4xl:gap-16 gap-10">
       <div className="grid 4xl:grid-cols-7 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 xl:gap-5 lg:gap-2 gap-3 transition-slow">
         {animeList?.map((anime, index) => {
           return (
@@ -137,14 +137,14 @@ const AnimeGallery = ({ type, delay = 0, mediaType }: AnimeShowcaseProps) => {
       </div>
       {hasNextPage && (
         <Button
-          colorType={"primary"}
-          label="Load More"
+          colorType="tertiary"
           hasIcon={false}
-          customClass="text-xl font-light"
+          label="Load More"
           onClick={() => {
             setPage((prev) => prev + 1);
             fetchAnime(true, false, page + 1);
           }}
+          customClass="xl:!mb-16 sm:!mb-10 !mx-auto cursor-pointer sm:px-12 sm:py-3 px-8 py-2 w-fit 4xl:text-xl xl:text-lg sm:text-[12px] text-[10px] !my-2 font-medium text-neonAqua hover:bg-neonAqua/10 transition-default"
         />
       )}
     </div>

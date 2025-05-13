@@ -95,6 +95,7 @@ const AnimeOverview = () => {
       .then(([overviewRes, charactersRes]) => {
         setAnimeOverview(overviewRes.data.data);
         setCharacters(charactersRes.data.data);
+        console.log(charactersRes.data.data)
       })
       .finally(() => {
         setTimeout(() => {
@@ -477,7 +478,7 @@ const AnimeOverview = () => {
                                     <div
                                       onClick={() =>
                                         document
-                                          .getElementById("characters")
+                                          .getElementById("characters-mobile")
                                           ?.scrollIntoView({
                                             behavior: "smooth",
                                           })
@@ -552,6 +553,7 @@ const AnimeOverview = () => {
                           isExpanded={isExpanded}
                           setIsExpanded={setIsExpanded}
                           characters={characters}
+                          charactersWrapperId="characters-mobile"
                         />
                       ) : (
                         <div className=" w-full flex flex-col gap-10 transition-slow">
@@ -592,66 +594,62 @@ const AnimeOverview = () => {
                               </div>
                             </ItemPills>
 
-                            
-                              <>
-                                {openingThemes && openingThemes.length > 0 ? (
-                                  <>
+                            <>
+                              {openingThemes && openingThemes.length > 0 ? (
+                                <>
                                   <ItemPills title="Opening Themes">
                                     <ThemeList
                                       themes={openingThemes}
                                       label="Opening Themes"
                                     />
-                                    </ItemPills>
-                                    
-                                    {animeOverview?.theme?.openings?.length >
-                                      visibleOpeningCount && (
-                                      <Button
-                                        colorType={"tertiary"}
-                                        hasIcon={false}
-                                        label="Load More"
-                                        onClick={() => handleLoadMoreOpenings()}
-                                        customClass="z-50 4xl:text-xl text-default text-center w-full border-white/30 rounded-lg gap-5 4xl:py-4 py-3 px-4 cursor-pointer hover:text-neonAqua hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default"
-                                      />
-                                    )}
-                                  </>
-                                ) : (
-                                  <p className="text-white/50 text-sm italic">
-                                    No opening themes have been added to this
-                                    anime.
-                                  </p>
-                                )}
-                              </>
-                            
+                                  </ItemPills>
 
-                            
-                              <>
-                                {endingThemes && endingThemes.length > 0 ? (
-                                  <>
+                                  {animeOverview?.theme?.openings?.length >
+                                    visibleOpeningCount && (
+                                    <Button
+                                      colorType={"tertiary"}
+                                      hasIcon={false}
+                                      label="Load More"
+                                      onClick={() => handleLoadMoreOpenings()}
+                                      customClass="z-50 4xl:text-xl text-default text-center w-full border-white/30 rounded-lg gap-5 4xl:py-4 py-3 px-4 cursor-pointer hover:text-neonAqua hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default"
+                                    />
+                                  )}
+                                </>
+                              ) : (
+                                <p className="text-white/50 text-sm italic">
+                                  No opening themes have been added to this
+                                  anime.
+                                </p>
+                              )}
+                            </>
+
+                            <>
+                              {endingThemes && endingThemes.length > 0 ? (
+                                <>
                                   <ItemPills title="Ending Themes">
                                     <ThemeList
                                       themes={endingThemes}
                                       label="Ending Themes"
                                     />
-                                    </ItemPills>
-                                    {animeOverview?.theme?.endings?.length >
-                                      visibleEndingCount && (
-                                      <Button
-                                        colorType={"tertiary"}
-                                        hasIcon={false}
-                                        label="Load More"
-                                        onClick={() => handleLoadMoreEndings()}
-                                        customClass="z-40 4xl:text-xl text-default 4xl:!mt-5 !mt-3 text-center w-full border-white/30 rounded-lg gap-5 4xl:py-4 py-3 px-4 cursor-pointer hover:text-neonAqua hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default"
-                                      />
-                                    )}
-                                  </>
-                                ) : (
-                                  <p className="text-white/50 text-sm italic">
-                                    No ending themes have been added to this
-                                    anime.
-                                  </p>
-                                )}
-                              </>
-                            
+                                  </ItemPills>
+                                  {animeOverview?.theme?.endings?.length >
+                                    visibleEndingCount && (
+                                    <Button
+                                      colorType={"tertiary"}
+                                      hasIcon={false}
+                                      label="Load More"
+                                      onClick={() => handleLoadMoreEndings()}
+                                      customClass="z-40 4xl:text-xl text-default 4xl:!mt-5 !mt-3 text-center w-full border-white/30 rounded-lg gap-5 4xl:py-4 py-3 px-4 cursor-pointer hover:text-neonAqua hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default"
+                                    />
+                                  )}
+                                </>
+                              ) : (
+                                <p className="text-white/50 text-sm italic">
+                                  No ending themes have been added to this
+                                  anime.
+                                </p>
+                              )}
+                            </>
                           </div>
                         </div>
                       )}
@@ -666,9 +664,9 @@ const AnimeOverview = () => {
                     isExpanded={isExpanded}
                     setIsExpanded={setIsExpanded}
                     characters={characters}
+                    charactersWrapperId="characters"
                   />
                 </div>
-                <div id="characters" className="scroll-mt-24"></div>
               </div>
             </div>
           </div>

@@ -7,7 +7,7 @@ import {
   GET_CHARACTER_INFO,
   GET_CHARACTER_VOICE_ACTORS,
 } from "@/constants/api";
-import { useLocation } from "react-router";
+import { Link, useLocation } from "react-router";
 import ItemPills from "../shared/ItemPills";
 import Button from "../shared/Button";
 import CharacterOverviewContent from "../shared/CharacterOverviewContent";
@@ -95,7 +95,7 @@ const CharacterInfo = () => {
           >
             <img
               src={
-                characterInfo?.anime[1]?.anime.images.jpg.large_image_url ||
+                characterInfo?.anime[0]?.anime.images.jpg.large_image_url ||
                 characterInfo?.anime[1]?.anime.images.jpg.large_image_url
               }
               alt={characterInfo?.nicknames[0]}
@@ -144,7 +144,7 @@ const CharacterInfo = () => {
                         <div className="flex flex-col 4xl:gap-4 gap-3">
                           {animeography.map((item: any, index: any) => {
                             return (
-                              <div
+                              <Link to={`/anime-overview?id=${item.anime.mal_id}`}
                                 key={index}
                                 className="tracking-wide group w-full bg-base/8 rounded-lg flex justify-start items-start gap-5 p-2 cursor-pointer hover:text-neonAqua hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default"
                               >
@@ -163,7 +163,7 @@ const CharacterInfo = () => {
                                     Role: {item.role}
                                   </p>
                                 </div>
-                              </div>
+                              </Link>
                             );
                           })}
                         </div>
@@ -276,8 +276,8 @@ const CharacterInfo = () => {
                   <div className="absolute inset-0 z-0">
                     <img
                       src={
-                        characterInfo?.images?.jpg?.image_url ||
-                        characterInfo?.images?.webp?.image_url
+                        characterInfo?.anime[0]?.anime.images.jpg.large_image_url ||
+                        characterInfo?.anime[1]?.anime.images.jpg.large_image_url
                       }
                       alt={characterInfo?.name}
                       className="w-full sm:h-[300px] h-[280px] object-cover object-center transition-slow"
@@ -315,15 +315,15 @@ const CharacterInfo = () => {
                           </p>
                           <div className="flex gap-1 items-center">
                             {voiceActor?.length > 0 ? (
-                              voiceActor.slice(0, 3).map((va) => (
+                              voiceActor.slice(0, 3).map((actor, index) => (
                                 <button
-                                  key={va.person.mal_id}
+                                  key={index}
                                   className="sm:w-9 sm:h-9 w-7 h-7 rounded-full overflow-hidden border-2 border-transparent hover:border-neonAqua transition-default cursor-pointer"
-                                  title={va.person.name}
+                                  title={actor.person.name}
                                 >
                                   <img
-                                    src={va.person.images.jpg.image_url}
-                                    alt={va.person.name}
+                                    src={actor.person.images.jpg.image_url}
+                                    alt={actor.person.name}
                                     className="w-full h-full object-cover"
                                   />
                                 </button>
@@ -341,7 +341,7 @@ const CharacterInfo = () => {
                                     <div
                                       onClick={() =>
                                         document
-                                          .getElementById("voice-actors")
+                                          .getElementById("voice-actors-mobile")
                                           ?.scrollIntoView({
                                             behavior: "smooth",
                                           })
@@ -416,6 +416,7 @@ const CharacterInfo = () => {
                           isExpanded={isExpanded}
                           setIsExpanded={setIsExpanded}
                           voiceActor={voiceActor}
+                          charactersWrapperId="voice-actors-mobile"
                         />
                       ) : (
                         <div className="flex flex-col w-full bg-base/5 4xl:gap-10 gap-6 4xl:px-6 4xl:py-6 xl:p-5 xl:px-4 px-3 py-3 rounded-lg">
@@ -445,9 +446,9 @@ const CharacterInfo = () => {
                                 <div className="flex flex-col 4xl:gap-4 gap-3">
                                   {animeography.map((item: any, index: any) => {
                                     return (
-                                      <div
+                                      <Link to={`/anime-overview?id=${item.anime.mal_id}`}
                                         key={index}
-                                        className="tracking-wide group w-full bg-base/8 rounded-lg flex justify-start items-start gap-5 p-2 cursor-pointer hover:text-neonAqua hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default"
+                                        className="z-40 tracking-wide group w-full bg-base/8 rounded-lg flex justify-start items-start gap-5 p-2 cursor-pointer hover:text-neonAqua hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default"
                                       >
                                         <div className="w-full sm:max-w-20 max-w-16 sm:h-24 h-20 overflow-hidden rounded-sm">
                                           <img
@@ -466,7 +467,7 @@ const CharacterInfo = () => {
                                             Role: {item.role}
                                           </p>
                                         </div>
-                                      </div>
+                                      </Link>
                                     );
                                   })}
                                 </div>
@@ -500,9 +501,9 @@ const CharacterInfo = () => {
                     isExpanded={isExpanded}
                     setIsExpanded={setIsExpanded}
                     voiceActor={voiceActor}
+                    charactersWrapperId="voice-actors"
                   />
                 </div>
-                <div id="voice-actors" className="scroll-mt-24"></div>
               </div>
             </div>
           </div>
