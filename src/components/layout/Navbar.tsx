@@ -191,16 +191,16 @@ const Navbar = () => {
               >
                 {navLinks?.map((item, index) => {
                   return (
-                    <li
+                    <a href={item.href}
                       key={index}
                       className="w-full flex justify-start items-center text-neonAqua p-2 active:bg-neonAqua active:text-main focus:bg-neonAqua focus:text-main transition-default sm:rounded-md rounded-sm"
                     >
-                      <a href={item.href}>
+                     
                         <p className="font-semibold tracking-wide sm:text-[16px] text-sm">
                           {item.label}
                         </p>
-                      </a>
-                    </li>
+                      
+                    </a>
                   );
                 })}
 

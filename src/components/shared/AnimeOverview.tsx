@@ -592,14 +592,17 @@ const AnimeOverview = () => {
                               </div>
                             </ItemPills>
 
-                            <ItemPills title="Opening Themes">
+                            
                               <>
                                 {openingThemes && openingThemes.length > 0 ? (
                                   <>
+                                  <ItemPills title="Opening Themes">
                                     <ThemeList
                                       themes={openingThemes}
                                       label="Opening Themes"
                                     />
+                                    </ItemPills>
+                                    
                                     {animeOverview?.theme?.openings?.length >
                                       visibleOpeningCount && (
                                       <Button
@@ -607,7 +610,7 @@ const AnimeOverview = () => {
                                         hasIcon={false}
                                         label="Load More"
                                         onClick={() => handleLoadMoreOpenings()}
-                                        customClass="4xl:text-xl text-default 4xl:!mt-5 !mt-3 text-center w-full border-white/30 rounded-lg gap-5 4xl:py-4 py-3 px-4 cursor-pointer hover:text-neonAqua hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default"
+                                        customClass="z-50 4xl:text-xl text-default text-center w-full border-white/30 rounded-lg gap-5 4xl:py-4 py-3 px-4 cursor-pointer hover:text-neonAqua hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default"
                                       />
                                     )}
                                   </>
@@ -618,16 +621,18 @@ const AnimeOverview = () => {
                                   </p>
                                 )}
                               </>
-                            </ItemPills>
+                            
 
-                            <ItemPills title="Ending Themes">
+                            
                               <>
                                 {endingThemes && endingThemes.length > 0 ? (
                                   <>
+                                  <ItemPills title="Ending Themes">
                                     <ThemeList
                                       themes={endingThemes}
                                       label="Ending Themes"
                                     />
+                                    </ItemPills>
                                     {animeOverview?.theme?.endings?.length >
                                       visibleEndingCount && (
                                       <Button
@@ -635,7 +640,7 @@ const AnimeOverview = () => {
                                         hasIcon={false}
                                         label="Load More"
                                         onClick={() => handleLoadMoreEndings()}
-                                        customClass="4xl:text-xl text-default 4xl:!mt-5 !mt-3 text-center w-full border-white/30 rounded-lg gap-5 4xl:py-4 py-3 px-4 cursor-pointer hover:text-neonAqua hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default"
+                                        customClass="z-40 4xl:text-xl text-default 4xl:!mt-5 !mt-3 text-center w-full border-white/30 rounded-lg gap-5 4xl:py-4 py-3 px-4 cursor-pointer hover:text-neonAqua hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default"
                                       />
                                     )}
                                   </>
@@ -646,7 +651,7 @@ const AnimeOverview = () => {
                                   </p>
                                 )}
                               </>
-                            </ItemPills>
+                            
                           </div>
                         </div>
                       )}
@@ -662,9 +667,8 @@ const AnimeOverview = () => {
                     setIsExpanded={setIsExpanded}
                     characters={characters}
                   />
-                </div>  
-                <div id="characters" className="scroll-mt-24">
                 </div>
+                <div id="characters" className="scroll-mt-24"></div>
               </div>
             </div>
           </div>

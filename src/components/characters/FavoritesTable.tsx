@@ -168,7 +168,7 @@ const FavoritesTable = () => {
               transition={{ type: "spring", stiffness: 200, damping: 20 }}
               className={`w-full flex gap-1 xl:h-[120px] h-[90px] ${baseBg} ${hoverBg} transition-colors duration-300`}
             >
-              <Link to={`/character-info?id=${"character.id"}`} className="w-full flex transition-slow">
+              <Link to={`/character-info?id=${item.mal_id}`} className="w-full flex transition-slow">
                 <div className="w-full xl:max-w-32 lg:max-w-24 md:max-w-32 sm:max-w-24 max-w-16 h-full flex justify-center items-center transition-slow">
                   <p className="xl:text-2xl text-xl text-secondary/50 tracking-wide capitalize font-bold">
                     {index + 1}

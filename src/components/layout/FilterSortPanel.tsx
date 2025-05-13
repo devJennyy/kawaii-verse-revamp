@@ -79,7 +79,7 @@ const FilterSortPanel = ({
                     <SelectValue placeholder="Filter" />
                   </div>
                 </SelectTrigger>
-                <SelectContent className="lg:!mr-0 !mr-1">
+                <SelectContent className="lg:!mr-0 !mr-1 p-1">
                   <SelectGroup className="!m-1">
                     <SelectLabel>Media</SelectLabel>
                     <SelectSeparator />
@@ -99,64 +99,6 @@ const FilterSortPanel = ({
                       <div className="flex items-center space-x-2">
                         <RadioGroupItem value="Movies" id="media-movies" />
                         <Label htmlFor="media-movies">Movies</Label>
-                      </div>
-                    </RadioGroup>
-                  </SelectGroup>
-
-                  <SelectGroup className="!m-1 !mt-5">
-                    <SelectLabel>Status</SelectLabel>
-                    <SelectSeparator />
-                    <RadioGroup defaultValue="default" className="!mt-3 !ml-2">
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem
-                          value="default"
-                          id="status-all"
-                          disabled={mediaType === "compact"}
-                        />
-                        <Label
-                          htmlFor="status-all"
-                          className={
-                            mediaType === "compact"
-                              ? "opacity-50 cursor-not-allowed"
-                              : ""
-                          }
-                        >
-                          All
-                        </Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem
-                          value="comfortable"
-                          id="status-current"
-                          disabled={mediaType === "compact"}
-                        />
-                        <Label
-                          htmlFor="status-current"
-                          className={
-                            mediaType === "compact"
-                              ? "opacity-50 cursor-not-allowed"
-                              : ""
-                          }
-                        >
-                          Currently Airing
-                        </Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem
-                          value="compact"
-                          id="status-finished"
-                          disabled={mediaType === "compact"}
-                        />
-                        <Label
-                          htmlFor="status-finished"
-                          className={
-                            mediaType === "compact"
-                              ? "opacity-50 cursor-not-allowed"
-                              : ""
-                          }
-                        >
-                          Finished Airing
-                        </Label>
                       </div>
                     </RadioGroup>
                   </SelectGroup>
