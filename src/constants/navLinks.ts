@@ -7,10 +7,10 @@ export const navLinks = [
     label: "Popular",
     href: "/popular",
   },
-  {
-    label: "Manga",
-    href: "/manga",
-  },
+  // {
+  //   label: "Manga",
+  //   href: "/manga",
+  // },
   {
     label: "Top Characters",
     href: "/characters",

@@ -86,7 +86,7 @@ const Navbar = () => {
       </div>
 
       <div className="hidden xl:block">
-        <Button colorType={"primary"} />
+        <Button colorType={"primary"} href="https://github.com/devJennyy/kawaii-verse-revamp"/>
       </div>
 
       {/* Dark background overlay */}
@@ -205,7 +205,7 @@ const Navbar = () => {
                 })}
 
                 <div className="!mt-2">
-                  <Button colorType={"secondary"} />
+                  <Button colorType={"secondary"} href="https://github.com/devJennyy/kawaii-verse-revamp"/>
                 </div>
               </motion.div>
             )}
