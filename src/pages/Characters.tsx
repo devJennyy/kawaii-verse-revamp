@@ -9,19 +9,31 @@ import { useEffect, useState } from "react";
 const Characters = () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
   const [isLoading, setIsLoading] = useState(true);
-  const [page] = useState(1);
+  const [page, setPage] = useState(1);
   const [topCharacters, setTopCharacters] = useState<any[]>([]);
+  const [top3Characters, setTop3Characters] = useState<any[]>([]);
+  const [searchKey, setSearchKey] = useState<string>("");
+  const [searchChar, setSearchChar] = useState<boolean>(false);
   setTimeout(() => {
     setIsLoading(false);
   }, 1500);
 
   const fetchTopChars = () => {
+    // setSearchChar(false);
     setIsLoading(true);
+
+    if (!searchKey) {
+      setSearchChar(false);
+    }
+
     Promise.all([
-      axios.get(TOP_CHARACTERS.replace("{page}", page.toString()).replace("{q}", '')),
+      axios.get(TOP_CHARACTERS.replace("{page}", searchKey ? '1' : page.toString()).replace("{q}", searchKey ? `q=${searchKey}&` : "")),
     ])
       .then(([charactersRes]) => {
         setTopCharacters(charactersRes.data.data);
+        if(page === 1 && !searchKey) {
+          setTop3Characters(charactersRes.data.data.slice(0, 3));
+        }
       })
       .finally(() => {
         setTimeout(() => {
@@ -31,6 +43,11 @@ const Characters = () => {
       .catch((error) => {
         console.error("Error fetching anime data:", error);
       });
+  }
+
+  const handleSearch = () => {
+    fetchTopChars();
+    setSearchChar(true);
   }
 
   useEffect(() => {
@@ -47,8 +64,28 @@ const Characters = () => {
             : "opacity-100 transition-opacity duration-500"
         }`}
       >
-        <Leaderboard characterData={topCharacters?.slice(0, 3)} />
-        <FavoritesTable />
+        <Leaderboard characterData={top3Characters} />
+        <FavoritesTable searchKey={searchKey} setSearchKey={setSearchKey} handleSearch={handleSearch} topCharacters={topCharacters} page={page} />
+        {!searchChar && <div className="w-full flex justify-center items-center">
+            {page > 1 && <button
+            onClick={() => {
+              setPage((prevPage) => prevPage - 1);
+            }}
+            className="bg-primary text-white px-4 py-2 rounded-lg mt-4 hover:bg-secondary transition-colors duration-300"
+          >
+            Prev
+          </button>}
+
+          <button
+            onClick={() => {
+              setPage((prevPage) => prevPage + 1);
+            }}
+            className="bg-primary text-white px-4 py-2 rounded-lg mt-4 hover:bg-secondary transition-colors duration-300"
+          >
+            Next
+          </button>
+
+        </div>}
       </div>
     </section>
   );

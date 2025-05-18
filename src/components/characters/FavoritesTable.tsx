@@ -1,18 +1,26 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { tableData } from "@/constants/tableData";
 import { FiSearch } from "react-icons/fi";
 import { Link } from "react-router";
 import { motion } from "framer-motion";
 
-const FavoritesTable = () => {
+const FavoritesTable = ({ searchKey, setSearchKey, handleSearch, topCharacters, page }: any) => {
   return (
     <div className="w-full 3xl:max-w-[1440px] xl:max-w-[1280px] lg:max-w-[1024px] md:max-w-[768px] !mx-auto flex flex-col sm:gap-12 gap-5 xl:!mt-20 sm:!mt-14 !mt-8 3xl:px-0 lg:px-5 px-4">
       <div className="flex sm:gap-3 gap-2 xl:h-14 sm:h-12 h-10">
         <input
+          value={searchKey}
+          onChange={(e) => {
+            setSearchKey(e.target.value);
+          }}
+          onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSearch();
+              }
+            }}
           placeholder="Search Characters..."
           className="w-full h-full tracking-wide sm:pl-5 pl-4 xl:text-default text-sm border border-midnightNavy active:border-neonAqua focus:border-neonAqua xl:rounded-lg rounded-md outline-none transition-default"
         ></input>
-        <div className="w-fit sm:px-5 px-3 h-full bg-midnightNavy border border-midnightNavy hover:bg-neonAqua/10 hover:border-neonAqua active:bg-neonAqua/10 active:border-neonAqua transition-default xl:rounded-lg rounded-md flex justify-center items-center cursor-pointer">
+        <div onClick={() => handleSearch()} className="w-fit sm:px-5 px-3 h-full bg-midnightNavy border border-midnightNavy hover:bg-neonAqua/10 hover:border-neonAqua active:bg-neonAqua/10 active:border-neonAqua transition-default xl:rounded-lg rounded-md flex justify-center items-center cursor-pointer">
           <FiSearch className="xl:text-2xl text-xl  text-neonAqua" />
         </div>
       </div>
@@ -154,12 +162,13 @@ const FavoritesTable = () => {
           </div>
         </div>
 
-        {tableData?.map((item, index) => {
+        {topCharacters?.map((item: any, index: number) => {
           const isEven = index % 2 === 0;
           const baseBg = isEven ? "bg-midnightNavy/10" : "bg-midnightNavy/50";
           const hoverBg = isEven
             ? "hover:bg-midnightNavy/20"
             : "hover:bg-midnightNavy/60";
+          const characterNumber = (page - 1) * 25 + (index + 1);
 
           return (
             <motion.div
@@ -171,7 +180,7 @@ const FavoritesTable = () => {
               <Link to={`/character-info?id=${item.mal_id}`} className="w-full flex transition-slow">
                 <div className="w-full xl:max-w-32 lg:max-w-24 md:max-w-32 sm:max-w-24 max-w-16 h-full flex justify-center items-center transition-slow">
                   <p className="xl:text-2xl text-xl text-secondary/50 tracking-wide capitalize font-bold">
-                    {index + 1}
+                    {characterNumber}
                   </p>
                 </div>
                 <div className="w-full h-full flex justify-start items-center gap-5 py-4 px-5 transition-slow">

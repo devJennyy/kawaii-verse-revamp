@@ -159,7 +159,7 @@ const FilterSortPanel = ({
           </div>
           <div className="flex gap-1">
             {/* Sorting */}
-            <Select>
+            <Select value={mediaType} onValueChange={setMediaType}>
               <SelectTrigger className="lg:w-[180px] sm:w-[130px] w-[40px] py-[9px]">
                 <div className="sm:block hidden">
                   <SelectValue placeholder="All" />

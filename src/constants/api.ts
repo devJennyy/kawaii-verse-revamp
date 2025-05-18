@@ -4,7 +4,7 @@ export const TOP_ANIME = "https://api.jikan.moe/v4/top/anime?{type}order_by=star
 export const LONG_WEEKEND_WATCHLIST = "https://api.jikan.moe/v4/anime?order_by=popularity&sort=asc&limit=7";
 export const GET_OVERVIEW = "https://api.jikan.moe/v4/anime/{id}/full";
 export const GET_CHARACTERS = "https://api.jikan.moe/v4/anime/{id}/characters";
-export const SEARCH_ANIME = "https://api.jikan.moe/v4/anime?q={searchKey}";
+export const SEARCH_ANIME = "https://api.jikan.moe/v4/anime?q={searchKey}{type}";
 export const TOP_CHARACTERS = "https://api.jikan.moe/v4/characters?{q}order_by=favorites&sort=desc&page={page}";
 export const GET_CHARACTER_INFO = "https://api.jikan.moe/v4/characters/{id}/full";
 export const GET_CHARACTER_VOICE_ACTORS = "https://api.jikan.moe/v4/characters/{id}/voices";
