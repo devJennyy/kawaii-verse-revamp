@@ -125,7 +125,8 @@ const AnimeGallery = ({ type, delay = 0, mediaType }: AnimeShowcaseProps) => {
                     <Button
                       label="View Details"
                       hasIcon={false}
-                      colorType="secondary"
+                      colorType={"secondary"}
+                      isStatic={true}
                       customClass="3xl:h-11 xl:h-9 h-7 4xl:text-[16px] 3xl:text-sm xl:text-[12px] text-[10px]"
                     />
                   </div>

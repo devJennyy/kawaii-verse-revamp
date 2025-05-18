@@ -129,10 +129,12 @@ const AnimeShowcase = ({ type, delay = 0 }: AnimeShowcaseProps) => {
                           {item.synopsis}
                         </p>
                       </div>
+
                       <Button
                         label="View Details"
                         hasIcon={false}
                         colorType={"secondary"}
+                        isStatic={true}
                         customClass="4xl:h-14 3xl:h-11 xl:h-9 h-7 4xl:text-[17px] 3xl:text-sm xl:text-[12px] text-[10px]"
                       />
                     </motion.div>
@@ -140,7 +142,6 @@ const AnimeShowcase = ({ type, delay = 0 }: AnimeShowcaseProps) => {
                 </Link>
               </SwiperSlide>
             ))}
-            {/* <SwiperNavButtons /> */}
           </Swiper>
         </div>
       ) : (
@@ -209,83 +210,85 @@ const AnimeShowcase = ({ type, delay = 0 }: AnimeShowcaseProps) => {
             ))}
           </div>
           <div className="w-full overflow-x-auto flex lg:hidden">
-          <Swiper
-            slidesPerView={"auto"}
-            breakpoints={{
-              360: {
-                spaceBetween: 15,
-              },
-              1280: {
-                spaceBetween: 20,
-              },
-              2560: {
-                spaceBetween: 20,
-              },
-            }}
-            navigation={false}
-            modules={[Navigation]}
-            className="mySwiper cursor-grab overflow-visible"
-          >
-            {animeList?.map((item, index) => (
-              <SwiperSlide key={index}>
-                <Link
-                  to={`/anime-overview?id=${item.mal_id}`}
-                  className="4xxl:w-[388px] 4xxl:h-[582px] 4xl:w-[317px] 4xl:h-[475px] 3xl:w-[268px] 3xl:h-[402px] 2xl:w-[238px] 2xl:h-[357px] xl:w-[206px] xl:h-[309px] sm:w-[180px] sm:h-[262px] w-[155px] h-[232px] flex-none"
-                >
-                  <motion.div
-                    initial="rest"
-                    whileHover="hover"
-                    animate="rest"
-                    className="relative w-full h-full overflow-hidden 4xl:rounded-md rounded-sm group"
+            <Swiper
+              slidesPerView={"auto"}
+              breakpoints={{
+                360: {
+                  spaceBetween: 15,
+                },
+                1280: {
+                  spaceBetween: 20,
+                },
+                2560: {
+                  spaceBetween: 20,
+                },
+              }}
+              navigation={false}
+              modules={[Navigation]}
+              className="mySwiper cursor-grab overflow-visible"
+            >
+              {animeList?.map((item, index) => (
+                <SwiperSlide key={index}>
+                  <Link
+                    to={`/anime-overview?id=${item.mal_id}`}
+                    className="4xxl:w-[388px] 4xxl:h-[582px] 4xl:w-[317px] 4xl:h-[475px] 3xl:w-[268px] 3xl:h-[402px] 2xl:w-[238px] 2xl:h-[357px] xl:w-[206px] xl:h-[309px] sm:w-[180px] sm:h-[262px] w-[155px] h-[232px] flex-none"
                   >
-                    <motion.img
-                      src={item.images?.jpg?.large_image_url}
-                      alt={item.title}
-                      className="w-full h-full object-cover"
-                      variants={{
-                        rest: { filter: "blur(0px)", scale: 1 },
-                        hover: {
-                          filter: "blur(4px)",
-                          transition: { duration: 0.2, ease: "easeInOut" },
-                        },
-                      }}
-                    />
                     <motion.div
-                      className="hidden absolute top-0 left-0 w-full h-full bg-black/85 z-10 sm:flex flex-col justify-between gap-5 tracking-wide text-white backdrop-blur-sm text-start 2xl:p-6 xl:p-5 p-3"
-                      variants={{
-                        rest: { opacity: 0, y: 50 },
-                        hover: {
-                          opacity: 1,
-                          y: 0,
-                          transition: {
-                            duration: 0.4,
-                            ease: "easeInOut",
-                            delay: 0.05,
-                          },
-                        },
-                      }}
+                      initial="rest"
+                      whileHover="hover"
+                      animate="rest"
+                      className="relative w-full h-full overflow-hidden 4xl:rounded-md rounded-sm group"
                     >
-                      <div className="flex flex-col 3xl:gap-5 gap-3">
-                        <p className="4xl:text-2xl 3xl:text-xl xl:text-[16px] text-sm font-semibold">
-                          {item.title_english || item.title}
-                        </p>
-                        <p className="4xxl:line-clamp-15 4xl:line-clamp-11 2xl:line-clamp-8 line-clamp-7 3xl:text-[16px] xl:text-sm text-[10px]">
-                          {item.synopsis}
-                        </p>
-                      </div>
-                      <Button
-                        label="View Details"
-                        hasIcon={false}
-                        colorType={"secondary"}
-                        customClass="4xl:h-14 3xl:h-11 xl:h-9 h-7 4xl:text-[17px] 3xl:text-sm xl:text-[12px] text-[10px]"
+                      <motion.img
+                        src={item.images?.jpg?.large_image_url}
+                        alt={item.title}
+                        className="w-full h-full object-cover"
+                        variants={{
+                          rest: { filter: "blur(0px)", scale: 1 },
+                          hover: {
+                            filter: "blur(4px)",
+                            transition: { duration: 0.2, ease: "easeInOut" },
+                          },
+                        }}
                       />
+                      <motion.div
+                        className="hidden absolute top-0 left-0 w-full h-full bg-black/85 z-10 sm:flex flex-col justify-between gap-5 tracking-wide text-white backdrop-blur-sm text-start 2xl:p-6 xl:p-5 p-3"
+                        variants={{
+                          rest: { opacity: 0, y: 50 },
+                          hover: {
+                            opacity: 1,
+                            y: 0,
+                            transition: {
+                              duration: 0.4,
+                              ease: "easeInOut",
+                              delay: 0.05,
+                            },
+                          },
+                        }}
+                      >
+                        <div className="flex flex-col 3xl:gap-5 gap-3">
+                          <p className="4xl:text-2xl 3xl:text-xl xl:text-[16px] text-sm font-semibold">
+                            {item.title_english || item.title}
+                          </p>
+                          <p className="4xxl:line-clamp-15 4xl:line-clamp-11 2xl:line-clamp-8 line-clamp-7 3xl:text-[16px] xl:text-sm text-[10px]">
+                            {item.synopsis}
+                          </p>
+                        </div>
+
+                        <Button
+                          label="View Details"
+                          hasIcon={false}
+                          colorType={"secondary"}
+                          isStatic={true}
+                          customClass="4xl:h-14 3xl:h-11 xl:h-9 h-7 4xl:text-[17px] 3xl:text-sm xl:text-[12px] text-[10px]"
+                        />
+                      </motion.div>
                     </motion.div>
-                  </motion.div>
-                </Link>
-              </SwiperSlide>
-            ))}
-            {/* <SwiperNavButtons /> */}
-          </Swiper>
+                  </Link>
+                </SwiperSlide>
+              ))}
+              {/* <SwiperNavButtons /> */}
+            </Swiper>
           </div>
         </>
       )}
