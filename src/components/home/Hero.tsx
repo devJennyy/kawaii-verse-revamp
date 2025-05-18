@@ -10,12 +10,13 @@ import { GET_TOP_ANIME } from "@/constants/api";
 import CustomNavButtons from "../ui/CustomNavButtons";
 import "../../styles/swiper.css";
 import Button from "../shared/Button";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const Hero = () => {
   const swiperRef = useRef<SwiperType | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [topAnime, setTopAnime] = useState<any[]>([]);
+  const navigate = useNavigate();
 
   const fetchTopAnime = () => {
     axios
@@ -89,19 +90,19 @@ const Hero = () => {
                       {anime.synopsis}
                     </p>
 
-                    {topAnime && topAnime[currentIndex] && (
-                      <Link
-                        to={`/anime-overview?id=${topAnime[currentIndex].mal_id}`}
-                        className="z-10"
-                      >
-                        <Button
-                          hasIcon={false}
-                          label="View Details"
-                          colorType="tertiary"
-                          customClass="z-50 uppercase 5xl:text-[38px] 4xl:text-[28px] 3xl:text-lg text-sm font-normal 5xl:px-36 4xl:px-24 3xl:px-18 px-12 w-fit h-full flex justify-center items-center 4xl:border-2 3xl:border-2 border border-neonAqua text-neonAqua rounded-full cursor-pointer hover:bg-neonAqua/10 transition-default 5xl:h-[130px] 4xl:h-[90px] 3xl:h-[64px] h-[44px] 5xl:!mt-12 4xl:!mt-8 !mt-6"
-                        />
-                      </Link>
-                    )}
+                    <Button
+                      hasIcon={false}
+                      label="View Details"
+                      colorType="tertiary"
+                      customClass="z-50 uppercase 5xl:text-[38px] 4xl:text-[28px] 3xl:text-lg text-sm font-normal 5xl:px-36 4xl:px-24 3xl:px-18 px-12 w-fit h-full flex justify-center items-center 4xl:border-2 3xl:border-2 border border-neonAqua text-neonAqua rounded-full cursor-pointer hover:bg-neonAqua/10 transition-default 5xl:h-[130px] 4xl:h-[90px] 3xl:h-[64px] h-[44px] 5xl:!mt-12 4xl:!mt-8 !mt-6"
+                      onClick={() => {
+                        if (topAnime && topAnime[currentIndex]) {
+                          navigate(
+                            `/anime-overview?id=${topAnime[currentIndex].mal_id}`
+                          );
+                        }
+                      }}
+                    />
                   </div>
                 );
               })}
@@ -209,36 +210,45 @@ const Hero = () => {
         </div>
 
         <div className="relative z-20 flex flex-col justify-center items-center sm:gap-8 gap-5 w-full md:!mt-28 sm:!mt-16 !mt-5 transition-slow">
-          <Swiper
-            slidesPerView="auto"
-            spaceBetween={20}
-            centeredSlides={true}
-            loop={true}
-            autoplay={{ delay: 3000, disableOnInteraction: false }}
-            speed={500}
-            onSlideChange={(swiper) => setCurrentIndex(swiper.realIndex)}
-            className="mySwiperMobile"
-            modules={[Autoplay]}
-          >
-            {topAnime?.map((item, index) => (
-              <SwiperSlide key={index}>
-                <Link
-                  to={`/anime-overview?id=${item.mal_id}`}
-                  className={`md:w-[300px] sm:w-[280px] sm:h-[380px] w-[230px] h-[300px] border-gradient bg-main/50 rounded-3xl z-40 border-neonAqua overflow-hidden p-4 flex justify-center items-center transition-transform duration-500 ease-in-out ${
-                    index === currentIndex
-                      ? "scale-100 opacity-100"
-                      : "scale-85 opacity-85"
-                  }`}
-                >
-                  <img
-                    src={item.images.jpg.large_image_url}
-                    alt={item.title}
-                    className="rounded-3xl w-full h-full object-cover"
-                  />
-                </Link>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+          {topAnime && topAnime.length > 0 && (
+            <Swiper
+              slidesPerView="auto"
+              spaceBetween={20}
+              centeredSlides={true}
+              loop={true}
+              autoplay={{ delay: 3000, disableOnInteraction: false }}
+              speed={500}
+              onInit={(swiper) => {
+                const initialIndex =
+                  swiper?.realIndex ?? swiper?.activeIndex ?? 0;
+                setCurrentIndex(initialIndex);
+              }}
+              onSlideChange={(swiper) => {
+                setCurrentIndex(swiper.realIndex ?? swiper.activeIndex ?? 0);
+              }}
+              className="mySwiperMobile"
+              modules={[Autoplay]}
+            >
+              {topAnime.map((item, index) => (
+                <SwiperSlide key={index}>
+                  <Link
+                    to={`/anime-overview?id=${item.mal_id}`}
+                    className={`md:w-[300px] sm:w-[280px] sm:h-[380px] w-[230px] h-[300px] border-gradient bg-main/50 rounded-3xl z-40 border-neonAqua overflow-hidden p-4 flex justify-center items-center transition-transform duration-500 ease-in-out ${
+                      index === currentIndex
+                        ? "scale-100 opacity-100"
+                        : "scale-85 opacity-85"
+                    }`}
+                  >
+                    <img
+                      src={item.images.jpg.large_image_url}
+                      alt={item.title}
+                      className="rounded-3xl w-full h-full object-cover"
+                    />
+                  </Link>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          )}
 
           <div className="w-full sm:h-[190px] h-[180px] relative flex flex-col justify-end items-center transition-slow">
             {topAnime?.map((anime, index) => (
@@ -268,18 +278,19 @@ const Hero = () => {
                   <p className="font-semibold">{anime.score}</p>
                 </div>
 
-                {topAnime[currentIndex] && (
-                  <Link
-                    to={`/anime-overview?id=${topAnime[currentIndex].mal_id}`}
-                  >
-                    <Button
-                      hasIcon={false}
-                      label="Watch Now"
-                      colorType="tertiary"
-                      customClass="w-fit px-18 sm:h-13 h-12 text-neonAqua"
-                    />
-                  </Link>
-                )}
+                <Button
+                  hasIcon={false}
+                  label="Watch Now"
+                  colorType="tertiary"
+                  customClass="w-fit px-18 sm:h-13 h-12 text-neonAqua"
+                  onClick={() => {
+                    if (topAnime && topAnime[currentIndex]) {
+                      navigate(
+                        `/anime-overview?id=${topAnime[currentIndex].mal_id}`
+                      );
+                    }
+                  }}
+                />
               </div>
             ))}
           </div>
