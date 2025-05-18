@@ -18,14 +18,27 @@ const Search = () => {
   );
   const [animeList, setAnimeList] = useState<any[]>([]);
   const [isSearchLoading, setIsSearchLoading] = useState(true);
+  const [mediaType, setMediaType] = useState("all");
 
   setTimeout(() => {
     setIsLoading(false);
-  }, 1500);
+  }, 1000);
 
   const searchAnime = () => {
     setIsSearchLoading(true);
-    Promise.all([axios.get(SEARCH_ANIME.replace("{searchKey}", searchKeyword ? searchKeyword : ""))])
+    Promise.all([
+      axios.get(
+        SEARCH_ANIME.replace(
+          "{searchKey}",
+          searchKeyword ? searchKeyword + "&" : ""
+        ).replace(
+          "{type}",
+          mediaType !== "all"
+            ? `type=${mediaType === "series" ? "TV" : "Movie"}`
+            : ``
+        )
+      ),
+    ])
       .then(([searchRes]) => {
         setAnimeList(searchRes?.data?.data);
         console.log(searchRes);
@@ -34,7 +47,7 @@ const Search = () => {
         setTimeout(() => {
           setIsLoading(false);
           setIsSearchLoading(false);
-        }, 3000);
+        }, 1000);
       })
       .catch((error) => {
         console.error("Error fetching anime data:", error);
@@ -43,7 +56,7 @@ const Search = () => {
 
   useEffect(() => {
     searchAnime();
-  }, []);
+  }, [mediaType]);
 
   useEffect(() => {
     // Get the value of the 'q' parameter from the URL
@@ -71,6 +84,8 @@ const Search = () => {
           searchKeyword={searchKeyword || ""}
           setSearchKeyword={setSearchKeyword}
           isSearch={true}
+          mediaType={mediaType}
+          setMediaType={setMediaType}
         />
         <div className="w-full flex flex-col 4xl:gap-4 gap-2 4xl:!mt-16 sm:!mt-10 !mt-5">
           <p className="4xl:text-3xl xl:text-2xl sm:text-xl tracking-wide">
