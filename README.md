@@ -1,7 +1,7 @@
 <div align="center">
   <br />
     <a href="https://kawaii-verse-revamp-by-devjenny.vercel.app" target="_blank">
-      <img src="https://github.com/devJennyy/kawaii-verse-revamp/blob/main/public/images/banner.png" alt="Project Banner">
+      <img src="https://github.com/devJennyy/kawaii-verse-revamp/blob/main/public/images/homepage-ui.png" alt="Project Banner">
     </a>
   <br />
 
@@ -16,12 +16,10 @@
   </h3>
 
   <div align="center">
-    An anime archive showcasing movies, series, characters, and streaming availability — powered by the
+    A fully responsive anime archive showcasing movies, series, characters, and streaming availability — powered by the
     <img src="https://img.shields.io/badge/Jikan_API-100000?style=flat&logoColor=white&color=blue" alt="Jikan API" />.
   </div>
   </br>
-  
-  `WIP: Currently working on the Top Characters page.`
 </div>
 
 ## <a name="tech-stack">⚙️ Tech Stack </a>
