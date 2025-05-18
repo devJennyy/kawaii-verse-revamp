@@ -35,9 +35,7 @@ const Hero = () => {
 
   return (
     <>
-      {/* Web */}
       <div className="relative w-full lg:flex justify-center items-center 4xl:px-20 px-12 5xl:h-[2020px] 4xxl:h-[1590px] 4xl:h-[1500px] 3xl:h-[1080px] 2xl:h-[808px] h-[752px] hidden transition-slow z-0">
-        {/* Bg Image */}
         <div className="absolute inset-0 w-full h-full z-0 border-b-20 border-black">
           {topAnime?.map((anime, index) => (
             <img
@@ -54,14 +52,11 @@ const Hero = () => {
           ))}
         </div>
 
-        {/* Gradient Overlay */}
         <div className="absolute left-0 h-full w-[40%] bg-gradient-to-r from-main to-main/0 z-10 transition-slow"></div>
         <div className="absolute bottom-0 w-full h-[80%] bg-gradient-to-b from-main/0 to-main z-10 transition-slow"></div>
         <div className="absolute left-0 w-[60%] h-full bg-gradient-to-r from-main to-main/0 z-10 transition-slow"></div>
 
-        {/* Content */}
         <div className="absolute w-full max-w-full !mx-auto 5xl:w-[3840px] h-full flex z-20 5xl:pb-30 4xl:pb-40 3xl:pb-44 pb-20">
-          {/* Details */}
           <div className="relative w-full h-full flex flex-col justify-end items-start transition-slow">
             <div className="relative flex-1">
               {topAnime?.map((anime, index) => {
@@ -110,9 +105,7 @@ const Hero = () => {
             <div className="w-full 5xl:h-[245px] 4xl:h-[180px] 3xl:h-[145px] 2xl:h-[95px] h-[90px] transition-slow"></div>
           </div>
 
-          {/* Slider */}
           <div className="relative 5xl:w-15/12 4xxl:w-12/12 4xl:w-15/12 w-16/12 flex flex-col justify-end overflow-hidden 5xl:gap-24 4xl:gap-20 3xl:gap-16 2xl:gap-8 gap-8 transition-slow">
-            {/* Thumbnails */}
             <div className="5xl:h-[800px] 4xl:h-[579px] 3xl:h-[408px] 2xl:h-[300px] h-[290px] flex 5xl:gap-16 4xl:gap-11 3xl:gap-8 2xl:gap-6 gap-5 overflow-hidden transition-slow">
               <Swiper
                 onSwiper={(swiper) => (swiperRef.current = swiper)}
@@ -172,7 +165,6 @@ const Hero = () => {
               </Swiper>
             </div>
 
-            {/* Pagination Controls */}
             <div className="w-full flex justify-start items-end 5xl:h-[150px] 4xl:h-[100px] 3xl:h-[80px] 2xl:h-[65px] h-[58px] 5xl:gap-16 4xl:gap-13 3xl:gap-8 2xl:gap-7 gap-6 5xl:pr-30 pr-10 transition-slow">
               <CustomNavButtons swiperRef={swiperRef} />
               <div className="h-full 5xl:w-[1437px] 4xl:w-[953px] 3xl:w-[723px] 2xl:w-[537px] w-[480px] flex justify-center items-center transition-slow">
@@ -189,7 +181,6 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Mobile */}
       <div className="relative lg:hidden w-full md:h-[850px] sm:h-[800px] h-screen !pt-10 flex flex-col justify-center">
         <div className="absolute inset-0 z-0">
           {topAnime?.map((anime, index) => (
