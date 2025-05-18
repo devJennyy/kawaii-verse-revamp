@@ -14,10 +14,10 @@ export const getPopularMoviesUrl = (width: number): string => {
   let limit;
   if (width >= 2560) {
     limit = 14;
-  } else if (width >= 1440) {
-    limit = 12;
-  } else {
+  } else if (width >= 1024) {
     limit = 15;
+  } else {
+    limit = 5;
   }
 
   return `https://api.jikan.moe/v4/top/anime?type=movie&order_by=start_date&sort=desc&limit=${limit}`;

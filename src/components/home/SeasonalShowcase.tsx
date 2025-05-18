@@ -20,10 +20,10 @@ const SeasonalShowcase = () => {
   }, [activeIndex]);
 
   return (
-    <div className="w-full lg:flex justify-center items-center relative hidden">
-      <div className="absolute w-full 4xl:h-[990px] 3xxl:h-[780px] 2xl:h-[590px] xl:h-[510px] h-[420px] bg-[#181A20] transition-slow"></div>
-      <div className="w-fit px-40 flex justify-center items-center relative scale-42 xl:scale-52 2xl:scale-60 3xxl:scale-80 4xl:scale-100 transition-slow">
-        <div className="w-[1940px] 4xl:h-[1200px] 3xxl:h-[990px] 2xl:h-[720px] xl:h-[630px] h-[520px] relative flex items-center cursor-grab transition-slow">
+    <div className="w-full flex justify-center items-center relative !mt-[-20px]">
+      <div className="absolute w-full 4xl:h-[990px] 3xxl:h-[780px] 2xl:h-[590px] xl:h-[510px] sm:h-[420px] h-[200px] bg-[#181A20] transition-slow"></div>
+      <div className="w-fit xl:px-40 px-32 flex justify-center items-center relative scale-20 sm:scale-35 md:scale-42 xl:scale-52 2xl:scale-60 3xxl:scale-80 4xl:scale-100 transition-slow">
+        <div className="w-[1500px] xl:w-[1940px] 4xl:h-[1200px] 3xxl:h-[990px] 2xl:h-[720px] xl:h-[630px] sm:h-[520px] h-[280px] relative flex items-center cursor-grab transition-slow">
           <Swiper
             spaceBetween={50}
             loop={true}
@@ -37,7 +37,7 @@ const SeasonalShowcase = () => {
                 <SwiperSlide key={index}>
                   <Link
                     to={`/anime-overview?id=${anime.mal_id}`}
-                    className="w-[1940px] h-[1200px] relative flex justify-center items-center overflow-visible"
+                    className="w-[1500px] xl:w-[1940px] h-[1200px] relative flex justify-center items-center overflow-visible"
                   >
                     <div
                       className={
@@ -94,9 +94,9 @@ const SeasonalShowcase = () => {
                         />
                       </div>
 
-                      <div className="absolute w-[1350px] right-0 bottom-0 flex justify-center items-center">
+                      <div className="absolute w-[900px] xl:w-[1350px] right-0 bottom-0 flex justify-center items-center">
                         <div
-                          className="w-[1345px] h-[565px] bg-white"
+                          className="w-[895px] xl:w-[1345px] h-[565px] bg-white"
                           style={{
                             clipPath:
                               "polygon(0% 100%, 20% 0%, 100% 0%, 100% 100%)",
@@ -105,7 +105,7 @@ const SeasonalShowcase = () => {
                           }}
                         />
                         <div
-                          className="w-[1325px] h-[550px] absolute"
+                          className="w-[875px] xl:w-[1325px] h-[550px] absolute"
                           style={{
                             clipPath:
                               "polygon(0% 100%, 20% 0%, 100% 0%, 100% 100%)",
@@ -115,7 +115,7 @@ const SeasonalShowcase = () => {
                           }}
                         />
                         <div
-                          className="absolute w-[1320px] h-[550px] bg-main/10"
+                          className="absolute w-[870px] xl:w-[1320px] h-[550px] bg-main/10"
                           style={{
                             clipPath:
                               "polygon(0% 100%, 20% 0%, 100% 0%, 100% 100%)",

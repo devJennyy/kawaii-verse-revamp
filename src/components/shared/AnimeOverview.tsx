@@ -479,14 +479,14 @@ const AnimeOverview = () => {
                                             behavior: "smooth",
                                           })
                                       }
-                                      className="sm:w-9 sm:h-9 w-7 h-7 rounded-full flex items-center justify-center bg-transparent border-2 4xl:text-lg xl:text-default text-[10px] border-neonAqua hover:bg-neonAqua/10 transition-default cursor-pointer text-neonAqua font-semibold "
+                                      className="sm:w-9 sm:h-9 w-7 h-7 rounded-full flex items-center justify-center bg-transparent sm:border-2 border 4xl:text-lg xl:text-default text-[10px] border-neonAqua hover:bg-neonAqua/10 transition-default cursor-pointer text-neonAqua font-semibold "
                                     >
                                       {`+${remainingCount}`}
                                     </div>
                                   )}
                                 </TooltipTrigger>
                                 <TooltipContent>
-                                  <p className="text-sm py-[2px] px-1 tracking-wide">
+                                  <p className="sm:text-sm text-[12px] sm:py-[2px] py-[1px] px-1 tracking-wide">
                                     See More
                                   </p>
                                 </TooltipContent>
