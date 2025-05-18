@@ -36,26 +36,28 @@ const AnimeShowcase = ({ type, delay = 0 }: AnimeShowcaseProps) => {
   }, []);
 
   useEffect(() => {
-    const fetchAnime = async () => {
-      try {
-        const url =
-          type === "movies"
-            ? getPopularMoviesUrl(screenWidth)
-            : type === "newest-season"
-            ? NEWEST_SEASON.replace("{page}", "1")
-            : type === "top-anime"
-            ? TOP_ANIME.replace("{page}", "1")
-            : LONG_WEEKEND_WATCHLIST;
+    setTimeout(() => {
+      const fetchAnime = async () => {
+        try {
+          const url =
+            type === "movies"
+              ? getPopularMoviesUrl(screenWidth)
+              : type === "newest-season"
+              ? NEWEST_SEASON.replace("{page}", "1")
+              : type === "top-anime"
+              ? TOP_ANIME.replace("{page}", "1")
+              : LONG_WEEKEND_WATCHLIST;
 
-        const res = await axios.get(url);
-        setAnimeList(res.data.data);
-      } catch (err) {
-        console.error("Oops! something went wrong", err);
-      }
-    };
+          const res = await axios.get(url);
+          setAnimeList(res.data.data);
+        } catch (err) {
+          console.error("Oops! something went wrong", err);
+        }
+      };
 
-    fetchAnime();
-  }, [type, screenWidth, delay]);
+      fetchAnime();
+    }, delay);
+  }, [type, screenWidth]);
 
   return (
     <div className="lg:flex flex-col items-start 4xl:gap-12 3xl:gap-10 xl:gap-7 gap-5 z-30 4xl:pl-20 lg:pl-12 sm:pl-5 pl-4 4xl:pb-24 3xl:pb-18 xl:pb-14 pb-10">
