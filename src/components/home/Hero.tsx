@@ -94,7 +94,7 @@ const Hero = () => {
                       hasIcon={false}
                       label="View Details"
                       colorType="tertiary"
-                      customClass="z-50 uppercase 5xl:text-[38px] 4xl:text-[28px] 3xl:text-lg text-sm font-normal 5xl:px-36 4xl:px-24 3xl:px-18 px-12 w-fit h-full flex justify-center items-center 4xl:border-2 3xl:border-2 border border-neonAqua text-neonAqua rounded-full cursor-pointer hover:bg-neonAqua/10 transition-default 5xl:h-[130px] 4xl:h-[90px] 3xl:h-[64px] h-[44px] 5xl:!mt-12 4xl:!mt-8 !mt-6"
+                      customClass="z-50 uppercase 5xl:text-[38px] 4xl:text-[28px] 3xl:text-lg text-sm font-normal 5xl:px-36 4xl:px-24 3xl:px-18 px-12 w-fit flex justify-center items-center 4xl:border-2 3xl:border-2 border border-neonAqua text-neonAqua rounded-full cursor-pointer hover:bg-neonAqua/10 transition-default 5xl:h-[130px] 4xl:h-[90px] 3xl:h-[64px] h-[44px] 5xl:!mt-12 4xl:!mt-8 !mt-6"
                       onClick={() => {
                         if (topAnime && topAnime[currentIndex]) {
                           navigate(
@@ -209,7 +209,7 @@ const Hero = () => {
           ))}
         </div>
 
-        <div className="relative z-20 flex flex-col justify-center items-center sm:gap-8 gap-5 w-full md:!mt-28 sm:!mt-16 !mt-5 transition-slow">
+        <div className="relative z-20 flex flex-col justify-center items-center sm:gap-8 gap-5 w-full md:!mt-28 sm:!mt-16 transition-slow">
           {topAnime && topAnime.length > 0 && (
             <Swiper
               slidesPerView="auto"
@@ -282,7 +282,7 @@ const Hero = () => {
                   hasIcon={false}
                   label="View Details"
                   colorType="tertiary"
-                  customClass="w-fit px-18 sm:h-13 h-12 text-neonAqua"
+                  customClass="w-fit px-18 h-13 text-neonAqua"
                   onClick={() => {
                     if (topAnime && topAnime[currentIndex]) {
                       navigate(

@@ -88,13 +88,13 @@ const AnimeShowcase = ({ type, delay = 0 }: AnimeShowcaseProps) => {
               <SwiperSlide key={index}>
                 <Link
                   to={`/anime-overview?id=${item.mal_id}`}
-                  className="4xxl:w-[388px] 4xxl:h-[582px] 4xl:w-[317px] 4xl:h-[475px] 3xl:w-[268px] 3xl:h-[402px] 2xl:w-[238px] 2xl:h-[357px] xl:w-[206px] xl:h-[309px] sm:w-[180px] sm:h-[262px] w-[155px] h-[232px] flex-none"
+                  className="flex-none 4xxl:w-[388px] 4xl:w-[317px] 3xl:w-[268px] 2xl:w-[238px] xl:w-[206px] sm:w-[180px] w-[155px]"
                 >
                   <motion.div
                     initial="rest"
                     whileHover="hover"
                     animate="rest"
-                    className="relative w-full h-full overflow-hidden 4xl:rounded-md rounded-sm group"
+                    className="relative w-full 4xxl:h-[582px] 4xl:h-[475px] 3xl:h-[402px] 2xl:h-[357px] xl:h-[309px] sm:h-[262px] h-[232px] overflow-hidden 4xl:rounded-md rounded-sm group"
                   >
                     <motion.img
                       src={item.images?.jpg?.large_image_url}
@@ -108,6 +108,7 @@ const AnimeShowcase = ({ type, delay = 0 }: AnimeShowcaseProps) => {
                         },
                       }}
                     />
+
                     <motion.div
                       className="hidden absolute top-0 left-0 w-full h-full bg-black/85 z-10 sm:flex flex-col justify-between gap-5 tracking-wide text-white backdrop-blur-sm text-start 2xl:p-6 xl:p-5 p-3"
                       variants={{
@@ -141,6 +142,10 @@ const AnimeShowcase = ({ type, delay = 0 }: AnimeShowcaseProps) => {
                       />
                     </motion.div>
                   </motion.div>
+
+                  <p className="xl:hidden !mt-2 text-sm 3xl:text-base text-left truncate pl-[2px]">
+                    {item.title_english || item.title}
+                  </p>
                 </Link>
               </SwiperSlide>
             ))}
