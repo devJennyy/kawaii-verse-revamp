@@ -218,7 +218,7 @@ const FavoritesTable = ({ searchKey, setSearchKey, handleSearch, topCharacters, 
                       const line = item.about
                         ?.split("\n")
                         .find(
-                          (line) =>
+                          (line: any) =>
                             line.startsWith("Affiliations:") ||
                             line.startsWith("Affiliation:") ||
                             line.startsWith("Occupation:")
