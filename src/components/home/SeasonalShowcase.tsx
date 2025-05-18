@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { Swiper as SwiperType } from "swiper";
 import { motion } from "framer-motion";
 import { Link } from "react-router";
+import { Autoplay } from "swiper/modules";
 
 const SeasonalShowcase = () => {
   const swiperRef = useRef<SwiperType | null>(null);
@@ -27,10 +28,13 @@ const SeasonalShowcase = () => {
           <Swiper
             spaceBetween={50}
             loop={true}
+            autoplay={{ delay: 3000, disableOnInteraction: false }}
+            speed={500}
             onSwiper={(swiper) => {
               swiperRef.current = swiper;
             }}
             onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+            modules={[Autoplay]}
           >
             {seasonalAnime?.map((anime, index) => {
               return (

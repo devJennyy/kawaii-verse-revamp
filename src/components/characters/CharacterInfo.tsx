@@ -345,7 +345,7 @@ const CharacterInfo = () => {
                                             behavior: "smooth",
                                           })
                                       }
-                                      className="sm:w-9 sm:h-9 w-7 h-7 rounded-full flex items-center justify-center bg-transparent border-2 4xl:text-lg xl:text-default text-[10px] border-neonAqua hover:bg-neonAqua/10 transition-default cursor-pointer text-neonAqua font-semibold"
+                                      className="sm:w-9 sm:h-9 w-7 h-7 rounded-full flex items-center justify-center bg-transparent border sm:border-2 4xl:text-lg xl:text-default text-[10px] border-neonAqua hover:bg-neonAqua/10 transition-default cursor-pointer text-neonAqua font-semibold"
                                     >
                                       {`+${voiceActor.length - 3}`}
                                     </div>

@@ -422,20 +422,27 @@ const AnimeOverview = () => {
                                   : "grid-cols-2"
                               } 4xl:gap-4 gap-2`}
                             >
-                              {animeOverview?.streaming?.map(
-                                (platform: any, index: any) => (
-                                  <a
-                                    key={index}
-                                    href={platform.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="cursor-pointer flex justify-start items-center gap-2 text-base text-[16px] rounded-md px-3 4xl:py-3 lg:py-[10px] py-2 bg-base/10 hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua hover:text-neonAqua transition-default"
-                                  >
-                                    <p className="4xl:text-default sm:text-sm text-[12px] whitespace-nowrap truncate">
-                                      {platform.name}
-                                    </p>
-                                  </a>
+                              {animeOverview?.streaming &&
+                              animeOverview.streaming.length > 0 ? (
+                                animeOverview.streaming.map(
+                                  (platform: any, index: any) => (
+                                    <a
+                                      key={index}
+                                      href={platform.url}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="cursor-pointer flex justify-start items-center gap-2 text-base text-[16px] rounded-md px-3 4xl:py-3 lg:py-[10px] py-2 bg-base/10 hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua hover:text-neonAqua transition-default"
+                                    >
+                                      <p className="4xl:text-default sm:text-sm text-[12px] whitespace-nowrap truncate">
+                                        {platform.name}
+                                      </p>
+                                    </a>
+                                  )
                                 )
+                              ) : (
+                                <p className="sm:text-sm text-[12px] text-muted italic opacity-60">
+                                  No sources found.
+                                </p>
                               )}
                             </div>
                           </DialogContent>
