@@ -45,8 +45,8 @@ const Footer = () => {
                         <Icon size={smSize} className="md:hidden" />
                       </a>
                     </TooltipTrigger>
-                    <TooltipContent side="top">
-                      <p className="text-sm py-[2px] px-1 tracking-wide">
+                    <TooltipContent side="top" className="sm:bg-neonAqua/10 bg-main">
+                      <p className="sm:text-sm text-[12px] py-[2px] px-1 tracking-wide">
                         {label}
                       </p>
                     </TooltipContent>

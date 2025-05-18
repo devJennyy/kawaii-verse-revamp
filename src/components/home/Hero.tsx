@@ -280,7 +280,7 @@ const Hero = () => {
 
                 <Button
                   hasIcon={false}
-                  label="Watch Now"
+                  label="View Details"
                   colorType="tertiary"
                   customClass="w-fit px-18 sm:h-13 h-12 text-neonAqua"
                   onClick={() => {
