@@ -13,8 +13,6 @@ import {
   SelectLabel,
   SelectSeparator,
 } from "@radix-ui/react-select";
-// import { FaList } from "react-icons/fa";
-// import { BsGridFill } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
 
 type FilterSortPanelProps = {
@@ -43,10 +41,8 @@ const FilterSortPanel = ({
   sortBy,
   setSortBy,
   mediaType,
-  setMediaType
+  setMediaType,
 }: FilterSortPanelProps) => {
-  // const [active, setActive] = useState<"grid" | "list">("grid");
-
   return (
     <div className="flex flex-col lg:gap-5 sm:gap-4 gap-[14px] lg:!my-8 sm:!my-6 !my-5">
       {!isSearch ? (
@@ -57,7 +53,6 @@ const FilterSortPanel = ({
               {title.normal}
             </p>
             <div className="flex gap-1">
-              {/* Sorting */}
               <Select value={sortBy} onValueChange={setSortBy}>
                 <SelectTrigger className="lg:w-[180px] sm:w-[130px] w-[90px]">
                   <SelectValue placeholder="Newest" />
@@ -68,7 +63,6 @@ const FilterSortPanel = ({
                 </SelectContent>
               </Select>
 
-              {/* Filter */}
               <Select>
                 <SelectSeparator />
                 <SelectTrigger
@@ -104,26 +98,6 @@ const FilterSortPanel = ({
                   </SelectGroup>
                 </SelectContent>
               </Select>
-
-              {/* Layout Toggle */}
-              {/* <div className="!ml-1 flex justify-between items-center border w-[95px] rounded-sm border-base/20 overflow-hidden p-[5px]">
-                <button
-                  onClick={() => setActive("grid")}
-                  className={`w-1/2 h-full flex justify-center items-center cursor-pointer rounded-[4px] hover:text-base transition-default ${
-                    active === "grid" ? "bg-base/10" : "text-base/70"
-                  }`}
-                >
-                  <BsGridFill size={18} />
-                </button>
-                <button
-                  onClick={() => setActive("list")}
-                  className={`w-1/2 h-full flex justify-center items-center cursor-pointer rounded-[4px] hover:text-base transition-default ${
-                    active === "list" ? "bg-base/10" : "text-base/70"
-                  }`}
-                >
-                  <FaList size={18} />
-                </button>
-              </div> */}
             </div>
           </div>
 
@@ -158,7 +132,6 @@ const FilterSortPanel = ({
             )}
           </div>
           <div className="flex gap-1">
-            {/* Sorting */}
             <Select value={mediaType} onValueChange={setMediaType}>
               <SelectTrigger className="lg:w-[180px] sm:w-[130px] w-[40px] py-[9px]">
                 <div className="sm:block hidden">
@@ -171,26 +144,6 @@ const FilterSortPanel = ({
                 <SelectItem value="movies">Movies</SelectItem>
               </SelectContent>
             </Select>
-
-            {/* Layout Toggle */}
-            {/* <div className="!ml-1 flex justify-between items-center border lg:w-[95px] sm:w-[80px] w-[60px] rounded-sm border-base/20 overflow-hidden lg:p-[5px] p-1">
-              <button
-                onClick={() => setActive("grid")}
-                className={`w-1/2 h-full flex justify-center items-center cursor-pointer rounded-[4px] hover:text-base transition-default ${
-                  active === "grid" ? "bg-base/10" : "text-base/70"
-                }`}
-              >
-                <BsGridFill className="sm:text-lg text-sm" />
-              </button>
-              <button
-                onClick={() => setActive("list")}
-                className={`w-1/2 h-full flex justify-center items-center cursor-pointer rounded-[4px] hover:text-base transition-default ${
-                  active === "list" ? "bg-base/10" : "text-base/70"
-                }`}
-              >
-                <FaList className="sm:text-lg text-sm" />
-              </button>
-            </div> */}
           </div>
         </div>
       )}

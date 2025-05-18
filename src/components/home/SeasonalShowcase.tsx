@@ -24,7 +24,6 @@ const SeasonalShowcase = () => {
       <div className="absolute w-full 4xl:h-[990px] 3xxl:h-[780px] 2xl:h-[590px] xl:h-[510px] h-[420px] bg-[#181A20] transition-slow"></div>
       <div className="w-fit px-40 flex justify-center items-center relative scale-42 xl:scale-52 2xl:scale-60 3xxl:scale-80 4xl:scale-100 transition-slow">
         <div className="w-[1940px] 4xl:h-[1200px] 3xxl:h-[990px] 2xl:h-[720px] xl:h-[630px] h-[520px] relative flex items-center cursor-grab transition-slow">
-          {/* Banner */}
           <Swiper
             spaceBetween={50}
             loop={true}
@@ -36,7 +35,10 @@ const SeasonalShowcase = () => {
             {seasonalAnime?.map((anime, index) => {
               return (
                 <SwiperSlide key={index}>
-                  <Link to={`/anime-overview?id=${anime.mal_id}`} className="w-[1940px] h-[1200px] relative flex justify-center items-center overflow-visible">
+                  <Link
+                    to={`/anime-overview?id=${anime.mal_id}`}
+                    className="w-[1940px] h-[1200px] relative flex justify-center items-center overflow-visible"
+                  >
                     <div
                       className={
                         anime.id === "mitsuri"
@@ -58,12 +60,11 @@ const SeasonalShowcase = () => {
                     >
                       <img
                         src={anime.soloCharacter}
-                        alt=""
+                        alt={anime.id}
                         className="w-full h-full"
                       />
                     </div>
                     <div className="w-full h-[700px] relative">
-                      {/* Left Trapezoid */}
                       <div className="absolute w-[850px] left-0 top-0 flex justify-center items-center">
                         <div
                           className="w-[830px] h-[570px] bg-white/90"
@@ -93,7 +94,6 @@ const SeasonalShowcase = () => {
                         />
                       </div>
 
-                      {/* Right Trapezoid */}
                       <div className="absolute w-[1350px] right-0 bottom-0 flex justify-center items-center">
                         <div
                           className="w-[1345px] h-[565px] bg-white"
@@ -124,7 +124,6 @@ const SeasonalShowcase = () => {
                       </div>
                     </div>
 
-                    {/* Top Right & Bottom Left Text */}
                     <div className="w-full h-[950px] absolute">
                       <div className="absolute right-0 top-10 text-right flex flex-col gap-5">
                         <motion.p
@@ -188,7 +187,6 @@ const SeasonalShowcase = () => {
             })}
           </Swiper>
         </div>
-        {/* Pagination Controls */}
         <div className="absolute w-full flex justify-between ">
           <button
             onClick={() => swiperRef.current?.slidePrev()}

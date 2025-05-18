@@ -72,7 +72,7 @@ const AnimeOverview = () => {
   };
 
   useEffect(() => {
-    // window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "smooth" });
     const searchParams = new URLSearchParams(location.search);
     const id = searchParams.get("id");
     console.log(searchParams);
@@ -95,7 +95,7 @@ const AnimeOverview = () => {
       .then(([overviewRes, charactersRes]) => {
         setAnimeOverview(overviewRes.data.data);
         setCharacters(charactersRes.data.data);
-        console.log(charactersRes.data.data)
+        console.log(charactersRes.data.data);
       })
       .finally(() => {
         setTimeout(() => {
@@ -142,7 +142,6 @@ const AnimeOverview = () => {
             }`}
           >
             <div className="flex gap-16 lg:px-10">
-              {/* Left Content */}
               <div className="hidden w-full 4xl:max-w-[477px] xl:max-w-[330px] max-w-[270px] lg:flex flex-col gap-10 transition-slow">
                 <div className="bg-base/5 rounded-xl overflow-hidden">
                   <img
@@ -239,9 +238,7 @@ const AnimeOverview = () => {
                 </div>
               </div>
 
-              {/* Right Content */}
               <div className="4xl:w-[1190px] xl:w-[900px] w-full flex flex-col gap-6">
-                {/* Top */}
                 <div className="hidden lg:flex flex-col justify-end text-left 4xl:leading-tight 4xl:h-[37em] xl:h-[26.5rem] h-[22rem] 4xl:!pb-14 pb-5 4xl:gap-5 gap-2">
                   <p
                     className={`w-full xl:max-w-full max-w-[600px] 4xl:pr-0 xl:pr-5 pr-0 ${
@@ -368,7 +365,6 @@ const AnimeOverview = () => {
                   </div>
                 </div>
 
-                {/* For Mobile */}
                 <div className="lg:hidden relative w-full flex flex-col justify-center">
                   <div className="absolute inset-0 z-0">
                     <img
@@ -502,7 +498,6 @@ const AnimeOverview = () => {
                     </div>
                   </div>
 
-                  {/* Switch Content */}
                   <div className="flex flex-col lg:px-0 sm:px-5 px-4 !mt-8 !mx-auto sm:w-[640px] w-full">
                     <div className="flex flex-col gap-2 relative">
                       <div className="flex gap-5 4xl:text-xl sm:text-lg tracking-wide 4xl:font-bold font-medium">
@@ -545,7 +540,6 @@ const AnimeOverview = () => {
                       </div>
                     </div>
 
-                    {/* Conditionally rendered content */}
                     <div className="mt-4">
                       {activeTab === "overview" ? (
                         <AnimeOverviewContent
@@ -657,7 +651,6 @@ const AnimeOverview = () => {
                   </div>
                 </div>
 
-                {/* Bottom */}
                 <div className="hidden lg:block">
                   <AnimeOverviewContent
                     animeOverview={animeOverview}

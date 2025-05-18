@@ -30,17 +30,35 @@ const AnimeGallery = ({ type, delay = 0, mediaType }: AnimeShowcaseProps) => {
     fetchAnime();
   }, [type, screenWidth, delay]);
 
-  const fetchAnime = async (more = false, switchType = false, customPage = 0) => {
+  const fetchAnime = async (
+    more = false,
+    switchType = false,
+    customPage = 0
+  ) => {
     try {
       const url =
         type === "newest-season"
-          ? NEWEST_SEASON.replace("{page}", (switchType ? "1" : customPage ? customPage.toString() : page.toString())).replace(
+          ? NEWEST_SEASON.replace(
+              "{page}",
+              switchType
+                ? "1"
+                : customPage
+                ? customPage.toString()
+                : page.toString()
+            ).replace(
               "{type}",
               mediaType !== "All"
                 ? `filter=${mediaType === "Series" ? "TV" : "Movie"}&`
                 : ``
             )
-          : TOP_ANIME.replace("{page}", (switchType ? "1" : customPage ? customPage.toString() : page.toString())).replace(
+          : TOP_ANIME.replace(
+              "{page}",
+              switchType
+                ? "1"
+                : customPage
+                ? customPage.toString()
+                : page.toString()
+            ).replace(
               "{type}",
               mediaType !== "All"
                 ? `type=${mediaType === "Series" ? "TV" : "Movie"}&`
@@ -48,14 +66,13 @@ const AnimeGallery = ({ type, delay = 0, mediaType }: AnimeShowcaseProps) => {
             );
 
       const res = await axios.get(url);
-      
-      if(more){
+
+      if (more) {
         setAnimeList((prev) => [...prev, ...res.data.data]);
-      }
-      else {
+      } else {
         setAnimeList(res.data.data);
       }
-      
+
       setHasNextPage(res.data.pagination.has_next_page);
     } catch (err) {
       console.error("Oops! something went wrong", err);
@@ -74,7 +91,6 @@ const AnimeGallery = ({ type, delay = 0, mediaType }: AnimeShowcaseProps) => {
           return (
             <Link key={index} to={`/anime-overview?id=${anime.mal_id}`}>
               <motion.div className="relative w-full !mt-2 cursor-pointer lg:p-2">
-                {/* Image Container */}
                 <div className="w-full lg:h-[320px] h-[245px]">
                   <img
                     src={anime?.images?.jpg?.large_image_url}
@@ -83,7 +99,6 @@ const AnimeGallery = ({ type, delay = 0, mediaType }: AnimeShowcaseProps) => {
                   />
                 </div>
 
-                {/* Text Section */}
                 <div className="flex flex-col text-left gap-1 tracking-wider !mt-3">
                   <p className="line-clamp-3 overflow-hidden text-ellipsis lg:text-default text-sm">
                     {anime?.title}
@@ -93,7 +108,6 @@ const AnimeGallery = ({ type, delay = 0, mediaType }: AnimeShowcaseProps) => {
                   </p>
                 </div>
 
-                {/* Black Overlay with Hover Image */}
                 <motion.div
                   className="absolute inset-0 hidden lg:flex items-center justify-center text-white font-bold text-xl"
                   initial={{ opacity: 0 }}

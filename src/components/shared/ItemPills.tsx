@@ -1,42 +1,51 @@
-import React from 'react';
+import React from "react";
 
 interface ItemPillsProps {
   title?: string;
   items?: { name: string; url?: string }[];
   isClickable?: boolean;
-  variant?: 'primary' | 'trailer';
-  classType?: 'default' | 'no-hover';
+  variant?: "primary" | "trailer";
+  classType?: "default" | "no-hover";
   onClick?: (url: string) => void;
   children?: React.ReactNode;
 }
 
-const getPillClasses = (isClickable: boolean, classType: 'default' | 'no-hover' = 'default') => {
+const getPillClasses = (
+  isClickable: boolean,
+  classType: "default" | "no-hover" = "default"
+) => {
   const baseClasses =
-    '4xl:px-6 4xl:py-[9px] px-4 lg:py-2 py-1 lg:rounded-md rounded-sm 4xl:text-lg xl:text-default md:text-sm text-[12px] transition-default tracking-wide';
+    "4xl:px-6 4xl:py-[9px] px-4 lg:py-2 py-1 lg:rounded-md rounded-sm 4xl:text-lg xl:text-default md:text-sm text-[12px] transition-default tracking-wide";
 
   const interactiveClasses =
-    classType === 'no-hover'
-      ? 'bg-base/10 border border-transparent text-inherit'
-      : 'bg-base/10 hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua hover:text-neonAqua';
+    classType === "no-hover"
+      ? "bg-base/10 border border-transparent text-inherit"
+      : "bg-base/10 hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua hover:text-neonAqua";
 
-  return `${baseClasses} ${interactiveClasses} ${isClickable ? 'cursor-pointer' : ''}`;
+  return `${baseClasses} ${interactiveClasses} ${
+    isClickable ? "cursor-pointer" : ""
+  }`;
 };
 
 const ItemPills = ({
   title,
   items = [],
   isClickable = false,
-  variant = 'primary',
-  classType = 'default',
+  variant = "primary",
+  classType = "default",
   onClick,
   children,
 }: ItemPillsProps) => {
-  const renderPills = variant === 'primary';
-  const renderTrailer = variant === 'trailer';
+  const renderPills = variant === "primary";
+  const renderTrailer = variant === "trailer";
 
   return (
     <div className="flex flex-col 4xl:gap-5 xl:gap-4 gap-3">
-      {title && <h2 className="4xl:text-xl sm:text-lg 4xl:font-bold font-medium text-left w-full">{title}</h2>}
+      {title && (
+        <h2 className="4xl:text-xl sm:text-lg 4xl:font-bold font-medium text-left w-full">
+          {title}
+        </h2>
+      )}
 
       {children && <div>{children}</div>}
 

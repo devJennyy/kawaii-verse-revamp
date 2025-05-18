@@ -6,11 +6,7 @@ import {
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { SiApplemusic } from "react-icons/si";
-import {
-  Dialog,
-  DialogContent,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { DialogTitle } from "@radix-ui/react-dialog";
 
 const getSearchUrls = (query: string) => {
@@ -55,7 +51,7 @@ interface ThemeListProps {
   label: string;
 }
 
-const ThemeList = ({ themes }: ThemeListProps) => { 
+const ThemeList = ({ themes }: ThemeListProps) => {
   if (!themes || themes.length === 0) return null;
 
   return (

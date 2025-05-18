@@ -289,7 +289,6 @@ const AnimeShowcase = ({ type, delay = 0 }: AnimeShowcaseProps) => {
                   </Link>
                 </SwiperSlide>
               ))}
-              {/* <SwiperNavButtons /> */}
             </Swiper>
           </div>
         </>

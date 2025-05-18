@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import FavoritesTable from "@/components/characters/FavoritesTable";
 import Leaderboard from "@/components/characters/Leaderboard";
+import Button from "@/components/shared/Button";
 import LoadingStyle from "@/components/ui/LoadingStyle";
 import { TOP_CHARACTERS } from "@/constants/api";
 import axios from "axios";
@@ -19,7 +20,6 @@ const Characters = () => {
   }, 1500);
 
   const fetchTopChars = () => {
-    // setSearchChar(false);
     setIsLoading(true);
 
     if (!searchKey) {
@@ -27,11 +27,16 @@ const Characters = () => {
     }
 
     Promise.all([
-      axios.get(TOP_CHARACTERS.replace("{page}", searchKey ? '1' : page.toString()).replace("{q}", searchKey ? `q=${searchKey}&` : "")),
+      axios.get(
+        TOP_CHARACTERS.replace(
+          "{page}",
+          searchKey ? "1" : page.toString()
+        ).replace("{q}", searchKey ? `q=${searchKey}&` : "")
+      ),
     ])
       .then(([charactersRes]) => {
         setTopCharacters(charactersRes.data.data);
-        if(page === 1 && !searchKey) {
+        if (page === 1 && !searchKey) {
           setTop3Characters(charactersRes.data.data.slice(0, 3));
         }
       })
@@ -43,16 +48,16 @@ const Characters = () => {
       .catch((error) => {
         console.error("Error fetching anime data:", error);
       });
-  }
+  };
 
   const handleSearch = () => {
     fetchTopChars();
     setSearchChar(true);
-  }
+  };
 
   useEffect(() => {
     fetchTopChars();
-  }, [page])
+  }, [page]);
 
   return (
     <section id="characters" className="w-full">
@@ -65,27 +70,38 @@ const Characters = () => {
         }`}
       >
         <Leaderboard characterData={top3Characters} />
-        <FavoritesTable searchKey={searchKey} setSearchKey={setSearchKey} handleSearch={handleSearch} topCharacters={topCharacters} page={page} />
-        {!searchChar && <div className="w-full flex justify-center items-center">
-            {page > 1 && <button
-            onClick={() => {
-              setPage((prevPage) => prevPage - 1);
-            }}
-            className="bg-primary text-white px-4 py-2 rounded-lg mt-4 hover:bg-secondary transition-colors duration-300"
-          >
-            Prev
-          </button>}
+        <FavoritesTable
+          searchKey={searchKey}
+          setSearchKey={setSearchKey}
+          handleSearch={handleSearch}
+          topCharacters={topCharacters}
+          page={page}
+        />
+        {!searchChar && (
+          <div className="w-full flex justify-center items-center !mt-10 gap-2">
+            {page > 1 && (
+              <Button
+                colorType={"primary"}
+                hasIcon={false}
+                label="Prev"
+                onClick={() => {
+                  setPage((prevPage) => prevPage - 1);
+                }}
+                customClass="!px-10 !py-3"
+              />
+            )}
 
-          <button
-            onClick={() => {
-              setPage((prevPage) => prevPage + 1);
-            }}
-            className="bg-primary text-white px-4 py-2 rounded-lg mt-4 hover:bg-secondary transition-colors duration-300"
-          >
-            Next
-          </button>
-
-        </div>}
+            <Button
+              colorType={"primary"}
+              hasIcon={false}
+              label="Next"
+              onClick={() => {
+                setPage((prevPage) => prevPage + 1);
+              }}
+              customClass="!px-10 !py-3"
+            />
+          </div>
+        )}
       </div>
     </section>
   );

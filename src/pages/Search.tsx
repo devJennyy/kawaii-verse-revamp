@@ -59,7 +59,6 @@ const Search = () => {
   }, [mediaType]);
 
   useEffect(() => {
-    // Get the value of the 'q' parameter from the URL
     const query = searchParams.get("q");
 
     if (query) {
@@ -100,7 +99,6 @@ const Search = () => {
                   return (
                     <Link key={index} to={`/anime-overview?id=${anime.mal_id}`}>
                       <motion.div className="relative w-full !mt-2 cursor-pointer lg:p-2">
-                        {/* Image Container */}
                         <div className="w-full lg:h-[320px] h-[245px]">
                           <img
                             src={anime?.images?.jpg?.large_image_url}
@@ -109,7 +107,6 @@ const Search = () => {
                           />
                         </div>
 
-                        {/* Text Section */}
                         <div className="flex flex-col text-left gap-1 tracking-wider !mt-3">
                           <p className="line-clamp-3 overflow-hidden text-ellipsis lg:text-default text-sm">
                             {anime?.title}
@@ -120,7 +117,6 @@ const Search = () => {
                           </p>
                         </div>
 
-                        {/* Black Overlay with Hover Image */}
                         <motion.div
                           className="absolute inset-0 hidden lg:flex items-center justify-center text-white font-bold text-xl"
                           initial={{ opacity: 0 }}

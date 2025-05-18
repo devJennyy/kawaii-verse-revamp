@@ -22,7 +22,7 @@ const Navbar = () => {
 
   const handleSearch = () => {
     navigate(`/search?q=${searchKeyword}`);
-  }
+  };
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -33,7 +33,6 @@ const Navbar = () => {
 
   return (
     <nav className="fixed left-0 5xl:right-0 top-0 w-full !mx-auto lg:h-16 sm:h-14 5xl:h-18 h-12 flex items-center px-4 border-b border-base/10 z-50 bg-main">
-      {/* Web Menu */}
       <div className="hidden w-full xl:flex items-center 3xl:gap-10 gap-5">
         <a
           href="/homepage"
@@ -86,10 +85,12 @@ const Navbar = () => {
       </div>
 
       <div className="hidden xl:block">
-        <Button colorType={"primary"} href="https://github.com/devJennyy/kawaii-verse-revamp"/>
+        <Button
+          colorType={"primary"}
+          href="https://github.com/devJennyy/kawaii-verse-revamp"
+        />
       </div>
 
-      {/* Dark background overlay */}
       <AnimatePresence>
         {showMenu && (
           <motion.div
@@ -103,7 +104,6 @@ const Navbar = () => {
         )}
       </AnimatePresence>
 
-      {/* Mobile Menu */}
       <div className="relative xl:hidden w-full flex justify-between items-center z-30">
         <div className="w-full sm:hidden">
           <a href="/">
@@ -125,7 +125,6 @@ const Navbar = () => {
           />
         </motion.a>
 
-        {/* Desktop logo */}
         <div className="w-full">
           <a href="/">
             <img
@@ -136,7 +135,6 @@ const Navbar = () => {
           </a>
         </div>
 
-        {/* Search bar */}
         <div className="flex gap-3">
           <motion.div
             ref={searchRef}
@@ -159,7 +157,7 @@ const Navbar = () => {
                 opacity: isSearchVisible ? 1 : 0,
               }}
               onKeyDown={(e) => {
-              if (e.key === "Enter") {
+                if (e.key === "Enter") {
                   handleSearch();
                 }
               }}
@@ -171,7 +169,6 @@ const Navbar = () => {
             />
           </motion.div>
 
-          {/* Hamburger menu */}
           <button
             onClick={() => setShowMenu(!showMenu)}
             className={`transition-default ${showMenu ? "text-neonAqua" : ""}`}
@@ -179,7 +176,6 @@ const Navbar = () => {
             <RxHamburgerMenu className="sm:text-[1.7rem] text-xl" />
           </button>
 
-          {/* Dropdown menu */}
           <AnimatePresence>
             {showMenu && (
               <motion.div
@@ -191,21 +187,23 @@ const Navbar = () => {
               >
                 {navLinks?.map((item, index) => {
                   return (
-                    <a href={item.href}
+                    <a
+                      href={item.href}
                       key={index}
                       className="w-full flex justify-start items-center text-neonAqua p-2 active:bg-neonAqua active:text-main focus:bg-neonAqua focus:text-main transition-default sm:rounded-md rounded-sm"
                     >
-                     
-                        <p className="font-semibold tracking-wide sm:text-[16px] text-sm">
-                          {item.label}
-                        </p>
-                      
+                      <p className="font-semibold tracking-wide sm:text-[16px] text-sm">
+                        {item.label}
+                      </p>
                     </a>
                   );
                 })}
 
                 <div className="!mt-2">
-                  <Button colorType={"secondary"} href="https://github.com/devJennyy/kawaii-verse-revamp"/>
+                  <Button
+                    colorType={"secondary"}
+                    href="https://github.com/devJennyy/kawaii-verse-revamp"
+                  />
                 </div>
               </motion.div>
             )}

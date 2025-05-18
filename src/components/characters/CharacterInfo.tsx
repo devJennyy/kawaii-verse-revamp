@@ -111,7 +111,6 @@ const CharacterInfo = () => {
             }`}
           >
             <div className="flex gap-16 lg:px-10">
-              {/* Left Content */}
               <div className="hidden w-full 4xl:max-w-[477px] xl:max-w-[330px] max-w-[270px] lg:flex flex-col gap-10 transition-slow">
                 <div className="bg-base/5 rounded-xl overflow-hidden">
                   <img
@@ -144,7 +143,8 @@ const CharacterInfo = () => {
                         <div className="flex flex-col 4xl:gap-4 gap-3">
                           {animeography.map((item: any, index: any) => {
                             return (
-                              <Link to={`/anime-overview?id=${item.anime.mal_id}`}
+                              <Link
+                                to={`/anime-overview?id=${item.anime.mal_id}`}
                                 key={index}
                                 className="tracking-wide group w-full bg-base/8 rounded-lg flex justify-start items-start gap-5 p-2 cursor-pointer hover:text-neonAqua hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default"
                               >
@@ -187,9 +187,7 @@ const CharacterInfo = () => {
                 </div>
               </div>
 
-              {/* Right Content */}
               <div className="4xl:w-[1190px] xl:w-[900px] w-full flex flex-col gap-6">
-                {/* Top */}
                 <div className="hidden lg:flex flex-col justify-end text-left 4xl:leading-tight 4xl:h-[37em] xl:h-[26.5rem] h-[22rem] 4xl:!pb-14 pb-5 4xl:gap-5 gap-2">
                   <p
                     className={`w-full xl:max-w-full max-w-[600px] 4xl:pr-0 xl:pr-5 pr-0 ${
@@ -271,13 +269,14 @@ const CharacterInfo = () => {
                   </div>
                 </div>
 
-                {/* For Mobile */}
                 <div className="lg:hidden relative w-full flex flex-col justify-center">
                   <div className="absolute inset-0 z-0">
                     <img
                       src={
-                        characterInfo?.anime[0]?.anime.images.jpg.large_image_url ||
-                        characterInfo?.anime[1]?.anime.images.jpg.large_image_url
+                        characterInfo?.anime[0]?.anime.images.jpg
+                          .large_image_url ||
+                        characterInfo?.anime[1]?.anime.images.jpg
+                          .large_image_url
                       }
                       alt={characterInfo?.name}
                       className="w-full sm:h-[300px] h-[280px] object-cover object-center transition-slow"
@@ -365,7 +364,6 @@ const CharacterInfo = () => {
                     </div>
                   </div>
 
-                  {/* Switch Content */}
                   <div className="flex flex-col lg:px-0 sm:px-5 px-4 !mt-8 !mx-auto sm:w-[640px] w-full">
                     <div className="flex flex-col gap-2 relative">
                       <div className="flex gap-5 4xl:text-xl sm:text-lg tracking-wide 4xl:font-bold font-medium">
@@ -408,7 +406,6 @@ const CharacterInfo = () => {
                       </div>
                     </div>
 
-                    {/* Conditionally rendered content */}
                     <div className="mt-4">
                       {activeTab === "overview" ? (
                         <CharacterOverviewContent
@@ -446,7 +443,8 @@ const CharacterInfo = () => {
                                 <div className="flex flex-col 4xl:gap-4 gap-3">
                                   {animeography.map((item: any, index: any) => {
                                     return (
-                                      <Link to={`/anime-overview?id=${item.anime.mal_id}`}
+                                      <Link
+                                        to={`/anime-overview?id=${item.anime.mal_id}`}
                                         key={index}
                                         className="z-40 tracking-wide group w-full bg-base/8 rounded-lg flex justify-start items-start gap-5 p-2 cursor-pointer hover:text-neonAqua hover:bg-neonAqua/10 border border-transparent hover:border-neonAqua transition-default"
                                       >
@@ -494,7 +492,6 @@ const CharacterInfo = () => {
                   </div>
                 </div>
 
-                {/* Bottom */}
                 <div className="hidden lg:block">
                   <CharacterOverviewContent
                     characterOverview={characterInfo}
