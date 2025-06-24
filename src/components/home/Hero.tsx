@@ -181,7 +181,7 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="relative lg:hidden w-full md:h-[850px] sm:h-[800px] h-screen !pt-10 flex flex-col justify-center">
+      <div className="relative lg:hidden w-full md:h-[850px] sm:h-[800px] h-[720px] !pt-10 flex flex-col justify-center">
         <div className="absolute inset-0 z-0">
           {topAnime?.map((anime, index) => (
             <div
