@@ -251,7 +251,7 @@ const Hero = () => {
                     : "opacity-0 pointer-events-auto"
                 }`}
               >
-                <p className="sm:text-2xl text-lg font-bold">{anime.title}</p>
+                <p className="sm:text-2xl text-lg font-bold line-clamp-1 sm:px-5 px-10 overflow-hidden">{anime.title}</p>
 
                 <div className="flex gap-2 flex-wrap justify-center">
                   {anime?.genres?.map((genre: any, index: number) => (
