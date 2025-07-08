@@ -1,7 +1,13 @@
 <div align="center">
   <br />
-    <a href="https://kawaii-verse-revamp-by-devjenny.vercel.app" target="_blank">
+    <a href="https://kawaii-verse.vercel.app/" target="_blank">
       <img src="https://github.com/devJennyy/kawaii-verse-revamp/blob/main/public/images/homepage-ui.png" alt="Project Banner">
+    </a>
+  <br />
+
+  <br />
+    <a href="https://kawaii-verse.vercel.app/" target="_blank">
+      <img src="https://github.com/devJennyy/kawaii-verse-revamp/blob/main/public/images/mobile-ui-preview.png" alt="Project Banner">
     </a>
   <br />
 
@@ -22,17 +28,14 @@
   </br>
 </div>
 
-## <a name="tech-stack">⚙️ Tech Stack </a>
+## ⚙️ Tech Stack
 
-- React.js
-- TailwindCSS
-- TypeScript
-- ShadCN
-- Framer Motion
-- SwiperJS
-- Jikan API
-- Axios
-
+| 🛠️ Development | 🎨 UI & Styling | 🌀 Animation | 🪶 Design |
+|----------------|------------------|--------------|------------|
+| React.js       | TailwindCSS      | Framer Motion| Figma      |
+| TypeScript     | ShadCN           | SwiperJS     |            |
+| Jikan API      |                  |              |            |
+| Axios          |                  |              |            |
 
 ## <a name="quick-start">⚡ Commands </a>
 
@@ -49,6 +52,6 @@ npm run dev
 ```
 
 ##
-> **Designed and Developed by [@devjenny](https://www.linkedin.com/in/jennypieloor/)**
+> **Designed and Developed by [@devjenny](https://devjenny-portfolio-legacy.vercel.app/)**
 
 
